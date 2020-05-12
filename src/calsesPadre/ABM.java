@@ -43,13 +43,24 @@ public abstract class ABM extends Consultas {
         this.listaCampos = listaCampos;
     }
 
-    
-    //desde el abm hijo obtenemos el formulario correspondiente este varia pero aqui usamos getfomulario.dispose
-    ///entonces en hijo debemos tener otro formulario pero no es jdialog...sino que una clase de formulario especifica...aqui usamos
-    //jfialog par ale dipose...por eso transeferimos de la clase hijo a esta clase el formulario para usar el dispose del jdialog
+    /**
+     * Jala la instancia de la interfaz grafica del formulario registrar para
+     * cerrarlo luego de ejecutarReistrar.
+     */
     public abstract void obtenerFormularioRegistrar();
+
+    /**
+     * Jala la instancia de la interfaz grafica del formulario editar para
+     * cerrarlo luego de ejecutarEditar.
+     */
     public abstract void obtenerFormularioEditar();
-    
+
+    /**
+     * Verifica que todos los campos del formulario esten completados, convoca
+     * el metodo de conexion para realizar la transaccion registrar y cierra el
+     * formulario.
+     *
+     */
     public boolean ejecutarRegistrar() {
         obtenerFormularioRegistrar();
         if (operacionesUtilidad.verificarCamposTextoVacios(getListaCampos())) {
@@ -60,6 +71,12 @@ public abstract class ABM extends Consultas {
         return false;
     }
 
+    /**
+     * Verifica que todos los campos del formulario esten completados, convoca
+     * el metodo de conexion para realizar la transaccion editar y cierra el
+     * formulario.
+     *
+     */
     public boolean ejecutarEditar() {
         obtenerFormularioEditar();
         if (operacionesUtilidad.verificarCamposTextoVacios(getListaCampos())) {
@@ -70,11 +87,22 @@ public abstract class ABM extends Consultas {
         return false;
     }
 
+    /**
+     * Convoca el metodo de conexion para realizar la transaccion eliminar y
+     * cierra el formulario.
+     *
+     */
     public boolean ejecutarEliminar() {
         conexionTransaccionEliminar();
         return true;
     }
 
+    /**
+     * Abre una conexion con la base de datos, convoca el metodo que realiza la
+     * transaccion de datos a instancias hibernate y realiza un commit para
+     * generar un nuevo registro en la base de datos, una vez completada la
+     * accion, envia un mensaje informando al usuario el estado de la accion.
+     */
     public void conexionTransaccionRegistrar() {
         Session miSesion = ConexionHibernate.tomarConexion();
         try {
@@ -87,6 +115,13 @@ public abstract class ABM extends Consultas {
         }
     }
 
+    /**
+     * Abre una conexion con la base de datos, convoca el metodo que realiza la
+     * transaccion de datos a instancias hibernate y realiza un commit para dar
+     * de actualizar un registro existente en la base de datos, una vez
+     * completada la accion, envia un mensaje informando al usuario el estado de
+     * la accion.
+     */
     public void conexionTransaccionEditar() {
         Session miSesion = ConexionHibernate.tomarConexion();
         try {
@@ -99,6 +134,12 @@ public abstract class ABM extends Consultas {
         }
     }
 
+    /**
+     * Abre una conexion con la base de datos, convoca el metodo que realiza la
+     * transaccion de datos a instancias hibernate y realiza un commit para dar
+     * de baja un registro existente en la base de datos, una vez completada la
+     * accion, envia un mensaje informando al usuario el estado de la accion.
+     */
     public void conexionTransaccionEliminar() {
         Session miSesion = ConexionHibernate.tomarConexion();
         try {
@@ -112,10 +153,28 @@ public abstract class ABM extends Consultas {
 
     }
 
+    /**
+     * Guarda los datos de la interfaz grafica en instancias de clases Hibernate
+     * para generar un nuevo registro.
+     *
+     * @param miSesion
+     */
     public abstract void transaccionRegistrar(Session miSesion);
 
+    /**
+     * Guarda los datos de la interfaz grafica en instancias de clases Hibernate
+     * para actualizar un registro existente.
+     *
+     * @param miSesion
+     */
     public abstract void transaccionEditar(Session miSesion);
 
+    /**
+     * Guarda los datos de la interfaz grafica en instancias de clases Hibernate
+     * para dar de baja un registro existente.
+     *
+     * @param miSesion
+     */
     public abstract void transaccionEliminar(Session miSesion);
 
 }

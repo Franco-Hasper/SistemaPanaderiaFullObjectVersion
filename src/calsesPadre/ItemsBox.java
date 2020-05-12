@@ -61,28 +61,47 @@ public abstract class ItemsBox extends Consultas {
         this.boxTipoTelefono = boxTipoTelefono;
     }
 
+    /**
+     * Se utiliza para insertar todos los boxes del formulario en un solo
+     * metodo.
+     */
     public abstract void agregarBoxes();
 
+    /**
+     * Se utiliza para implemntar varios consultaRellenar# en un solo metodo.
+     */
     public abstract void rellenarBoxes();
 
+    /**
+     * Evalua el estado de la consulta para eviatar realizar una cada vez que se
+     * seleccione un box provincia.
+     */
     public void evaluarEstadoConsultaLocalidad() {
         switch (getEstadoConsulta()) {
             case 0:
-                accionRellenarLocalidad();
+                consultaRellenarLocalidad();
                 break;
             case 1:
-                accionRellenarLocalidadSinBusqueda();
+                consultaRellenarLocalidadSinBusqueda();
                 break;
         }
     }
 
-    public void accionRellenarProvincia() {
+    /**
+     * Genera la consulta, obtiene los resultados y ejecuta el metodo
+     * rellenarBoxProvincia.
+     */
+    public void consultaRellenarProvincia() {
         setConsultaList("from Provincia");
         obtenerListaConsulta();
         rellenarBoxProvincia();
     }
 
-    public void accionRellenarLocalidad() {
+    /**
+     * Genera la consulta, obtiene los resultados y ejecuta el metodo
+     * rellenarBoxLocalidad.
+     */
+    public void consultaRellenarLocalidad() {
         while (getBoxLocalidad().getItemCount() > 0) {
             getBoxLocalidad().removeAllItems();
         }
@@ -91,26 +110,41 @@ public abstract class ItemsBox extends Consultas {
         rellenarBoxLocalidad();
     }
 
-    public void accionRellenarLocalidadSinBusqueda() {
+    /**
+     * Se implementa en el caso de que la consulta ya haya sido realizada
+     * previamente, ejecuta el metodo rellenarBoxLocalidad.
+     */
+    public void consultaRellenarLocalidadSinBusqueda() {
         while (getBoxLocalidad().getItemCount() > 0) {
             getBoxLocalidad().removeAllItems();
         }
         rellenarBoxLocalidad();
     }
 
-    public void accionRellenarTipoDomicilio() {
+    /**
+     * Genera la consulta, obtiene los resultados y ejecuta el metodo
+     * rellenarTipoDomicilio.
+     */
+    public void consultaRellenarTipoDomicilio() {
         setConsultaList("from TipoDomicilio");
         obtenerListaConsulta();
         rellenarTipoDomicilio();
     }
 
-    public void accionRellenarTipoTelefono() {
+    /**
+     * Genera la consulta, obtiene los resultados y ejecuta el metodo
+     * rellenarTipoTelefono.
+     */
+    public void consultaRellenarTipoTelefono() {
         setConsultaList("from TipoTelefono");
         obtenerListaConsulta();
         rellenarTipoTelefono();
 
     }
 
+    /**
+     * Agrega Items obtenidos de la consulta al boxTipoTelefono
+     */
     public void rellenarTipoTelefono() {
         List lista = this.getListaResultados();
         List<TipoTelefono> lista_TipoTelefono
@@ -123,6 +157,9 @@ public abstract class ItemsBox extends Consultas {
 
     }
 
+    /**
+     * Agrega Items obtenidos de la consulta al boxTipoDomicilio
+     */
     public void rellenarTipoDomicilio() {
         List lista = this.getListaResultados();
         List<TipoDomicilio> lista_tipoDom
@@ -135,6 +172,9 @@ public abstract class ItemsBox extends Consultas {
 
     }
 
+    /**
+     * Agrega Items obtenidos de la consulta al boxProvincia.
+     */
     public void rellenarBoxProvincia() {
         List lista = this.getListaResultados();
         List<Provincia> lista_provincia
@@ -146,6 +186,10 @@ public abstract class ItemsBox extends Consultas {
 
     }
 
+    /**
+     * Agrega Items obtenidos de la consulta al boxLocalidad dependiendo de la
+     * provincia seleccionada.
+     */
     public void rellenarBoxLocalidad() {
         List lista = this.getListaResultados();
         List<Provincia> lista_Provincias

@@ -22,18 +22,21 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         this.btnGestionProveedor.setEnabled(false);
         this.btnGestionVentas.setEnabled(false);
     }
-    
-    
-    public InstanciaEscritorio instancias=new InstanciaEscritorio();
-    
 
-    private InterfazGraficaEscritorioCliente interfazGraficaCliente=new InterfazGraficaEscritorioCliente();
-       
-    
+    public InstanciaEscritorio instancias = new InstanciaEscritorio();
+
+    private InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
+
     private boolean minimiza = false;
     public boolean cerra = false;
 
-
+    /**
+     * Evalua si una instancia del tipo JInternalFrame esta vijente y devuelve
+     * true, de lo contrario devuelve false.
+     *
+     * @param obj
+     * @return
+     */
     public boolean estacerrado(Object obj) {
         JInternalFrame[] activos = getEscritorio().getAllFrames();
         boolean cerrado = true;
@@ -56,8 +59,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         this.escritorio = escritorio;
     }
 
-   
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -252,8 +253,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public void setPanelPrincipalTop(JPanel panelPrincipalTop) {
         this.panelPrincipalTop = panelPrincipalTop;
     }
-
-
 
     public MaterialButtomRectangle getBtnConfiguracion() {
         return btnConfiguracion;

@@ -45,6 +45,13 @@ public class SwingBrowser extends JFXPanel {
         });
     }
 
+    /**
+     * Devuelve la URL formateada.
+     *
+     * @param str
+     * @return
+     */
+
     private String toURL(String str) {
         try {
             return new URL(str).toExternalForm();

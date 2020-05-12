@@ -57,10 +57,10 @@ public class InterfazGraficaFormularioRegistrarCliente extends InterfazGraficaFo
 
     @Override
     public void rellenarBoxes() {
-        this.accionRellenarProvincia();
-        this.accionRellenarLocalidad();
-        this.accionRellenarTipoDomicilio();
-        this.accionRellenarTipoTelefono();
+        this.consultaRellenarProvincia();
+        this.consultaRellenarLocalidad();
+        this.consultaRellenarTipoDomicilio();
+        this.consultaRellenarTipoTelefono();
     }
 
     @Override

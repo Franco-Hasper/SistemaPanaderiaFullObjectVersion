@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.LinkedList;
 import java.util.Scanner;
-import lanzarAplicacion.InterfazGraficaPrincipal;
 import principal.PrincipalAdministrador;
 
 public class ConfiguracionTxt {
@@ -17,12 +16,12 @@ public class ConfiguracionTxt {
      * Recibe 6 valores, 3 RGB para crear color primario y 3 RGB para crear el
      * color secundario de la interfaz grafica.
      *
-     * @param pr
-     * @param pg
-     * @param pb
-     * @param sr
-     * @param sg
-     * @param sb
+     * @param pr colorPrimarioRed
+     * @param pg colorPrimarioGreen
+     * @param pb colorPrimarioBlue
+     * @param sr colorSecundarioRed
+     * @param sg colorSecundarioGreen
+     * @param sb colorSecundarioBlue
      */
     public void setColor(Integer pr, Integer pg, Integer pb, Integer sr, Integer sg, Integer sb) {
         color.setPrincipalBlue(pb);
@@ -104,7 +103,6 @@ public class ConfiguracionTxt {
      * Devuelve una cadena con los valores que conponen el color principal y
      * secundario de la interfaz grafica.
      *
-     * @return
      */
     public String contenidoConfig() {
         return color.getPrincipalRed() + "\n"

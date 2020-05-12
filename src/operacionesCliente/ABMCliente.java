@@ -93,7 +93,7 @@ public class ABMCliente extends ABM {
         TelefonoCliente tlc = new TelefonoCliente();
 
         tlc.setCodigoCliente(c);
-        tlc.setNuemero(Integer.parseInt(formularioRegistrarCliente.getTxtTelefono().getText()));
+        tlc.setNuemero(formularioRegistrarCliente.getTxtTelefono().getText());
 
         List<TipoTelefono> lista_tipotelefono
                 = (List<TipoTelefono>) miSesion.createQuery("from TipoTelefono").list();
