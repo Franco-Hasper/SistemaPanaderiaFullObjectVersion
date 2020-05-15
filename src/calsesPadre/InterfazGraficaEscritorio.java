@@ -10,6 +10,9 @@ import principal.PrincipalAdministrador;
  */
 public abstract class InterfazGraficaEscritorio {
 
+  
+      Cargar panelCargando=new Cargar();
+
     protected PrincipalAdministrador principalAdministrador;
 
     public PrincipalAdministrador getPrincipalAdministrador() {
@@ -36,10 +39,13 @@ public abstract class InterfazGraficaEscritorio {
      */
     public void ejecutarNuevaVentana() {
         ExecutorService exe = Executors.newFixedThreadPool(2);
-        //exe.execute(new TareaCargando());
-
+        exe.execute(new TareaCargando());
         exe.execute(new TareaVentana());
+    }
 
+    public void mensajeCargando() {
+        //Image iconoCargando = new ImageIcon(getClass().getResource("/imagenes/iconoCargando.gif")).getImage();
+        //DesktopNotify.showDesktopMessage("Cargando   ", "", DesktopNotify.INFORMATION, iconoCargando);
     }
 
     /**
@@ -52,25 +58,14 @@ public abstract class InterfazGraficaEscritorio {
         public void run() {
             try {
                 nuevaVentana();
-//                principalAdministrador.getInstancias().getCargar().dispose();
+                panelCargando.dispose();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
     }
 
-    /**
-     * Crea una instancia de dialog Cargar.
-     */
-    public void nuevoDialogCargando() {
-        // if (principalAdministrador.estacerrado(principalAdministrador.getInstancias().getCargar())) {
-        Cargar c = new Cargar(null, true);
-        principalAdministrador.instancias.setCargar(c);
-        principalAdministrador.instancias.getCargar().ejecutatDialogCargar();
-        c.dispose();
-        //}
-    }
-
+  
     /**
      * Implemnta el metodo nuevoDialogCargando dentro del metodo run.
      */
@@ -79,7 +74,8 @@ public abstract class InterfazGraficaEscritorio {
         @Override
         public void run() {
             try {
-                nuevoDialogCargando();
+                panelCargando.setVisible(true);
+                //mensajeCargando();
             } catch (Exception ex) {
             }
 
