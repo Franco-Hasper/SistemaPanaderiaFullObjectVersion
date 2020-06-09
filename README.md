@@ -14,3 +14,5 @@ francoalfredo2014@gmail.com
 
 #### Informacion adicional:
 Tenga en cuenta que este proyecto aun esta en desarrollo, por lo que posiblemente se añadan nuevas funciones y se modifiquen elementos, por otro lado cabe mencionar que todas las versiones de esta rama seran estables, es decir, sin problemas de funcionamiento generados por errores de compilado o ejecucion mas comunes presentes en este tipo de aplicaciones.
+#### IMPORTANTE:  
+EL PROYECTO NO ES RESPONSIVE DESIGN (RESOLUCION RECOMENDADA 1920x1080 o superior).
