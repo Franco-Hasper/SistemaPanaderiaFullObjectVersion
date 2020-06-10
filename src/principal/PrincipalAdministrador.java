@@ -1,6 +1,7 @@
 package principal;
 
-import javax.swing.JInternalFrame;
+import complementos.Cargar;
+import escritorios.PrincipalCliente;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import operacionesCliente.InterfazGraficaEscritorioCliente;
@@ -11,8 +12,13 @@ import operacionesCliente.InterfazGraficaEscritorioCliente;
  */
 public class PrincipalAdministrador extends javax.swing.JFrame {
 
+    private PrincipalCliente cliente;
+    private Cargar cargar;
+
     public PrincipalAdministrador() {
         initComponents();
+        this.cliente = null;
+        this.cargar = null;
         this.setExtendedState(MAXIMIZED_BOTH);
         this.btnConfiguracion.setEnabled(false);
         this.btnGestionFinanzas.setEnabled(false);
@@ -23,34 +29,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         this.btnGestionVentas.setEnabled(false);
     }
 
-    public InstanciaEscritorio instancias = new InstanciaEscritorio();
-
-    private InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
-
-    private boolean minimiza = false;
-    public boolean cerra = false;
-
-    /**
-     * Evalua si una instancia del tipo JInternalFrame esta vijente y devuelve
-     * true, de lo contrario devuelve false.
-     *
-     * @param obj
-     * @return
-     */
-    public boolean estacerrado(Object obj) {
-        JInternalFrame[] activos = getEscritorio().getAllFrames();
-        boolean cerrado = true;
-        int i = 0;
-        while (i < activos.length && cerrado) {
-            if (activos[i] == obj) {
-                cerrado = false;
-                cerra = false;
-            }
-            i++;
-        }
-        return cerrado;
-    }
-
     public Escritorio getEscritorio() {
         return escritorio;
     }
@@ -58,6 +36,29 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public void setEscritorio(Escritorio escritorio) {
         this.escritorio = escritorio;
     }
+    
+    
+
+    public PrincipalCliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(PrincipalCliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Cargar getCargar() {
+        return cargar;
+    }
+
+    public void setCargar(Cargar cargar) {
+        this.cargar = cargar;
+    }
+
+    private InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
+
+    private boolean minimiza = false;
+    public boolean cerra = false;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

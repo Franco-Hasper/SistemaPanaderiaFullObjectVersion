@@ -343,9 +343,9 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
         // TODO add your handling code here
         abm.setFormularioRegistrarCliente(this);
         if (abm.ejecutarRegistrar()) {
-            principalCliente.tablaCliente.setPrincipalCliente(principalCliente);
-            principalCliente.tablaCliente.setEstadoConsulta(0);
-            principalCliente.tablaCliente.ejecutarRellenarTabla();
+            principalCliente.getTablaCliente().setPrincipalCliente(principalCliente);
+            principalCliente.getTablaCliente().setEstadoConsulta(0);
+            principalCliente.getTablaCliente().ejecutarRellenarTabla();
         }
     }//GEN-LAST:event_butonRegistarActionPerformed
 
@@ -383,7 +383,6 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
     
     
     private void boxProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxProvinciaActionPerformed
-         
         intergazGraficaRegistrarCliente.setBoxProvincia(boxProvincia);
         intergazGraficaRegistrarCliente.setBoxLocalidad(boxLocalidad);
         intergazGraficaRegistrarCliente.evaluarEstadoConsultaLocalidad();
@@ -414,6 +413,8 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FormularioRegistrarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

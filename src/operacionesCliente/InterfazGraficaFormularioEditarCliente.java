@@ -57,10 +57,10 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
     public void transferirDatos() {
         TablaCliente tablaCliente = new TablaCliente();
         tablaCliente.setPrincipalCliente(principalCliente);
-        int fila = principalCliente.getTabla().getSelectedRow();
-        principalCliente.instancias.getEditarCliente().getTxtNombre().setText(principalCliente.getTabla().getValueAt(fila, 0).toString());
-        principalCliente.instancias.getEditarCliente().getTxtApellido().setText(principalCliente.getTabla().getValueAt(fila, 1).toString());
-        principalCliente.instancias.getEditarCliente().getTxtRazonSocial().setText(principalCliente.getTabla().getValueAt(fila, 2).toString());
+        int fila = principalCliente.getTablaGrafica().getSelectedRow();
+        principalCliente.instancias.getEditarCliente().getTxtNombre().setText(principalCliente.getTablaGrafica().getValueAt(fila, 0).toString());
+        principalCliente.instancias.getEditarCliente().getTxtApellido().setText(principalCliente.getTablaGrafica().getValueAt(fila, 1).toString());
+        principalCliente.instancias.getEditarCliente().getTxtRazonSocial().setText(principalCliente.getTablaGrafica().getValueAt(fila, 2).toString());
     }
 
 }

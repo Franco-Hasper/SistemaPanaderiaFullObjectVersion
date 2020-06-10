@@ -140,7 +140,7 @@ public class ABMCliente extends ABM {
     @Override
     public void transaccionEditar(Session miSesion) {
 
-        String idCliente = formularioEditarCliente.getPrincipalCliente().tablaCliente.obtenerIdFilaSeleccionada().toString();
+        String idCliente = formularioEditarCliente.getPrincipalCliente().getTablaCliente().obtenerIdFilaSeleccionada().toString();
         Cliente c = (Cliente) miSesion.get(Cliente.class, Integer.parseInt(idCliente));
 
         c.setNombre(formularioEditarCliente.getTxtNombre().getText());
@@ -165,7 +165,11 @@ public class ABMCliente extends ABM {
     @Override
     public void transaccionEliminar(Session miSesion) {
         Estado e = (Estado) miSesion.get(Estado.class, 2);
-        Cliente c = (Cliente) miSesion.get(Cliente.class, principalCliente.tablaCliente.obtenerIdFilaSeleccionada());
+        Integer totalFilas = principalCliente.getTablaGrafica().getRowCount();
+        Integer filasSeleccionada = principalCliente.getTablaGrafica().getSelectedRow();
+        List<Integer> listaResutadosActuales = principalCliente.getTablaCliente().getListaResutladosActuales();
+        Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
+        Cliente c = (Cliente) miSesion.get(Cliente.class, id);
         c.setCodigoEstado(e);
         miSesion.saveOrUpdate(c);
     }

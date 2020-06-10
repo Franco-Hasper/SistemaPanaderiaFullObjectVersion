@@ -9,8 +9,10 @@ import entidades.Direccion_Cliente;
 import entidades.TelefonoCliente;
 import escritorios.PrincipalCliente;
 import clasesUtilidadGeneral.OperacionesUtiles;
+import conexion.ConexionHibernate;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import lanzarAplicacion.InterfazGraficaPrincipal;
+import org.hibernate.Session;
 
 /**
  * <h1>Clase TablaMatetiaPrima</h1>
@@ -24,6 +26,7 @@ import lanzarAplicacion.InterfazGraficaPrincipal;
 public class TablaCliente extends Tabla {
 
     private PrincipalCliente principalCliente;
+    private List<Integer> listaResutladosActuales = new ArrayList<Integer>();
 
     public PrincipalCliente getPrincipalCliente() {
         return principalCliente;
@@ -32,8 +35,15 @@ public class TablaCliente extends Tabla {
     public void setPrincipalCliente(PrincipalCliente principalCliente) {
         this.principalCliente = principalCliente;
     }
-    
-    
+
+    public List<Integer> getListaResutladosActuales() {
+        return listaResutladosActuales;
+    }
+
+    public void setListaResutladosActuales(List<Integer> listaResutladosActuales) {
+        this.listaResutladosActuales = listaResutladosActuales;
+    }
+
     public TablaCliente() {
         setEstadoConsulta(0);
     }
@@ -46,7 +56,7 @@ public class TablaCliente extends Tabla {
      */
     @Override
     public void ejecutarRellenarTabla() {
-        setTabla(principalCliente.getTabla());
+        setTabla(principalCliente.getTablaGrafica());
         setStringConsulta("from Cliente");
         evaluarEstadoConsulta();
         setCampoTexto(principalCliente.getTxtBuscar());
@@ -55,20 +65,39 @@ public class TablaCliente extends Tabla {
 
     @Override
     public Integer obtenerIdFilaSeleccionada() {
-        setTabla(tabla);
-        setConsultaList("from Cliente");
-        obtenerListaConsulta();
-        buscarCopiaEnBaseDeDatos();
+        Session miSesion = ConexionHibernate.tomarConexion();
+        try {
+            Integer totalFilas = principalCliente.getTablaGrafica().getRowCount();
+            Integer filasSeleccionada = principalCliente.getTablaGrafica().getSelectedRow();
+            List<Integer> listaResutadosActualesThis = principalCliente.getTablaCliente().getListaResutladosActuales();
+            Integer id = operacionesUtilidad.obtenerId(listaResutadosActualesThis, totalFilas, filasSeleccionada);
+            miSesion.beginTransaction();
+            Cliente c = (Cliente) miSesion.get(Cliente.class, id);
+            miSesion.getTransaction().commit();
+            this.setIdTabla(c.getIdCliente());
+        } catch (Exception e) {
+        }
+//        setTabla(tabla);
+//        setConsultaList("from Cliente");
+//        obtenerListaConsulta();
+//        buscarCopiaEnBaseDeDatos();
         return idTabla;
     }
 
     @Override
     public void rellenarTabla(String valorBusqueda) {
+        OperacionesUtiles utilidad = new OperacionesUtiles();
         DefaultTableModel tablaCliente = (DefaultTableModel) getTabla().getModel();
         List lista = this.getListaResultados();
         operacionesUtilidad.removerFilas(tablaCliente);
         Integer vueltaDir = 0;
         Integer vueltaTel = 0;
+        
+          try {
+            this.listaResutladosActuales.clear();
+        } catch (NullPointerException e) {
+        }
+        
         for (Object o : lista) {
             Cliente c = (Cliente) o;
             Vector<Object> fila = new Vector<>();
@@ -76,6 +105,7 @@ public class TablaCliente extends Tabla {
             boolean resultadoComparacion = OperacionesUtiles.convertirResultado(c.getNombre(), valorBusqueda);
             //***********************
             if (c.getCodigoEstado().getIdEstado().equals(1) && resultadoComparacion) {
+                this.listaResutladosActuales.add(0, c.getIdCliente());
                 fila.add(c.getNombre());
                 fila.add(c.getApellido());
                 fila.add(c.getCodigoRazonSocial().getNombre());
@@ -117,6 +147,7 @@ public class TablaCliente extends Tabla {
 
             }
         }
+         utilidad.ordenarLista(listaResutladosActuales);
     }
 
     /**
@@ -127,27 +158,27 @@ public class TablaCliente extends Tabla {
     @Override
     public void buscarCopiaEnBaseDeDatos() {
 
-        int fila = principalCliente.getTabla().getSelectedRow();
-        String nombreCliente = principalCliente.getTabla().getValueAt(fila, 0).toString();
-        String apellido = principalCliente.getTabla().getValueAt(fila, 1).toString();
-        String razonSocial = principalCliente.getTabla().getValueAt(fila, 2).toString();
-
-        for (Object o : getListaResultados()) {
-            //asignamos todos los resultados a m
-            Cliente c = (Cliente) o;
-            if (c.getNombre().equals(nombreCliente)
-                    && c.getApellido().equals(apellido)
-                    && c.getCodigoRazonSocial().getNombre().equals(razonSocial)) {
-                this.setIdTabla(c.getIdCliente());
-            }
-        }
+//        int fila = principalCliente.getTablaGrafica().getSelectedRow();
+//        String nombreCliente = principalCliente.getTablaGrafica().getValueAt(fila, 0).toString();
+//        String apellido = principalCliente.getTablaGrafica().getValueAt(fila, 1).toString();
+//        String razonSocial = principalCliente.getTablaGrafica().getValueAt(fila, 2).toString();
+//
+//        for (Object o : getListaResultados()) {
+//            //asignamos todos los resultados a m
+//            Cliente c = (Cliente) o;
+//            if (c.getNombre().equals(nombreCliente)
+//                    && c.getApellido().equals(apellido)
+//                    && c.getCodigoRazonSocial().getNombre().equals(razonSocial)) {
+//                this.setIdTabla(c.getIdCliente());
+//            }
+//        }
     }
 
     @Override
     public boolean verificarFilaSeleccionada() {
         try {
-            int fila = principalCliente.getTabla().getSelectedRow();
-            principalCliente.getTabla().getValueAt(fila, 0).toString();
+            int fila = principalCliente.getTablaGrafica().getSelectedRow();
+            principalCliente.getTablaGrafica().getValueAt(fila, 0).toString();
             return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Informacion", JOptionPane.INFORMATION_MESSAGE);

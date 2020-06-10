@@ -4,6 +4,7 @@ import java.awt.Toolkit;
 import java.awt.Window;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JComboBox;
@@ -420,4 +421,33 @@ public class OperacionesUtiles {
         return false;
     }
 
+    /**
+     * recibe un array list y la ordena de menor a mayor
+     *
+     * @param listaResutladosActuales
+     */
+    public void ordenarLista(List<Integer> listaResutladosActuales) {
+        Collections.sort(listaResutladosActuales, Integer::compareTo);
+        for (Integer in : listaResutladosActuales) {
+        }
+    }
+
+    /**
+     * toma los resultados de base de datos y la tabla grafica, obtiene la id de
+     * la fila seleccionada y retorna el valor de la Id.
+     *
+     * @param listaResutladosActuales
+     * @param totalFilas
+     * @param filaSeleccionada
+     * @return
+     */
+    public Integer obtenerId(List<Integer> listaResutladosActuales, Integer totalFilas, Integer filaSeleccionada) {
+        Integer id = null;
+        for (int i = 0; i < totalFilas; i++) {
+            if (filaSeleccionada.equals(i)) {
+                id = listaResutladosActuales.get(i);
+            }
+        }
+        return id;
+    }
 }

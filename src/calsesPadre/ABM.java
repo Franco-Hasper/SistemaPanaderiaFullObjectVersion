@@ -142,14 +142,14 @@ public abstract class ABM extends Consultas {
      */
     public void conexionTransaccionEliminar() {
         Session miSesion = ConexionHibernate.tomarConexion();
-        try {
+//        try {
             miSesion.beginTransaction();
             transaccionEliminar(miSesion);
             miSesion.getTransaction().commit();
             DesktopNotify.showDesktopMessage("   exito   ", "    Registro eliminado con exito", DesktopNotify.SUCCESS, 7000);
-        } catch (Exception e) {
-            DesktopNotify.showDesktopMessage("   error    ", "    Error al intentar eliminar  registro", DesktopNotify.ERROR, 7000);
-        }
+//        } catch (Exception e) {
+//            DesktopNotify.showDesktopMessage("   error    ", "    Error al intentar eliminar  registro", DesktopNotify.ERROR, 7000);
+//        }
 
     }
 

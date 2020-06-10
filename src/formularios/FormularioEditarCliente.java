@@ -241,9 +241,9 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
         abm.setFormularioEditarCliente(this);
         if (abm.ejecutarEditar()) {
-            principalCliente.tablaCliente.setPrincipalCliente(principalCliente);
-            principalCliente.tablaCliente.setEstadoConsulta(0);
-            principalCliente.tablaCliente.ejecutarRellenarTabla();
+            principalCliente.getTablaCliente().setPrincipalCliente(principalCliente);
+            principalCliente.getTablaCliente().setEstadoConsulta(0);
+            principalCliente.getTablaCliente().ejecutarRellenarTabla();
         }
 
     }//GEN-LAST:event_butonGuardarCambiosActionPerformed
@@ -288,6 +288,10 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FormularioEditarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
