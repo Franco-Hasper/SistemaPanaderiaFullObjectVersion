@@ -11,7 +11,7 @@ import principal.PrincipalAdministrador;
 public abstract class InterfazGraficaEscritorio {
 
   
-      Cargar panelCargando=new Cargar();
+    Cargar panelCargando=new Cargar();
 
     protected PrincipalAdministrador principalAdministrador;
 
@@ -43,10 +43,6 @@ public abstract class InterfazGraficaEscritorio {
         exe.execute(new TareaVentana());
     }
 
-    public void mensajeCargando() {
-        //Image iconoCargando = new ImageIcon(getClass().getResource("/imagenes/iconoCargando.gif")).getImage();
-        //DesktopNotify.showDesktopMessage("Cargando   ", "", DesktopNotify.INFORMATION, iconoCargando);
-    }
 
     /**
      * implemnta el metodo nuevaVentana dentro del metodo run, leugo finaliza la
@@ -75,7 +71,6 @@ public abstract class InterfazGraficaEscritorio {
         public void run() {
             try {
                 panelCargando.setVisible(true);
-                //mensajeCargando();
             } catch (Exception ex) {
             }
 

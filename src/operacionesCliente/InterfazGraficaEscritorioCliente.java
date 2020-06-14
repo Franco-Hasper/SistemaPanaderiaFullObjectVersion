@@ -12,7 +12,6 @@ import clasesUtilidadGeneral.TextPrompt;
  */
 public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio {
 
-    
     @Override
     public void nuevaVentana() {
         if (principalAdministrador.getEscritorio().estacerrado(principalAdministrador.getCliente())) {
@@ -26,11 +25,14 @@ public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio 
             principalAdministrador.getEscritorio().add(principalAdministrador.getCliente());
             infoTextPrompt();
             TablaCliente tablaCliente = new TablaCliente();
-            tablaCliente.setPrincipalCliente( principalAdministrador.getCliente());
+            tablaCliente.setPrincipalCliente(principalAdministrador.getCliente());
             tablaCliente.ejecutarRellenarTabla();
             principalAdministrador.getCliente().setTablaCliente(tablaCliente);
+            InterfazGraficaFormularioRegistrarCliente formularioRegistrar = new InterfazGraficaFormularioRegistrarCliente();
+            InterfazGraficaFormularioEditarCliente formularioEditar = new InterfazGraficaFormularioEditarCliente();
+            principalAdministrador.getCliente().setFormularioRegistrar(formularioRegistrar);
+            principalAdministrador.getCliente().setFormularioEditar(formularioEditar);
             principalAdministrador.getCliente().show();
-          
         }
         colorInterfazEscritorio();
         principalAdministrador.getCliente().toFront();
@@ -49,7 +51,4 @@ public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio 
         principalAdministrador.getCliente().getTxtBuscar().grabFocus();
     }
 
-    
-
-    
 }

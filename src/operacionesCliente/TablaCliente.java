@@ -77,10 +77,6 @@ public class TablaCliente extends Tabla {
             this.setIdTabla(c.getIdCliente());
         } catch (Exception e) {
         }
-//        setTabla(tabla);
-//        setConsultaList("from Cliente");
-//        obtenerListaConsulta();
-//        buscarCopiaEnBaseDeDatos();
         return idTabla;
     }
 

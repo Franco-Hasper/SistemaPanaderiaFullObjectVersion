@@ -28,31 +28,31 @@ public class InterfazGraficaFormularioRegistrarCliente extends InterfazGraficaFo
     public void nuevoFormularioRegistrar() {
         FormularioRegistrarCliente formularioRegistrar = new FormularioRegistrarCliente(frame, true);
         formularioRegistrar.setPrincipalCliente(principalCliente);
-        principalCliente.instancias.setRegistrarCliente(formularioRegistrar);
+        principalCliente.setRegistrarCliente(formularioRegistrar);
         agregarBoxes();
         rellenarBoxes();
         infoTextPrompt();
         colorTema();
-        principalCliente.instancias.getRegistrarCliente().setVisible(true);
+        principalCliente.getRegistrarCliente().setVisible(true);
     }
 
     @Override
     public void infoTextPrompt() {
-        new TextPrompt("NOMBRE", principalCliente.instancias.getRegistrarCliente().getTxtNombre());
-        new TextPrompt("APELLIDO", principalCliente.instancias.getRegistrarCliente().getTxtApellido());
-        new TextPrompt("DIRECCION", principalCliente.instancias.getRegistrarCliente().getTxtDireccion());
-        new TextPrompt("RAZON SOCIAL", principalCliente.instancias.getRegistrarCliente().getTxtRazonSocial());
-        new TextPrompt("TELEFONO", principalCliente.instancias.getRegistrarCliente().getTxtTelefono());
-        new TextPrompt("NUMERO DE DIRECCION", principalCliente.instancias.getRegistrarCliente().getTxtnuemroDireccion());
-        principalCliente.instancias.getRegistrarCliente().getTxtNombre().grabFocus();
+        new TextPrompt("NOMBRE", principalCliente.getRegistrarCliente().getTxtNombre());
+        new TextPrompt("APELLIDO", principalCliente.getRegistrarCliente().getTxtApellido());
+        new TextPrompt("DIRECCION", principalCliente.getRegistrarCliente().getTxtDireccion());
+        new TextPrompt("RAZON SOCIAL", principalCliente.getRegistrarCliente().getTxtRazonSocial());
+        new TextPrompt("TELEFONO", principalCliente.getRegistrarCliente().getTxtTelefono());
+        new TextPrompt("NUMERO DE DIRECCION", principalCliente.getRegistrarCliente().getTxtnuemroDireccion());
+        principalCliente.getRegistrarCliente().getTxtNombre().grabFocus();
     }
 
     @Override
     public void agregarBoxes() {
-        this.setBoxLocalidad(principalCliente.instancias.getRegistrarCliente().getBoxLocalidad());
-        this.setBoxProvincia(principalCliente.instancias.getRegistrarCliente().getBoxProvincia());
-        this.setBoxTipoDomicilio(principalCliente.instancias.getRegistrarCliente().getBoxtipoDom());
-        this.setBoxTipoTelefono(principalCliente.instancias.getRegistrarCliente().getBoxTipoTelefono());
+        this.setBoxLocalidad(principalCliente.getRegistrarCliente().getBoxLocalidad());
+        this.setBoxProvincia(principalCliente.getRegistrarCliente().getBoxProvincia());
+        this.setBoxTipoDomicilio(principalCliente.getRegistrarCliente().getBoxtipoDom());
+        this.setBoxTipoTelefono(principalCliente.getRegistrarCliente().getBoxTipoTelefono());
     }
 
     @Override
@@ -65,7 +65,7 @@ public class InterfazGraficaFormularioRegistrarCliente extends InterfazGraficaFo
 
     @Override
     public void colorTema() {
-        principalCliente.instancias.getRegistrarCliente().getPanelPrincipalTop().setBackground(principalCliente.getPanelPrincipalTop().getBackground());
+        principalCliente.getRegistrarCliente().getPanelPrincipalTop().setBackground(principalCliente.getPanelPrincipalTop().getBackground());
     }
 
 }

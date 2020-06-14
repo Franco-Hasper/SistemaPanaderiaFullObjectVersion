@@ -7,7 +7,8 @@ import operacionesCliente.ABMCliente;
 import operacionesCliente.InterfazGraficaEscritorioCliente;
 import operacionesCliente.TablaCliente;
 import clasesUtilidadGeneral.OperacionesUtiles;
-import operacionesCliente.InstanciasFormularios;
+import formularios.FormularioEditarCliente;
+import formularios.FormularioRegistrarCliente;
 import operacionesCliente.InterfazGraficaFormularioEditarCliente;
 import operacionesCliente.InterfazGraficaFormularioRegistrarCliente;
 import principal.MaterialButton;
@@ -18,16 +19,17 @@ import principal.MaterialButton;
  */
 public class PrincipalCliente extends javax.swing.JInternalFrame {
 
-    public InstanciasFormularios instancias = new InstanciasFormularios();
-    public InterfazGraficaFormularioRegistrarCliente formularioRegistrar = new InterfazGraficaFormularioRegistrarCliente();
-    public InterfazGraficaFormularioEditarCliente formularioEditar = new InterfazGraficaFormularioEditarCliente();
-    
-    public InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
-    
+    private InterfazGraficaFormularioRegistrarCliente formularioRegistrar;
+    private InterfazGraficaFormularioEditarCliente formularioEditar;
+    private FormularioRegistrarCliente registrarCliente;
+    private FormularioEditarCliente editarCliente;
     private TablaCliente tablaCliente;
 
+    //public InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
     public PrincipalCliente() {
         initComponents();
+        this.registrarCliente = null;
+        this.editarCliente = null;
         btnSeleccionarCliente.setVisible(false);
     }
 
@@ -47,14 +49,44 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
         this.tablaGrafica = tablaGrafica;
     }
 
-
-
     public MaterialButton getBtnSeleccionarCliente() {
         return btnSeleccionarCliente;
     }
 
     public void setBtnSeleccionarCliente(MaterialButton btnSeleccionarCliente) {
         this.btnSeleccionarCliente = btnSeleccionarCliente;
+    }
+
+    public FormularioRegistrarCliente getRegistrarCliente() {
+        return registrarCliente;
+    }
+
+    public void setRegistrarCliente(FormularioRegistrarCliente registrarCliente) {
+        this.registrarCliente = registrarCliente;
+    }
+
+    public FormularioEditarCliente getEditarCliente() {
+        return editarCliente;
+    }
+
+    public void setEditarCliente(FormularioEditarCliente editarCliente) {
+        this.editarCliente = editarCliente;
+    }
+
+    public InterfazGraficaFormularioRegistrarCliente getFormularioRegistrar() {
+        return formularioRegistrar;
+    }
+
+    public void setFormularioRegistrar(InterfazGraficaFormularioRegistrarCliente formularioRegistrar) {
+        this.formularioRegistrar = formularioRegistrar;
+    }
+
+    public InterfazGraficaFormularioEditarCliente getFormularioEditar() {
+        return formularioEditar;
+    }
+
+    public void setFormularioEditar(InterfazGraficaFormularioEditarCliente formularioEditar) {
+        this.formularioEditar = formularioEditar;
     }
 
     @SuppressWarnings("unchecked")
@@ -349,7 +381,7 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSeleccionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarClienteActionPerformed
-     
+
     }//GEN-LAST:event_btnSeleccionarClienteActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
@@ -357,8 +389,8 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-       tablaCliente.setPrincipalCliente(this);
-       tablaCliente.ejecutarRellenarTabla();
+        tablaCliente.setPrincipalCliente(this);
+        tablaCliente.ejecutarRellenarTabla();
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
@@ -376,13 +408,13 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnnuevoClienteActionPerformed
 
     private void btnCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuentaActionPerformed
-     
+
 
     }//GEN-LAST:event_btnCuentaActionPerformed
 
     private void btnEliminarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCliActionPerformed
-       ABMCliente abm = new ABMCliente();
-       abm.setPrincipalCliente(this);
+        ABMCliente abm = new ABMCliente();
+        abm.setPrincipalCliente(this);
         tablaCliente.setPrincipalCliente(this);
         if (tablaCliente.verificarFilaSeleccionada()) {
             if (tablaCliente.verficarClienteNoconsumidorFinal(1)) {
@@ -409,12 +441,12 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnnEditarClienteActionPerformed
 
     private void btnTelefonosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTelefonosActionPerformed
-      
+
     }//GEN-LAST:event_btnTelefonosActionPerformed
 
     private void btnDireccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDireccionesActionPerformed
 
-     
+
     }//GEN-LAST:event_btnDireccionesActionPerformed
 
     private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked

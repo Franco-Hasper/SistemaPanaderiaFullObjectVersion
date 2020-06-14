@@ -35,10 +35,10 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
     @Override
     public void nuevoFormularioEditar() {
         formularioEditar.setPrincipalCliente(principalCliente);
-        principalCliente.instancias.setEditarCliente(formularioEditar);
+        principalCliente.setEditarCliente(formularioEditar);
         transferirDatos();
         colorTema();
-        principalCliente.instancias.getEditarCliente().setVisible(true);
+        principalCliente.getEditarCliente().setVisible(true);
     }
 
     /**
@@ -50,7 +50,7 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
 
     @Override
     public void colorTema() {
-        principalCliente.instancias.getEditarCliente().getPanelPrincipalTop().setBackground(principalCliente.getPanelPrincipalTop().getBackground());
+        principalCliente.getEditarCliente().getPanelPrincipalTop().setBackground(principalCliente.getPanelPrincipalTop().getBackground());
     }
 
     @Override
@@ -58,9 +58,9 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
         TablaCliente tablaCliente = new TablaCliente();
         tablaCliente.setPrincipalCliente(principalCliente);
         int fila = principalCliente.getTablaGrafica().getSelectedRow();
-        principalCliente.instancias.getEditarCliente().getTxtNombre().setText(principalCliente.getTablaGrafica().getValueAt(fila, 0).toString());
-        principalCliente.instancias.getEditarCliente().getTxtApellido().setText(principalCliente.getTablaGrafica().getValueAt(fila, 1).toString());
-        principalCliente.instancias.getEditarCliente().getTxtRazonSocial().setText(principalCliente.getTablaGrafica().getValueAt(fila, 2).toString());
+        principalCliente.getEditarCliente().getTxtNombre().setText(principalCliente.getTablaGrafica().getValueAt(fila, 0).toString());
+        principalCliente.getEditarCliente().getTxtApellido().setText(principalCliente.getTablaGrafica().getValueAt(fila, 1).toString());
+        principalCliente.getEditarCliente().getTxtRazonSocial().setText(principalCliente.getTablaGrafica().getValueAt(fila, 2).toString());
     }
 
 }

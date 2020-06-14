@@ -52,11 +52,13 @@ public class ABMCliente extends ABM {
         this.formularioEditarCliente = formularioEditarCliente;
     }
 
+    @Override
     public void obtenerFormularioRegistrar() {
         setFormularioRegistrar(this.getFormularioRegistrarCliente());
         setListaCampos(this.getFormularioRegistrarCliente().getListaCampos());
     }
 
+    @Override
     public void obtenerFormularioEditar() {
         setFormularioEditar(this.getFormularioEditarCliente());
         setListaCampos(this.getFormularioEditarCliente().getListaCampos());
