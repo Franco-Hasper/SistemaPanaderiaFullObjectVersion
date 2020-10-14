@@ -27,13 +27,11 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
         this.tablaCliente = tablaCliente;
     }
 
-
-    private final FormularioEditarCliente formularioEditar = new FormularioEditarCliente(frame, true);
-
     
     
     @Override
     public void nuevoFormularioEditar() {
+          FormularioEditarCliente formularioEditar = new FormularioEditarCliente(frame, true);
         formularioEditar.setPrincipalCliente(principalCliente);
         principalCliente.setEditarCliente(formularioEditar);
         transferirDatos();

@@ -74,7 +74,7 @@ public class OperacionesUtiles {
      * @param lista
      * @return
      */
-    public boolean verificarCamposTextoVacios(List lista) {
+    public static boolean verificarCamposTextoVacios(List lista) {
         List<JTextField> listCamposTexto
                 = (List<JTextField>) lista;
         for (Object o : listCamposTexto) {
@@ -147,7 +147,7 @@ public class OperacionesUtiles {
      * @param mensaje
      * @return
      */
-    public boolean verificarCampoTextoVacio(JTextField campoTexto, String mensaje) {
+    public static boolean verificarCampoTextoVacio(JTextField campoTexto, String mensaje) {
 
         if (campoTexto.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, mensaje, "Informacion", JOptionPane.INFORMATION_MESSAGE);
@@ -162,7 +162,7 @@ public class OperacionesUtiles {
      *
      * @param tabla
      */
-    public void removerFilas(DefaultTableModel tabla) {
+    public static void removerFilas(DefaultTableModel tabla) {
         while (tabla.getRowCount() > 0) {
             tabla.removeRow(0);
         }
@@ -174,7 +174,7 @@ public class OperacionesUtiles {
      *
      * @param box
      */
-    public void removerItemsBox(JComboBox box) {
+    public static void removerItemsBox(JComboBox box) {
         if (box.getItemCount() > 0) {
             box.removeAllItems();
         }
@@ -186,7 +186,7 @@ public class OperacionesUtiles {
      *
      * @param contenedor
      */
-    public void insertarFechaActualDateChooser(RSDateChooser contenedor) {
+    public static void insertarFechaActualDateChooser(RSDateChooser contenedor) {
         Date fecha = new Date();
         contenedor.setDatoFecha(fecha);
     }
@@ -287,7 +287,7 @@ public class OperacionesUtiles {
      *
      * @param ventana
      */
-    public void centrarVentana(Window ventana) {
+    public static void centrarVentana(Window ventana) {
         ventana.setLocationRelativeTo(null);
     }
 
@@ -297,7 +297,7 @@ public class OperacionesUtiles {
      * @param fechaSinFormato
      * @return
      */
-    public Object formatoFecha(Date fechaSinFormato) {
+    public static Object formatoFecha(Date fechaSinFormato) {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy (HH:mm:ss)");
         return dateFormat.format(fechaSinFormato);
@@ -310,7 +310,7 @@ public class OperacionesUtiles {
      * @param fechaSinFormato
      * @return
      */
-    public Object formatoFechaSinHora(Date fechaSinFormato) {
+    public static Object formatoFechaSinHora(Date fechaSinFormato) {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return dateFormat.format(fechaSinFormato);
@@ -324,7 +324,7 @@ public class OperacionesUtiles {
      * @param tabla
      * @return
      */
-    public boolean verificarSeleccionFila(JTable tabla) {
+    public static boolean verificarSeleccionFila(JTable tabla) {
         if (tabla.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(null, "SELECCIONE UAN FILA PARA LLEVAR A CABO LA ACCION",
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -340,7 +340,7 @@ public class OperacionesUtiles {
      * @param x
      * @param y
      */
-    public void reposicionarDialog(JFrame cuadroFrame, int x, int y) {
+    public static void reposicionarDialog(JFrame cuadroFrame, int x, int y) {
         cuadroFrame.setLocation(x, y);
     }
 
@@ -351,7 +351,7 @@ public class OperacionesUtiles {
      * @param x
      * @param y
      */
-    public void redimensionarDialog(JFrame cuadroFrame, int x, int y) {
+    public static void redimensionarDialog(JFrame cuadroFrame, int x, int y) {
         cuadroFrame.setSize(x, y);
     }
 
@@ -362,7 +362,7 @@ public class OperacionesUtiles {
      * @param fecha
      * @return
      */
-    public boolean compararFecha(Date fecha) {
+    public static boolean compararFecha(Date fecha) {
 
         Date date = new Date();
 
@@ -393,7 +393,7 @@ public class OperacionesUtiles {
      * @param j
      * @return
      */
-    public int seleccionarFila(JTable j) {
+    public static int seleccionarFila(JTable j) {
         return j.getSelectedRow();
     }
 
@@ -426,7 +426,7 @@ public class OperacionesUtiles {
      *
      * @param listaResutladosActuales
      */
-    public void ordenarLista(List<Integer> listaResutladosActuales) {
+    public static void ordenarLista(List<Integer> listaResutladosActuales) {
         Collections.sort(listaResutladosActuales, Integer::compareTo);
         for (Integer in : listaResutladosActuales) {
         }
@@ -441,7 +441,7 @@ public class OperacionesUtiles {
      * @param filaSeleccionada
      * @return
      */
-    public Integer obtenerId(List<Integer> listaResutladosActuales, Integer totalFilas, Integer filaSeleccionada) {
+    public static Integer obtenerId(List<Integer> listaResutladosActuales, Integer totalFilas, Integer filaSeleccionada) {
         Integer id = null;
         for (int i = 0; i < totalFilas; i++) {
             if (filaSeleccionada.equals(i)) {

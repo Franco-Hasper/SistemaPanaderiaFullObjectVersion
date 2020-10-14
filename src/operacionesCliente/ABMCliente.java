@@ -68,7 +68,6 @@ public class ABMCliente extends ABM {
     public void transaccionRegistrar(Session miSesion) {
 
         Estado e = (Estado) miSesion.get(Estado.class, 1);
-
         Cliente c = new Cliente();
         c.setNombre(formularioRegistrarCliente.getTxtNombre().getText());
         c.setApellido(formularioRegistrarCliente.getTxtApellido().getText());
@@ -142,8 +141,11 @@ public class ABMCliente extends ABM {
     @Override
     public void transaccionEditar(Session miSesion) {
 
-        String idCliente = formularioEditarCliente.getPrincipalCliente().getTablaCliente().obtenerIdFilaSeleccionada().toString();
-        Cliente c = (Cliente) miSesion.get(Cliente.class, Integer.parseInt(idCliente));
+        Integer totalFilas = principalCliente.getTablaGrafica().getRowCount();
+        Integer filasSeleccionada = principalCliente.getTablaGrafica().getSelectedRow();
+        List<Integer> listaResutadosActuales = principalCliente.getTablaCliente().getListaResutladosActuales();
+        Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
+        Cliente c = (Cliente) miSesion.get(Cliente.class, id);
 
         c.setNombre(formularioEditarCliente.getTxtNombre().getText());
 
@@ -154,11 +156,18 @@ public class ABMCliente extends ABM {
             c.setCodigoRazonSocial(rs);
 
         } else {
-            RazonSocial rs = (RazonSocial) miSesion.get(RazonSocial.class, (c.getCodigoRazonSocial().getIdRazonSocial()));
-            rs.setNombre(formularioEditarCliente.getTxtRazonSocial().getText());
+            if (c.getCodigoRazonSocial().getIdRazonSocial().equals(1)) {
+                RazonSocial rs = new RazonSocial();
+                rs.setNombre(formularioEditarCliente.getTxtRazonSocial().getText());
+                miSesion.save(rs);
+                c.setCodigoRazonSocial(rs);
+            } else {
+                RazonSocial rs = (RazonSocial) miSesion.get(RazonSocial.class, (c.getCodigoRazonSocial().getIdRazonSocial()));
+                rs.setNombre(formularioEditarCliente.getTxtRazonSocial().getText());
+                miSesion.saveOrUpdate(rs);
+                c.setCodigoRazonSocial(rs);
+            }
 
-            miSesion.saveOrUpdate(rs);
-            c.setCodigoRazonSocial(rs);
         }
 
         miSesion.saveOrUpdate(c);

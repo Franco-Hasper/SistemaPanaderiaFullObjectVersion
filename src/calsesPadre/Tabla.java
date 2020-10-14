@@ -19,7 +19,7 @@ public abstract class Tabla extends Consultas {
     protected String stringConsulta;
     protected JTextField campoTexto;
 
-    public abstract void buscarCopiaEnBaseDeDatos();
+
 
     public abstract boolean verificarFilaSeleccionada();
 
@@ -31,11 +31,6 @@ public abstract class Tabla extends Consultas {
      * @param valorBusqueda
      */
     public abstract void rellenarTabla(String valorBusqueda);
-
-    /**
-     * @deprecated
-     */
-    public abstract void rellenarTabla();
 
     public abstract void ejecutarRellenarTabla();
 

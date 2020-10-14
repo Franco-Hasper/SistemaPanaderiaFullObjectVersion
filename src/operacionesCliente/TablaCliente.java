@@ -9,10 +9,8 @@ import entidades.Direccion_Cliente;
 import entidades.TelefonoCliente;
 import escritorios.PrincipalCliente;
 import clasesUtilidadGeneral.OperacionesUtiles;
-import conexion.ConexionHibernate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import org.hibernate.Session;
 
 /**
  * <h1>Clase TablaMatetiaPrima</h1>
@@ -65,16 +63,12 @@ public class TablaCliente extends Tabla {
 
     @Override
     public Integer obtenerIdFilaSeleccionada() {
-        Session miSesion = ConexionHibernate.tomarConexion();
         try {
             Integer totalFilas = principalCliente.getTablaGrafica().getRowCount();
             Integer filasSeleccionada = principalCliente.getTablaGrafica().getSelectedRow();
             List<Integer> listaResutadosActualesThis = principalCliente.getTablaCliente().getListaResutladosActuales();
             Integer id = operacionesUtilidad.obtenerId(listaResutadosActualesThis, totalFilas, filasSeleccionada);
-            miSesion.beginTransaction();
-            Cliente c = (Cliente) miSesion.get(Cliente.class, id);
-            miSesion.getTransaction().commit();
-            this.setIdTabla(c.getIdCliente());
+            this.setIdTabla(id);
         } catch (Exception e) {
         }
         return idTabla;
@@ -82,18 +76,18 @@ public class TablaCliente extends Tabla {
 
     @Override
     public void rellenarTabla(String valorBusqueda) {
-        OperacionesUtiles utilidad = new OperacionesUtiles();
+
         DefaultTableModel tablaCliente = (DefaultTableModel) getTabla().getModel();
         List lista = this.getListaResultados();
         operacionesUtilidad.removerFilas(tablaCliente);
         Integer vueltaDir = 0;
         Integer vueltaTel = 0;
-        
-          try {
+
+        try {
             this.listaResutladosActuales.clear();
         } catch (NullPointerException e) {
         }
-        
+
         for (Object o : lista) {
             Cliente c = (Cliente) o;
             Vector<Object> fila = new Vector<>();
@@ -135,40 +129,19 @@ public class TablaCliente extends Tabla {
                         }
                     }
                 }
-
                 vueltaDir = 0;
                 vueltaTel = 0;
-
                 tablaCliente.addRow(fila);
 
             }
         }
-         utilidad.ordenarLista(listaResutladosActuales);
+        OperacionesUtiles.ordenarLista(listaResutladosActuales);
     }
-
-    /**
-     * Compara los valores de una fila seleccionada en la tabla de
-     * PrincipalCliente con los resultados obtenidos de la base datos, si estos
-     * coinciden guarda el resultado en la variable idCliente.
-     */
-    @Override
-    public void buscarCopiaEnBaseDeDatos() {
-
-//        int fila = principalCliente.getTablaGrafica().getSelectedRow();
-//        String nombreCliente = principalCliente.getTablaGrafica().getValueAt(fila, 0).toString();
-//        String apellido = principalCliente.getTablaGrafica().getValueAt(fila, 1).toString();
-//        String razonSocial = principalCliente.getTablaGrafica().getValueAt(fila, 2).toString();
-//
-//        for (Object o : getListaResultados()) {
-//            //asignamos todos los resultados a m
-//            Cliente c = (Cliente) o;
-//            if (c.getNombre().equals(nombreCliente)
-//                    && c.getApellido().equals(apellido)
-//                    && c.getCodigoRazonSocial().getNombre().equals(razonSocial)) {
-//                this.setIdTabla(c.getIdCliente());
-//            }
-//        }
-    }
+    
+    
+    
+    
+    
 
     @Override
     public boolean verificarFilaSeleccionada() {
@@ -196,14 +169,6 @@ public class TablaCliente extends Tabla {
         } else {
             return true;
         }
-    }
-
-    /**
-     * @deprecated
-     */
-    @Override
-    public void rellenarTabla() {
-
     }
 
 }

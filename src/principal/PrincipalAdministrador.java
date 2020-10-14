@@ -12,14 +12,16 @@ import operacionesCliente.InterfazGraficaEscritorioCliente;
  */
 public class PrincipalAdministrador extends javax.swing.JFrame {
 
+    
     private PrincipalCliente cliente;
     private Cargar cargar;
 
     public PrincipalAdministrador() {
         initComponents();
-        this.cliente = null;
-        this.cargar = null;
-        this.setExtendedState(MAXIMIZED_BOTH);
+        cliente = null;
+        cargar = null;
+        setExtendedState(MAXIMIZED_BOTH);
+        //deshabilitados temportalmente para evitar confusiones
         this.btnConfiguracion.setEnabled(false);
         this.btnGestionFinanzas.setEnabled(false);
         this.btnGestionGastos.setEnabled(false);
@@ -88,7 +90,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         lblLibre.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("VENTA DOLAR LIBRE:");
+        jLabel2.setText("COMPRA DOLAR OFICIAL:");
 
         javax.swing.GroupLayout panelPrincipalTopLayout = new javax.swing.GroupLayout(panelPrincipalTop);
         panelPrincipalTop.setLayout(panelPrincipalTopLayout);
@@ -96,7 +98,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
             panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalTopLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblLibre, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())

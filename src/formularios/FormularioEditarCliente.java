@@ -16,11 +16,7 @@ import escritorios.PrincipalCliente;
  */
 public class FormularioEditarCliente extends javax.swing.JDialog {
 
-    
-    private ABMCliente abm = new ABMCliente();
-   
-
-      PrincipalCliente principalCliente;
+    PrincipalCliente principalCliente;
 
     public PrincipalCliente getPrincipalCliente() {
         return principalCliente;
@@ -29,8 +25,7 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
     public void setPrincipalCliente(PrincipalCliente principalCliente) {
         this.principalCliente = principalCliente;
     }
-    
-    
+
     /**
      * Creates new form FormularioNuevoCliente
      */
@@ -80,7 +75,6 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
         this.txtRazonSocial = txtRazonSocial;
     }
 
-   
     public List getListaCampos() {
         List listCamposTexto = new ArrayList();
         listCamposTexto.add(this.getTxtNombre());
@@ -89,7 +83,6 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
         return listCamposTexto;
     }
 
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -239,9 +232,10 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
 
     private void butonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonGuardarCambiosActionPerformed
         // TODO add your handling code here:
+        ABMCliente abm = new ABMCliente();
         abm.setFormularioEditarCliente(this);
+        abm.setPrincipalCliente(principalCliente);
         if (abm.ejecutarEditar()) {
-            principalCliente.getTablaCliente().setPrincipalCliente(principalCliente);
             principalCliente.getTablaCliente().setEstadoConsulta(0);
             principalCliente.getTablaCliente().ejecutarRellenarTabla();
         }
@@ -319,7 +313,6 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
     public void setPanelPrincipalTop(JPanel panelPrincipalTop) {
         this.panelPrincipalTop = panelPrincipalTop;
     }
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

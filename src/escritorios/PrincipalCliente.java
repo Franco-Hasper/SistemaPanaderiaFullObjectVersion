@@ -4,7 +4,6 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import operacionesCliente.ABMCliente;
-import operacionesCliente.InterfazGraficaEscritorioCliente;
 import operacionesCliente.TablaCliente;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import formularios.FormularioEditarCliente;
@@ -28,8 +27,8 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     //public InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
     public PrincipalCliente() {
         initComponents();
-        this.registrarCliente = null;
-        this.editarCliente = null;
+        registrarCliente = null;
+        editarCliente = null;
         btnSeleccionarCliente.setVisible(false);
     }
 
@@ -434,6 +433,7 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
         tablaCliente.setPrincipalCliente(this);
         if (tablaCliente.verificarFilaSeleccionada()) {
             if (tablaCliente.verficarClienteNoconsumidorFinal(1)) {
+                InterfazGraficaFormularioEditarCliente formularioEditar = new InterfazGraficaFormularioEditarCliente();
                 formularioEditar.setPrincipalCliente(this);
                 formularioEditar.nuevoFormularioEditar();
             }
