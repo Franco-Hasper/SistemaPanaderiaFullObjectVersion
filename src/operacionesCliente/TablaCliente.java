@@ -23,6 +23,10 @@ import javax.swing.JOptionPane;
  */
 public class TablaCliente extends Tabla {
 
+    public TablaCliente() {
+        setEstadoConsulta(0);
+    }
+
     private PrincipalCliente principalCliente;
     private List<Integer> listaResutladosActuales = new ArrayList<Integer>();
 
@@ -40,10 +44,6 @@ public class TablaCliente extends Tabla {
 
     public void setListaResutladosActuales(List<Integer> listaResutladosActuales) {
         this.listaResutladosActuales = listaResutladosActuales;
-    }
-
-    public TablaCliente() {
-        setEstadoConsulta(0);
     }
 
     /**
@@ -137,11 +137,6 @@ public class TablaCliente extends Tabla {
         }
         OperacionesUtiles.ordenarLista(listaResutladosActuales);
     }
-    
-    
-    
-    
-    
 
     @Override
     public boolean verificarFilaSeleccionada() {

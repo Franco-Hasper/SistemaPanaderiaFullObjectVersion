@@ -16,7 +16,14 @@ import escritorios.PrincipalCliente;
  */
 public class FormularioEditarCliente extends javax.swing.JDialog {
 
-    PrincipalCliente principalCliente;
+    public FormularioEditarCliente(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        this.setLocationRelativeTo(null);
+    }
+
+    private    ABMCliente abm = new ABMCliente();
+    private  PrincipalCliente principalCliente;
 
     public PrincipalCliente getPrincipalCliente() {
         return principalCliente;
@@ -24,15 +31,6 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
 
     public void setPrincipalCliente(PrincipalCliente principalCliente) {
         this.principalCliente = principalCliente;
-    }
-
-    /**
-     * Creates new form FormularioNuevoCliente
-     */
-    public FormularioEditarCliente(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-        this.setLocationRelativeTo(null);
     }
 
     public JLabel getLblID() {
@@ -232,7 +230,7 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
 
     private void butonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonGuardarCambiosActionPerformed
         // TODO add your handling code here:
-        ABMCliente abm = new ABMCliente();
+     
         abm.setFormularioEditarCliente(this);
         abm.setPrincipalCliente(principalCliente);
         if (abm.ejecutarEditar()) {
@@ -243,7 +241,6 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_butonGuardarCambiosActionPerformed
 
     private void butonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelActionPerformed
-        // TODO add your handling code here:
         OperacionesUtiles.mensajeCancelarFormulario(this);
     }//GEN-LAST:event_butonCancelActionPerformed
 
@@ -313,6 +310,16 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
     public void setPanelPrincipalTop(JPanel panelPrincipalTop) {
         this.panelPrincipalTop = panelPrincipalTop;
     }
+
+    public JPanel getPanelprincipalBody() {
+        return panelprincipalBody;
+    }
+
+    public void setPanelprincipalBody(JPanel panelprincipalBody) {
+        this.panelprincipalBody = panelprincipalBody;
+    }
+
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

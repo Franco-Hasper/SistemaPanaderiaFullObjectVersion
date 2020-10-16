@@ -18,10 +18,7 @@ public abstract class InterfazGraficaFormularioEditar {
      */
     public abstract void nuevoFormularioEditar();
 
-    /**
-     * Añade los textos de fondo al formulario editar.
-     */
-    protected abstract void infoTextPrompt();
+ 
 
     /**
      * Proporciona al formulario editar el color equvalente al utilizado en la

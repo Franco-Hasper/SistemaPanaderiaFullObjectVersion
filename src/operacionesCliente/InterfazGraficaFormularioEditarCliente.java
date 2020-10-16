@@ -10,14 +10,12 @@ import formularios.FormularioEditarCliente;
 public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormularioEditar {
 
     protected PrincipalCliente principalCliente;
+    protected TablaCliente tablaCliente;
+    
 
-     public void setPrincipalCliente(PrincipalCliente principalCliente) {
+    public void setPrincipalCliente(PrincipalCliente principalCliente) {
         this.principalCliente = principalCliente;
     }
-     
-     
-
-    protected TablaCliente tablaCliente;
 
     public TablaCliente getTablaCliente() {
         return tablaCliente;
@@ -27,11 +25,9 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
         this.tablaCliente = tablaCliente;
     }
 
-    
-    
     @Override
     public void nuevoFormularioEditar() {
-          FormularioEditarCliente formularioEditar = new FormularioEditarCliente(frame, true);
+        FormularioEditarCliente formularioEditar = new FormularioEditarCliente(frame, true);
         formularioEditar.setPrincipalCliente(principalCliente);
         principalCliente.setEditarCliente(formularioEditar);
         transferirDatos();
@@ -39,12 +35,7 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
         principalCliente.getEditarCliente().setVisible(true);
     }
 
-    /**
-     * @deprecated
-     */
-    @Override
-    public void infoTextPrompt() {
-    }
+
 
     @Override
     public void colorTema() {

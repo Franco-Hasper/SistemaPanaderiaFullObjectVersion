@@ -17,7 +17,14 @@ import operacionesCliente.InterfazGraficaFormularioRegistrarCliente;
  */
 public class FormularioRegistrarCliente extends javax.swing.JDialog {
 
-    private ABMCliente abm = new ABMCliente();
+    public FormularioRegistrarCliente(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        this.setLocationRelativeTo(null);
+    }
+
+    private final ABMCliente abm = new ABMCliente();
+    private final InterfazGraficaFormularioRegistrarCliente interfazGraficaRegistrarCliente = new InterfazGraficaFormularioRegistrarCliente();
 
     PrincipalCliente principalCliente;
 
@@ -29,18 +36,6 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
         this.principalCliente = principalCliente;
     }
 
-    /**
-     * Creates new form FormularioNuevoCliente
-     */
-    public FormularioRegistrarCliente(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-        this.setLocationRelativeTo(null);
-    }
-
-   
-    
-    
     public List getListaCampos() {
         List listCamposTexto = new ArrayList();
         listCamposTexto.add(this.getTxtNombre());
@@ -377,15 +372,12 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_radioButonActionPerformed
-    
-    
-       InterfazGraficaFormularioRegistrarCliente intergazGraficaRegistrarCliente = new InterfazGraficaFormularioRegistrarCliente();
-    
-    
+
+
     private void boxProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxProvinciaActionPerformed
-        intergazGraficaRegistrarCliente.setBoxProvincia(boxProvincia);
-        intergazGraficaRegistrarCliente.setBoxLocalidad(boxLocalidad);
-        intergazGraficaRegistrarCliente.evaluarEstadoConsultaLocalidad();
+        interfazGraficaRegistrarCliente.setBoxProvincia(boxProvincia);
+        interfazGraficaRegistrarCliente.setBoxLocalidad(boxLocalidad);
+        interfazGraficaRegistrarCliente.evaluarEstadoConsultaLocalidad();
     }//GEN-LAST:event_boxProvinciaActionPerformed
 
     /**

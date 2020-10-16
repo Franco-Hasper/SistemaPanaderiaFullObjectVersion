@@ -18,20 +18,20 @@ import principal.MaterialButton;
  */
 public class PrincipalCliente extends javax.swing.JInternalFrame {
 
-    private InterfazGraficaFormularioRegistrarCliente formularioRegistrar;
-    private InterfazGraficaFormularioEditarCliente formularioEditar;
-    private FormularioRegistrarCliente registrarCliente;
-    private FormularioEditarCliente editarCliente;
-    private TablaCliente tablaCliente;
-
-    //public InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
     public PrincipalCliente() {
         initComponents();
         registrarCliente = null;
         editarCliente = null;
         btnSeleccionarCliente.setVisible(false);
     }
-
+    
+    private InterfazGraficaFormularioRegistrarCliente formularioRegistrar;
+    private InterfazGraficaFormularioEditarCliente formularioEditar;
+    private FormularioRegistrarCliente registrarCliente;
+    private FormularioEditarCliente editarCliente;
+    private TablaCliente tablaCliente;
+    private final ABMCliente abm = new ABMCliente();
+    
     public TablaCliente getTablaCliente() {
         return tablaCliente;
     }
@@ -412,7 +412,7 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCuentaActionPerformed
 
     private void btnEliminarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCliActionPerformed
-        ABMCliente abm = new ABMCliente();
+        
         abm.setPrincipalCliente(this);
         tablaCliente.setPrincipalCliente(this);
         if (tablaCliente.verificarFilaSeleccionada()) {

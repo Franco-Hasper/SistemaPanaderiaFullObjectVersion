@@ -2,9 +2,12 @@ package principal;
 
 import complementos.Cargar;
 import escritorios.PrincipalCliente;
+import escritorios.PrincipalProveedor;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import operacionesCliente.InterfazGraficaEscritorioCliente;
+import operacionesProveedor.InterfazGraficaEscritorioProveedor;
+import principal.MaterialButtomRectangle;
 
 /**
  *
@@ -12,13 +15,10 @@ import operacionesCliente.InterfazGraficaEscritorioCliente;
  */
 public class PrincipalAdministrador extends javax.swing.JFrame {
 
-    
-    private PrincipalCliente cliente;
-    private Cargar cargar;
-
     public PrincipalAdministrador() {
         initComponents();
         cliente = null;
+        proveedor = null;
         cargar = null;
         setExtendedState(MAXIMIZED_BOTH);
         //deshabilitados temportalmente para evitar confusiones
@@ -27,9 +27,21 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         this.btnGestionGastos.setEnabled(false);
         this.btnGestionMateriPrima.setEnabled(false);
         this.btnGestionProducto.setEnabled(false);
-        this.btnGestionProveedor.setEnabled(false);
         this.btnGestionVentas.setEnabled(false);
     }
+
+    //ventanas graficas -clases de interfaz.
+    private PrincipalCliente cliente;
+    private PrincipalProveedor proveedor;
+    private Cargar cargar;
+
+    //se utiliza en los metodos de apertura de ventana-clases de control.
+    private InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
+    private InterfazGraficaEscritorioProveedor interfazGraficaProveedor = new InterfazGraficaEscritorioProveedor();
+
+    //metodos de control de ventana.
+    private boolean minimiza = false;
+    public boolean cerra = false;
 
     public Escritorio getEscritorio() {
         return escritorio;
@@ -38,8 +50,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public void setEscritorio(Escritorio escritorio) {
         this.escritorio = escritorio;
     }
-    
-    
 
     public PrincipalCliente getCliente() {
         return cliente;
@@ -49,6 +59,14 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         this.cliente = cliente;
     }
 
+    public PrincipalProveedor getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(PrincipalProveedor proveedor) {
+        this.proveedor = proveedor;
+    }
+
     public Cargar getCargar() {
         return cargar;
     }
@@ -56,11 +74,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public void setCargar(Cargar cargar) {
         this.cargar = cargar;
     }
-
-    private InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
-
-    private boolean minimiza = false;
-    public boolean cerra = false;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -135,6 +148,11 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         btnGestionProveedor.setForeground(new java.awt.Color(255, 255, 255));
         btnGestionProveedor.setText("GESTION DE PROVEEDOR");
         btnGestionProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGestionProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionProveedorActionPerformed(evt);
+            }
+        });
 
         btnGestionCliente.setBackground(new java.awt.Color(177, 159, 65));
         btnGestionCliente.setForeground(new java.awt.Color(255, 255, 255));
@@ -240,6 +258,11 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         interfazGraficaCliente.setPrincipalAdministrador(this);
         interfazGraficaCliente.ejecutarNuevaVentana();
     }//GEN-LAST:event_btnGestionClienteActionPerformed
+
+    private void btnGestionProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionProveedorActionPerformed
+        interfazGraficaProveedor.setPrincipalAdministrador(this);
+        interfazGraficaProveedor.ejecutarNuevaVentana();
+    }//GEN-LAST:event_btnGestionProveedorActionPerformed
 
     public JPanel getPanelPrincipalBody() {
         return panelPrincipalBody;

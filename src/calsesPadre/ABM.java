@@ -124,14 +124,14 @@ public abstract class ABM extends Consultas {
      */
     public void conexionTransaccionEditar() {
         Session miSesion = ConexionHibernate.tomarConexion();
-     //   try {
+        try {
             miSesion.beginTransaction();
             transaccionEditar(miSesion);
             miSesion.getTransaction().commit();
             DesktopNotify.showDesktopMessage("   exito   ", "    Registro editado con exito", DesktopNotify.SUCCESS, 7000);
-//        } catch (Exception e) {
-//            DesktopNotify.showDesktopMessage("   error   ", "   Error al intentar editar  registro", DesktopNotify.ERROR, 7000);
-//        }
+        } catch (Exception e) {
+            DesktopNotify.showDesktopMessage("   error   ", "   Error al intentar editar  registro", DesktopNotify.ERROR, 7000);
+        }
     }
 
     /**
