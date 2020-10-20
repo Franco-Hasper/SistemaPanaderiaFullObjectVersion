@@ -22,8 +22,8 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
     }
 
-    private    ABMCliente abm = new ABMCliente();
     private  PrincipalCliente principalCliente;
+    private   final ABMCliente abm = new ABMCliente();
 
     public PrincipalCliente getPrincipalCliente() {
         return principalCliente;

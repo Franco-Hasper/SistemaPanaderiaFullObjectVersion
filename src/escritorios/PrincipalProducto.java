@@ -1,58 +1,90 @@
 package escritorios;
 
-import formularios.FormularioEditarProveedor;
-import formularios.FormularioRegistrarProveedor;
-import javax.swing.JButton;
+import clasesUtilidadGeneral.OperacionesUtiles;
+import formularios.FormularioEditarProducto;
+import formularios.FormularioRegistrarPrecioProducto;
+import formularios.FormularioRegistrarProducto;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import clasesUtilidadGeneral.OperacionesUtiles;
-import operacionesProveedor.ABMProveedor;
-import operacionesProveedor.InterfazGraficaFormularioEditarProveedor;
-import operacionesProveedor.InterfazGraficaFormularioRegistrarProveedor;
-import operacionesProveedor.TablaProveedor;
+import operacionesProducto.ABMProducto;
+import operacionesProducto.InterfazGraficaFormularioEditarProducto;
+import operacionesProducto.InterfazGraficaFormularioRegistrarPrecioProducto;
+import operacionesProducto.InterfazGraficaFormularioRegistrarProducto;
+import operacionesProducto.TablaProducto;
 
-/**
- *
- * @author TELCOM MPC
- */
-public class PrincipalProveedor extends javax.swing.JInternalFrame {
+public class PrincipalProducto extends javax.swing.JInternalFrame {
 
-    public PrincipalProveedor() {
+    public PrincipalProducto() {
+        registrarProducto = null;
+        editarProducto = null;
+        registrarPrecioProducto = null;
         initComponents();
-        registrarProveedor = null;
-        editarProveedor = null;
     }
 
-    private InterfazGraficaFormularioRegistrarProveedor formularioRegistrar;
-    private InterfazGraficaFormularioEditarProveedor formularioEditar;
-    private FormularioRegistrarProveedor registrarProveedor;
-    private FormularioEditarProveedor editarProveedor;
-    private TablaProveedor tablaProveedor;
-    private final ABMProveedor abm = new ABMProveedor();
+    private InterfazGraficaFormularioRegistrarProducto formularioRegistrar;
+    private InterfazGraficaFormularioEditarProducto formularioEditar;
+    private InterfazGraficaFormularioRegistrarPrecioProducto formularioPrecio;
+    private FormularioRegistrarProducto registrarProducto;
+    private FormularioEditarProducto editarProducto;
+    private FormularioRegistrarPrecioProducto registrarPrecioProducto;
+    private TablaProducto tablaProducto;
+    private final ABMProducto abm = new ABMProducto();
 
-    public FormularioRegistrarProveedor getRegistrarProveedor() {
-        return registrarProveedor;
+    public InterfazGraficaFormularioRegistrarProducto getFormularioRegistrar() {
+        return formularioRegistrar;
     }
 
-    public void setRegistrarProveedor(FormularioRegistrarProveedor registrarProveedor) {
-        this.registrarProveedor = registrarProveedor;
+    public void setFormularioRegistrar(InterfazGraficaFormularioRegistrarProducto formularioRegistrar) {
+        this.formularioRegistrar = formularioRegistrar;
     }
 
-    public FormularioEditarProveedor getEditarProveedor() {
-        return editarProveedor;
+    public InterfazGraficaFormularioEditarProducto getFormularioEditar() {
+        return formularioEditar;
     }
 
-    public void setEditarProveedor(FormularioEditarProveedor editarProveedor) {
-        this.editarProveedor = editarProveedor;
+    public void setFormularioEditar(InterfazGraficaFormularioEditarProducto formularioEditar) {
+        this.formularioEditar = formularioEditar;
     }
 
-    public TablaProveedor getTablaProveedor() {
-        return tablaProveedor;
+    public FormularioRegistrarProducto getRegistrarProducto() {
+        return registrarProducto;
     }
 
-    public void setTablaProveedor(TablaProveedor tablaProveedor) {
-        this.tablaProveedor = tablaProveedor;
+    public void setRegistrarProducto(FormularioRegistrarProducto registrarProducto) {
+        this.registrarProducto = registrarProducto;
+    }
+
+    public FormularioEditarProducto getEditarProducto() {
+        return editarProducto;
+    }
+
+    public void setEditarProducto(FormularioEditarProducto editarProducto) {
+        this.editarProducto = editarProducto;
+    }
+
+    public InterfazGraficaFormularioRegistrarPrecioProducto getFormularioPrecio() {
+        return formularioPrecio;
+    }
+
+    public void setFormularioPrecio(InterfazGraficaFormularioRegistrarPrecioProducto formularioPrecio) {
+        this.formularioPrecio = formularioPrecio;
+    }
+
+    public FormularioRegistrarPrecioProducto getRegistrarPrecioProducto() {
+        return registrarPrecioProducto;
+    }
+
+    public void setRegistrarPrecioProducto(FormularioRegistrarPrecioProducto registrarPrecioProducto) {
+        this.registrarPrecioProducto = registrarPrecioProducto;
+    }
+
+    public TablaProducto getTablaProducto() {
+        return tablaProducto;
+    }
+
+    public void setTablaProducto(TablaProducto tablaProducto) {
+        this.tablaProducto = tablaProducto;
     }
 
     public JTable getTablaGrafica() {
@@ -71,22 +103,6 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
         this.txtBuscar = txtBuscar;
     }
 
-    public InterfazGraficaFormularioRegistrarProveedor getFormularioRegistrar() {
-        return formularioRegistrar;
-    }
-
-    public void setFormularioRegistrar(InterfazGraficaFormularioRegistrarProveedor formularioRegistrar) {
-        this.formularioRegistrar = formularioRegistrar;
-    }
-
-    public InterfazGraficaFormularioEditarProveedor getFormularioEditar() {
-        return formularioEditar;
-    }
-
-    public void setFormularioEditar(InterfazGraficaFormularioEditarProveedor formularioEditar) {
-        this.formularioEditar = formularioEditar;
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -99,12 +115,12 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
         lbltrigo = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lblSalir = new javax.swing.JLabel();
-        nuevo = new principal.MaterialButton();
         txtBuscar = new javax.swing.JTextField();
+        btnNuevo = new principal.MaterialButton();
+        btnGraficarHistorialPrecios = new principal.MaterialButton();
         btnEliminar = new principal.MaterialButton();
         btnEditar = new principal.MaterialButton();
-        btnTelefonos = new principal.MaterialButton();
-        btnDirecciones = new principal.MaterialButton();
+        btnNuevoPrecio = new principal.MaterialButton();
 
         panelPrincipalTop.setBackground(new java.awt.Color(204, 0, 0));
         panelPrincipalTop.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,11 +135,11 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "NOMBRE", "DIRECCION", "NUMERI/D", "LOCALIDAD", "PROVINCIA", "TELEFONO", "TIPO TELEFONO"
+                "NOMBRE", "DESCRIPCION", "PRECIO", "FECHA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -145,21 +161,21 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1606, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
         );
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0, 60));
         jPanel4.setForeground(new java.awt.Color(0, 0, 0));
 
-        lbltrigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/supplier_80px.png"))); // NOI18N
+        lbltrigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bread_80px.png"))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("PROVEEDOR");
+        jLabel4.setText("PRODUCTO");
 
         lblSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel_60px.png"))); // NOI18N
         lblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -195,17 +211,6 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
                             .addContainerGap()))))
         );
 
-        nuevo.setBackground(new java.awt.Color(0,0,0,60));
-        nuevo.setForeground(new java.awt.Color(255, 255, 255));
-        nuevo.setText("NUEVO PROVEEDOR");
-        nuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        nuevo.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        nuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevoActionPerformed(evt);
-            }
-        });
-
         txtBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,9 +223,31 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
             }
         });
 
+        btnNuevo.setBackground(new java.awt.Color(0,0,0,60));
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevo.setText("NUEVO ");
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevo.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
+
+        btnGraficarHistorialPrecios.setBackground(new java.awt.Color(0,0,0,60));
+        btnGraficarHistorialPrecios.setForeground(new java.awt.Color(255, 255, 255));
+        btnGraficarHistorialPrecios.setText("HISTORIAL DE PRECIOS ");
+        btnGraficarHistorialPrecios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGraficarHistorialPrecios.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnGraficarHistorialPrecios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraficarHistorialPreciosActionPerformed(evt);
+            }
+        });
+
         btnEliminar.setBackground(new java.awt.Color(0,0,0,60));
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminar.setText("ELIMINAR PROVEEDOR");
+        btnEliminar.setText("ELIMINAR");
         btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -231,7 +258,7 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
 
         btnEditar.setBackground(new java.awt.Color(0,0,0,60));
         btnEditar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditar.setText("EDITAR PROVEEDOR");
+        btnEditar.setText("EDITAR");
         btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditar.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -240,25 +267,14 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
             }
         });
 
-        btnTelefonos.setBackground(new java.awt.Color(0,0,0,60));
-        btnTelefonos.setForeground(new java.awt.Color(255, 255, 255));
-        btnTelefonos.setText("TELEFONOS");
-        btnTelefonos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnTelefonos.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnTelefonos.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevoPrecio.setBackground(new java.awt.Color(0,0,0,60));
+        btnNuevoPrecio.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevoPrecio.setText("NUEVO PRECIO");
+        btnNuevoPrecio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoPrecio.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnNuevoPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTelefonosActionPerformed(evt);
-            }
-        });
-
-        btnDirecciones.setBackground(new java.awt.Color(0,0,0,60));
-        btnDirecciones.setForeground(new java.awt.Color(255, 255, 255));
-        btnDirecciones.setText("DIRECCIONES");
-        btnDirecciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDirecciones.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnDirecciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDireccionesActionPerformed(evt);
+                btnNuevoPrecioActionPerformed(evt);
             }
         });
 
@@ -270,16 +286,16 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelPrincipalTopLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDirecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnTelefonos, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnNuevoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGraficarHistorialPrecios, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -289,12 +305,12 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGraficarHistorialPrecios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTelefonos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDirecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNuevoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -313,52 +329,53 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
-        formularioRegistrar.setPrincipalProveedor(this);
-        formularioRegistrar.nuevoFormularioRegistrar();
-    }//GEN-LAST:event_nuevoActionPerformed
-
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
 
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        tablaProveedor.setPrincipalProveedor(this);
-        tablaProveedor.ejecutarRellenarTabla();
+
     }//GEN-LAST:event_txtBuscarKeyReleased
 
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        formularioRegistrar.setPrincipalProducto(this);
+        formularioRegistrar.nuevoFormularioRegistrar();
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnGraficarHistorialPreciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarHistorialPreciosActionPerformed
+
+    }//GEN-LAST:event_btnGraficarHistorialPreciosActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        abm.setPrincipalProveedor(this);
-        tablaProveedor.setPrincipalProveedor(this);
-        if (tablaProveedor.verificarFilaSeleccionada()) {
-
+        abm.setPrincipalProducto(this);
+        tablaProducto.setPrincipalProducto(this);
+        if (tablaProducto.verificarFilaSeleccionada()) {
             if (OperacionesUtiles.mensajeEliminarRegistro()) {
                 if (abm.ejecutarEliminar()) {
-                    tablaProveedor.setEstadoConsulta(0);
-                    tablaProveedor.ejecutarRellenarTabla();
+                    tablaProducto.setEstadoConsulta(0);
+                    tablaProducto.ejecutarRellenarTabla();
                 }
             }
-
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        tablaProveedor.setPrincipalProveedor(this);
-        if (tablaProveedor.verificarFilaSeleccionada()) {
-            formularioEditar.setPrincipalProveedor(this);
+        tablaProducto.setPrincipalProducto(this);
+        if (tablaProducto.verificarFilaSeleccionada()) {
+            formularioEditar.setPrincipalProducto(this);
             formularioEditar.nuevoFormularioEditar();
 
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnTelefonosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTelefonosActionPerformed
-
-    }//GEN-LAST:event_btnTelefonosActionPerformed
-
-    private void btnDireccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDireccionesActionPerformed
-
-    }//GEN-LAST:event_btnDireccionesActionPerformed
+    private void btnNuevoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPrecioActionPerformed
+  tablaProducto.setPrincipalProducto(this);
+        if (tablaProducto.verificarFilaSeleccionada()) {
+            formularioPrecio.setPrincipalProducto(this);
+            formularioPrecio.nuevoFormularioRegistrarPrecio();
+        }
+    }//GEN-LAST:event_btnNuevoPrecioActionPerformed
 
     private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked
         this.dispose();
@@ -372,27 +389,19 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
         this.panelPrincipalTop = panelPrincipalTop;
     }
 
-    public JButton getBtnEditar() {
-        return btnEditar;
-    }
-
-    public JButton getBtnEliminar() {
-        return btnEliminar;
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private principal.MaterialButton btnDirecciones;
     private principal.MaterialButton btnEditar;
     private principal.MaterialButton btnEliminar;
-    private principal.MaterialButton btnTelefonos;
+    private principal.MaterialButton btnGraficarHistorialPrecios;
+    private principal.MaterialButton btnNuevo;
+    private principal.MaterialButton btnNuevoPrecio;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblSalir;
     public static javax.swing.JLabel lbltrigo;
-    private principal.MaterialButton nuevo;
     private javax.swing.JPanel panelPrincipalTop;
     private javax.swing.JTable tablaGrafica;
     private javax.swing.JTextField txtBuscar;

@@ -44,8 +44,7 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
 
     @Override
     public void transferirDatos() {
-        TablaCliente tablaCliente = new TablaCliente();
-        tablaCliente.setPrincipalCliente(principalCliente);
+        new TablaCliente().setPrincipalCliente(principalCliente);
         int fila = principalCliente.getTablaGrafica().getSelectedRow();
         principalCliente.getEditarCliente().getTxtNombre().setText(principalCliente.getTablaGrafica().getValueAt(fila, 0).toString());
         principalCliente.getEditarCliente().getTxtApellido().setText(principalCliente.getTablaGrafica().getValueAt(fila, 1).toString());
