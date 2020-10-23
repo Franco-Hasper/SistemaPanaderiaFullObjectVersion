@@ -90,12 +90,11 @@ public class TablaCliente extends Tabla {
 
         for (Object o : lista) {
             Cliente c = (Cliente) o;
-            Vector<Object> fila = new Vector<>();
-
             boolean resultadoComparacion = OperacionesUtiles.convertirResultado(c.getNombre(), valorBusqueda);
             //***********************
             if (c.getCodigoEstado().getIdEstado().equals(1) && resultadoComparacion) {
                 this.listaResutladosActuales.add(0, c.getIdCliente());
+                Vector<Object> fila = new Vector<>();
                 fila.add(c.getNombre());
                 fila.add(c.getApellido());
                 fila.add(c.getCodigoRazonSocial().getNombre());

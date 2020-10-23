@@ -2,11 +2,13 @@ package principal;
 
 import complementos.Cargar;
 import escritorios.PrincipalCliente;
+import escritorios.PrincipalGastos;
 import escritorios.PrincipalProducto;
 import escritorios.PrincipalProveedor;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import operacionesCliente.InterfazGraficaEscritorioCliente;
+import operacionesGasto.InterfazGraficaEscritorioGasto;
 import operacionesProducto.InterfazGraficaEscritorioProducto;
 import operacionesProveedor.InterfazGraficaEscritorioProveedor;
 import principal.MaterialButtomRectangle;
@@ -22,12 +24,13 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         cliente = null;
         proveedor = null;
         producto = null;
+        gasto=null;
         cargar = null;
+        
         setExtendedState(MAXIMIZED_BOTH);
         //deshabilitados temportalmente para evitar confusiones
         this.btnConfiguracion.setEnabled(false);
         this.btnGestionFinanzas.setEnabled(false);
-        this.btnGestionGastos.setEnabled(false);
         this.btnGestionMateriPrima.setEnabled(false);
         this.btnGestionVentas.setEnabled(false);
     }
@@ -36,12 +39,14 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private PrincipalCliente cliente;
     private PrincipalProveedor proveedor;
     private PrincipalProducto producto;
+    private PrincipalGastos gasto;
     private Cargar cargar;
 
     //se utiliza en los metodos de apertura de ventana-clases de control.
     private final InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
     private final InterfazGraficaEscritorioProveedor interfazGraficaProveedor = new InterfazGraficaEscritorioProveedor();
     private final InterfazGraficaEscritorioProducto interfazGraficaProducto = new InterfazGraficaEscritorioProducto();
+     private final InterfazGraficaEscritorioGasto interfazGraficaGasto = new InterfazGraficaEscritorioGasto();
 
     //metodos de control de ventana.
     private boolean minimiza = false;
@@ -79,6 +84,15 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         this.producto = producto;
     }
 
+    public PrincipalGastos getGasto() {
+        return gasto;
+    }
+
+    public void setGasto(PrincipalGastos gasto) {
+        this.gasto = gasto;
+    }
+
+    
     public Cargar getCargar() {
         return cargar;
     }
@@ -190,6 +204,11 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         btnGestionGastos.setForeground(new java.awt.Color(255, 255, 255));
         btnGestionGastos.setText("GASTOS");
         btnGestionGastos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGestionGastos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionGastosActionPerformed(evt);
+            }
+        });
 
         btnConfiguracion.setBackground(new java.awt.Color(177, 159, 65));
         btnConfiguracion.setForeground(new java.awt.Color(255, 255, 255));
@@ -285,6 +304,11 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         interfazGraficaProducto.setPrincipalAdministrador(this);
         interfazGraficaProducto.ejecutarNuevaVentana();
     }//GEN-LAST:event_btnGestionProductoActionPerformed
+
+    private void btnGestionGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionGastosActionPerformed
+        interfazGraficaGasto.setPrincipalAdministrador(this);
+        interfazGraficaGasto.ejecutarNuevaVentana();
+    }//GEN-LAST:event_btnGestionGastosActionPerformed
 
     public JPanel getPanelPrincipalBody() {
         return panelPrincipalBody;

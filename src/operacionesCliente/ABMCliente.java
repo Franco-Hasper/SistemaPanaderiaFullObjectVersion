@@ -23,11 +23,11 @@ import org.hibernate.Session;
  */
 public class ABMCliente extends ABM {
 
-    FormularioRegistrarCliente formularioRegistrarCliente;
-    FormularioEditarCliente formularioEditarCliente;
+   private  FormularioRegistrarCliente formularioRegistrarCliente;
+   private  FormularioEditarCliente formularioEditarCliente;
 
     //se utiliza solo para eliminar
-    PrincipalCliente principalCliente;
+   private  PrincipalCliente principalCliente;
 
     public PrincipalCliente getPrincipalCliente() {
         return principalCliente;

@@ -229,9 +229,7 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void butonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonGuardarCambiosActionPerformed
-        // TODO add your handling code here:
-     
-        abm.setFormularioEditarCliente(this);
+       abm.setFormularioEditarCliente(this);
         abm.setPrincipalCliente(principalCliente);
         if (abm.ejecutarEditar()) {
             principalCliente.getTablaCliente().setEstadoConsulta(0);

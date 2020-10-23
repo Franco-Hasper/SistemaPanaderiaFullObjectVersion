@@ -22,11 +22,11 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
-    private final ABMCliente abm = new ABMCliente();
+    //se usa solo para reellenar box provincia
     private final InterfazGraficaFormularioRegistrarCliente interfazGraficaRegistrarCliente = new InterfazGraficaFormularioRegistrarCliente();
 
-    PrincipalCliente principalCliente;
+    private final ABMCliente abm = new ABMCliente();
+    private PrincipalCliente principalCliente;
 
     public PrincipalCliente getPrincipalCliente() {
         return principalCliente;
