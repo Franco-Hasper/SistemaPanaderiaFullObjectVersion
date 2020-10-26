@@ -24,7 +24,6 @@ public class FormularioRegistrarProducto extends javax.swing.JDialog {
     }
 
     private final ABMProducto abm = new ABMProducto();
-    private final InterfazGraficaFormularioRegistrarProducto interfazGraficaRegistrarPrecio = new InterfazGraficaFormularioRegistrarProducto();
 
     PrincipalProducto principalProducto;
 

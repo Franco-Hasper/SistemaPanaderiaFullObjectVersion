@@ -5,12 +5,14 @@ import escritorios.PrincipalCliente;
 import escritorios.PrincipalGastos;
 import escritorios.PrincipalProducto;
 import escritorios.PrincipalProveedor;
+import escritorios.PrincipalVenta;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import operacionesCliente.InterfazGraficaEscritorioCliente;
 import operacionesGasto.InterfazGraficaEscritorioGasto;
 import operacionesProducto.InterfazGraficaEscritorioProducto;
 import operacionesProveedor.InterfazGraficaEscritorioProveedor;
+import operacionesVenta.InterfazGraficaEscritorioVenta;
 import principal.MaterialButtomRectangle;
 
 /**
@@ -24,15 +26,15 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         cliente = null;
         proveedor = null;
         producto = null;
-        gasto=null;
+        gasto = null;
         cargar = null;
+        venta=null;
         
         setExtendedState(MAXIMIZED_BOTH);
         //deshabilitados temportalmente para evitar confusiones
         this.btnConfiguracion.setEnabled(false);
         this.btnGestionFinanzas.setEnabled(false);
         this.btnGestionMateriPrima.setEnabled(false);
-        this.btnGestionVentas.setEnabled(false);
     }
 
     //ventanas graficas -clases de interfaz.
@@ -41,12 +43,14 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private PrincipalProducto producto;
     private PrincipalGastos gasto;
     private Cargar cargar;
+    private PrincipalVenta venta;
 
     //se utiliza en los metodos de apertura de ventana-clases de control.
     private final InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
     private final InterfazGraficaEscritorioProveedor interfazGraficaProveedor = new InterfazGraficaEscritorioProveedor();
     private final InterfazGraficaEscritorioProducto interfazGraficaProducto = new InterfazGraficaEscritorioProducto();
-     private final InterfazGraficaEscritorioGasto interfazGraficaGasto = new InterfazGraficaEscritorioGasto();
+    private final InterfazGraficaEscritorioGasto interfazGraficaGasto = new InterfazGraficaEscritorioGasto();
+    private final InterfazGraficaEscritorioVenta interfazGraficaVenta = new InterfazGraficaEscritorioVenta();
 
     //metodos de control de ventana.
     private boolean minimiza = false;
@@ -92,7 +96,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         this.gasto = gasto;
     }
 
-    
     public Cargar getCargar() {
         return cargar;
     }
@@ -100,6 +103,16 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public void setCargar(Cargar cargar) {
         this.cargar = cargar;
     }
+
+    public PrincipalVenta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(PrincipalVenta venta) {
+        this.venta = venta;
+    }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

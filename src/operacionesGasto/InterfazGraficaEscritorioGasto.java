@@ -27,6 +27,7 @@ public class InterfazGraficaEscritorioGasto extends InterfazGraficaEscritorio {
             tablaGastos.setPrincipalGastos(principalAdministrador.getGasto());
             tablaGastos.ejecutarRellenarTabla();
             principalAdministrador.getGasto().setTablaGasto(tablaGastos);
+            //REVISAR FORMULARIO EDITAR (se crea aca y en escritorioGasto, en gastoe s necesario pero aca?)
             InterfazGraficaFormularioRegistrarGasto formularioRegistrar = new InterfazGraficaFormularioRegistrarGasto();
             InterfazGraficaFormularioEditarGasto formularioEditar = new InterfazGraficaFormularioEditarGasto();
             principalAdministrador.getGasto().setFormularioRegistrar(formularioRegistrar);

@@ -3,6 +3,8 @@ package clasesUtilidadGeneral;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
@@ -449,5 +451,15 @@ public class OperacionesUtiles {
             }
         }
         return id;
+    }
+    
+    /**
+     * Dar formato a un valor Double
+     */
+    public String formatoDouble(Double valor) {
+        DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
+        separadoresPersonalizados.setDecimalSeparator('.');
+        DecimalFormat formato = new DecimalFormat("#.00", separadoresPersonalizados);
+        return formato.format(valor);
     }
 }
