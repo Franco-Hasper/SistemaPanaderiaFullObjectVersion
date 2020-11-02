@@ -153,26 +153,26 @@ public class OperacionesSecundariasVenta extends Consultas {
 
     public void listarProductos(FormularioRegistrarVenta f) {
 
-        if (OperacionesUtiles.verificarSeleccionFila(f.getTablaBuscarProducto())
-                && OperacionesUtiles.verificarCampoTextoVacio(f.getTxtCantidad(), "DEBE INDICAR LA CANTIDA DE UNIDADES PARA LISTAR EL PRODUCTO")) {
-            DefaultTableModel tablaBuscarProducto = (DefaultTableModel) f.getTablaBuscarProducto().getModel();
-            int fila = f.getTablaBuscarProducto().getSelectedRow();
-            Double precioUnitario;
-            Integer cantidad;
-            Double resultado;
-            DefaultTableModel tablaListaproductos = (DefaultTableModel) f.getTablaListarProductos().getModel();
-            //String datos[] = new String[4];
-            Vector<Object> datos = new Vector<>();
-
-            datos.add(tablaBuscarProducto.getValueAt(fila, 0));
-            datos.add(tablaBuscarProducto.getValueAt(fila, 1));
-            precioUnitario = Double.valueOf(tablaBuscarProducto.getValueAt(fila, 3).toString());
-            cantidad = Integer.valueOf(f.getTxtCantidad().getText());
-            datos.add(f.getTxtCantidad().getText());
-            resultado = precioUnitario * cantidad;
-            datos.add(new OperacionesUtiles().formatoDouble(resultado));
-            tablaListaproductos.addRow(datos);
-        }
+//        if (OperacionesUtiles.verificarSeleccionFila(f.getTablaBuscarProducto())
+//                && OperacionesUtiles.verificarCampoTextoVacio(f.getTxtCantidad(), "DEBE INDICAR LA CANTIDA DE UNIDADES PARA LISTAR EL PRODUCTO")) {
+//            DefaultTableModel tablaBuscarProducto = (DefaultTableModel) f.getTablaBuscarProducto().getModel();
+//            int fila = f.getTablaBuscarProducto().getSelectedRow();
+//            Double precioUnitario;
+//            Integer cantidad;
+//            Double resultado;
+//            DefaultTableModel tablaListaproductos = (DefaultTableModel) f.getTablaListarProductos().getModel();
+//            //String datos[] = new String[4];
+//            Vector<Object> datos = new Vector<>();
+//
+//            datos.add(tablaBuscarProducto.getValueAt(fila, 0));
+//            datos.add(tablaBuscarProducto.getValueAt(fila, 1));
+//            precioUnitario = Double.valueOf(tablaBuscarProducto.getValueAt(fila, 3).toString());
+//            cantidad = Integer.valueOf(f.getTxtCantidad().getText());
+//            datos.add(f.getTxtCantidad().getText());
+//            resultado = precioUnitario * cantidad;
+//            datos.add(new OperacionesUtiles().formatoDouble(resultado));
+//            tablaListaproductos.addRow(datos);
+//        }
     }
 
     public boolean validarListaProductos(FormularioRegistrarVenta f) {

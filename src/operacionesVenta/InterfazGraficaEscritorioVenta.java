@@ -30,8 +30,10 @@ public class InterfazGraficaEscritorioVenta extends InterfazGraficaEscritorio {
             //REVISAR FORMULARIO EDITAR (se crea aca y en escritorioGasto, en gastoe s necesario pero aca?)
             InterfazGraficaFormularioRegistrarVenta formularioRegistrar = new InterfazGraficaFormularioRegistrarVenta();
             InterfazGraficaFormularioEditarVenta formularioEditar = new InterfazGraficaFormularioEditarVenta();
+            InterfazGraficaDetalleVenta formularioDetalleVenta = new InterfazGraficaDetalleVenta();
             principalAdministrador.getVenta().setFormularioRegistrar(formularioRegistrar);
             principalAdministrador.getVenta().setFormularioEditar(formularioEditar);
+            principalAdministrador.getVenta().setFormularioDetalleVenta(formularioDetalleVenta);
             principalAdministrador.getVenta().show();
         }
         colorInterfazEscritorio();

@@ -1,35 +1,33 @@
-package operacionesProducto;
+package operacionesVenta;
 
 import calsesPadre.Tabla;
+import clasesUtilidadGeneral.OperacionesUtiles;
 import entidades.PrecioProducto;
-import escritorios.PrincipalProducto;
+import escritorios.PrincipalVenta;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
-import clasesUtilidadGeneral.OperacionesUtiles;
-import escritorios.PrincipalCliente;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
- *
- * @author TELCOM MPC
+ * @author Hasper Franco
  */
-public class TablaProducto extends Tabla {
+public class TablaRegistrarVenta extends Tabla {
 
-    public TablaProducto() {
+    public TablaRegistrarVenta() {
         setEstadoConsulta(0);
     }
 
-    private PrincipalProducto principalProducto;
+    private PrincipalVenta principalVenta;
+    //se usa para manejar la id.
     private List<Integer> listaResutladosActuales = new ArrayList<Integer>();
 
-    public PrincipalProducto getPrincipalProducto() {
-        return principalProducto;
+    public PrincipalVenta getPrincipalVenta() {
+        return principalVenta;
     }
 
-    public void setPrincipalProducto(PrincipalProducto principalProducto) {
-        this.principalProducto = principalProducto;
+    public void setPrincipalVenta(PrincipalVenta principalVenta) {
+        this.principalVenta = principalVenta;
     }
 
     public List<Integer> getListaResutladosActuales() {
@@ -38,6 +36,19 @@ public class TablaProducto extends Tabla {
 
     public void setListaResutladosActuales(List<Integer> listaResutladosActuales) {
         this.listaResutladosActuales = listaResutladosActuales;
+    }
+    
+    
+    
+    
+    
+    @Override
+    public void ejecutarRellenarTabla() {
+        setTabla(principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles());
+        setStringConsulta("from PrecioProducto");
+        evaluarEstadoConsulta();
+        setCampoTexto(principalVenta.getRegistrarVenta().getTxtBuscar());
+        rellenarTabla(getCampoTexto().getText());
     }
 
     @Override
@@ -61,7 +72,6 @@ public class TablaProducto extends Tabla {
                 fila.add(pr.getCodigoProducto().getNombre());
                 fila.add(pr.getCodigoProducto().getDescripcion());
                 fila.add(pr.getPrecioTotal());
-                fila.add(new OperacionesUtiles().formatoFechaSinHora(pr.getFecha()));
                 tablaProducto.addRow(fila);
             }
         }
@@ -69,38 +79,24 @@ public class TablaProducto extends Tabla {
     }
 
     
-    @Override
-    public boolean verificarFilaSeleccionada() {
-        try {
-            int fila = principalProducto.getTablaGrafica().getSelectedRow();
-            principalProducto.getTablaGrafica().getValueAt(fila, 0).toString();
-            return true;
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-            return false;
-        }
-    }
-
-    @Override
-    public void ejecutarRellenarTabla() {
-        setTabla(principalProducto.getTablaGrafica());
-        setStringConsulta("from PrecioProducto");
-        evaluarEstadoConsulta();
-        setCampoTexto(principalProducto.getTxtBuscar());
-        rellenarTabla(getCampoTexto().getText());
-    }
-
+    
     @Override
     public Integer obtenerIdFilaSeleccionada() {
-        try {
-            Integer totalFilas = principalProducto.getTablaGrafica().getRowCount();
-            Integer filasSeleccionada = principalProducto.getTablaGrafica().getSelectedRow();
-            List<Integer> listaResutadosActualesThis = principalProducto.getTablaProducto().getListaResutladosActuales();
+         try {
+            Integer totalFilas = principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getRowCount();
+            Integer filasSeleccionada = principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getSelectedRow();
+            List<Integer> listaResutadosActualesThis = principalVenta.getRegistrarVenta().getTablaRegistrarVenta().getListaResutladosActuales();
             Integer id = operacionesUtilidad.obtenerId(listaResutadosActualesThis, totalFilas, filasSeleccionada);
             this.setIdTabla(id);
         } catch (Exception e) {
         }
         return idTabla;
+    }
+
+    @Deprecated
+    @Override
+    public boolean verificarFilaSeleccionada() {
+        return true;
     }
 
 }

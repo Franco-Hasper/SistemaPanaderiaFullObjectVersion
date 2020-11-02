@@ -1,10 +1,6 @@
 package formularios;
 
-import com.itextpdf.text.DocumentException;
 import escritorios.PrincipalVenta;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -21,6 +17,7 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
     public FormularioDetalleDeVenta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+          this.setLocationRelativeTo(null);
     }
 
     PrincipalVenta principalVenta;

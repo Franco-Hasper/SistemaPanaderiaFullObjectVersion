@@ -1,5 +1,6 @@
 package escritorios;
 
+import formularios.FormularioDetalleDeVenta;
 import formularios.FormularioEditarVenta;
 import formularios.FormularioRegistrarVenta;
 import javax.swing.JPanel;
@@ -7,8 +8,10 @@ import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import operacionesVenta.ABMVenta;
+import operacionesVenta.InterfazGraficaDetalleVenta;
 import operacionesVenta.InterfazGraficaFormularioEditarVenta;
 import operacionesVenta.InterfazGraficaFormularioRegistrarVenta;
+import operacionesVenta.TablaDetalleVenta;
 import operacionesVenta.TablaVenta;
 
 /**
@@ -21,13 +24,16 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
         initComponents();
         registrarVenta = null;
         editarVenta = null;
+        detalleVenta = null;
         radButtonPendientes.setEnabled(false);
     }
 
     private InterfazGraficaFormularioRegistrarVenta formularioRegistrar;
     private InterfazGraficaFormularioEditarVenta formularioEditar;
+    private InterfazGraficaDetalleVenta formularioDetalleVenta;
     private FormularioRegistrarVenta registrarVenta;
     private FormularioEditarVenta editarVenta;
+    private FormularioDetalleDeVenta detalleVenta;
     private TablaVenta tablaVenta;
     private final ABMVenta abm = new ABMVenta();
 
@@ -55,12 +61,28 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
         this.registrarVenta = registrarVenta;
     }
 
+    public InterfazGraficaDetalleVenta getFormularioDetalleVenta() {
+        return formularioDetalleVenta;
+    }
+
+    public void setFormularioDetalleVenta(InterfazGraficaDetalleVenta formularioDetalleVenta) {
+        this.formularioDetalleVenta = formularioDetalleVenta;
+    }
+
     public FormularioEditarVenta getEditarVenta() {
         return editarVenta;
     }
 
     public void setEditarVenta(FormularioEditarVenta editarVenta) {
         this.editarVenta = editarVenta;
+    }
+
+    public FormularioDetalleDeVenta getDetalleVenta() {
+        return detalleVenta;
+    }
+
+    public void setDetalleVenta(FormularioDetalleDeVenta detalleVenta) {
+        this.detalleVenta = detalleVenta;
     }
 
     public TablaVenta getTablaVenta() {
@@ -332,7 +354,8 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
-
+        formularioRegistrar.setPrincipalVenta(this);
+        formularioRegistrar.nuevoFormularioRegistrar();
     }//GEN-LAST:event_nuevoActionPerformed
 
 
@@ -345,7 +368,12 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnEditarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarVentaActionPerformed
+        tablaVenta.setPrincipalVenta(this);
+        if (tablaVenta.verificarFilaSeleccionada()) {
+            formularioEditar.setPrincipalVenta(this);
+            formularioEditar.nuevoFormularioEditar();
 
+        }
     }//GEN-LAST:event_btnEditarVentaActionPerformed
 
     private void btnVentaWebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaWebActionPerformed
@@ -366,7 +394,11 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bntCambiarEstadoActionPerformed
 
     private void btnDetallesVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesVentaActionPerformed
-
+        tablaVenta.setPrincipalVenta(this);
+        if (tablaVenta.verificarFilaSeleccionada()) {
+            formularioDetalleVenta.setPrincipalVenta(this);
+            formularioDetalleVenta.nuevoFormularioDetalleDeVenta();
+        }
     }//GEN-LAST:event_btnDetallesVentaActionPerformed
 
     private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked

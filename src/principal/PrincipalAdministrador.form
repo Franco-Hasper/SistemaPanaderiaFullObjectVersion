@@ -188,6 +188,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="VENTAS y PEDIDOS"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGestionVentasActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnGestionFinanzas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));"/>
               </AuxValues>

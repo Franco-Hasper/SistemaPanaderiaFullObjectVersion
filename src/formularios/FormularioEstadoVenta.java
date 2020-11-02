@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import escritorios.PrincipalVenta;
 import operacionesVenta.ABMVenta;
-import static operacionesVenta.InterfacesGraficasVenta.i;
+//import static operacionesVenta.InterfacesGraficasVenta.i;
 import principal.MaterialButton;
 
 /**
@@ -300,22 +300,22 @@ public class FormularioEstadoVenta extends javax.swing.JDialog {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         setEstado(2);
-        i.seleccionElminar(this);
+   //     i.seleccionElminar(this);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCanceladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCanceladoActionPerformed
         setEstado(5);
-        i.seleccionCancelar(this);
+  //      i.seleccionCancelar(this);
     }//GEN-LAST:event_btnCanceladoActionPerformed
 
     private void btnPendienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPendienteActionPerformed
         setEstado(4);
-        i.seleccionPendiente(this);
+  //      i.seleccionPendiente(this);
     }//GEN-LAST:event_btnPendienteActionPerformed
 
     private void btnRealizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizadoActionPerformed
         setEstado(3);
-        i.seleccionRealizado(this);
+       // i.seleccionRealizado(this);
     }//GEN-LAST:event_btnRealizadoActionPerformed
 
     /**

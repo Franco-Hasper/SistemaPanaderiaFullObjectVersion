@@ -219,22 +219,7 @@ public class TablaVenta extends Tabla {
         }
     }
 
-    public void ejecutarRellenarDetalleDeVenta(FormularioDetalleDeVenta f) {
 
-        Integer totalFilas = principalVenta.getTablaGrafica().getRowCount();
-        Integer filasSeleccionada = principalVenta.getTablaGrafica().getSelectedRow();
-        List<Integer> listaResutadosActuales = principalVenta.getTablaVenta().getListaResutladosActuales();
-        Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
-
-        setConsultaObject("from Producto_Venta where codigo_venta=" + id);
-        obtenerObjetoConsulta();
-        rellenarLabelsDetalleDeVenta(f);
-        setTabla(f.getTablaListaProductos());
-        setConsultaList("from Producto_Venta where codigo_venta=" + id);
-        obtenerListaConsulta();
-        rellenarTablaDetalleDeVenta();
-
-    }
 
     public void ejecutarRellenarDatosEditarVenta(FormularioEditarVenta f) {
 
@@ -282,19 +267,7 @@ public class TablaVenta extends Tabla {
 
     }
 
-    public void rellenarLabelsDetalleDeVenta(FormularioDetalleDeVenta f) {
-        Object objeto = this.getObjetoResultado();
-        Producto_Venta pro = (Producto_Venta) objeto;
-        try {
-            f.getLblCliente().setText(pro.getCodigoVenta().getCodigoCliente().getNombre() + "  " + pro.getCodigoVenta().getCodigoCliente().getApellido());
-            f.getLblFecha().setText(OperacionesUtiles.formatoFecha(pro.getCodigoVenta().getFechaHoraVenta()).toString());
-            f.getLblTipoVenta().setText(pro.getCodigoVenta().getCodigoTipoVenta().getNombre());
-            f.getLblImporteTotal().setText(pro.getCodigoVenta().getPrecioTotal().toString());
-        } catch (NullPointerException e) {
-            System.out.println(e);
-        }
 
-    }
 
     public void rellenatTablaClienteFormularioEditar() {
         try {
@@ -344,25 +317,7 @@ public class TablaVenta extends Tabla {
 
     }
 
-    public void rellenarTablaDetalleDeVenta() {
-        DefaultTableModel tablaDetallesVenta = (DefaultTableModel) getTabla().getModel();
-        List lista = this.getListaResultados();
-        OperacionesUtiles.removerFilas(tablaDetallesVenta);
-        for (Object o : lista) {
-            Producto_Venta pr = (Producto_Venta) o;
-            Vector<Object> fila = new Vector<>();
-            fila.add(pr.getCodigoProducto().getNombre());
-            fila.add(pr.getTotalUnidades());
-            List<PrecioProducto> precios
-                    = pr.getCodigoProducto().getPrecios();
-            for (PrecioProducto pre : precios) {
-                if (pre.getCodigoEstado().getIdEstado().equals(1)) {
-                    fila.add(pr.getTotalUnidades() * pre.getPrecioTotal());
-                }
-            }
-            tablaDetallesVenta.addRow(fila);
-        }
-    }
+
 
     public void rellenarTablaListaProducto() {
         DefaultTableModel tablaDetallesVenta = (DefaultTableModel) getTabla().getModel();
@@ -387,10 +342,10 @@ public class TablaVenta extends Tabla {
     }
 
     public void ejecutarRellenarTablaProductoSinFecha(FormularioRegistrarVenta p) {
-        setTabla(p.getTablaBuscarProducto());
-        setConsultaList("from PrecioProducto");
-        obtenerListaConsulta();
-        rellenarTablaProductoSinFeha();
+//        setTabla(p.getTablaBuscarProducto());
+//        setConsultaList("from PrecioProducto");
+//        obtenerListaConsulta();
+//        rellenarTablaProductoSinFeha();
     }
 
     public void ejecutarRellenarTablaProductoSinFecha(FormularioEditarVenta p) {
@@ -401,16 +356,16 @@ public class TablaVenta extends Tabla {
     }
 
     public void ejecutarRellenarTablaProductoSinFechaBusqueda(FormularioRegistrarVenta f) {
-        setTabla(f.getTablaBuscarProducto());
-        if (f.getTxtBuscar().getText().equals("")) {
-            setConsultaList("from PrecioProducto");
-            obtenerListaConsulta();
-            rellenarTablaProductoSinFeha();
-        } else {
-            setConsultaList("from Producto where nombre like '" + f.getTxtBuscar().getText() + "%'");
-            obtenerListaConsulta();
-            rellenarTablaProductoSinFechaBusqueda();
-        }
+//        setTabla(f.getTablaBuscarProducto());
+//        if (f.getTxtBuscar().getText().equals("")) {
+//            setConsultaList("from PrecioProducto");
+//            obtenerListaConsulta();
+//            rellenarTablaProductoSinFeha();
+//        } else {
+//            setConsultaList("from Producto where nombre like '" + f.getTxtBuscar().getText() + "%'");
+//            obtenerListaConsulta();
+//            rellenarTablaProductoSinFechaBusqueda();
+//        }
     }
 
     public void ejecutarRellenarTablaProductoSinFechaBusqueda(FormularioEditarVenta f) {

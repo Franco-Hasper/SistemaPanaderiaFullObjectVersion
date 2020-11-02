@@ -172,6 +172,11 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         btnGestionVentas.setForeground(new java.awt.Color(255, 255, 255));
         btnGestionVentas.setText("VENTAS y PEDIDOS");
         btnGestionFinanzas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGestionVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionVentasActionPerformed(evt);
+            }
+        });
 
         btnGestionMateriPrima.setBackground(new java.awt.Color(177, 159, 65));
         btnGestionMateriPrima.setForeground(new java.awt.Color(255, 255, 255));
@@ -322,6 +327,11 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         interfazGraficaGasto.setPrincipalAdministrador(this);
         interfazGraficaGasto.ejecutarNuevaVentana();
     }//GEN-LAST:event_btnGestionGastosActionPerformed
+
+    private void btnGestionVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionVentasActionPerformed
+        interfazGraficaVenta.setPrincipalAdministrador(this);
+        interfazGraficaVenta.ejecutarNuevaVentana();
+    }//GEN-LAST:event_btnGestionVentasActionPerformed
 
     public JPanel getPanelPrincipalBody() {
         return panelPrincipalBody;

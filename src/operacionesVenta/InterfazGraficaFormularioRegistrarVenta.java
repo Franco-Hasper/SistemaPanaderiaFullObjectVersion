@@ -33,6 +33,10 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
         rellenarBoxes();
         infoTextPrompt();
         colorTema();
+        TablaRegistrarVenta tablaRegistrarVenta = new TablaRegistrarVenta();
+        tablaRegistrarVenta.setPrincipalVenta(principalVenta);
+        tablaRegistrarVenta.ejecutarRellenarTabla();
+
         principalVenta.getRegistrarVenta().setVisible(true);
     }
 
@@ -57,9 +61,5 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
     public void colorTema() {
         principalVenta.getRegistrarVenta().getPanelPrincipalTop().setBackground(principalVenta.getPanelPrincipalTop().getBackground());
     }
-    
-    
-    
-    
-    
+
 }
