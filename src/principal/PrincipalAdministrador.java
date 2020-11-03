@@ -1,6 +1,7 @@
 package principal;
 
 import complementos.Cargar;
+import escritorios.PrincipalCaja;
 import escritorios.PrincipalCliente;
 import escritorios.PrincipalGastos;
 import escritorios.PrincipalProducto;
@@ -8,6 +9,7 @@ import escritorios.PrincipalProveedor;
 import escritorios.PrincipalVenta;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import operacionesCaja.InterfazGraficaEscritorioCaja;
 import operacionesCliente.InterfazGraficaEscritorioCliente;
 import operacionesGasto.InterfazGraficaEscritorioGasto;
 import operacionesProducto.InterfazGraficaEscritorioProducto;
@@ -28,12 +30,12 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         producto = null;
         gasto = null;
         cargar = null;
-        venta=null;
-        
+        venta = null;
+        caja = null;
+
         setExtendedState(MAXIMIZED_BOTH);
         //deshabilitados temportalmente para evitar confusiones
         this.btnConfiguracion.setEnabled(false);
-        this.btnGestionFinanzas.setEnabled(false);
         this.btnGestionMateriPrima.setEnabled(false);
     }
 
@@ -44,6 +46,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private PrincipalGastos gasto;
     private Cargar cargar;
     private PrincipalVenta venta;
+    private PrincipalCaja caja;
 
     //se utiliza en los metodos de apertura de ventana-clases de control.
     private final InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
@@ -51,6 +54,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private final InterfazGraficaEscritorioProducto interfazGraficaProducto = new InterfazGraficaEscritorioProducto();
     private final InterfazGraficaEscritorioGasto interfazGraficaGasto = new InterfazGraficaEscritorioGasto();
     private final InterfazGraficaEscritorioVenta interfazGraficaVenta = new InterfazGraficaEscritorioVenta();
+    private final InterfazGraficaEscritorioCaja interfazGraficaCaja = new InterfazGraficaEscritorioCaja();
 
     //metodos de control de ventana.
     private boolean minimiza = false;
@@ -111,8 +115,14 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public void setVenta(PrincipalVenta venta) {
         this.venta = venta;
     }
-    
-    
+
+    public PrincipalCaja getCaja() {
+        return caja;
+    }
+
+    public void setCaja(PrincipalCaja caja) {
+        this.caja = caja;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -128,7 +138,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         btnGestionProducto = new principal.MaterialButtomRectangle();
         btnGestionProveedor = new principal.MaterialButtomRectangle();
         btnGestionCliente = new principal.MaterialButtomRectangle();
-        btnGestionFinanzas = new principal.MaterialButtomRectangle();
+        btnGestionCaja = new principal.MaterialButtomRectangle();
         btnGestionGastos = new principal.MaterialButtomRectangle();
         btnConfiguracion = new principal.MaterialButtomRectangle();
         escritorio = new principal.Escritorio();
@@ -171,7 +181,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         btnGestionVentas.setBackground(new java.awt.Color(177, 159, 65));
         btnGestionVentas.setForeground(new java.awt.Color(255, 255, 255));
         btnGestionVentas.setText("VENTAS y PEDIDOS");
-        btnGestionFinanzas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGestionCaja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGestionVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGestionVentasActionPerformed(evt);
@@ -213,10 +223,15 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
             }
         });
 
-        btnGestionFinanzas.setBackground(new java.awt.Color(177, 159, 65));
-        btnGestionFinanzas.setForeground(new java.awt.Color(255, 255, 255));
-        btnGestionFinanzas.setText("CAJA");
-        btnGestionFinanzas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGestionCaja.setBackground(new java.awt.Color(177, 159, 65));
+        btnGestionCaja.setForeground(new java.awt.Color(255, 255, 255));
+        btnGestionCaja.setText("CAJA");
+        btnGestionCaja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGestionCaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionCajaActionPerformed(evt);
+            }
+        });
 
         btnGestionGastos.setBackground(new java.awt.Color(177, 159, 65));
         btnGestionGastos.setForeground(new java.awt.Color(255, 255, 255));
@@ -240,7 +255,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
             .addGroup(panelPrincipalBodyLayout.createSequentialGroup()
                 .addGroup(panelPrincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGestionVentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                    .addComponent(btnGestionFinanzas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                    .addComponent(btnGestionCaja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(btnConfiguracion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(btnGestionProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(btnGestionProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
@@ -265,7 +280,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(btnGestionVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(btnGestionFinanzas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGestionCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(65, Short.MAX_VALUE))
@@ -333,6 +348,11 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         interfazGraficaVenta.ejecutarNuevaVentana();
     }//GEN-LAST:event_btnGestionVentasActionPerformed
 
+    private void btnGestionCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionCajaActionPerformed
+        interfazGraficaCaja.setPrincipalAdministrador(this);
+        interfazGraficaCaja.ejecutarNuevaVentana();
+    }//GEN-LAST:event_btnGestionCajaActionPerformed
+
     public JPanel getPanelPrincipalBody() {
         return panelPrincipalBody;
     }
@@ -366,11 +386,11 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     }
 
     public MaterialButtomRectangle getBtnGestionFinanzas() {
-        return btnGestionFinanzas;
+        return btnGestionCaja;
     }
 
     public void setBtnGestionFinanzas(MaterialButtomRectangle btnGestionFinanzas) {
-        this.btnGestionFinanzas = btnGestionFinanzas;
+        this.btnGestionCaja = btnGestionFinanzas;
     }
 
     public MaterialButtomRectangle getBtnGestionMateriPrima() {
@@ -424,8 +444,8 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButtomRectangle btnConfiguracion;
+    private principal.MaterialButtomRectangle btnGestionCaja;
     private principal.MaterialButtomRectangle btnGestionCliente;
-    private principal.MaterialButtomRectangle btnGestionFinanzas;
     private principal.MaterialButtomRectangle btnGestionGastos;
     private principal.MaterialButtomRectangle btnGestionMateriPrima;
     private principal.MaterialButtomRectangle btnGestionProducto;

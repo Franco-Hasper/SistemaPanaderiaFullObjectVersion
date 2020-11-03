@@ -26,7 +26,7 @@ public class ABMCliente extends ABM {
    private  FormularioRegistrarCliente formularioRegistrarCliente;
    private  FormularioEditarCliente formularioEditarCliente;
 
-    //se utiliza solo para eliminar
+    //se utiliza solo para eliminar/Editar
    private  PrincipalCliente principalCliente;
 
     public PrincipalCliente getPrincipalCliente() {

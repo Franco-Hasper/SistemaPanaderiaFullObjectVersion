@@ -115,6 +115,7 @@ public class ABMVenta extends ABM {
 
         for (int i = 0; i < formularioRegistrarVenta.getTablaListarProductos().getRowCount(); i++) {
             Producto_Venta pv = new Producto_Venta();
+            //cambiar por id de array
             Producto p = (Producto) miSesion.get(Producto.class, Integer.valueOf(formularioRegistrarVenta.getTablaListarProductos().getValueAt(i, 0).toString()));
             totalunidades = Double.valueOf(formularioRegistrarVenta.getTablaListarProductos().getValueAt(i, 2).toString());
             pv.setCodigoProducto(p);

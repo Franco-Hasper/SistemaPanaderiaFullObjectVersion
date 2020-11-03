@@ -141,7 +141,7 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnGestionVentas" alignment="1" pref="256" max="32767" attributes="0"/>
-                          <Component id="btnGestionFinanzas" alignment="1" pref="256" max="32767" attributes="0"/>
+                          <Component id="btnGestionCaja" alignment="1" pref="256" max="32767" attributes="0"/>
                           <Component id="btnConfiguracion" alignment="1" pref="256" max="32767" attributes="0"/>
                           <Component id="btnGestionProducto" alignment="1" pref="256" max="32767" attributes="0"/>
                           <Component id="btnGestionProveedor" pref="256" max="32767" attributes="0"/>
@@ -169,7 +169,7 @@
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="btnGestionVentas" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="btnGestionFinanzas" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="btnGestionCaja" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="btnConfiguracion" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace pref="65" max="32767" attributes="0"/>
@@ -192,7 +192,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGestionVentasActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnGestionFinanzas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnGestionCaja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));"/>
               </AuxValues>
             </Component>
             <Component class="principal.MaterialButtomRectangle" name="btnGestionMateriPrima">
@@ -260,7 +260,7 @@
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnGestionCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));"/>
               </AuxValues>
             </Component>
-            <Component class="principal.MaterialButtomRectangle" name="btnGestionFinanzas">
+            <Component class="principal.MaterialButtomRectangle" name="btnGestionCaja">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="41" green="9f" red="b1" type="rgb"/>
@@ -270,8 +270,11 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="CAJA"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGestionCajaActionPerformed"/>
+              </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnGestionFinanzas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnGestionCaja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));"/>
               </AuxValues>
             </Component>
             <Component class="principal.MaterialButtomRectangle" name="btnGestionGastos">
