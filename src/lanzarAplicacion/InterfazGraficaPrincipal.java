@@ -26,7 +26,8 @@ public class InterfazGraficaPrincipal {
 
             ConfiguracionTxt configuracion = new ConfiguracionTxt();
             configuracion.leerArchivoConfig();
-            configuracion.setTema(principalAdministrador);
+            configuracion.setPrincipalAdministrador(principalAdministrador);
+            configuracion.setTema();
 
             try {
                 ApiDolar apiDolar = new ApiDolar();

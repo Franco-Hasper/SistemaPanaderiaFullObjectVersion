@@ -1,9 +1,12 @@
 package principal;
 
 import complementos.Cargar;
+import complementos.OptionPaneMateriaPrima;
 import escritorios.PrincipalCaja;
 import escritorios.PrincipalCliente;
+import escritorios.PrincipalConfiguracion;
 import escritorios.PrincipalGastos;
+import escritorios.PrincipalMateriaPrima;
 import escritorios.PrincipalProducto;
 import escritorios.PrincipalProveedor;
 import escritorios.PrincipalVenta;
@@ -11,7 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import operacionesCaja.InterfazGraficaEscritorioCaja;
 import operacionesCliente.InterfazGraficaEscritorioCliente;
+import operacionesConfiguracion.InterfacesGraficasEscritorioConfiguracion;
 import operacionesGasto.InterfazGraficaEscritorioGasto;
+import operacionesMateriaPrima.InterfazGraficaEscritorioMateriaPrima;
 import operacionesProducto.InterfazGraficaEscritorioProducto;
 import operacionesProveedor.InterfazGraficaEscritorioProveedor;
 import operacionesVenta.InterfazGraficaEscritorioVenta;
@@ -32,11 +37,9 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         cargar = null;
         venta = null;
         caja = null;
-
+        configuracion = null;
+        materiaPrima = null;
         setExtendedState(MAXIMIZED_BOTH);
-        //deshabilitados temportalmente para evitar confusiones
-        this.btnConfiguracion.setEnabled(false);
-        this.btnGestionMateriPrima.setEnabled(false);
     }
 
     //ventanas graficas -clases de interfaz.
@@ -47,6 +50,8 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private Cargar cargar;
     private PrincipalVenta venta;
     private PrincipalCaja caja;
+    private PrincipalMateriaPrima materiaPrima;
+    private PrincipalConfiguracion configuracion;
 
     //se utiliza en los metodos de apertura de ventana-clases de control.
     private final InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
@@ -55,7 +60,8 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private final InterfazGraficaEscritorioGasto interfazGraficaGasto = new InterfazGraficaEscritorioGasto();
     private final InterfazGraficaEscritorioVenta interfazGraficaVenta = new InterfazGraficaEscritorioVenta();
     private final InterfazGraficaEscritorioCaja interfazGraficaCaja = new InterfazGraficaEscritorioCaja();
-
+    private final InterfacesGraficasEscritorioConfiguracion interfazGraficaConfiguracion = new InterfacesGraficasEscritorioConfiguracion();
+    private final InterfazGraficaEscritorioMateriaPrima interfazGraficaMateriaPrima = new InterfazGraficaEscritorioMateriaPrima();
     //metodos de control de ventana.
     private boolean minimiza = false;
     public boolean cerra = false;
@@ -122,6 +128,22 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
     public void setCaja(PrincipalCaja caja) {
         this.caja = caja;
+    }
+
+    public PrincipalMateriaPrima getMateriaPrima() {
+        return materiaPrima;
+    }
+
+    public void setMateriaPrima(PrincipalMateriaPrima materiaPrima) {
+        this.materiaPrima = materiaPrima;
+    }
+
+    public PrincipalConfiguracion getConfiguracion() {
+        return configuracion;
+    }
+
+    public void setConfiguracion(PrincipalConfiguracion configuracion) {
+        this.configuracion = configuracion;
     }
 
     @SuppressWarnings("unchecked")
@@ -192,6 +214,11 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         btnGestionMateriPrima.setForeground(new java.awt.Color(255, 255, 255));
         btnGestionMateriPrima.setText("GESTIONAR MATERIA PRIMA");
         btnGestionMateriPrima.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGestionMateriPrima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionMateriPrimaActionPerformed(evt);
+            }
+        });
 
         btnGestionProducto.setBackground(new java.awt.Color(177, 159, 65));
         btnGestionProducto.setForeground(new java.awt.Color(255, 255, 255));
@@ -247,6 +274,11 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         btnConfiguracion.setForeground(new java.awt.Color(255, 255, 255));
         btnConfiguracion.setText("CONFIGURACION");
         btnConfiguracion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfiguracionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelPrincipalBodyLayout = new javax.swing.GroupLayout(panelPrincipalBody);
         panelPrincipalBody.setLayout(panelPrincipalBodyLayout);
@@ -352,6 +384,18 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         interfazGraficaCaja.setPrincipalAdministrador(this);
         interfazGraficaCaja.ejecutarNuevaVentana();
     }//GEN-LAST:event_btnGestionCajaActionPerformed
+
+    private void btnConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracionActionPerformed
+        interfazGraficaConfiguracion.setPrincipalAdministrador(this);
+        interfazGraficaConfiguracion.ejecutarNuevaVentana();
+
+    }//GEN-LAST:event_btnConfiguracionActionPerformed
+
+    private void btnGestionMateriPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMateriPrimaActionPerformed
+          OptionPaneMateriaPrima optionPaneMateriaPrima = new OptionPaneMateriaPrima(this, true);
+          optionPaneMateriaPrima.setPrincipalAdministrador(this);
+        optionPaneMateriaPrima.setVisible(true);
+    }//GEN-LAST:event_btnGestionMateriPrimaActionPerformed
 
     public JPanel getPanelPrincipalBody() {
         return panelPrincipalBody;

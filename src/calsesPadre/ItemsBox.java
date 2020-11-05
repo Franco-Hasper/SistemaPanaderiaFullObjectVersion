@@ -2,9 +2,12 @@ package calsesPadre;
 
 import clasesUtilidadGeneral.OperacionesUtiles;
 import entidades.Localidad;
+import entidades.Marca;
+import entidades.Proveedor;
 import entidades.Provincia;
 import entidades.TipoDomicilio;
 import entidades.TipoTelefono;
+import entidades.UnidaddeMedida;
 import java.util.List;
 import javax.swing.JComboBox;
 
@@ -19,6 +22,10 @@ public abstract class ItemsBox extends Consultas {
     protected JComboBox boxLocalidad;
     protected JComboBox boxTipoDomicilio;
     protected JComboBox boxTipoTelefono;
+    protected JComboBox boxMarca;
+    protected JComboBox boxProveedor;
+    protected JComboBox boxUnidadMedida;
+    
     protected Integer estadoConsulta;
 
     public Integer getEstadoConsulta() {
@@ -61,6 +68,34 @@ public abstract class ItemsBox extends Consultas {
         this.boxTipoTelefono = boxTipoTelefono;
     }
 
+    public JComboBox getBoxMarca() {
+        return boxMarca;
+    }
+
+    public void setBoxMarca(JComboBox boxMarca) {
+        this.boxMarca = boxMarca;
+    }
+
+    public JComboBox getBoxProveedor() {
+        return boxProveedor;
+    }
+
+    public void setBoxProveedor(JComboBox boxProveedor) {
+        this.boxProveedor = boxProveedor;
+    }
+
+
+
+    public JComboBox getBoxUnidadMedida() {
+        return boxUnidadMedida;
+    }
+
+    public void setBoxUnidadMedida(JComboBox boxUnidadMedida) {
+        this.boxUnidadMedida = boxUnidadMedida;
+    }
+
+    
+    
     /**
      * Se utiliza para insertar todos los boxes del formulario en un solo
      * metodo.
@@ -208,4 +243,89 @@ public abstract class ItemsBox extends Consultas {
         setEstadoConsulta(1);
     }
 
+    
+        /**
+     * Genera la consulta, obtiene los resultados y ejecuta el metodo
+     * rellenar Marca.
+     */
+    public void consultaRellenarMarca() {
+        setConsultaList("from Marca");
+        obtenerListaConsulta();
+        rellenarMarca();
+
+    }
+
+    /**
+     * Agrega Items obtenidos de la consulta al boxMarca
+     */
+    public void rellenarMarca() {
+        List lista = this.getListaResultados();
+        List<Marca> lista_Marca
+                = (List<Marca>) lista;
+        for (Object o : lista_Marca) {
+            Marca m = (Marca) o;
+            operacionesUtilidad.agregarItem(m.getNombre(), getBoxMarca());
+
+        }
+
+    }
+    
+        
+        /**
+     * Genera la consulta, obtiene los resultados y ejecuta el metodo
+     * rellenar UnidadMedida
+     */
+    public void consultaRellenarUnidadMedida() {
+        setConsultaList("from UnidaddeMedida");
+        obtenerListaConsulta();
+        rellenarUnidadMedida();
+
+    }
+
+    /**
+     * Agrega Items obtenidos de la consulta al boxUnidaddeMedida
+     */
+    public void rellenarUnidadMedida() {
+        List lista = this.getListaResultados();
+        List<UnidaddeMedida> lista_UnidadMedida
+                = (List<UnidaddeMedida>) lista;
+        for (Object o : lista_UnidadMedida) {
+            UnidaddeMedida u = (UnidaddeMedida) o;
+            operacionesUtilidad.agregarItem(u.getNombre(), getBoxUnidadMedida());
+
+        }
+
+    }
+    
+    
+    
+            /**
+     * Genera la consulta, obtiene los resultados y ejecuta el metodo
+     * rellenar Proveedor
+     */
+    public void consultaRellenarProveedor() {
+        setConsultaList("from Proveedor");
+        obtenerListaConsulta();
+        rellenarProveedor();
+
+    }
+
+    /**
+     * Agrega Items obtenidos de la consulta al boxProveedor
+     */
+    public void rellenarProveedor() {
+        List lista = this.getListaResultados();
+        List<Proveedor> lista_Proveedor
+                = (List<Proveedor>) lista;
+        for (Object o : lista_Proveedor) {
+            Proveedor p= (Proveedor) o;
+            operacionesUtilidad.agregarItem(p.getNombre(), getBoxProveedor());
+
+        }
+
+    }
+    
+    
+    
+    
 }

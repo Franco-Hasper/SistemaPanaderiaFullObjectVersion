@@ -10,7 +10,18 @@ import principal.PrincipalAdministrador;
 
 public class ConfiguracionTxt {
 
-    ColorTema color = new ColorTema();
+    private final ColorTema color = new ColorTema();
+    private PrincipalAdministrador principalAdministrador;
+
+    public PrincipalAdministrador getPrincipalAdministrador() {
+        return principalAdministrador;
+    }
+
+    public void setPrincipalAdministrador(PrincipalAdministrador principalAdministrador) {
+        this.principalAdministrador = principalAdministrador;
+    }
+    
+    
 
     /**
      * Recibe 6 valores, 3 RGB para crear color primario y 3 RGB para crear el
@@ -39,17 +50,17 @@ public class ConfiguracionTxt {
      * botones de la ventana principal y el color secundario en los paneles
      * secundarios.
      */
-    public void setTema(PrincipalAdministrador p) {
-        p.getPanelPrincipalTop().setBackground(color.getColorPrimario());
-        p.getPanelPrincipalBody().setBackground(color.getColorSecundario());
-        p.getBtnConfiguracion().setBackground(color.getColorPrimario());
-        p.getBtnGestionCliente().setBackground(color.getColorPrimario());
-        p.getBtnGestionFinanzas().setBackground(color.getColorPrimario());
-        p.getBtnGestionMateriPrima().setBackground(color.getColorPrimario());
-        p.getBtnGestionPedidos().setBackground(color.getColorPrimario());
-        p.getBtnGestionProducto().setBackground(color.getColorPrimario());
-        p.getBtnGestionProveedor().setBackground(color.getColorPrimario());
-        p.getBtnGestionGastos().setBackground(color.getColorPrimario());
+    public void setTema() {
+        principalAdministrador.getPanelPrincipalTop().setBackground(color.getColorPrimario());
+        principalAdministrador.getPanelPrincipalBody().setBackground(color.getColorSecundario());
+        principalAdministrador.getBtnConfiguracion().setBackground(color.getColorPrimario());
+        principalAdministrador.getBtnGestionCliente().setBackground(color.getColorPrimario());
+        principalAdministrador.getBtnGestionFinanzas().setBackground(color.getColorPrimario());
+        principalAdministrador.getBtnGestionMateriPrima().setBackground(color.getColorPrimario());
+        principalAdministrador.getBtnGestionPedidos().setBackground(color.getColorPrimario());
+        principalAdministrador.getBtnGestionProducto().setBackground(color.getColorPrimario());
+        principalAdministrador.getBtnGestionProveedor().setBackground(color.getColorPrimario());
+        principalAdministrador.getBtnGestionGastos().setBackground(color.getColorPrimario());
     }
 
     /**
