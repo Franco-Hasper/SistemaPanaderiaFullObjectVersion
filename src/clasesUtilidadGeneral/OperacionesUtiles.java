@@ -1,5 +1,6 @@
 package clasesUtilidadGeneral;
 
+import ds.desktop.notify.DesktopNotify;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.text.DateFormat;
@@ -213,7 +214,7 @@ public class OperacionesUtiles {
         if (Character.isDigit(validar)) {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Ingresar solamente Letras");
+            DesktopNotify.showDesktopMessage("   información   ", "   Ingresar Solamente Letras", DesktopNotify.INFORMATION, 5000);
             return true;
         }
         return false;
@@ -230,7 +231,7 @@ public class OperacionesUtiles {
         if (Character.isLetter(validar)) {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Ingresar Solamente Numeros");
+             DesktopNotify.showDesktopMessage("   información   ", "   Ingresar Solamente Números", DesktopNotify.INFORMATION, 5000);
             return true;
         }
         return false;

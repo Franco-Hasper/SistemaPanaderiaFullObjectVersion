@@ -1,6 +1,7 @@
 package operacionesVenta;
 
 import calsesPadre.Tabla;
+import ds.desktop.notify.DesktopNotify;
 import escritorios.PrincipalVenta;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +18,7 @@ public class TablaProductosListados extends Tabla {
     private PrincipalVenta principalVenta;
 
     private TablaProductosDisponibles tablaRegistrarVenta;
-    
-    
-    
+
     private List<Integer> listaProductosListados = new ArrayList<Integer>();
 
     private JTable tablaProductosListados;
@@ -56,24 +55,32 @@ public class TablaProductosListados extends Tabla {
         this.listaProductosListados = listaProductosListados;
     }
 
-    @Override
-    public void ejecutarRellenarTabla() {
+    /**
+     * ejecuta los metodos necesarios para listar un nuevo producto en la tabla
+     * productos listados.
+     */
+    public void ejecutarAgregarProducto() {
         setTabla(principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles());
         setTablaProductosListados(principalVenta.getRegistrarVenta().getTablaListarProductos());
-        rellenarTabla();
+        agregarProducto();
     }
 
-    
-
+    public void quitarProducto() {
+        quitarIdsEnLista();
+        DefaultTableModel tablaProductosDisponibles = (DefaultTableModel) getTablaProductosListados().getModel();
+        int filaSeleccionada = getTablaProductosListados().getSelectedRow();
+        tablaProductosDisponibles.removeRow(filaSeleccionada);
+    }
 
     public void quitarIdsEnLista() {
-        setTablaProductosListados(principalVenta.getRegistrarVenta().getTablaListarProductos());
+
         Integer filasSeleccionadaProductosListados = getTablaProductosListados().getSelectedRow();
+        System.out.println(listaProductosListados.toString());
         listaProductosListados.remove(filasSeleccionadaProductosListados);
+        System.out.println("soy la lista despues de eliminar " + listaProductosListados.toString());
     }
 
- 
-    public void rellenarTabla() {
+    public void agregarProducto() {
         DefaultTableModel tablaProductosListados = (DefaultTableModel) getTablaProductosListados().getModel();
         DefaultTableModel tablaProductosDisponibles = (DefaultTableModel) getTabla().getModel();
         int filaSeleccionada = getTabla().getSelectedRow();
@@ -81,35 +88,32 @@ public class TablaProductosListados extends Tabla {
         fila.add(tablaProductosDisponibles.getValueAt(filaSeleccionada, 0).toString());
 
         fila.add(principalVenta.getRegistrarVenta().getTxtCantidad().getText());
-       Double total=Double.valueOf(tablaProductosDisponibles.getValueAt(filaSeleccionada, 2).toString())*Double.valueOf(principalVenta.getRegistrarVenta().getTxtCantidad().getText());
-       fila.add(total);
+        Double total = Double.valueOf(tablaProductosDisponibles.getValueAt(filaSeleccionada, 2).toString()) * Double.valueOf(principalVenta.getRegistrarVenta().getTxtCantidad().getText());
+        fila.add(total);
 
         tablaProductosListados.addRow(fila);
         agregarIdsEnLista();
     }
-    
+
     /**
- * Agrega la id del producto listado en un arreglo
- * que se usara para guardar en el registro de venta en la bd.
- * @author Hasper Franco
- * @version 1.0
- * @since 2020-12-07
- */
-        public void agregarIdsEnLista() {
-        
+     * Agrega la id del producto listado en un arreglo que se usara para guardar
+     * en el registro de venta en la bd.
+     *
+     * @author Hasper Franco
+     * @version 1.0
+     * @since 2020-12-07
+     */
+    public void agregarIdsEnLista() {
         Integer totalFilasProductosDisponibles = getTabla().getRowCount();
         Integer filasSeleccionadaProductosDisponibles = getTabla().getSelectedRow();
         List<Integer> listaResutadosActuales = tablaRegistrarVenta.getListaResutladosActuales();
         Integer idProductosDisponibles = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilasProductosDisponibles, filasSeleccionadaProductosDisponibles);
-        listaProductosListados.add(idProductosDisponibles);
-    }
-    
-    
 
-    @Deprecated
-    @Override
-    public Integer obtenerIdFilaSeleccionada() {
-        return 0;
+        if (listaProductosListados.size() ==1) {
+            listaProductosListados.set(0, idProductosDisponibles);
+        } else {
+            listaProductosListados.add(idProductosDisponibles);
+        }
     }
 
     @Override
@@ -119,15 +123,39 @@ public class TablaProductosListados extends Tabla {
             principalVenta.getRegistrarVenta().getTablaListarProductos().getValueAt(fila, 0).toString();
             return true;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            DesktopNotify.showDesktopMessage("  Iinformación   ", " Debe seleccionar una fila ", DesktopNotify.INFORMATION, 5000);
+
             return false;
         }
+    }
+
+    public boolean verificarValor() {
+
+        if (principalVenta.getRegistrarVenta().getTxtCantidad().getText().equals("")) {
+            DesktopNotify.showDesktopMessage("  Iinformación   ", " El campo (cantidad) debe contener un valor ", DesktopNotify.INFORMATION, 5000);
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    @Deprecated
+    @Override
+    public Integer obtenerIdFilaSeleccionada() {
+        return 0;
     }
 
     @Deprecated
     @Override
     public void rellenarTabla(String valorBusqueda) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    }
+
+    @Deprecated
+    @Override
+    public void ejecutarRellenarTabla() {
+
     }
 
 }

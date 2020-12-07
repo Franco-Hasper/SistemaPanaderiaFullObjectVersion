@@ -2,12 +2,12 @@ package operacionesVenta;
 
 import calsesPadre.Tabla;
 import clasesUtilidadGeneral.OperacionesUtiles;
+import ds.desktop.notify.DesktopNotify;
 import entidades.PrecioProducto;
 import escritorios.PrincipalVenta;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -94,7 +94,7 @@ public class TablaProductosDisponibles extends Tabla {
         return idTabla;
     }
 
- 
+
     @Override
     public boolean verificarFilaSeleccionada() {
         try {
@@ -102,7 +102,7 @@ public class TablaProductosDisponibles extends Tabla {
             principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getValueAt(fila, 0).toString();
             return true;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            DesktopNotify.showDesktopMessage("  Iinformación   ", " Debe seleccionar una fila", DesktopNotify.INFORMATION, 5000);
             return false;
         }
     }

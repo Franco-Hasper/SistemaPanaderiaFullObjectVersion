@@ -12,6 +12,7 @@ import formularios.FormularioEditarIngresoMateriaPrima;
 import formularios.FormularioRegistrarIngresoMateriaPrima;
 import java.util.Date;
 import java.util.List;
+import operacionesMateriaPrima.TablaMateriaPrima;
 import org.hibernate.Session;
 
 /**
@@ -78,7 +79,7 @@ public class ABMIngresoMateriaPrima extends ABM {
         Integer filasSeleccionada = principalMateriaPrima.getTablaGrafica().getSelectedRow();
         List<Integer> listaResutadosActuales = principalMateriaPrima.getTablaMateriaPrima().getListaResutladosActuales();
         Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
-
+        
         MateriaPrima m = (MateriaPrima) miSesion.get(MateriaPrima.class, id);
         Estado e = (Estado) miSesion.get(Estado.class, 1);
         IngresoMateriaPrima g = new IngresoMateriaPrima();

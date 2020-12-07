@@ -390,6 +390,8 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private void btnGestionVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionVentasActionPerformed
         interfazGraficaVenta.setPrincipalAdministrador(this);
         interfazGraficaVenta.ejecutarNuevaVentana();
+
+        
     }//GEN-LAST:event_btnGestionVentasActionPerformed
 
     private void btnGestionCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionCajaActionPerformed

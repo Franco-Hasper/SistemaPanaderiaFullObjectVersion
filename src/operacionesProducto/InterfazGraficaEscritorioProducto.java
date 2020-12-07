@@ -51,7 +51,10 @@ public class InterfazGraficaEscritorioProducto extends InterfazGraficaEscritorio
 
     @Override
     public void colorInterfazEscritorio() {
-        new TextPrompt("BUSCAR POR NOMBRE", principalAdministrador.getProducto().getTxtBuscar());
+        try {
+            new TextPrompt("BUSCAR POR NOMBRE", principalAdministrador.getProducto().getTxtBuscar());
+        } catch (NullPointerException e) {
+        }
         principalAdministrador.getProducto().getTxtBuscar().grabFocus();
     }
 

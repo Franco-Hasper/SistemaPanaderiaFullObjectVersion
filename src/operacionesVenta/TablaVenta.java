@@ -11,7 +11,6 @@ import entidades.TelefonoCliente;
 import entidades.Venta;
 import escritorios.PrincipalCliente;
 import escritorios.PrincipalVenta;
-import formularios.FormularioDetalleDeVenta;
 import formularios.FormularioEditarVenta;
 import formularios.FormularioRegistrarVenta;
 import java.util.ArrayList;

@@ -1,5 +1,6 @@
 package formularios;
 
+import clasesUtilidadGeneral.OperacionesUtiles;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -11,6 +12,7 @@ import escritorios.PrincipalVenta;
 import java.util.ArrayList;
 import java.util.List;
 import operacionesVenta.ABMVenta;
+import operacionesVenta.OperacionesSecundariasVenta;
 import operacionesVenta.TablaProductosListados;
 import operacionesVenta.TablaProductosDisponibles;
 import principal.MaterialButton;
@@ -25,12 +27,22 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        txtBuscarEnLista.setVisible(false);
     }
 
     private final ABMVenta abm = new ABMVenta();
     private PrincipalVenta principalVenta;
     private TablaProductosDisponibles tablaProductosDisponibles;
     private TablaProductosListados tablaProductosListados;
+    private OperacionesSecundariasVenta operacionesSecundariasVenta;
+
+    public OperacionesSecundariasVenta getOperacionesSecundariasVenta() {
+        return operacionesSecundariasVenta;
+    }
+
+    public void setOperacionesSecundariasVenta(OperacionesSecundariasVenta operacionesSecundariasVenta) {
+        this.operacionesSecundariasVenta = operacionesSecundariasVenta;
+    }
 
     public TablaProductosDisponibles getTablaProductosDisponibles() {
         return tablaProductosDisponibles;
@@ -160,7 +172,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         rSDateChooser = new rojeru_san.componentes.RSDateChooser();
         radButonConsumidorFinal = new javax.swing.JRadioButton();
         lblPrecioTotal = new javax.swing.JLabel();
-        radioButtonFecha = new javax.swing.JRadioButton();
         lblInfoSuma = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator1 = new javax.swing.JSeparator();
@@ -313,13 +324,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
             }
         });
 
-        radioButtonFecha.setText("FECHA ACTUAL");
-        radioButtonFecha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioButtonFechaActionPerformed(evt);
-            }
-        });
-
         lblInfoSuma.setForeground(new java.awt.Color(0, 0, 0));
         lblInfoSuma.setText("SUMA TOTAL:");
 
@@ -375,6 +379,9 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCantidadKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
         });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -406,11 +413,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(rSDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(radButonConsumidorFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblInfoSuma)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -424,7 +427,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(radioButtonFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -443,7 +445,10 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtBuscarEnLista))
-                            .addComponent(jScrollPane2))))
+                            .addComponent(jScrollPane2)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(radButonConsumidorFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -467,7 +472,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblInfoSuma, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -475,13 +480,10 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rSDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(radButonConsumidorFinal)
-                            .addComponent(radioButtonFecha))))
-                .addGap(12, 12, 12)
+                    .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(radButonConsumidorFinal)
+                .addGap(10, 10, 10)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
@@ -587,7 +589,9 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
-
+        if (tablaProductosListados.verificarFilaSeleccionada()) {
+            tablaProductosListados.quitarProducto();
+        }
     }//GEN-LAST:event_btnQuitarActionPerformed
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
@@ -602,11 +606,11 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_radButonConsumidorFinalActionPerformed
 
-    private void radioButtonFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonFechaActionPerformed
-
-    }//GEN-LAST:event_radioButtonFechaActionPerformed
-
     private void boxTipoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoVentaActionPerformed
+
+        operacionesSecundariasVenta.setFormularioRegistrarVenta(this);
+        operacionesSecundariasVenta.tipoVentaSeleccionada(boxTipoVenta.getSelectedItem().toString());
+
 
     }//GEN-LAST:event_boxTipoVentaActionPerformed
 
@@ -626,7 +630,9 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         if (tablaProductosDisponibles.verificarFilaSeleccionada()) {
             tablaProductosListados.setPrincipalVenta(principalVenta);
             tablaProductosListados.setTablaRegistrarVenta(tablaProductosDisponibles);
-            tablaProductosListados.ejecutarRellenarTabla();
+            if (tablaProductosListados.verificarValor()) {
+                tablaProductosListados.ejecutarAgregarProducto();
+            }
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -653,6 +659,12 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
             this.dispose();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        if (new OperacionesUtiles().advertenciaNum(evt)) {
+            OperacionesUtiles.borrarCampo(txtCantidad);
+        }
+    }//GEN-LAST:event_txtCantidadKeyTyped
 
     public JPanel getPanelPrincipalTop() {
         return panelPrincipalTop;
@@ -712,7 +724,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private javax.swing.JPanel panelPrincipalTop;
     private rojeru_san.componentes.RSDateChooser rSDateChooser;
     private javax.swing.JRadioButton radButonConsumidorFinal;
-    private javax.swing.JRadioButton radioButtonFecha;
     private javax.swing.JTable tablaCliente;
     private javax.swing.JTable tablaGraficaProductosDisponibles;
     private javax.swing.JTable tablaListarProductos;

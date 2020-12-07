@@ -13,6 +13,7 @@ import operacionesVenta.InterfazGraficaFormularioEditarVenta;
 import operacionesVenta.InterfazGraficaFormularioRegistrarVenta;
 import operacionesVenta.TablaDetalleVenta;
 import operacionesVenta.TablaVenta;
+import principal.PrincipalAdministrador;
 
 /**
  *
@@ -36,6 +37,17 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
     private FormularioDetalleDeVenta detalleVenta;
     private TablaVenta tablaVenta;
     private final ABMVenta abm = new ABMVenta();
+    private PrincipalAdministrador  principalAdministrador;
+
+    public PrincipalAdministrador getPrincipalAdministrador() {
+        return principalAdministrador;
+    }
+
+    public void setPrincipalAdministrador(PrincipalAdministrador principalAdministrador) {
+        this.principalAdministrador = principalAdministrador;
+    }
+    
+    
 
     public InterfazGraficaFormularioRegistrarVenta getFormularioRegistrar() {
         return formularioRegistrar;
@@ -356,6 +368,7 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         formularioRegistrar.setPrincipalVenta(this);
         formularioRegistrar.nuevoFormularioRegistrar();
+        
     }//GEN-LAST:event_nuevoActionPerformed
 
 
