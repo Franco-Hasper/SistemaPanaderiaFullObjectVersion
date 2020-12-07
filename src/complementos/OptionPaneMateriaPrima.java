@@ -1,6 +1,7 @@
 package complementos;
 
 import javax.swing.JButton;
+import operacionesIngresoMateriaPrima.InterfazGraficaEscritorioIngresoMateriaPrima;
 
 import operacionesMateriaPrima.InterfazGraficaEscritorioMateriaPrima;
 
@@ -22,6 +23,7 @@ public class OptionPaneMateriaPrima extends javax.swing.JDialog {
     }
 
     private final InterfazGraficaEscritorioMateriaPrima interfazGraficaMateriaPrima = new InterfazGraficaEscritorioMateriaPrima();
+    private final InterfazGraficaEscritorioIngresoMateriaPrima interfazGraficaIngresoMateriaPrima = new InterfazGraficaEscritorioIngresoMateriaPrima();
     private PrincipalAdministrador principalAdministrador;
 
     public PrincipalAdministrador getPrincipalAdministrador() {
@@ -123,7 +125,9 @@ public class OptionPaneMateriaPrima extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresoMateriaPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoMateriaPrimaActionPerformed
-
+        interfazGraficaIngresoMateriaPrima.setPrincipalAdministrador(principalAdministrador);
+        interfazGraficaIngresoMateriaPrima.ejecutarNuevaVentana();
+        this.dispose();
     }//GEN-LAST:event_btnIngresoMateriaPrimaActionPerformed
 
     private void btnMateriaPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMateriaPrimaActionPerformed

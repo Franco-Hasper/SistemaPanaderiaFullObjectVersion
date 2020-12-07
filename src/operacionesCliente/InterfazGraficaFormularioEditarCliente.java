@@ -51,4 +51,14 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
         principalCliente.getEditarCliente().getTxtRazonSocial().setText(principalCliente.getTablaGrafica().getValueAt(fila, 2).toString());
     }
 
+    @Override
+    public void agregarBoxes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void rellenarBoxes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

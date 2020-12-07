@@ -5,7 +5,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import formularios.FormularioEditarMateriaPrima;
+import formularios.FormularioRegistrarIngresoMateriaPrima;
 import formularios.FormularioRegistrarMateriaPrima;
+import operacionesIngresoMateriaPrima.ABMIngresoMateriaPrima;
+import operacionesIngresoMateriaPrima.InterfazGraficaFormularioRegistrarIngresoMateriaPrima;
 import operacionesMateriaPrima.ABMMateriaPrima;
 import operacionesMateriaPrima.InterfazGraficaFormularioEditarMateriaPrima;
 import operacionesMateriaPrima.InterfazGraficaFormularioRegistrarMateriaPrima;
@@ -27,6 +30,10 @@ public class PrincipalMateriaPrima extends javax.swing.JInternalFrame {
     private FormularioEditarMateriaPrima editarMateriaPrima;
     private TablaMateriaPrima tablaMateriaPrima;
     private final ABMMateriaPrima abm = new ABMMateriaPrima();
+
+    private InterfazGraficaFormularioRegistrarIngresoMateriaPrima formularioRegistrarIngreso;
+    private FormularioRegistrarIngresoMateriaPrima registrarIngresoMateriaPrima;
+    private final ABMIngresoMateriaPrima abmI = new ABMIngresoMateriaPrima();
 
     public InterfazGraficaFormularioRegistrarMateriaPrima getFormularioRegistrar() {
         return formularioRegistrar;
@@ -58,6 +65,22 @@ public class PrincipalMateriaPrima extends javax.swing.JInternalFrame {
 
     public void setEditarMateriaPrima(FormularioEditarMateriaPrima editarMateriaPrima) {
         this.editarMateriaPrima = editarMateriaPrima;
+    }
+
+    public InterfazGraficaFormularioRegistrarIngresoMateriaPrima getFormularioRegistrarIngreso() {
+        return formularioRegistrarIngreso;
+    }
+
+    public void setFormularioRegistrarIngreso(InterfazGraficaFormularioRegistrarIngresoMateriaPrima formularioRegistrarIngreso) {
+        this.formularioRegistrarIngreso = formularioRegistrarIngreso;
+    }
+
+    public FormularioRegistrarIngresoMateriaPrima getRegistrarIngresoMateriaPrima() {
+        return registrarIngresoMateriaPrima;
+    }
+
+    public void setRegistrarIngresoMateriaPrima(FormularioRegistrarIngresoMateriaPrima registrarIngresoMateriaPrima) {
+        this.registrarIngresoMateriaPrima = registrarIngresoMateriaPrima;
     }
 
     public TablaMateriaPrima getTablaMateriaPrima() {
@@ -538,13 +561,16 @@ public class PrincipalMateriaPrima extends javax.swing.JInternalFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         tablaMateriaPrima.setPrincipalMateriaPrima(this);
         if (tablaMateriaPrima.verificarFilaSeleccionada()) {
-            InterfazGraficaFormularioEditarMateriaPrima formularioEditar = new InterfazGraficaFormularioEditarMateriaPrima();
             formularioEditar.setPrincipalMateriaPrima(this);
             formularioEditar.nuevoFormularioEditar();
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnNuevoIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoIngresoActionPerformed
+        if (tablaMateriaPrima.verificarFilaSeleccionada()) {
+            formularioRegistrarIngreso.setPrincipalMateriaPrima(this);
+            formularioRegistrarIngreso.nuevoFormularioRegistrar();
+        }
 
     }//GEN-LAST:event_btnNuevoIngresoActionPerformed
 

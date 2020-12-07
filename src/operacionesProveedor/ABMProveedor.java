@@ -65,7 +65,7 @@ public class ABMProveedor extends ABM {
     @Override
     public void transaccionRegistrar(Session miSesion) {
 
-        miSesion.beginTransaction();
+
         Estado e = (Estado) miSesion.get(Estado.class, 1);
         Proveedor p = new Proveedor();
         p.setNombre(formularioRegistrarProveedor.getTxtNombre().getText());
@@ -106,7 +106,7 @@ public class ABMProveedor extends ABM {
             }
         }
         miSesion.save(d);
-        miSesion.getTransaction().commit();
+     
     }
 
     @Override

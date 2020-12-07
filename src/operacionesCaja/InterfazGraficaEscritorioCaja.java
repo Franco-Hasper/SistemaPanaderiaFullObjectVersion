@@ -46,7 +46,7 @@ public class InterfazGraficaEscritorioCaja extends InterfazGraficaEscritorio{
 
     @Override
     public void colorInterfazEscritorio() {
-       new TextPrompt("BUSCAR POR NOMBRE", principalAdministrador.getCaja().getTxtBuscar());
+       new TextPrompt("BUSCAR POR FECHA, FORMATO (AAAA-MM-DD)", principalAdministrador.getCaja().getTxtBuscar());
         principalAdministrador.getCaja().getTxtBuscar().grabFocus();
     }
 

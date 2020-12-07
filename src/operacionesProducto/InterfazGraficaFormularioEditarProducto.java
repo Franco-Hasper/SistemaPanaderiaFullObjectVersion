@@ -51,4 +51,14 @@ public class InterfazGraficaFormularioEditarProducto extends InterfazGraficaForm
         principalProducto.getEditarProducto().getTxtDescripcion().setText(principalProducto.getTablaGrafica().getValueAt(fila, 1).toString());
     }
 
+    @Override
+    public void agregarBoxes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void rellenarBoxes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

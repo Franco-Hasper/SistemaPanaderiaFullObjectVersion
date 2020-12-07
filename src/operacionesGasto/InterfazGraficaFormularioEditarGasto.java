@@ -46,10 +46,22 @@ public class InterfazGraficaFormularioEditarGasto extends InterfazGraficaFormula
 
     @Override
     public void transferirDatos() {
-         new TablaGastos().setPrincipalGastos(principalGastos);
+        new TablaGastos().setPrincipalGastos(principalGastos);
         int fila = principalGastos.getTablaGrafica().getSelectedRow();
         principalGastos.getEditarGasto().getTxtDescripcion().setText(principalGastos.getTablaGrafica().getValueAt(fila, 0).toString());
         principalGastos.getEditarGasto().getTxtTotalGastado().setText(principalGastos.getTablaGrafica().getValueAt(fila, 1).toString());
+    }
+
+    @Deprecated
+    @Override
+    public void agregarBoxes() {
+       
+    }
+
+    @Deprecated
+    @Override
+    public void rellenarBoxes() {
+        
     }
 
 }

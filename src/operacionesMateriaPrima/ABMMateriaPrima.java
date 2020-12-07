@@ -28,7 +28,7 @@ public class ABMMateriaPrima extends ABM {
     private FormularioRegistrarMateriaPrima formularioRegistrarMateriaPrima;
     private FormularioEditarMateriaPrima formularioEditarMateriaPrima;
 
-    //se utiliza solo para eliminar
+    //se utiliza solo para eliminar y editar
     private PrincipalMateriaPrima principalMateriaPrima;
 
     public FormularioRegistrarMateriaPrima getFormularioRegistrarMateriaPrima() {

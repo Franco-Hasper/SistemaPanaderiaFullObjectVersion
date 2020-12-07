@@ -6,6 +6,7 @@ import escritorios.PrincipalCaja;
 import escritorios.PrincipalCliente;
 import escritorios.PrincipalConfiguracion;
 import escritorios.PrincipalGastos;
+import escritorios.PrincipalIngresoMatPrima;
 import escritorios.PrincipalMateriaPrima;
 import escritorios.PrincipalProducto;
 import escritorios.PrincipalProveedor;
@@ -16,6 +17,7 @@ import operacionesCaja.InterfazGraficaEscritorioCaja;
 import operacionesCliente.InterfazGraficaEscritorioCliente;
 import operacionesConfiguracion.InterfacesGraficasEscritorioConfiguracion;
 import operacionesGasto.InterfazGraficaEscritorioGasto;
+import operacionesIngresoMateriaPrima.InterfazGraficaEscritorioIngresoMateriaPrima;
 import operacionesMateriaPrima.InterfazGraficaEscritorioMateriaPrima;
 import operacionesProducto.InterfazGraficaEscritorioProducto;
 import operacionesProveedor.InterfazGraficaEscritorioProveedor;
@@ -39,6 +41,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         caja = null;
         configuracion = null;
         materiaPrima = null;
+        ingresoMateriaPrima = null;
         setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -52,6 +55,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private PrincipalCaja caja;
     private PrincipalMateriaPrima materiaPrima;
     private PrincipalConfiguracion configuracion;
+    private PrincipalIngresoMatPrima ingresoMateriaPrima;
 
     //se utiliza en los metodos de apertura de ventana-clases de control.
     private final InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
@@ -61,7 +65,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private final InterfazGraficaEscritorioVenta interfazGraficaVenta = new InterfazGraficaEscritorioVenta();
     private final InterfazGraficaEscritorioCaja interfazGraficaCaja = new InterfazGraficaEscritorioCaja();
     private final InterfacesGraficasEscritorioConfiguracion interfazGraficaConfiguracion = new InterfacesGraficasEscritorioConfiguracion();
-    private final InterfazGraficaEscritorioMateriaPrima interfazGraficaMateriaPrima = new InterfazGraficaEscritorioMateriaPrima();
+
     //metodos de control de ventana.
     private boolean minimiza = false;
     public boolean cerra = false;
@@ -136,6 +140,14 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
     public void setMateriaPrima(PrincipalMateriaPrima materiaPrima) {
         this.materiaPrima = materiaPrima;
+    }
+
+    public PrincipalIngresoMatPrima getIngresoMateriaPrima() {
+        return ingresoMateriaPrima;
+    }
+
+    public void setIngresoMateriaPrima(PrincipalIngresoMatPrima ingresoMateriaPrima) {
+        this.ingresoMateriaPrima = ingresoMateriaPrima;
     }
 
     public PrincipalConfiguracion getConfiguracion() {
@@ -392,8 +404,8 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConfiguracionActionPerformed
 
     private void btnGestionMateriPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMateriPrimaActionPerformed
-          OptionPaneMateriaPrima optionPaneMateriaPrima = new OptionPaneMateriaPrima(this, true);
-          optionPaneMateriaPrima.setPrincipalAdministrador(this);
+        OptionPaneMateriaPrima optionPaneMateriaPrima = new OptionPaneMateriaPrima(this, true);
+        optionPaneMateriaPrima.setPrincipalAdministrador(this);
         optionPaneMateriaPrima.setVisible(true);
     }//GEN-LAST:event_btnGestionMateriPrimaActionPerformed
 

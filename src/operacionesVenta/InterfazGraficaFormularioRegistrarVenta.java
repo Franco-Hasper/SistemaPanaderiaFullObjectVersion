@@ -33,9 +33,13 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
         rellenarBoxes();
         infoTextPrompt();
         colorTema();
-        TablaRegistrarVenta tablaRegistrarVenta = new TablaRegistrarVenta();
-        tablaRegistrarVenta.setPrincipalVenta(principalVenta);
-        tablaRegistrarVenta.ejecutarRellenarTabla();
+        TablaProductosDisponibles tablaProductosDisponibles = new TablaProductosDisponibles();
+        tablaProductosDisponibles.setPrincipalVenta(principalVenta);
+        tablaProductosDisponibles.ejecutarRellenarTabla();
+        principalVenta.getRegistrarVenta().setTablaProductosDisponibles(tablaProductosDisponibles);
+        
+        TablaProductosListados tablaProductosListados=new TablaProductosListados();
+        principalVenta.getRegistrarVenta().setTablaProductosListados(tablaProductosListados);
 
         principalVenta.getRegistrarVenta().setVisible(true);
     }

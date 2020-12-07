@@ -33,6 +33,8 @@ public class InterfazGraficaFormularioEditarMateriaPrima extends InterfazGrafica
         FormularioEditarMateriaPrima formularioEditar = new FormularioEditarMateriaPrima(frame, true);
         formularioEditar.setPrincipalMateriaPrima(principalMateriaPrima);
         principalMateriaPrima.setEditarMateriaPrima(formularioEditar);
+        agregarBoxes();
+        rellenarBoxes();
         transferirDatos();
         colorTema();
         principalMateriaPrima.getEditarMateriaPrima().setVisible(true);
@@ -48,7 +50,24 @@ public class InterfazGraficaFormularioEditarMateriaPrima extends InterfazGrafica
         new TablaMateriaPrima().setPrincipalMateriaPrima(principalMateriaPrima);
         int fila = principalMateriaPrima.getTablaGrafica().getSelectedRow();
         principalMateriaPrima.getEditarMateriaPrima().getTxtNombreMAteriaPrima().setText(principalMateriaPrima.getTablaGrafica().getValueAt(fila, 0).toString());
-
     }
 
+    
+     @Override
+    public void agregarBoxes() {
+        this.setBoxMarca(principalMateriaPrima.getEditarMateriaPrima().getBoxMarca());
+        this.setBoxProveedor(principalMateriaPrima.getEditarMateriaPrima().getBoxProveedor());
+        this.setBoxUnidadMedida(principalMateriaPrima.getEditarMateriaPrima().getBoxUdeMedida());
+        
+    }
+
+    @Override
+    public void rellenarBoxes() {
+        this.consultaRellenarMarca();
+        this.consultaRellenarProveedor();
+        this.consultaRellenarUnidadMedida();
+    }
+    
+    
+    
 }

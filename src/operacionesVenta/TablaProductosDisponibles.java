@@ -7,14 +7,15 @@ import escritorios.PrincipalVenta;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  * @author Hasper Franco
  */
-public class TablaRegistrarVenta extends Tabla {
+public class TablaProductosDisponibles extends Tabla {
 
-    public TablaRegistrarVenta() {
+    public TablaProductosDisponibles() {
         setEstadoConsulta(0);
     }
 
@@ -79,13 +80,13 @@ public class TablaRegistrarVenta extends Tabla {
     }
 
     
-    
+    @Deprecated
     @Override
     public Integer obtenerIdFilaSeleccionada() {
          try {
             Integer totalFilas = principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getRowCount();
             Integer filasSeleccionada = principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getSelectedRow();
-            List<Integer> listaResutadosActualesThis = principalVenta.getRegistrarVenta().getTablaRegistrarVenta().getListaResutladosActuales();
+            List<Integer> listaResutadosActualesThis = principalVenta.getRegistrarVenta().getTablaProductosDisponibles().getListaResutladosActuales();
             Integer id = operacionesUtilidad.obtenerId(listaResutadosActualesThis, totalFilas, filasSeleccionada);
             this.setIdTabla(id);
         } catch (Exception e) {
@@ -93,10 +94,17 @@ public class TablaRegistrarVenta extends Tabla {
         return idTabla;
     }
 
-    @Deprecated
+ 
     @Override
     public boolean verificarFilaSeleccionada() {
-        return true;
+        try {
+            int fila = principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getSelectedRow();
+            principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getValueAt(fila, 0).toString();
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
     }
 
 }

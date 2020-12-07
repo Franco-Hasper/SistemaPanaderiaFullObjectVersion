@@ -11,34 +11,42 @@ import escritorios.PrincipalVenta;
 import java.util.ArrayList;
 import java.util.List;
 import operacionesVenta.ABMVenta;
-import operacionesVenta.TablaRegistrarVenta;
+import operacionesVenta.TablaProductosListados;
+import operacionesVenta.TablaProductosDisponibles;
 import principal.MaterialButton;
 import rojeru_san.componentes.RSDateChooser;
 
-public class FormularioRegistrarVenta extends javax.swing.JDialog{
+public class FormularioRegistrarVenta extends javax.swing.JDialog {
 
     /**
      * Creates new form FormularioRegistrarVenta
      */
     public FormularioRegistrarVenta(java.awt.Frame parent, boolean modal) {
-       super(parent, modal);
+        super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
     private final ABMVenta abm = new ABMVenta();
     private PrincipalVenta principalVenta;
-    private TablaRegistrarVenta tablaRegistrarVenta;
+    private TablaProductosDisponibles tablaProductosDisponibles;
+    private TablaProductosListados tablaProductosListados;
 
-    public TablaRegistrarVenta getTablaRegistrarVenta() {
-        return tablaRegistrarVenta;
+    public TablaProductosDisponibles getTablaProductosDisponibles() {
+        return tablaProductosDisponibles;
     }
 
-    public void setTablaRegistrarVenta(TablaRegistrarVenta tablaRegistrarVenta) {
-        this.tablaRegistrarVenta = tablaRegistrarVenta;
+    public void setTablaProductosDisponibles(TablaProductosDisponibles tablaProductosDisponibles) {
+        this.tablaProductosDisponibles = tablaProductosDisponibles;
     }
-    
-    
+
+    public TablaProductosListados getTablaProductosListados() {
+        return tablaProductosListados;
+    }
+
+    public void setTablaProductosListados(TablaProductosListados tablaProductosListados) {
+        this.tablaProductosListados = tablaProductosListados;
+    }
 
     public JComboBox<String> getBoxTipoVenta() {
         return boxTipoVenta;
@@ -55,10 +63,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog{
     public void setTablaGraficaProductosDisponibles(JTable tablaGraficaProductosDisponibles) {
         this.tablaGraficaProductosDisponibles = tablaGraficaProductosDisponibles;
     }
-
-
-
-
 
     public JTextField getTxtBuscar() {
         return txtBuscar;
@@ -131,8 +135,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog{
     public void setTxtBuscarEnLista(JTextField txtBuscarEnLista) {
         this.txtBuscarEnLista = txtBuscarEnLista;
     }
-    
-    
 
     public List getListaCampos() {
         List listCamposTexto = new ArrayList();
@@ -621,7 +623,11 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog{
     }//GEN-LAST:event_txtCantidadKeyReleased
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
+        if (tablaProductosDisponibles.verificarFilaSeleccionada()) {
+            tablaProductosListados.setPrincipalVenta(principalVenta);
+            tablaProductosListados.setTablaRegistrarVenta(tablaProductosDisponibles);
+            tablaProductosListados.ejecutarRellenarTabla();
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed

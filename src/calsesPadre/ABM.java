@@ -103,16 +103,17 @@ public abstract class ABM extends Consultas {
      * generar un nuevo registro en la base de datos, una vez completada la
      * accion, envia un mensaje informando al usuario el estado de la accion.
      */
+    //DESCOMENTAR ESTA PARTE
     public void conexionTransaccionRegistrar() {
         Session miSesion = ConexionHibernate.tomarConexion();
-        try {
+      //  try {
             miSesion.beginTransaction();
             transaccionRegistrar(miSesion);
             miSesion.getTransaction().commit();
             DesktopNotify.showDesktopMessage("   exito   ", "   Nuevo registro creado con exito", DesktopNotify.SUCCESS, 7000);
-        } catch (Exception e) {
+    //    } catch (Exception e) {
             DesktopNotify.showDesktopMessage("   error    ", "   Error al intentar crear  registro", DesktopNotify.ERROR, 7000);
-        }
+     //  }
     }
 
     /**

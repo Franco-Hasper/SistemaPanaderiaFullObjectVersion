@@ -21,7 +21,6 @@ public class FormularioRegistrarMateriaPrima extends javax.swing.JDialog {
     public FormularioRegistrarMateriaPrima(java.awt.Frame paren, boolean modal) {
         initComponents();
         this.setLocationRelativeTo(null);
-        txtNombre.grabFocus();
     }
     ABMMateriaPrima abm = new ABMMateriaPrima();
     private PrincipalMateriaPrima principalMateriaPrima;
@@ -321,7 +320,8 @@ public class FormularioRegistrarMateriaPrima extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNombreKeyReleased
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-          abm.setFormularioRegistrarMateriaPrima(this);
+        abm.setFormularioRegistrarMateriaPrima(this);
+        abm.setPrincipalMateriaPrima(principalMateriaPrima);
         if (abm.ejecutarRegistrar()) {
             principalMateriaPrima.getTablaMateriaPrima().setPrincipalMateriaPrima(principalMateriaPrima);
             principalMateriaPrima.getTablaMateriaPrima().setEstadoConsulta(0);

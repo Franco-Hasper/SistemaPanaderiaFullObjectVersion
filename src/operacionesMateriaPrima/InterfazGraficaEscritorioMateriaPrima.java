@@ -5,6 +5,7 @@ import clasesUtilidadGeneral.TextPrompt;
 import escritorios.PrincipalMateriaPrima;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import operacionesIngresoMateriaPrima.InterfazGraficaFormularioRegistrarIngresoMateriaPrima;
 
 /**
  * @author Hasper Franco
@@ -30,8 +31,10 @@ public class InterfazGraficaEscritorioMateriaPrima extends InterfazGraficaEscrit
             //REVISAR FORMULARIO EDITAR (se crea aca y en escritorioGasto, en gastoe s necesario pero aca?)
             InterfazGraficaFormularioRegistrarMateriaPrima formularioRegistrar = new InterfazGraficaFormularioRegistrarMateriaPrima();
             InterfazGraficaFormularioEditarMateriaPrima formularioEditar = new InterfazGraficaFormularioEditarMateriaPrima();
+            InterfazGraficaFormularioRegistrarIngresoMateriaPrima formularioRegistrarIngreso = new InterfazGraficaFormularioRegistrarIngresoMateriaPrima();
             principalAdministrador.getMateriaPrima().setFormularioRegistrar(formularioRegistrar);
             principalAdministrador.getMateriaPrima().setFormularioEditar(formularioEditar);
+            principalAdministrador.getMateriaPrima().setFormularioRegistrarIngreso(formularioRegistrarIngreso);
             principalAdministrador.getMateriaPrima().show();
         }
         colorInterfazEscritorio();

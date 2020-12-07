@@ -5,7 +5,7 @@ import java.awt.Frame;
 /**
  * @author Hasper Franco
  */
-public abstract class InterfazGraficaFormularioEditar {
+public abstract class InterfazGraficaFormularioEditar extends ItemsBox{
 
     /**
      * Crea una nueva instancia de la clase Frame para pasarle como parametro al
