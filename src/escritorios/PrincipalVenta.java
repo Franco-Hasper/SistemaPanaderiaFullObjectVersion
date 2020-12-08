@@ -377,7 +377,8 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-
+        tablaVenta.setPrincipalVenta(this);
+        tablaVenta.ejecutarRellenarTabla();
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnEditarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarVentaActionPerformed

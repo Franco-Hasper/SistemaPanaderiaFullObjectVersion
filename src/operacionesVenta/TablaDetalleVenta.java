@@ -15,6 +15,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TablaDetalleVenta extends Tabla {
 
+    private Integer idVenta;
+
+    public Integer getIdVenta() {
+        return idVenta;
+    }
+
+    public void setIdVenta(Integer idVenta) {
+        this.idVenta = idVenta;
+    }
+    
+    
     //listaresultadosActuales es para evitar realizar consultas cada vez que se tipea 1 caracter, aca no se tipea nada por eso no se usa,
     //setEstado consulta 0 es para cuando se realiza una edicion, reg, o elimina entonces aca tampoco se usa.
     private PrincipalVenta principalVenta;
@@ -38,7 +49,9 @@ public class TablaDetalleVenta extends Tabla {
         Integer filasSeleccionada = principalVenta.getTablaGrafica().getSelectedRow();
         List<Integer> listaResutadosActuales = principalVenta.getTablaVenta().getListaResutladosActuales();
         Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
-
+        
+        setIdVenta(id);
+        
         setConsultaObject("from Producto_Venta where codigo_venta=" + id);
         obtenerObjetoConsulta();
         rellenarLabelsDetalleDeVenta(principalVenta.getDetalleVenta());
@@ -48,6 +61,8 @@ public class TablaDetalleVenta extends Tabla {
         obtenerListaConsulta();
         rellenarTabla("");
     }
+    
+
 
     @Override
     public void rellenarTabla(String valorBusqueda) {

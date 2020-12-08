@@ -40,7 +40,7 @@ public class InterfazGraficaEscritorioIngresoMateriaPrima extends InterfazGrafic
     
      @Override
     public void infoTextPrompt() {
-        new TextPrompt("BUSCAR POR NOMBRE", principalAdministrador.getIngresoMateriaPrima().getTxtBuscar());
+        new TextPrompt("BUSCAR POR FECHA, FORMATO (AAAA-MM-DD)", principalAdministrador.getIngresoMateriaPrima().getTxtBuscar());
         principalAdministrador.getIngresoMateriaPrima().getTxtBuscar().grabFocus();
     }
 

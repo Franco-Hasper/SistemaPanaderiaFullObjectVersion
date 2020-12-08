@@ -13,7 +13,7 @@ public class InterfazGraficaEscritorioProducto extends InterfazGraficaEscritorio
 
     @Override
     public void nuevaVentana() {
-        if (principalAdministrador.getEscritorio().estacerrado(principalAdministrador.getCliente())) {
+        if (principalAdministrador.getEscritorio().estacerrado(principalAdministrador.getProducto())) {
             PrincipalProducto principalProducto = new PrincipalProducto();
             principalAdministrador.setProducto(principalProducto);
             BasicInternalFrameTitlePane menupanel = (BasicInternalFrameTitlePane) ((BasicInternalFrameUI) principalProducto.getUI()).getNorthPane();
@@ -51,10 +51,7 @@ public class InterfazGraficaEscritorioProducto extends InterfazGraficaEscritorio
 
     @Override
     public void colorInterfazEscritorio() {
-        try {
-            new TextPrompt("BUSCAR POR NOMBRE", principalAdministrador.getProducto().getTxtBuscar());
-        } catch (NullPointerException e) {
-        }
+        new TextPrompt("BUSCAR POR NOMBRE", principalAdministrador.getProducto().getTxtBuscar());
         principalAdministrador.getProducto().getTxtBuscar().grabFocus();
     }
 

@@ -1,9 +1,14 @@
 package formularios;
 
+import com.itextpdf.text.DocumentException;
 import escritorios.PrincipalVenta;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import operacionesVenta.ReporteVenta;
 
 
 /**
@@ -19,8 +24,11 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
         initComponents();
           this.setLocationRelativeTo(null);
     }
+    
+    private Integer idVenta;
 
-    PrincipalVenta principalVenta;
+    
+    private PrincipalVenta principalVenta;
 
     public PrincipalVenta getPrincipalVenta() {
         return principalVenta;
@@ -29,6 +37,15 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
     public void setPrincipalVenta(PrincipalVenta principalVenta) {
         this.principalVenta = principalVenta;
     }
+
+    public Integer getIdVenta() {
+        return idVenta;
+    }
+
+    public void setIdVenta(Integer idVenta) {
+        this.idVenta = idVenta;
+    }
+    
     
     
     
@@ -289,7 +306,16 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
-     
+
+        
+        try {
+             
+             new ReporteVenta().ejecutarGenerarReporte(getIdVenta());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FormularioDetalleDeVenta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(FormularioDetalleDeVenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
     /**

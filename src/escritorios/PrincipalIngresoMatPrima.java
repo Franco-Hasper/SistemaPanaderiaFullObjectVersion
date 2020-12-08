@@ -338,7 +338,8 @@ public class PrincipalIngresoMatPrima extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        // TODO add your handling code here:
+        tablaIngresoMateriaPrima.setPrincipalIngresoMateriaPrima(this);
+        tablaIngresoMateriaPrima.ejecutarRellenarTabla();
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void tablaGraficaComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tablaGraficaComponentHidden

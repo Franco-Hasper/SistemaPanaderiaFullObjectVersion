@@ -521,7 +521,8 @@ public class PrincipalMateriaPrima extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-
+        tablaMateriaPrima.setPrincipalMateriaPrima(this);
+        tablaMateriaPrima.ejecutarRellenarTabla();
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void buttonSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalir1ActionPerformed

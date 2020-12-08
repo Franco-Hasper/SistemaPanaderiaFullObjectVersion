@@ -28,6 +28,7 @@ public class InterfazGraficaDetalleVenta {
         TablaDetalleVenta tablaDetalleVenta = new TablaDetalleVenta();
         tablaDetalleVenta.setPrincipalVenta(principalVenta);
         tablaDetalleVenta.ejecutarRellenarTabla();
+        principalVenta.getDetalleVenta().setIdVenta(tablaDetalleVenta.getIdVenta());
         principalVenta.getDetalleVenta().setVisible(true);
     }
 
