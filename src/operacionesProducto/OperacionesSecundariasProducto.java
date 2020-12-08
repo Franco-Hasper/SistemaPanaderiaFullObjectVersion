@@ -87,15 +87,16 @@ public class OperacionesSecundariasProducto {
 
     }
 
-    public void graficarHistorialPrecios(PrincipalProducto pp) {
+    public void graficarHistorialPrecios(PrincipalProducto principalProducto) {
 
+        
         Session miSesion = ConexionHibernate.tomarConexion();
-        try {
+   
 
             miSesion.beginTransaction();
-            Integer totalFilas = pp.getTablaGrafica().getRowCount();
-            Integer filasSeleccionada = pp.getTablaGrafica().getSelectedRow();
-            List<Integer> listaResutadosActuales = pp.getTablaProducto().getListaResutladosActuales();
+            Integer totalFilas = principalProducto.getTablaGrafica().getRowCount();
+            Integer filasSeleccionada = principalProducto.getTablaGrafica().getSelectedRow();
+            List<Integer> listaResutadosActuales = principalProducto.getTablaProducto().getListaResutladosActuales();
             Integer idProducto = OperacionesUtiles.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
 
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -114,9 +115,7 @@ public class OperacionesSecundariasProducto {
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
 
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA FILA", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-        }
+   
 
     }
 

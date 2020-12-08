@@ -11,6 +11,7 @@ import operacionesProducto.ABMProducto;
 import operacionesProducto.InterfazGraficaFormularioEditarProducto;
 import operacionesProducto.InterfazGraficaFormularioRegistrarPrecioProducto;
 import operacionesProducto.InterfazGraficaFormularioRegistrarProducto;
+import operacionesProducto.OperacionesSecundariasProducto;
 import operacionesProducto.TablaProducto;
 
 public class PrincipalProducto extends javax.swing.JInternalFrame {
@@ -344,6 +345,9 @@ public class PrincipalProducto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnGraficarHistorialPreciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarHistorialPreciosActionPerformed
+        if (tablaProducto.verificarFilaSeleccionada()) {
+            new OperacionesSecundariasProducto().graficarHistorialPrecios(this);
+        }
 
     }//GEN-LAST:event_btnGraficarHistorialPreciosActionPerformed
 
@@ -370,7 +374,7 @@ public class PrincipalProducto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnNuevoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPrecioActionPerformed
-  tablaProducto.setPrincipalProducto(this);
+        tablaProducto.setPrincipalProducto(this);
         if (tablaProducto.verificarFilaSeleccionada()) {
             formularioPrecio.setPrincipalProducto(this);
             formularioPrecio.nuevoFormularioRegistrarPrecio();

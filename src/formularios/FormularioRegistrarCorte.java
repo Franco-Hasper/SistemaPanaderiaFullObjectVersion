@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import operacionesCaja.ABMCaja;
+import operacionesCaja.OperacionesSecundariasCaja;
 
 /**
  *
@@ -210,6 +211,8 @@ public class FormularioRegistrarCorte extends javax.swing.JDialog {
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("BALANCE: $");
 
+        txtBalance.setEditable(false);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -230,6 +233,18 @@ public class FormularioRegistrarCorte extends javax.swing.JDialog {
                     .addComponent(txtBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
+
+        txtTotalVentas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTotalVentasKeyReleased(evt);
+            }
+        });
+
+        txtTotalGastos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTotalGastosKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -408,6 +423,14 @@ public class FormularioRegistrarCorte extends javax.swing.JDialog {
             principalCaja.getTablaCaja().ejecutarRellenarTabla();
         }
     }//GEN-LAST:event_btnGuardarCorteActionPerformed
+
+    private void txtTotalGastosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalGastosKeyReleased
+        new OperacionesSecundariasCaja().calcularbalance(this);
+    }//GEN-LAST:event_txtTotalGastosKeyReleased
+
+    private void txtTotalVentasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalVentasKeyReleased
+         new OperacionesSecundariasCaja().calcularbalance(this);
+    }//GEN-LAST:event_txtTotalVentasKeyReleased
 
     /**
      * @param args the command line arguments
