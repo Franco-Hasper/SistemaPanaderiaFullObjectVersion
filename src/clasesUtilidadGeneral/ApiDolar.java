@@ -17,20 +17,9 @@ public class ApiDolar {
      *
      * @throws Exception
      */
-    
- PrincipalAdministrador principalAdministrador;
+    public void precioDolarOficial(PrincipalAdministrador principalAdministrador) throws Exception {
 
-    public PrincipalAdministrador getPrincipalAdministrador() {
-        return principalAdministrador;
-    }
-
-    public void setPrincipalAdministrador(PrincipalAdministrador principalAdministrador) {
-        this.principalAdministrador = principalAdministrador;
-    }
-    
-    public void call_me() throws Exception {
-
-        String url = "http://ws.geeklab.com.ar/dolar/get-dolar-json.php";
+        String url = "https://www.dolarsi.com/api/api.php?type=valoresprincipales";
         URL obj = new URL(url);
         try {
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -45,12 +34,18 @@ public class ApiDolar {
                 response.append(inputLine);
             }
             in.close();
-            JSONObject myResponse = new JSONObject(response.toString());
 
-            principalAdministrador.getLblLibre().setText(myResponse.getString("libre"));
+            JSONObject myResponse = new JSONObject(response.substring(9, 141));
+            principalAdministrador.getLblLibre().setText(myResponse.getString("compra"));
+
+            
+            
+             DesktopNotify.showDesktopMessage(" INFORMACION  ", " DOLAR OFICIAL:\n COMPRA: "+myResponse.getString("compra")+"\n VENTA: "+ myResponse.getString("venta")+"", DesktopNotify.INFORMATION, 10000);
+            
         } catch (Exception e) {
             DesktopNotify.showDesktopMessage("   error de conexion   ", "    NO SE PUDO OBTENER\n    EL PRECIO DEL DOLAR", DesktopNotify.ERROR, 7000);
         }
 
     }
+
 }

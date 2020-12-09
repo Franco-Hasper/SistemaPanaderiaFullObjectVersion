@@ -438,6 +438,11 @@ public class OperacionesUtiles {
     /**
      * toma los resultados de base de datos y la tabla grafica, obtiene la id de
      * la fila seleccionada y retorna el valor de la Id.
+     * IMPORTANTE: ESTE METODO SOLO FUNCIONA CUANDO LA LISTA DE IDS RECIBIDA
+     * DE LA BD LLEGA ORDENADA DE MAYOR A MENOR Y LUEGO ES ORDENADA DE 
+     * MENOR A MAYOR MEDIANTE EL METODO ORDENAR LISTA.
+     * SI LA LISTA DE IDS DE BD LLEGA POR EJ: 3,1,2 ESTE ESTE METODO YA NO FUNCIONA
+     * LA FORMA CORRECTA DEBE SER 3,2,1
      *
      * @param listaResutladosActuales
      * @param totalFilas

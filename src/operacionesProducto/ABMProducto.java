@@ -59,7 +59,6 @@ public class ABMProducto extends ABM {
         this.formularioRegistrarPrecioProducto = formularioRegistrarPrecioProducto;
     }
 
-    
     public boolean ejecutarRegistrarPrecio() {
         obtenerFormularioRegistrarPrecio();
         if (operacionesUtilidad.verificarCamposTextoVacios(getListaCampos())) {
@@ -132,6 +131,9 @@ public class ABMProducto extends ABM {
         List<Integer> listaResutadosActuales = principalProducto.getTablaProducto().getListaResutladosActuales();
 
         Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
+        PrecioProducto prepro = (PrecioProducto) miSesion.get(PrecioProducto.class, id);
+        id = prepro.getCodigoProducto().getIdProducto();
+
         Producto p = (Producto) miSesion.get(Producto.class, id);
         Estado ef = (Estado) miSesion.get(Estado.class, 2);
 
@@ -167,6 +169,10 @@ public class ABMProducto extends ABM {
 
         Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
 
+        PrecioProducto prepro = (PrecioProducto) miSesion.get(PrecioProducto.class, id);
+
+        id = prepro.getCodigoProducto().getIdProducto();
+
         Producto p = (Producto) miSesion.get(Producto.class, id);
         p.setNombre(formularioEditarProducto.getTxtNombre().getText());
         p.setDescripcion(formularioEditarProducto.getTxtDescripcion().getText());
@@ -180,7 +186,12 @@ public class ABMProducto extends ABM {
         Integer totalFilas = principalProducto.getTablaGrafica().getRowCount();
         Integer filasSeleccionada = principalProducto.getTablaGrafica().getSelectedRow();
         List<Integer> listaResutadosActuales = principalProducto.getTablaProducto().getListaResutladosActuales();
+
         Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
+
+        PrecioProducto prepro = (PrecioProducto) miSesion.get(PrecioProducto.class, id);
+
+        id = prepro.getCodigoProducto().getIdProducto();
         Producto p = (Producto) miSesion.get(Producto.class, id);
         p.setCodigoEstado(e);
         miSesion.saveOrUpdate(p);

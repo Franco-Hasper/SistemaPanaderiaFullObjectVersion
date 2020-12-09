@@ -30,9 +30,7 @@ public class InterfazGraficaPrincipal {
             configuracion.setTema();
 
             try {
-                ApiDolar apiDolar = new ApiDolar();
-                apiDolar.setPrincipalAdministrador(principalAdministrador);
-                apiDolar.call_me();
+                new ApiDolar().precioDolarOficial(principalAdministrador);
                 try {
                     Thread.sleep(3);
                 } catch (InterruptedException ex) {

@@ -69,7 +69,7 @@ public class TablaProductosDisponibles extends Tabla {
             boolean resultadoComparacion = OperacionesUtiles.convertirResultado(pr.getCodigoProducto().getNombre(), valorBusqueda);
             if (pr.getCodigoEstado().getIdEstado().equals(1)
                     && pr.getCodigoProducto().getCodigoEstado().getIdEstado().equals(1) && resultadoComparacion) {
-                this.listaResutladosActuales.add(0, pr.getCodigoProducto().getIdProducto());
+                this.listaResutladosActuales.add(0, pr.getIdPrecio());
                 fila.add(pr.getCodigoProducto().getNombre());
                 fila.add(pr.getCodigoProducto().getDescripcion());
                 fila.add(pr.getPrecioTotal());

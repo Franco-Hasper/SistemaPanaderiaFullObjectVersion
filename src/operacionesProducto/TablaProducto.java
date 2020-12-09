@@ -58,7 +58,8 @@ public class TablaProducto extends Tabla {
             boolean resultadoComparacion = OperacionesUtiles.convertirResultado(pr.getCodigoProducto().getNombre(), valorBusqueda);
             if (pr.getCodigoEstado().getIdEstado().equals(1)
                     && pr.getCodigoProducto().getCodigoEstado().getIdEstado().equals(1) && resultadoComparacion) {
-                this.listaResutladosActuales.add(0, pr.getCodigoProducto().getIdProducto());
+                //caso especial :v
+                this.listaResutladosActuales.add(0, pr.getIdPrecio());
                 fila.add(pr.getCodigoProducto().getNombre());
                 fila.add(pr.getCodigoProducto().getDescripcion());
                 fila.add(pr.getPrecioTotal());
@@ -66,7 +67,9 @@ public class TablaProducto extends Tabla {
                 tablaProducto.addRow(fila);
             }
         }
+        System.out.println(listaResutladosActuales);
         OperacionesUtiles.ordenarLista(listaResutladosActuales);
+        System.out.println(listaResutladosActuales);
     }
 
     
@@ -91,6 +94,8 @@ public class TablaProducto extends Tabla {
         rellenarTabla(getCampoTexto().getText());
     }
 
+    
+    //id precioproducto
     @Override
     public Integer obtenerIdFilaSeleccionada() {
         try {

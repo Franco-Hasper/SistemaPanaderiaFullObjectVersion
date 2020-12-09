@@ -1,14 +1,16 @@
 package operacionesVenta;
 
 import calsesPadre.Tabla;
+import conexion.ConexionHibernate;
 import ds.desktop.notify.DesktopNotify;
+import entidades.PrecioProducto;
 import escritorios.PrincipalVenta;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import org.hibernate.Session;
 
 /**
  * @author Hasper Franco
@@ -67,17 +69,15 @@ public class TablaProductosListados extends Tabla {
 
     public void quitarProducto() {
         quitarIdsEnLista();
-        DefaultTableModel tablaProductosDisponibles = (DefaultTableModel) getTablaProductosListados().getModel();
+        DefaultTableModel tablaProductosListados = (DefaultTableModel) getTablaProductosListados().getModel();
         int filaSeleccionada = getTablaProductosListados().getSelectedRow();
-        tablaProductosDisponibles.removeRow(filaSeleccionada);
+        tablaProductosListados.removeRow(filaSeleccionada);
     }
 
     public void quitarIdsEnLista() {
-
-        Integer filasSeleccionadaProductosListados = getTablaProductosListados().getSelectedRow();
-        System.out.println(listaProductosListados.toString());
-        listaProductosListados.remove(filasSeleccionadaProductosListados);
-        System.out.println("soy la lista despues de eliminar " + listaProductosListados.toString());
+        DefaultTableModel tablaProductosListados = (DefaultTableModel) getTablaProductosListados().getModel();
+        int filaSeleccionada = getTablaProductosListados().getSelectedRow();
+        listaProductosListados.remove(filaSeleccionada);
     }
 
     public void agregarProducto() {
@@ -92,7 +92,21 @@ public class TablaProductosListados extends Tabla {
         fila.add(total);
 
         tablaProductosListados.addRow(fila);
-        agregarIdsEnLista();
+        conexion();
+    }
+
+    /**
+     * abre una conexion para obtener la id de los prouctos listados desde
+     * precio_producto
+     */
+    private void conexion() {
+        Session miSesion = ConexionHibernate.tomarConexion();
+        try {
+            miSesion.beginTransaction();
+            agregarIdsEnLista(miSesion);
+            miSesion.getTransaction().commit();
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -103,17 +117,14 @@ public class TablaProductosListados extends Tabla {
      * @version 1.0
      * @since 2020-12-07
      */
-    public void agregarIdsEnLista() {
+    public void agregarIdsEnLista(Session miSesion) {
         Integer totalFilasProductosDisponibles = getTabla().getRowCount();
         Integer filasSeleccionadaProductosDisponibles = getTabla().getSelectedRow();
         List<Integer> listaResutadosActuales = tablaRegistrarVenta.getListaResutladosActuales();
-        Integer idProductosDisponibles = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilasProductosDisponibles, filasSeleccionadaProductosDisponibles);
-
-        if (listaProductosListados.size() ==1) {
-            listaProductosListados.set(0, idProductosDisponibles);
-        } else {
-            listaProductosListados.add(idProductosDisponibles);
-        }
+        Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilasProductosDisponibles, filasSeleccionadaProductosDisponibles);
+        PrecioProducto prepro = (PrecioProducto) miSesion.get(PrecioProducto.class, id);
+        Integer idProductosDisponibles = prepro.getCodigoProducto().getIdProducto();
+        listaProductosListados.add(idProductosDisponibles);
     }
 
     @Override

@@ -89,33 +89,33 @@ public class OperacionesSecundariasProducto {
 
     public void graficarHistorialPrecios(PrincipalProducto principalProducto) {
 
-        
         Session miSesion = ConexionHibernate.tomarConexion();
-   
 
-            miSesion.beginTransaction();
-            Integer totalFilas = principalProducto.getTablaGrafica().getRowCount();
-            Integer filasSeleccionada = principalProducto.getTablaGrafica().getSelectedRow();
-            List<Integer> listaResutadosActuales = principalProducto.getTablaProducto().getListaResutladosActuales();
-            Integer idProducto = OperacionesUtiles.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
+        miSesion.beginTransaction();
+        Integer totalFilas = principalProducto.getTablaGrafica().getRowCount();
+        Integer filasSeleccionada = principalProducto.getTablaGrafica().getSelectedRow();
+        List<Integer> listaResutadosActuales = principalProducto.getTablaProducto().getListaResutladosActuales();
 
-            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        Integer id = OperacionesUtiles.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
 
-            Producto prd = (Producto) miSesion.get(Producto.class, idProducto);
+        PrecioProducto prepro = (PrecioProducto) miSesion.get(PrecioProducto.class, id);
 
-            List<PrecioProducto> precios = prd.getPrecios();
+        id = prepro.getCodigoProducto().getIdProducto();
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-            for (PrecioProducto p : precios) {
-                dataset.setValue(p.getPrecioTotal(), "", OperacionesUtiles.formatoFecha(p.getFecha()).toString());
-            }
-            miSesion.getTransaction().commit();
-            JFreeChart chart = ChartFactory.createBarChart3D("Historial de Precios", "Fecha", "Precios", dataset, PlotOrientation.VERTICAL, true, true, false);
-            ChartFrame frame = new ChartFrame("JFreeChart", chart);
-            frame.pack();
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
+        Producto prd = (Producto) miSesion.get(Producto.class, id);
 
-   
+        List<PrecioProducto> precios = prd.getPrecios();
+
+        for (PrecioProducto p : precios) {
+            dataset.setValue(p.getPrecioTotal(), "", OperacionesUtiles.formatoFecha(p.getFecha()).toString());
+        }
+        miSesion.getTransaction().commit();
+        JFreeChart chart = ChartFactory.createBarChart3D("Historial de Precios", "Fecha", "Precios", dataset, PlotOrientation.VERTICAL, true, true, false);
+        ChartFrame frame = new ChartFrame("JFreeChart", chart);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
 
     }
 

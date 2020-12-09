@@ -649,7 +649,9 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_lblSalirMouseClicked
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-
+        //usar el siguiente metodo: 
+        tablaProductosListados.getListaProductosListados();
+        //contiene la lista con todas las ids de productos en la tabla de productos registrados, para el alta de venta
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
