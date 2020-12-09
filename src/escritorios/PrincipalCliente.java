@@ -11,6 +11,7 @@ import formularios.FormularioRegistrarCliente;
 import operacionesCliente.InterfazGraficaFormularioEditarCliente;
 import operacionesCliente.InterfazGraficaFormularioRegistrarCliente;
 import principal.MaterialButton;
+import principal.PrincipalAdministrador;
 
 /**
  *
@@ -22,16 +23,18 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
         initComponents();
         registrarCliente = null;
         editarCliente = null;
-        btnSeleccionarCliente.setVisible(false);
     }
-    
+
     private InterfazGraficaFormularioRegistrarCliente formularioRegistrar;
     private InterfazGraficaFormularioEditarCliente formularioEditar;
     private FormularioRegistrarCliente registrarCliente;
     private FormularioEditarCliente editarCliente;
     private TablaCliente tablaCliente;
     private final ABMCliente abm = new ABMCliente();
-    
+
+
+
+
     public TablaCliente getTablaCliente() {
         return tablaCliente;
     }
@@ -326,21 +329,21 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
             panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalTopLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnnuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnnuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnnEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnnEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEliminarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDirecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDirecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTelefonos, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTelefonos, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSeleccionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSeleccionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -404,6 +407,7 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         formularioRegistrar.setPrincipalCliente(this);
         formularioRegistrar.nuevoFormularioRegistrar();
+
     }//GEN-LAST:event_btnnuevoClienteActionPerformed
 
     private void btnCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuentaActionPerformed
@@ -412,7 +416,7 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCuentaActionPerformed
 
     private void btnEliminarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCliActionPerformed
-        
+
         abm.setPrincipalCliente(this);
         tablaCliente.setPrincipalCliente(this);
         if (tablaCliente.verificarFilaSeleccionada()) {

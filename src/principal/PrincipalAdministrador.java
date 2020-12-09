@@ -29,7 +29,7 @@ import principal.MaterialButtomRectangle;
  * @author TELCOM MPC
  */
 public class PrincipalAdministrador extends javax.swing.JFrame {
-
+    
     public PrincipalAdministrador() {
         initComponents();
         cliente = null;
@@ -69,95 +69,95 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     //metodos de control de ventana.
     private boolean minimiza = false;
     public boolean cerra = false;
-
+    
     public Escritorio getEscritorio() {
         return escritorio;
     }
-
+    
     public void setEscritorio(Escritorio escritorio) {
         this.escritorio = escritorio;
     }
-
+    
     public PrincipalCliente getCliente() {
         return cliente;
     }
-
+    
     public void setCliente(PrincipalCliente cliente) {
         this.cliente = cliente;
     }
-
+    
     public PrincipalProveedor getProveedor() {
         return proveedor;
     }
-
+    
     public void setProveedor(PrincipalProveedor proveedor) {
         this.proveedor = proveedor;
     }
-
+    
     public PrincipalProducto getProducto() {
         return producto;
     }
-
+    
     public void setProducto(PrincipalProducto producto) {
         this.producto = producto;
     }
-
+    
     public PrincipalGastos getGasto() {
         return gasto;
     }
-
+    
     public void setGasto(PrincipalGastos gasto) {
         this.gasto = gasto;
     }
-
+    
     public Cargar getCargar() {
         return cargar;
     }
-
+    
     public void setCargar(Cargar cargar) {
         this.cargar = cargar;
     }
-
+    
     public PrincipalVenta getVenta() {
         return venta;
     }
-
+    
     public void setVenta(PrincipalVenta venta) {
         this.venta = venta;
     }
-
+    
     public PrincipalCaja getCaja() {
         return caja;
     }
-
+    
     public void setCaja(PrincipalCaja caja) {
         this.caja = caja;
     }
-
+    
     public PrincipalMateriaPrima getMateriaPrima() {
         return materiaPrima;
     }
-
+    
     public void setMateriaPrima(PrincipalMateriaPrima materiaPrima) {
         this.materiaPrima = materiaPrima;
     }
-
+    
     public PrincipalIngresoMatPrima getIngresoMateriaPrima() {
         return ingresoMateriaPrima;
     }
-
+    
     public void setIngresoMateriaPrima(PrincipalIngresoMatPrima ingresoMateriaPrima) {
         this.ingresoMateriaPrima = ingresoMateriaPrima;
     }
-
+    
     public PrincipalConfiguracion getConfiguracion() {
         return configuracion;
     }
-
+    
     public void setConfiguracion(PrincipalConfiguracion configuracion) {
         this.configuracion = configuracion;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -368,6 +368,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGestionClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionClienteActionPerformed
+        interfazGraficaCliente.setCaso(false);
         interfazGraficaCliente.setPrincipalAdministrador(this);
         interfazGraficaCliente.ejecutarNuevaVentana();
     }//GEN-LAST:event_btnGestionClienteActionPerformed
@@ -388,11 +389,14 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGestionGastosActionPerformed
 
     private void btnGestionVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionVentasActionPerformed
+        interfazGraficaCliente.setCaso(true);
+        interfazGraficaCliente.setPrincipalAdministrador(this);
+        interfazGraficaCliente.ejecutarNuevaVentana();
+        
         interfazGraficaVenta.setPrincipalAdministrador(this);
         interfazGraficaVenta.ejecutarNuevaVentana();
-
-        
     }//GEN-LAST:event_btnGestionVentasActionPerformed
+    
 
     private void btnGestionCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionCajaActionPerformed
         interfazGraficaCaja.setPrincipalAdministrador(this);
@@ -410,91 +414,91 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         optionPaneMateriaPrima.setPrincipalAdministrador(this);
         optionPaneMateriaPrima.setVisible(true);
     }//GEN-LAST:event_btnGestionMateriPrimaActionPerformed
-
+    
     public JPanel getPanelPrincipalBody() {
         return panelPrincipalBody;
     }
-
+    
     public void setPanelPrincipalBody(JPanel panelPrincipalBody) {
         this.panelPrincipalBody = panelPrincipalBody;
     }
-
+    
     public JPanel getPanelPrincipalTop() {
         return panelPrincipalTop;
     }
-
+    
     public void setPanelPrincipalTop(JPanel panelPrincipalTop) {
         this.panelPrincipalTop = panelPrincipalTop;
     }
-
+    
     public MaterialButtomRectangle getBtnConfiguracion() {
         return btnConfiguracion;
     }
-
+    
     public void setBtnConfiguracion(MaterialButtomRectangle btnConfiguracion) {
         this.btnConfiguracion = btnConfiguracion;
     }
-
+    
     public MaterialButtomRectangle getBtnGestionCliente() {
         return btnGestionCliente;
     }
-
+    
     public void setBtnGestionCliente(MaterialButtomRectangle btnGestionCliente) {
         this.btnGestionCliente = btnGestionCliente;
     }
-
+    
     public MaterialButtomRectangle getBtnGestionFinanzas() {
         return btnGestionCaja;
     }
-
+    
     public void setBtnGestionFinanzas(MaterialButtomRectangle btnGestionFinanzas) {
         this.btnGestionCaja = btnGestionFinanzas;
     }
-
+    
     public MaterialButtomRectangle getBtnGestionMateriPrima() {
         return btnGestionMateriPrima;
     }
-
+    
     public void setBtnGestionMateriPrima(MaterialButtomRectangle btnGestionMateriPrima) {
         this.btnGestionMateriPrima = btnGestionMateriPrima;
     }
-
+    
     public MaterialButtomRectangle getBtnGestionPedidos() {
         return btnGestionVentas;
     }
-
+    
     public void setBtnGestionPedidos(MaterialButtomRectangle btnGestionPedidos) {
         this.btnGestionVentas = btnGestionPedidos;
     }
-
+    
     public MaterialButtomRectangle getBtnGestionGastos() {
         return btnGestionGastos;
     }
-
+    
     public void setBtnGestionGastos(MaterialButtomRectangle btnGestionGastos) {
         this.btnGestionGastos = btnGestionGastos;
     }
-
+    
     public MaterialButtomRectangle getBtnGestionProducto() {
         return btnGestionProducto;
     }
-
+    
     public void setBtnGestionProducto(MaterialButtomRectangle btnGestionProducto) {
         this.btnGestionProducto = btnGestionProducto;
     }
-
+    
     public MaterialButtomRectangle getBtnGestionProveedor() {
         return btnGestionProveedor;
     }
-
+    
     public void setBtnGestionProveedor(MaterialButtomRectangle btnGestionProveedor) {
         this.btnGestionProveedor = btnGestionProveedor;
     }
-
+    
     public JLabel getLblLibre() {
         return lblLibre;
     }
-
+    
     public void setLblLibre(JLabel lblLibre) {
         this.lblLibre = lblLibre;
     }

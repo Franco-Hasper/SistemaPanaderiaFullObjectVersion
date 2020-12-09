@@ -11,11 +11,13 @@ import javax.swing.JTextField;
 import escritorios.PrincipalVenta;
 import java.util.ArrayList;
 import java.util.List;
+import operacionesCliente.InterfazGraficaEscritorioCliente;
 import operacionesVenta.ABMVenta;
 import operacionesVenta.OperacionesSecundariasVenta;
 import operacionesVenta.TablaProductosListados;
 import operacionesVenta.TablaProductosDisponibles;
 import principal.MaterialButton;
+import principal.PrincipalAdministrador;
 import rojeru_san.componentes.RSDateChooser;
 
 public class FormularioRegistrarVenta extends javax.swing.JDialog {
@@ -35,6 +37,16 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private TablaProductosDisponibles tablaProductosDisponibles;
     private TablaProductosListados tablaProductosListados;
     private OperacionesSecundariasVenta operacionesSecundariasVenta;
+    private final InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
+    private PrincipalAdministrador principalAdministrador;
+
+    public PrincipalAdministrador getPrincipalAdministrador() {
+        return principalAdministrador;
+    }
+
+    public void setPrincipalAdministrador(PrincipalAdministrador principalAdministrador) {
+        this.principalAdministrador = principalAdministrador;
+    }
 
     public OperacionesSecundariasVenta getOperacionesSecundariasVenta() {
         return operacionesSecundariasVenta;
@@ -150,7 +162,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
 
     public List getListaCampos() {
         List listCamposTexto = new ArrayList();
-        listCamposTexto.add(this.getLblPrecioTotal());
+        listCamposTexto.add(this.getTxtCantidad());
         return listCamposTexto;
     }
 
@@ -591,11 +603,13 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
         if (tablaProductosListados.verificarFilaSeleccionada()) {
             tablaProductosListados.quitarProducto();
+            operacionesSecundariasVenta.obtenerPrecioTotal();
         }
     }//GEN-LAST:event_btnQuitarActionPerformed
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
-
+           new InterfazGraficaEscritorioCliente().deshabilitarBotones(principalAdministrador);
+          this.setVisible(false);
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void radButonConsumidorFinalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radButonConsumidorFinalItemStateChanged
@@ -603,15 +617,11 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_radButonConsumidorFinalItemStateChanged
 
     private void radButonConsumidorFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radButonConsumidorFinalActionPerformed
-        // TODO add your handling code here:
+        operacionesSecundariasVenta.tipoConsumidorFinalEnabled();
     }//GEN-LAST:event_radButonConsumidorFinalActionPerformed
 
     private void boxTipoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoVentaActionPerformed
-
-        operacionesSecundariasVenta.setFormularioRegistrarVenta(this);
         operacionesSecundariasVenta.tipoVentaSeleccionada(boxTipoVenta.getSelectedItem().toString());
-
-
     }//GEN-LAST:event_boxTipoVentaActionPerformed
 
     private void boxTipoVentaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_boxTipoVentaKeyReleased
@@ -632,6 +642,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
             tablaProductosListados.setTablaRegistrarVenta(tablaProductosDisponibles);
             if (tablaProductosListados.verificarValor()) {
                 tablaProductosListados.ejecutarAgregarProducto();
+                operacionesSecundariasVenta.obtenerPrecioTotal();
             }
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -649,9 +660,15 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_lblSalirMouseClicked
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        //usar el siguiente metodo: 
-        tablaProductosListados.getListaProductosListados();
-        //contiene la lista con todas las ids de productos en la tabla de productos registrados, para el alta de venta
+        if (operacionesSecundariasVenta.validarListaProductos()) {
+            if (operacionesSecundariasVenta.validarTablaCliente()) {
+                if (operacionesSecundariasVenta.validarFecha()) {
+                    abm.setFormularioRegistrarVenta(this);
+                    abm.setListaProductosListados(tablaProductosListados.getListaProductosListados());
+                    abm.ejecutarRegistrar();
+                }
+            }
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

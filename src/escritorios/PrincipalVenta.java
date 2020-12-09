@@ -367,6 +367,7 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         formularioRegistrar.setPrincipalVenta(this);
+        formularioRegistrar.setPrincipalAdministrador(principalAdministrador);
         formularioRegistrar.nuevoFormularioRegistrar();
         
     }//GEN-LAST:event_nuevoActionPerformed

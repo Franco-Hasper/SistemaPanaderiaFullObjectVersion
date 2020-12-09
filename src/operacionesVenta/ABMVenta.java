@@ -12,6 +12,7 @@ import escritorios.PrincipalVenta;
 import formularios.FormularioEditarVenta;
 import formularios.FormularioEstadoVenta;
 import formularios.FormularioRegistrarVenta;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 
@@ -21,6 +22,7 @@ import org.hibernate.Session;
  */
 public class ABMVenta extends ABM {
 
+    private List<Integer> listaProductosListados = new ArrayList<Integer>();
     private FormularioRegistrarVenta formularioRegistrarVenta;
     private FormularioEditarVenta formularioEditarVenta;
     private FormularioEstadoVenta formularioEstadoVenta;
@@ -35,6 +37,14 @@ public class ABMVenta extends ABM {
 
     public void setPrincipalCliente(PrincipalCliente principalCliente) {
         this.principalCliente = principalCliente;
+    }
+
+    public List<Integer> getListaProductosListados() {
+        return listaProductosListados;
+    }
+
+    public void setListaProductosListados(List<Integer> listaProductosListados) {
+        this.listaProductosListados = listaProductosListados;
     }
 
     public FormularioEstadoVenta getFormularioEstadoVenta() {
@@ -84,23 +94,24 @@ public class ABMVenta extends ABM {
     @Override
     public void transaccionRegistrar(Session miSesion) {
         Double totalunidades;
-        Integer totalFilas = principalCliente.getTablaGrafica().getRowCount();
-        Integer filasSeleccionada = principalCliente.getTablaGrafica().getSelectedRow();
-        List<Integer> listaResutadosActuales = principalCliente.getTablaCliente().getListaResutladosActuales();
-        Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
 
         Venta v = new Venta();
         if (formularioRegistrarVenta.getRadButonConsumidorFinal().isSelected()) {
             Cliente c = (Cliente) miSesion.get(Cliente.class, 1);
             v.setCodigoCliente(c);
         } else {
+            Integer totalFilas = principalCliente.getTablaGrafica().getRowCount();
+            Integer filasSeleccionada = principalCliente.getTablaGrafica().getSelectedRow();
+            List<Integer> listaResutadosActuales = principalCliente.getTablaCliente().getListaResutladosActuales();
+            Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
+
             Cliente c = (Cliente) miSesion.get(Cliente.class, (id));
             v.setCodigoCliente(c);
         }
         v.setFechaHoraVenta(formularioRegistrarVenta.getrSDateChooser().getDatoFecha());
         v.setPrecioTotal(Double.valueOf(formularioRegistrarVenta.getLblPrecioTotal().getText()));
 
-        if (formularioRegistrarVenta.getBoxTipoVenta().getSelectedItem().equals("venta simple")) {
+        if (formularioRegistrarVenta.getBoxTipoVenta().getSelectedItem().equals("Venta Simple")) {
             TipoVenta tvs = (TipoVenta) miSesion.get(TipoVenta.class, 1);
             v.setCodigoTipoVenta(tvs);
             Estado e = (Estado) miSesion.get(Estado.class, 3);
@@ -113,11 +124,11 @@ public class ABMVenta extends ABM {
         }
         miSesion.save(v);
 
-        for (int i = 0; i < formularioRegistrarVenta.getTablaListarProductos().getRowCount(); i++) {
+        for (int i = 0; i < listaProductosListados.size(); i++) {
             Producto_Venta pv = new Producto_Venta();
-            //cambiar por id de array
-            Producto p = (Producto) miSesion.get(Producto.class, Integer.valueOf(formularioRegistrarVenta.getTablaListarProductos().getValueAt(i, 0).toString()));
-            totalunidades = Double.valueOf(formularioRegistrarVenta.getTablaListarProductos().getValueAt(i, 2).toString());
+            Integer id = listaProductosListados.get(i);
+            Producto p = (Producto) miSesion.get(Producto.class, id);
+            totalunidades = Double.valueOf(formularioRegistrarVenta.getTablaListarProductos().getValueAt(i, 1).toString());
             pv.setCodigoProducto(p);
             pv.setCodigoVenta(v);
             pv.setTotalUnidades(totalunidades);
@@ -190,7 +201,7 @@ public class ABMVenta extends ABM {
         v.setFechaHoraVenta(formularioEditarVenta.getrSDateChooser().getDatoFecha());
         v.setPrecioTotal(Double.valueOf(formularioEditarVenta.getLblPrecioTotal().getText()));
 
-        if (formularioEditarVenta.getBoxTipoVenta().getSelectedItem().equals("venta simple")) {
+        if (formularioEditarVenta.getBoxTipoVenta().getSelectedItem().equals("Venta Simple")) {
             TipoVenta tvs = (TipoVenta) miSesion.get(TipoVenta.class, 1);
             v.setCodigoTipoVenta(tvs);
             Estado e = (Estado) miSesion.get(Estado.class, 3);

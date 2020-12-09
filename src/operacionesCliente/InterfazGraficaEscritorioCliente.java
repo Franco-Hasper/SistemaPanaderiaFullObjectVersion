@@ -5,13 +5,26 @@ import escritorios.PrincipalCliente;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import clasesUtilidadGeneral.TextPrompt;
+import principal.PrincipalAdministrador;
 
 /**
  *
  * @author Hasper Franco
  */
 public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio {
+ 
+    private boolean caso;
 
+    public boolean isCaso() {
+        return caso;
+    }
+
+    public void setCaso(boolean caso) {
+        this.caso = caso;
+    }
+
+
+    
     @Override
     public void nuevaVentana() {
         if (principalAdministrador.getEscritorio().estacerrado(principalAdministrador.getCliente())) {
@@ -32,7 +45,14 @@ public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio 
             InterfazGraficaFormularioEditarCliente formularioEditar = new InterfazGraficaFormularioEditarCliente();
             principalAdministrador.getCliente().setFormularioRegistrar(formularioRegistrar);
             principalAdministrador.getCliente().setFormularioEditar(formularioEditar);
-            principalAdministrador.getCliente().show();
+            if(caso){
+            }else{
+                principalAdministrador.getCliente().show();
+            }
+        }
+        if(caso){
+        }else{
+             habilitarBotones();
         }
         colorInterfazEscritorio();
         principalAdministrador.getCliente().toFront();
@@ -51,4 +71,25 @@ public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio 
         principalAdministrador.getCliente().getTxtBuscar().grabFocus();
     }
 
+    public void deshabilitarBotones(PrincipalAdministrador principalAdministrador) {
+        principalAdministrador.getCliente().show();
+        principalAdministrador.getCliente().toFront();
+        principalAdministrador.getCliente().getBtnSeleccionarCliente().setEnabled(true);
+        principalAdministrador.getCliente().getBtnEliminarCli().setEnabled(false);
+        principalAdministrador.getCliente().getBtnnEditarCl().setEnabled(false);
+        principalAdministrador.getCliente().getBtnnuevocliente().setEnabled(false);
+        principalAdministrador.getCliente().getBtnCuenta().setEnabled(false);
+        principalAdministrador.getCliente().getBtnDirecciones().setEnabled(false);
+        principalAdministrador.getCliente().getBtnTelefonos().setEnabled(false);
+    }
+    public void habilitarBotones() {
+        principalAdministrador.getCliente().getBtnSeleccionarCliente().setEnabled(false);
+        principalAdministrador.getCliente().getBtnEliminarCli().setEnabled(true);
+        principalAdministrador.getCliente().getBtnnEditarCl().setEnabled(true);
+        principalAdministrador.getCliente().getBtnnuevocliente().setEnabled(true);
+        principalAdministrador.getCliente().getBtnCuenta().setEnabled(true);
+        principalAdministrador.getCliente().getBtnDirecciones().setEnabled(true);
+        principalAdministrador.getCliente().getBtnTelefonos().setEnabled(true);
+    }
+    
 }

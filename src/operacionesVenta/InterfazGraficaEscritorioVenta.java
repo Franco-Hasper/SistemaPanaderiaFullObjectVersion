@@ -34,7 +34,7 @@ public class InterfazGraficaEscritorioVenta extends InterfazGraficaEscritorio {
             principalAdministrador.getVenta().setFormularioRegistrar(formularioRegistrar);
             principalAdministrador.getVenta().setFormularioEditar(formularioEditar);
             principalAdministrador.getVenta().setFormularioDetalleVenta(formularioDetalleVenta);
-            
+            principalAdministrador.getVenta().setPrincipalAdministrador(principalAdministrador);
             
             principalAdministrador.getVenta().show();
             

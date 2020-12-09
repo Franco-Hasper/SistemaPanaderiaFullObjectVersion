@@ -15,6 +15,7 @@ public class InterfazGraficaFormularioRegistrarCliente extends InterfazGraficaFo
     }
 
     private PrincipalCliente principalCliente;
+    
 
     public void setPrincipalCliente(PrincipalCliente principalCliente) {
         this.principalCliente = principalCliente;
