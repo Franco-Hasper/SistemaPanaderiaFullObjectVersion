@@ -1,6 +1,7 @@
 package formularios;
 
 import clasesUtilidadGeneral.OperacionesUtiles;
+import escritorios.PrincipalCliente;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -39,6 +40,15 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private OperacionesSecundariasVenta operacionesSecundariasVenta;
     private final InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
     private PrincipalAdministrador principalAdministrador;
+    private PrincipalCliente principalCliente;
+
+    public PrincipalCliente getPrincipalCliente() {
+        return principalCliente;
+    }
+
+    public void setPrincipalCliente(PrincipalCliente principalCliente) {
+        this.principalCliente = principalCliente;
+    }
 
     public PrincipalAdministrador getPrincipalAdministrador() {
         return principalAdministrador;
@@ -608,8 +618,9 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_btnQuitarActionPerformed
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
-           new InterfazGraficaEscritorioCliente().deshabilitarBotones(principalAdministrador);
-          this.setVisible(false);
+        new InterfazGraficaEscritorioCliente().deshabilitarBotones(principalAdministrador, this, 1);
+        this.setVisible(false);
+
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void radButonConsumidorFinalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radButonConsumidorFinalItemStateChanged
@@ -665,7 +676,11 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                 if (operacionesSecundariasVenta.validarFecha()) {
                     abm.setFormularioRegistrarVenta(this);
                     abm.setListaProductosListados(tablaProductosListados.getListaProductosListados());
+                    abm.setPrincipalCliente(principalCliente);
                     abm.ejecutarRegistrar();
+                    principalVenta.getTablaVenta().setPrincipalVenta(principalVenta);
+                    principalVenta.getTablaVenta().setEstadoConsulta(0);
+                    principalVenta.getTablaVenta().ejecutarRellenarTabla();
                 }
             }
         }

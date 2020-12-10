@@ -1,11 +1,17 @@
 package operacionesVenta;
 
+import calsesPadre.Consultas;
 import clasesUtilidadGeneral.OperacionesUtiles;
+import conexion.ConexionHibernate;
 import ds.desktop.notify.DesktopNotify;
+import entidades.Cliente;
+import escritorios.PrincipalCliente;
 import formularios.FormularioEditarVenta;
 import formularios.FormularioRegistrarVenta;
+import java.util.List;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
+import org.hibernate.Session;
 
 /**
  * @author Hasper Franco
@@ -15,6 +21,15 @@ public class OperacionesSecundariasVenta {
     private int tipoFormulario;
     private FormularioRegistrarVenta formularioRegistrarVenta;
     private FormularioEditarVenta formularioEditarVenta;
+    private PrincipalCliente principalCliente;
+
+    public PrincipalCliente getPrincipalCliente() {
+        return principalCliente;
+    }
+
+    public void setPrincipalCliente(PrincipalCliente principalCliente) {
+        this.principalCliente = principalCliente;
+    }
 
     public int getTipoFormulario() {
         return tipoFormulario;
@@ -43,8 +58,6 @@ public class OperacionesSecundariasVenta {
     public void nuevaVentanaCliente() {
 
     }
-
-
 
     public void tipoVentaSeleccionada(String valor) {
         switch (tipoFormulario) {
@@ -93,6 +106,35 @@ public class OperacionesSecundariasVenta {
                 break;
         }
 
+    }
+  
+
+    public void rellenarTablaVentaCliente() {
+        int fila = principalCliente.getTablaGrafica().getSelectedRow();
+        String nombre = principalCliente.getTablaGrafica().getValueAt(fila, 0).toString() + " " + principalCliente.getTablaGrafica().getValueAt(fila, 1).toString();
+        String telefono = principalCliente.getTablaGrafica().getValueAt(fila, 7).toString();
+        String direccion = principalCliente.getTablaGrafica().getValueAt(fila, 3).toString() + "/" + principalCliente.getTablaGrafica().getValueAt(fila, 4).toString() + "-" + principalCliente.getTablaGrafica().getValueAt(fila, 5).toString() + "-" + principalCliente.getTablaGrafica().getValueAt(fila, 6).toString();
+     
+        switch (tipoFormulario) {
+            case 1:
+                DefaultTableModel tablaVentaCliente = (DefaultTableModel) formularioRegistrarVenta.getTablaCliente().getModel();
+                OperacionesUtiles.removerFilas(tablaVentaCliente);
+                Vector datosTabla = new Vector();
+                datosTabla.add(nombre);
+                datosTabla.add(telefono);
+                datosTabla.add(direccion);
+                tablaVentaCliente.addRow(datosTabla);
+                break;
+            case 2:
+                DefaultTableModel tablaVentaClienteE = (DefaultTableModel) formularioEditarVenta.getTablaCliente().getModel();
+                OperacionesUtiles.removerFilas(tablaVentaClienteE);
+                Vector datosTablaE = new Vector();
+                datosTablaE.add("Cons. Final");
+                datosTablaE.add("---");
+                datosTablaE.add("----");
+                tablaVentaClienteE.addRow(datosTablaE);
+                break;
+        }
     }
 
     public void datosventaSimpleConsumidorFinal() {
@@ -243,6 +285,20 @@ public class OperacionesSecundariasVenta {
                 }
         }
         return false;
+    }
+
+    public void retornarFormularioVenta() {
+        switch (tipoFormulario) {
+            case 1:
+                formularioRegistrarVenta.setPrincipalCliente(principalCliente);
+                formularioRegistrarVenta.setVisible(true);
+                formularioRegistrarVenta.toFront();
+                
+                break;
+            case 2:
+                formularioEditarVenta.setVisible(true);
+                break;
+        }
     }
 
 }

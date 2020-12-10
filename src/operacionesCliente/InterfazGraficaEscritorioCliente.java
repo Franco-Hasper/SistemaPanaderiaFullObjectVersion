@@ -5,6 +5,7 @@ import escritorios.PrincipalCliente;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import clasesUtilidadGeneral.TextPrompt;
+import formularios.FormularioRegistrarVenta;
 import principal.PrincipalAdministrador;
 
 /**
@@ -45,12 +46,16 @@ public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio 
             InterfazGraficaFormularioEditarCliente formularioEditar = new InterfazGraficaFormularioEditarCliente();
             principalAdministrador.getCliente().setFormularioRegistrar(formularioRegistrar);
             principalAdministrador.getCliente().setFormularioEditar(formularioEditar);
+           
             if(caso){
+                //
             }else{
                 principalAdministrador.getCliente().show();
             }
+            
         }
         if(caso){
+            //
         }else{
              habilitarBotones();
         }
@@ -71,7 +76,9 @@ public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio 
         principalAdministrador.getCliente().getTxtBuscar().grabFocus();
     }
 
-    public void deshabilitarBotones(PrincipalAdministrador principalAdministrador) {
+    public void deshabilitarBotones(PrincipalAdministrador principalAdministrador,FormularioRegistrarVenta formularioRegistrarVenta,int tipoFormulario) {
+       principalAdministrador.getCliente().setTipoFormulario(1);
+        principalAdministrador.getCliente().setFormularioRegistrarVenta(formularioRegistrarVenta);
         principalAdministrador.getCliente().show();
         principalAdministrador.getCliente().toFront();
         principalAdministrador.getCliente().getBtnSeleccionarCliente().setEnabled(true);

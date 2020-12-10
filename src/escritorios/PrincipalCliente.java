@@ -8,8 +8,11 @@ import operacionesCliente.TablaCliente;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import formularios.FormularioEditarCliente;
 import formularios.FormularioRegistrarCliente;
+import formularios.FormularioRegistrarVenta;
+import operacionesCaja.OperacionesSecundariasCaja;
 import operacionesCliente.InterfazGraficaFormularioEditarCliente;
 import operacionesCliente.InterfazGraficaFormularioRegistrarCliente;
+import operacionesVenta.OperacionesSecundariasVenta;
 import principal.MaterialButton;
 import principal.PrincipalAdministrador;
 
@@ -31,7 +34,18 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     private FormularioEditarCliente editarCliente;
     private TablaCliente tablaCliente;
     private final ABMCliente abm = new ABMCliente();
+    private FormularioRegistrarVenta formularioRegistrarVenta;
+    private int tipoFormulario;
 
+    public int getTipoFormulario() {
+        return tipoFormulario;
+    }
+
+    public void setTipoFormulario(int tipoFormulario) {
+        this.tipoFormulario = tipoFormulario;
+    }
+    
+    
 
 
 
@@ -91,6 +105,15 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
         this.formularioEditar = formularioEditar;
     }
 
+    public FormularioRegistrarVenta getFormularioRegistrarVenta() {
+        return formularioRegistrarVenta;
+    }
+
+    public void setFormularioRegistrarVenta(FormularioRegistrarVenta formularioRegistrarVenta) {
+        this.formularioRegistrarVenta = formularioRegistrarVenta;
+    }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -383,7 +406,20 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSeleccionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarClienteActionPerformed
-
+        OperacionesSecundariasVenta operacionesSecundariasVenta =new OperacionesSecundariasVenta ();
+        
+        if(tipoFormulario==1){
+            operacionesSecundariasVenta.setTipoFormulario(1);
+            operacionesSecundariasVenta.setFormularioRegistrarVenta(formularioRegistrarVenta);
+            operacionesSecundariasVenta.setPrincipalCliente(this);
+            operacionesSecundariasVenta.rellenarTablaVentaCliente();
+            operacionesSecundariasVenta.retornarFormularioVenta();
+            
+        }else{
+            
+            
+        }
+        
     }//GEN-LAST:event_btnSeleccionarClienteActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
