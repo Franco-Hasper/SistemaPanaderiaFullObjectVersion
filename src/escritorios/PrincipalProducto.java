@@ -176,7 +176,7 @@ public class PrincipalProducto extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("PRODUCTO");
+        jLabel4.setText("PRODUCTOS");
 
         lblSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel_60px.png"))); // NOI18N
         lblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -226,7 +226,7 @@ public class PrincipalProducto extends javax.swing.JInternalFrame {
 
         btnNuevo.setBackground(new java.awt.Color(0,0,0,60));
         btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevo.setText("NUEVO ");
+        btnNuevo.setText("NUEVO PRODUCTO");
         btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevo.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -248,7 +248,7 @@ public class PrincipalProducto extends javax.swing.JInternalFrame {
 
         btnEliminar.setBackground(new java.awt.Color(0,0,0,60));
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminar.setText("ELIMINAR");
+        btnEliminar.setText("ELIMINAR PRODUCTO");
         btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -259,7 +259,7 @@ public class PrincipalProducto extends javax.swing.JInternalFrame {
 
         btnEditar.setBackground(new java.awt.Color(0,0,0,60));
         btnEditar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditar.setText("EDITAR");
+        btnEditar.setText("EDITAR PRODUCTO");
         btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditar.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         btnEditar.addActionListener(new java.awt.event.ActionListener() {

@@ -14,18 +14,18 @@ import javax.persistence.Table;
  * @author TELCOM MPC
  */
 @Entity
-@Table(name = "precio_producto")
+@Table(name = "precio__productos")
 public class PrecioProducto {
 
     @Id
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "id_precio")
+    @Column(name = "id")
     private Integer idPrecio;
 
     @ManyToOne
-    @JoinColumn(name = "codigo_producto")
+    @JoinColumn(name = "productoId")
     private Producto codigoProducto;
 
     @Column(name = "precio_bruto")
@@ -42,7 +42,7 @@ public class PrecioProducto {
     private Iva codigoIva;
 
     @ManyToOne
-    @JoinColumn(name = "codigo_estado")
+    @JoinColumn(name = "estadoId")
     private Estado codigoEstado;
 
     public PrecioProducto() {

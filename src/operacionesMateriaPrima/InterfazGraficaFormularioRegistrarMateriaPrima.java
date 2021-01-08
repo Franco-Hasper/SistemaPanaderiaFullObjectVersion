@@ -28,7 +28,7 @@ public class InterfazGraficaFormularioRegistrarMateriaPrima extends InterfazGraf
 
     @Override
     public void nuevoFormularioRegistrar() {
-        FormularioRegistrarMateriaPrima formularioRegistrar = new FormularioRegistrarMateriaPrima(frame, true);
+        FormularioRegistrarMateriaPrima formularioRegistrar = new FormularioRegistrarMateriaPrima(frame, true);    
         formularioRegistrar.setPrincipalMateriaPrima(principalMateriaPrima);
         principalMateriaPrima.setRegistrarMateriaPrima(formularioRegistrar);
         agregarBoxes();

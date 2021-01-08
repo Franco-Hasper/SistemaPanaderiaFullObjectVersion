@@ -130,6 +130,7 @@ public class ABMMateriaPrima extends ABM {
         Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
 
         MateriaPrima m = (MateriaPrima) miSesion.get(MateriaPrima.class, id);
+        
 
         m.setNombre(formularioEditarMateriaPrima.getTxtNombreMAteriaPrima().getText());
 
@@ -148,6 +149,8 @@ public class ABMMateriaPrima extends ABM {
 
         MateriaPrima_Marca_Proveedor mtmrpr = (MateriaPrima_Marca_Proveedor) miSesion.get(MateriaPrima_Marca_Proveedor.class, idMtMrPr);
 
+        System.out.println(mtmrpr.getIdMateriaPrimaMarcaProveedor());
+        
         List<Marca> lista_marca
                 = (List<Marca>) miSesion.createQuery("from Marca").list();
         for (Marca mr : lista_marca) {

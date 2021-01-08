@@ -86,6 +86,7 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         lblSalir = new javax.swing.JLabel();
         btnEditar = new principal.MaterialButton();
+        btnEliminar2 = new principal.MaterialButton();
         btnEliminar1 = new principal.MaterialButton();
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
@@ -173,7 +174,10 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,10 +221,10 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         btnEditar.setBackground(new java.awt.Color(0, 0, 0,60));
@@ -234,6 +238,20 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar2.setBackground(new java.awt.Color(0, 0, 0,60));
+        btnEliminar2.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar2.setText("REPORTE DE GASTOS");
+        btnEliminar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar2.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnEliminar2.setMaximumSize(new java.awt.Dimension(130, 35));
+        btnEliminar2.setMinimumSize(new java.awt.Dimension(130, 35));
+        btnEliminar2.setPreferredSize(new java.awt.Dimension(130, 35));
+        btnEliminar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminar2ActionPerformed(evt);
             }
         });
 
@@ -262,7 +280,9 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEliminar2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -277,6 +297,7 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
                     .addComponent(btnNuevoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -331,7 +352,7 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar1ActionPerformed
-        abm.setPrincipalGasto(this);
+         abm.setPrincipalGasto(this);
         tablaGasto.setPrincipalGastos(this);
         if (tablaGasto.verificarFilaSeleccionada()) {
             if (OperacionesUtiles.mensajeEliminarRegistro()) {
@@ -347,6 +368,10 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
     private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked
         this.dispose();
     }//GEN-LAST:event_lblSalirMouseClicked
+
+    private void btnEliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar2ActionPerformed
+         // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminar2ActionPerformed
 
     public JPanel getPanelPrincipalTop() {
         return panelPrincipalTop;
@@ -392,6 +417,7 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButton btnEditar;
     private principal.MaterialButton btnEliminar1;
+    private principal.MaterialButton btnEliminar2;
     private principal.MaterialButton btnNuevoGasto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;

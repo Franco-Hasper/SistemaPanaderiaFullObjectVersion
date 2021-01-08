@@ -86,8 +86,7 @@ public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio 
         principalAdministrador.getCliente().getBtnnEditarCl().setEnabled(false);
         principalAdministrador.getCliente().getBtnnuevocliente().setEnabled(false);
         principalAdministrador.getCliente().getBtnCuenta().setEnabled(false);
-        principalAdministrador.getCliente().getBtnDirecciones().setEnabled(false);
-        principalAdministrador.getCliente().getBtnTelefonos().setEnabled(false);
+ 
     }
     public void habilitarBotones() {
         principalAdministrador.getCliente().getBtnSeleccionarCliente().setEnabled(false);
@@ -95,8 +94,7 @@ public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio 
         principalAdministrador.getCliente().getBtnnEditarCl().setEnabled(true);
         principalAdministrador.getCliente().getBtnnuevocliente().setEnabled(true);
         principalAdministrador.getCliente().getBtnCuenta().setEnabled(true);
-        principalAdministrador.getCliente().getBtnDirecciones().setEnabled(true);
-        principalAdministrador.getCliente().getBtnTelefonos().setEnabled(true);
+     
     }
     
 }

@@ -241,7 +241,7 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
 
         btnVentaWeb.setBackground(new java.awt.Color(0,0,0,60));
         btnVentaWeb.setForeground(new java.awt.Color(255, 255, 255));
-        btnVentaWeb.setText("NUEVO VENTA WEB");
+        btnVentaWeb.setText("WEB AFIP");
         btnVentaWeb.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVentaWeb.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         btnVentaWeb.setMinimumSize(new java.awt.Dimension(0, 0));

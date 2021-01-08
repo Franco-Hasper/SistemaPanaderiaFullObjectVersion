@@ -67,9 +67,7 @@ public class TablaProducto extends Tabla {
                 tablaProducto.addRow(fila);
             }
         }
-        System.out.println(listaResutladosActuales);
         OperacionesUtiles.ordenarLista(listaResutladosActuales);
-        System.out.println(listaResutladosActuales);
     }
 
     

@@ -82,6 +82,7 @@ public class TablaMateriaPrima extends Tabla {
         operacionesUtilidad.removerFilas(tablaMateriaPrima);
         try {
             this.listaResutladosActuales.clear();
+            this.listaResutladosActualesMtMrPr.clear();
         } catch (NullPointerException e) {
         }
 
@@ -90,8 +91,8 @@ public class TablaMateriaPrima extends Tabla {
 
             boolean resultadoComparacion = OperacionesUtiles.convertirResultado(mpm.getCodigoMateriaPrima().getNombre(), valorBusqueda);
             if (mpm.getCodigoMateriaPrima().getCodigoEstado().getIdEstado().equals(1) && resultadoComparacion) {
-                this.listaResutladosActuales.add(0, mpm.getIdMateriaPrimaMarcaProveedor());
-                this.listaResutladosActualesMtMrPr.add(0, mpm.getCodigoMateriaPrima().getIdMateriaPrima());
+                this.listaResutladosActuales.add(0, mpm.getCodigoMateriaPrima().getIdMateriaPrima());
+                this.listaResutladosActualesMtMrPr.add(0, mpm.getIdMateriaPrimaMarcaProveedor());
                 Vector<Object> fila = new Vector<>();
                 fila.add(mpm.getCodigoMateriaPrima().getNombre());
                 fila.add(mpm.getCodigoProveedor().getNombre());

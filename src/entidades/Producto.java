@@ -16,14 +16,14 @@ import javax.persistence.Table;
  * @author TELCOM MPC
  */
 @Entity
-@Table(name = "producto")
+@Table(name = "productos")
 public class Producto {
 
     @Id
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "id_producto")
+    @Column(name = "id")
     private Integer idProducto;
 
     @Column(name = "nombre")

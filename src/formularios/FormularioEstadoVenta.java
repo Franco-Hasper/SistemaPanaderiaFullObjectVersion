@@ -108,7 +108,7 @@ public class FormularioEstadoVenta extends javax.swing.JDialog {
 
         btnCancelar.setBackground(new java.awt.Color(0, 0, 0,60));
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setText("CANCELAR");
+        btnCancelar.setText("SALIR");
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         btnCancelar.setPreferredSize(new java.awt.Dimension(70, 50));
@@ -295,7 +295,7 @@ public class FormularioEstadoVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        OperacionesUtiles.mensajeCancelarFormulario(this);
+       this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed

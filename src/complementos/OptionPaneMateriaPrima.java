@@ -47,6 +47,7 @@ public class OptionPaneMateriaPrima extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         btnMateriaPrima = new javax.swing.JButton();
         btnIngresoMateriaPrima = new javax.swing.JButton();
+        lblSalir = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -56,9 +57,9 @@ public class OptionPaneMateriaPrima extends javax.swing.JDialog {
         jPanel2.setMaximumSize(new java.awt.Dimension(415, 300));
         jPanel2.setMinimumSize(new java.awt.Dimension(415, 300));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 204, 204), new java.awt.Color(153, 153, 153)));
-        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(102, 102, 102));
 
         btnMateriaPrima.setBackground(new java.awt.Color(153, 0, 51));
         btnMateriaPrima.setForeground(new java.awt.Color(255, 255, 255));
@@ -78,21 +79,34 @@ public class OptionPaneMateriaPrima extends javax.swing.JDialog {
             }
         });
 
+        lblSalir.setForeground(new java.awt.Color(0, 0, 0));
+        lblSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel_60px.png"))); // NOI18N
+        lblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSalirMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(111, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnIngresoMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(98, 98, 98))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
+                .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(btnMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
                 .addComponent(btnIngresoMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,6 +149,10 @@ public class OptionPaneMateriaPrima extends javax.swing.JDialog {
         interfazGraficaMateriaPrima.ejecutarNuevaVentana();
         this.dispose();
     }//GEN-LAST:event_btnMateriaPrimaActionPerformed
+
+    private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_lblSalirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -201,5 +219,6 @@ public class OptionPaneMateriaPrima extends javax.swing.JDialog {
     private javax.swing.JButton btnMateriaPrima;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblSalir;
     // End of variables declaration//GEN-END:variables
 }

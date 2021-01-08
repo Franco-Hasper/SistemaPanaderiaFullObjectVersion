@@ -304,7 +304,6 @@ public class OperacionesUtiles {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy (HH:mm:ss)");
         return dateFormat.format(fechaSinFormato);
-
     }
 
     /**
@@ -319,6 +318,22 @@ public class OperacionesUtiles {
         return dateFormat.format(fechaSinFormato);
 
     }
+    
+    
+        /**
+     * * Formatea la fecha indicada a yyyy-MM-dd
+     *
+     * @param fechaSinFormato
+     * @return
+     */
+    public static Object formatoFechaSinHoraYearFirst(Date fechaSinFormato) {
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(fechaSinFormato);
+
+    }
+    
+    
 
     /**
      * Devuelve true si la tabla pasada como parametro posee una fila

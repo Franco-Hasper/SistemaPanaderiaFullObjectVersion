@@ -1,15 +1,17 @@
 package escritorios;
 
-
 import clasesUtilidadGeneral.OperacionesUtiles;
 import formularios.FormularioEditarIngresoMateriaPrima;
 import formularios.FormularioRegistrarIngresoMateriaPrima;
+import formularios.FormularioReporteIngresoMateriaPrima;
+import java.awt.Frame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import operacionesIngresoMateriaPrima.ABMIngresoMateriaPrima;
 import operacionesIngresoMateriaPrima.InterfazGraficaFormularioEditarIngresoMateriaPrima;
 import operacionesIngresoMateriaPrima.InterfazGraficaFormularioRegistrarIngresoMateriaPrima;
+import operacionesIngresoMateriaPrima.InterfazGraficaReporteIngresos;
 import operacionesIngresoMateriaPrima.TablaIngresoMateriaPrima;
 
 import principal.MaterialButton;
@@ -20,7 +22,6 @@ import principal.MaterialButton;
  */
 public class PrincipalIngresoMatPrima extends javax.swing.JInternalFrame {
 
-
     public PrincipalIngresoMatPrima() {
         initComponents();
         registrarIngresoMateriaPrima = null;
@@ -28,8 +29,7 @@ public class PrincipalIngresoMatPrima extends javax.swing.JInternalFrame {
         popMenu.add(menu);
     }
 
-    
-     private InterfazGraficaFormularioRegistrarIngresoMateriaPrima formularioRegistrar;
+    private InterfazGraficaFormularioRegistrarIngresoMateriaPrima formularioRegistrar;
     private InterfazGraficaFormularioEditarIngresoMateriaPrima formularioEditar;
     private FormularioRegistrarIngresoMateriaPrima registrarIngresoMateriaPrima;
     private FormularioEditarIngresoMateriaPrima editarIngresoMateriaPrima;
@@ -75,14 +75,7 @@ public class PrincipalIngresoMatPrima extends javax.swing.JInternalFrame {
     public void setTablaIngresoMateriaPrima(TablaIngresoMateriaPrima tablaIngresoMateriaPrima) {
         this.tablaIngresoMateriaPrima = tablaIngresoMateriaPrima;
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
     public JTable getTabla() {
         return tablaGrafica;
     }
@@ -106,8 +99,6 @@ public class PrincipalIngresoMatPrima extends javax.swing.JInternalFrame {
     public void setTablaGrafica(JTable tablaGrafica) {
         this.tablaGrafica = tablaGrafica;
     }
-
-     
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -255,7 +246,7 @@ public class PrincipalIngresoMatPrima extends javax.swing.JInternalFrame {
 
         btnReporte.setBackground(new java.awt.Color(0,0,0,60));
         btnReporte.setForeground(new java.awt.Color(255, 255, 255));
-        btnReporte.setText("GENERAR REPORTE");
+        btnReporte.setText("REPORTE DE INGRESOS");
         btnReporte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReporte.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         btnReporte.addActionListener(new java.awt.event.ActionListener() {
@@ -352,6 +343,9 @@ public class PrincipalIngresoMatPrima extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarKeyTyped
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        InterfazGraficaReporteIngresos i = new InterfazGraficaReporteIngresos();
+        i.setPrincipalIngresoMateriaPrima(this);
+        i.nuevoFormularioReporte();
 
     }//GEN-LAST:event_btnReporteActionPerformed
 
@@ -389,9 +383,6 @@ public class PrincipalIngresoMatPrima extends javax.swing.JInternalFrame {
     public void setPanelPrincipalTop(JPanel panelPrincipalTop) {
         this.panelPrincipalTop = panelPrincipalTop;
     }
-
-
- 
 
     public MaterialButton getBtnEditar() {
         return btnEditar;

@@ -21,7 +21,6 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
     private PrincipalVenta principalVenta;
 
     private PrincipalAdministrador principalAdministrador;
-    
 
     public PrincipalAdministrador getPrincipalAdministrador() {
         return principalAdministrador;
@@ -39,7 +38,6 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
         this.principalVenta = principalVenta;
     }
 
-
     @Override
     public void nuevoFormularioRegistrar() {
         //seccion formulario
@@ -49,8 +47,8 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
         principalVenta.setRegistrarVenta(formularioRegistrar);
         infoTextPrompt();
         colorTema();
-        
-         //Seccion Tabla Productos Disponibles
+
+        //Seccion Tabla Productos Disponibles
         TablaProductosDisponibles tablaProductosDisponibles = new TablaProductosDisponibles();
         tablaProductosDisponibles.setPrincipalVenta(principalVenta);
         tablaProductosDisponibles.ejecutarRellenarTabla();
@@ -60,7 +58,7 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
         TablaProductosListados tablaProductosListados = new TablaProductosListados();
         principalVenta.getRegistrarVenta().setTablaProductosListados(tablaProductosListados);
         configuracionTxtCantidadTxtTotal();
-        
+
         //Seccion Operaciones Secundarias
         //creo el objeto operaciones secundarias
         OperacionesSecundariasVenta operacionesSecundariasVenta = new OperacionesSecundariasVenta();
@@ -70,7 +68,7 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
         operacionesSecundariasVenta.setTipoFormulario(1);
         //guardo el la instancia en el formulario grafico
         principalVenta.getRegistrarVenta().setOperacionesSecundariasVenta(operacionesSecundariasVenta);
-        
+
         rellenarBoxes();
         fechaActual();
         principalVenta.getRegistrarVenta().setVisible(true);
@@ -110,13 +108,5 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
         Date fechaActual = new Date();
         principalVenta.getRegistrarVenta().getrSDateChooser().setDatoFecha(fechaActual);
     }
-    
-    
-    
-    
-    
-    
-    
-    
 
 }

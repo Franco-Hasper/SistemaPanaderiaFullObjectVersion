@@ -67,20 +67,10 @@ public class TablaProductosListados extends Tabla {
         agregarProducto();
     }
 
-    public void quitarProducto() {
-        quitarIdsEnLista();
-        DefaultTableModel tablaProductosListados = (DefaultTableModel) getTablaProductosListados().getModel();
-        int filaSeleccionada = getTablaProductosListados().getSelectedRow();
-        tablaProductosListados.removeRow(filaSeleccionada);
-    }
-
-    public void quitarIdsEnLista() {
-        DefaultTableModel tablaProductosListados = (DefaultTableModel) getTablaProductosListados().getModel();
-        int filaSeleccionada = getTablaProductosListados().getSelectedRow();
-        listaProductosListados.remove(filaSeleccionada);
-    }
-
-    public void agregarProducto() {
+    
+    
+    
+        public void agregarProducto() {
         DefaultTableModel tablaProductosListados = (DefaultTableModel) getTablaProductosListados().getModel();
         DefaultTableModel tablaProductosDisponibles = (DefaultTableModel) getTabla().getModel();
         int filaSeleccionada = getTabla().getSelectedRow();
@@ -94,7 +84,8 @@ public class TablaProductosListados extends Tabla {
         tablaProductosListados.addRow(fila);
         conexion();
     }
-
+    
+        
     /**
      * abre una conexion para obtener la id de los prouctos listados desde
      * precio_producto
@@ -108,6 +99,33 @@ public class TablaProductosListados extends Tabla {
         } catch (Exception e) {
         }
     }
+        public void agregarIdsEnLista(Session miSesion) {
+        Integer totalFilasProductosDisponibles = getTabla().getRowCount();
+        Integer filasSeleccionadaProductosDisponibles = getTabla().getSelectedRow();
+        List<Integer> listaResutadosActuales = tablaRegistrarVenta.getListaResutladosActuales();
+        Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilasProductosDisponibles, filasSeleccionadaProductosDisponibles);
+        PrecioProducto prepro = (PrecioProducto) miSesion.get(PrecioProducto.class, id);
+        Integer idProductosDisponibles = prepro.getCodigoProducto().getIdProducto();
+        listaProductosListados.add(idProductosDisponibles);
+    }
+    
+    
+    
+    public void quitarProducto() {
+        quitarIdsEnLista();
+        DefaultTableModel tablaProductosListados = (DefaultTableModel) getTablaProductosListados().getModel();
+        int filaSeleccionada = getTablaProductosListados().getSelectedRow();
+        tablaProductosListados.removeRow(filaSeleccionada);
+    }
+
+    public void quitarIdsEnLista() {
+        DefaultTableModel tablaProductosListados = (DefaultTableModel) getTablaProductosListados().getModel();
+        int filaSeleccionada = getTablaProductosListados().getSelectedRow();
+        listaProductosListados.remove(filaSeleccionada);
+    }
+
+
+
 
     /**
      * Agrega la id del producto listado en un arreglo que se usara para guardar
@@ -117,15 +135,7 @@ public class TablaProductosListados extends Tabla {
      * @version 1.0
      * @since 2020-12-07
      */
-    public void agregarIdsEnLista(Session miSesion) {
-        Integer totalFilasProductosDisponibles = getTabla().getRowCount();
-        Integer filasSeleccionadaProductosDisponibles = getTabla().getSelectedRow();
-        List<Integer> listaResutadosActuales = tablaRegistrarVenta.getListaResutladosActuales();
-        Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilasProductosDisponibles, filasSeleccionadaProductosDisponibles);
-        PrecioProducto prepro = (PrecioProducto) miSesion.get(PrecioProducto.class, id);
-        Integer idProductosDisponibles = prepro.getCodigoProducto().getIdProducto();
-        listaProductosListados.add(idProductosDisponibles);
-    }
+
 
     @Override
     public boolean verificarFilaSeleccionada() {

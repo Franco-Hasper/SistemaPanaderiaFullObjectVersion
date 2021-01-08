@@ -185,7 +185,7 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
 
         btnGenerarReporte.setBackground(new java.awt.Color(0, 0, 0,60));
         btnGenerarReporte.setForeground(new java.awt.Color(255, 255, 255));
-        btnGenerarReporte.setText("GENERAR REPORTE");
+        btnGenerarReporte.setText("GENERAR COMPROBANTE");
         btnGenerarReporte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGenerarReporte.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         btnGenerarReporte.setMaximumSize(new java.awt.Dimension(170, 35));
@@ -224,8 +224,8 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblImporteTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelIngresoMateriaPrimaLayout.createSequentialGroup()
-                        .addComponent(btnGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))

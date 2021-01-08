@@ -159,7 +159,7 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("PROVEEDOR");
+        jLabel4.setText("PROVEEDORES");
 
         lblSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel_60px.png"))); // NOI18N
         lblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

@@ -45,10 +45,6 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
         this.tipoFormulario = tipoFormulario;
     }
     
-    
-
-
-
     public TablaCliente getTablaCliente() {
         return tablaCliente;
     }
@@ -132,8 +128,6 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lblSalir = new javax.swing.JLabel();
-        btnTelefonos = new principal.MaterialButton();
-        btnDirecciones = new principal.MaterialButton();
 
         panelPrincipalTop.setBackground(new java.awt.Color(204, 0, 0));
 
@@ -318,34 +312,6 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)))
         );
 
-        btnTelefonos.setBackground(new java.awt.Color(0, 0, 0,60));
-        btnTelefonos.setForeground(new java.awt.Color(255, 255, 255));
-        btnTelefonos.setText("TELEFONOS");
-        btnTelefonos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnTelefonos.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnTelefonos.setMaximumSize(new java.awt.Dimension(130, 35));
-        btnTelefonos.setMinimumSize(new java.awt.Dimension(130, 35));
-        btnTelefonos.setPreferredSize(new java.awt.Dimension(130, 35));
-        btnTelefonos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTelefonosActionPerformed(evt);
-            }
-        });
-
-        btnDirecciones.setBackground(new java.awt.Color(0, 0, 0,60));
-        btnDirecciones.setForeground(new java.awt.Color(255, 255, 255));
-        btnDirecciones.setText("DIRECCIONES");
-        btnDirecciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDirecciones.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnDirecciones.setMaximumSize(new java.awt.Dimension(130, 35));
-        btnDirecciones.setMinimumSize(new java.awt.Dimension(130, 35));
-        btnDirecciones.setPreferredSize(new java.awt.Dimension(130, 35));
-        btnDirecciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDireccionesActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelPrincipalTopLayout = new javax.swing.GroupLayout(panelPrincipalTop);
         panelPrincipalTop.setLayout(panelPrincipalTopLayout);
         panelPrincipalTopLayout.setHorizontalGroup(
@@ -360,12 +326,8 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDirecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTelefonos, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSeleccionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(397, 397, 397)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -382,9 +344,7 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
                     .addComponent(btnEliminarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnnEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnnuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTelefonos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDirecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -406,18 +366,15 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSeleccionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarClienteActionPerformed
-        OperacionesSecundariasVenta operacionesSecundariasVenta =new OperacionesSecundariasVenta ();
-        
+        OperacionesSecundariasVenta operacionesSecundariasVenta =new OperacionesSecundariasVenta (); 
         if(tipoFormulario==1){
             operacionesSecundariasVenta.setTipoFormulario(1);
             operacionesSecundariasVenta.setFormularioRegistrarVenta(formularioRegistrarVenta);
             operacionesSecundariasVenta.setPrincipalCliente(this);
             operacionesSecundariasVenta.rellenarTablaVentaCliente();
             operacionesSecundariasVenta.retornarFormularioVenta();
-            
         }else{
-            
-            
+
         }
         
     }//GEN-LAST:event_btnSeleccionarClienteActionPerformed
@@ -480,15 +437,6 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnnEditarClienteActionPerformed
 
-    private void btnTelefonosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTelefonosActionPerformed
-
-    }//GEN-LAST:event_btnTelefonosActionPerformed
-
-    private void btnDireccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDireccionesActionPerformed
-
-
-    }//GEN-LAST:event_btnDireccionesActionPerformed
-
     private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked
         this.dispose();
     }//GEN-LAST:event_lblSalirMouseClicked
@@ -501,21 +449,7 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
         this.panelPrincipalTop = panelPrincipalTop;
     }
 
-    public MaterialButton getBtnDirecciones() {
-        return btnDirecciones;
-    }
 
-    public void setBtnDirecciones(MaterialButton btnDirecciones) {
-        this.btnDirecciones = btnDirecciones;
-    }
-
-    public MaterialButton getBtnTelefonos() {
-        return btnTelefonos;
-    }
-
-    public void setBtnTelefonos(MaterialButton btnTelefonos) {
-        this.btnTelefonos = btnTelefonos;
-    }
 
     public MaterialButton getBtnnuevocliente() {
         return btnnuevoCliente;
@@ -560,10 +494,8 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButton btnCuenta;
-    private principal.MaterialButton btnDirecciones;
     private principal.MaterialButton btnEliminarCli;
     private principal.MaterialButton btnSeleccionarCliente;
-    private principal.MaterialButton btnTelefonos;
     private principal.MaterialButton btnnEditarCliente;
     private principal.MaterialButton btnnuevoCliente;
     private javax.swing.JLabel jLabel1;
