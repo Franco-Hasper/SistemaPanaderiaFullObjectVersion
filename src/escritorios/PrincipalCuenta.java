@@ -1,13 +1,12 @@
 package escritorios;
 
 
-import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import clasesUtilidadGeneral.OperacionesUtiles;
+import operacionesCuenta.TablaCuenta;
 import principal.MaterialButton;
 
 /**
@@ -22,6 +21,8 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         estadoInicialVentanaCuenta();
 
     }
+    
+    private TablaCuenta tablaCuenta;
 
     /**
      * Establece el estado inicial de los elementos de la pestaña Cuenta.
@@ -33,15 +34,6 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         txtMonto.setEnabled(false);
         btnGuardarMovimiento.setEnabled(false);
         lblMotivo.setEnabled(false);
-
-    }
-
-    public JComboBox<String> getBoxCuenta() {
-        return boxCuenta;
-    }
-
-    public void setBoxCuenta(JComboBox<String> boxCuenta) {
-        this.boxCuenta = boxCuenta;
     }
 
     public JLabel getLblNombre() {
@@ -52,13 +44,31 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         this.lblNombre = lblNombre;
     }
 
-    public JTable getTabla() {
-        return tabla;
+    public JTable getTablaGraficaCuenta() {
+        return tablaGraficaCuenta;
     }
 
-    public void setTabla(JTable tabla) {
-        this.tabla = tabla;
+    public void setTablaGraficaCuenta(JTable tablaGraficaCuenta) {
+        this.tablaGraficaCuenta = tablaGraficaCuenta;
     }
+
+    public JTable getTablaGraficaMovimiento() {
+        return tablaGraficaMovimiento;
+    }
+
+    public void setTablaGraficaMovimiento(JTable tablaGraficaMovimiento) {
+        this.tablaGraficaMovimiento = tablaGraficaMovimiento;
+    }
+
+    public TablaCuenta getTablaCuenta() {
+        return tablaCuenta;
+    }
+
+    public void setTablaCuenta(TablaCuenta tablaCuenta) {
+        this.tablaCuenta = tablaCuenta;
+    }
+
+
 
     public JLabel getLblBalance() {
         return lblBalance;
@@ -68,17 +78,25 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         this.lblBalance = lblBalance;
     }
 
+    public JPanel getPanelPrincipalTop() {
+        return panelPrincipalTop;
+    }
+
+    public void setPanelPrincipalTop(JPanel panelPrincipalTop) {
+        this.panelPrincipalTop = panelPrincipalTop;
+    }
+
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel_1_primario = new javax.swing.JPanel();
+        panelPrincipalTop = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla = new javax.swing.JTable();
+        tablaGraficaMovimiento = new javax.swing.JTable();
         lblMotivo = new javax.swing.JLabel();
-        txtBuscarHistorial = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         editPaneMotivo = new javax.swing.JEditorPane();
         btnGuardarMovimiento = new principal.MaterialButton();
@@ -91,7 +109,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         btnnEditarMov = new principal.MaterialButton();
         btnEliminarMov = new principal.MaterialButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaGraficaCuenta = new javax.swing.JTable();
         btnNuevaCuenta1 = new principal.MaterialButton();
         btnNuevaCuenta2 = new principal.MaterialButton();
         btnNuevaCuenta3 = new principal.MaterialButton();
@@ -99,21 +117,19 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         lblSalir = new javax.swing.JLabel();
-        boxCuenta = new javax.swing.JComboBox<>();
         lblBalance = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
 
-        panel_1_primario.setBackground(new java.awt.Color(204, 0, 0));
+        panelPrincipalTop.setBackground(new java.awt.Color(204, 0, 0));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabla.setBackground(new java.awt.Color(255, 255, 255));
-        tabla.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        tabla.setForeground(new java.awt.Color(102, 0, 0));
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
+        tablaGraficaMovimiento.setBackground(new java.awt.Color(255, 255, 255));
+        tablaGraficaMovimiento.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        tablaGraficaMovimiento.setForeground(new java.awt.Color(102, 0, 0));
+        tablaGraficaMovimiento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -129,35 +145,35 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabla.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tabla.setDoubleBuffered(true);
-        tabla.setRowHeight(40);
-        tabla.setSelectionBackground(new java.awt.Color(102, 0, 0));
-        tabla.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tabla.getTableHeader().setReorderingAllowed(false);
-        tabla.addComponentListener(new java.awt.event.ComponentAdapter() {
+        tablaGraficaMovimiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tablaGraficaMovimiento.setDoubleBuffered(true);
+        tablaGraficaMovimiento.setRowHeight(40);
+        tablaGraficaMovimiento.setSelectionBackground(new java.awt.Color(102, 0, 0));
+        tablaGraficaMovimiento.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tablaGraficaMovimiento.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablaGraficaMovimiento.getTableHeader().setReorderingAllowed(false);
+        tablaGraficaMovimiento.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentHidden(java.awt.event.ComponentEvent evt) {
-                tablaComponentHidden(evt);
+                tablaGraficaMovimientoGraficaMovimientoComponentHidden(evt);
             }
         });
-        jScrollPane1.setViewportView(tabla);
+        jScrollPane1.setViewportView(tablaGraficaMovimiento);
 
         lblMotivo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblMotivo.setText("  MOTIVO:");
 
-        txtBuscarHistorial.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
-        txtBuscarHistorial.addActionListener(new java.awt.event.ActionListener() {
+        txtBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarHistorialActionPerformed(evt);
+                txtBuscarActionPerformed(evt);
             }
         });
-        txtBuscarHistorial.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtBuscarHistorialKeyReleased(evt);
+                txtBuscarKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtBuscarHistorialKeyTyped(evt);
+                txtBuscarKeyTyped(evt);
             }
         });
 
@@ -250,7 +266,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaGraficaCuenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -258,7 +274,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
                 "Numero de Cuenta", "Balance"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tablaGraficaCuenta);
 
         btnNuevaCuenta1.setBackground(new java.awt.Color(0, 0, 0,60));
         btnNuevaCuenta1.setForeground(new java.awt.Color(255, 255, 255));
@@ -309,8 +325,8 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
                         .addComponent(btnEliminarMov, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnNuevaCuenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtBuscarHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 827, Short.MAX_VALUE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,45 +339,44 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnGuardarMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(lblMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(editPaneMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(354, 1329, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(editPaneMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(txtMontoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnNuevaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnNuevaCuenta2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(btnGuardarCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(294, 294, 294)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(btnNuevaCuenta2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnNuevaCuenta3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(btnNuevaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtMontoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnGuardarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 720, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(jSeparator2)
             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(428, 428, 428)
-                    .addComponent(btnNuevaCuenta3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(1110, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnNuevaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnNuevaCuenta2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtMontoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnGuardarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnGuardarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnNuevaCuenta2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNuevaCuenta3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNuevoMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -379,16 +394,11 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminarMov, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnnEditarMov, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBuscarHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNuevaCuenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(btnNuevaCuenta3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(815, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
         );
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/accounting_80px.png"))); // NOI18N
@@ -434,21 +444,10 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
                     .addGap(16, 16, 16)))
         );
 
-        boxCuenta.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        boxCuenta.setForeground(new java.awt.Color(255, 255, 255));
-        boxCuenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxCuentaActionPerformed(evt);
-            }
-        });
-
         lblBalance.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setText("BALANCE DE LA CUENTA:");
-
-        jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel8.setText("SELECCIONAR CUENTA: ");
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setText("    CLIENTE:");
@@ -456,47 +455,40 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         lblNombre.setBackground(new java.awt.Color(255, 255, 255));
         lblNombre.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        javax.swing.GroupLayout panel_1_primarioLayout = new javax.swing.GroupLayout(panel_1_primario);
-        panel_1_primario.setLayout(panel_1_primarioLayout);
-        panel_1_primarioLayout.setHorizontalGroup(
-            panel_1_primarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelPrincipalTopLayout = new javax.swing.GroupLayout(panelPrincipalTop);
+        panelPrincipalTop.setLayout(panelPrincipalTopLayout);
+        panelPrincipalTopLayout.setHorizontalGroup(
+            panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_1_primarioLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalTopLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(boxCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(360, 360, 360)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(743, Short.MAX_VALUE))
+                .addContainerGap(746, Short.MAX_VALUE))
         );
-        panel_1_primarioLayout.setVerticalGroup(
-            panel_1_primarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_1_primarioLayout.createSequentialGroup()
+        panelPrincipalTopLayout.setVerticalGroup(
+            panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrincipalTopLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(panel_1_primarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel_1_primarioLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(panel_1_primarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boxCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panel_1_primarioLayout.createSequentialGroup()
+                .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPrincipalTopLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPrincipalTopLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panel_1_primarioLayout.createSequentialGroup()
+                    .addGroup(panelPrincipalTopLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panel_1_primarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -506,19 +498,19 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_1_primario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPrincipalTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_1_primario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPrincipalTop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tablaComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tablaComponentHidden
+    private void tablaGraficaMovimientoGraficaMovimientoComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tablaGraficaMovimientoGraficaMovimientoComponentHidden
         // TODO add your handling code here:
-    }//GEN-LAST:event_tablaComponentHidden
+    }//GEN-LAST:event_tablaGraficaMovimientoGraficaMovimientoComponentHidden
 
     private void btnNuevaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCuentaActionPerformed
          // TODO add your handling code here:
@@ -526,23 +518,19 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnNuevaCuentaActionPerformed
 
-    private void txtBuscarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarHistorialActionPerformed
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarHistorialActionPerformed
+    }//GEN-LAST:event_txtBuscarActionPerformed
 
-    private void txtBuscarHistorialKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarHistorialKeyReleased
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
      
-    }//GEN-LAST:event_txtBuscarHistorialKeyReleased
+    }//GEN-LAST:event_txtBuscarKeyReleased
 
-    private void txtBuscarHistorialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarHistorialKeyTyped
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
         // TODO add your handling code here:
 
 
-    }//GEN-LAST:event_txtBuscarHistorialKeyTyped
-
-    private void boxCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxCuentaActionPerformed
-      
-    }//GEN-LAST:event_boxCuentaActionPerformed
+    }//GEN-LAST:event_txtBuscarKeyTyped
 
     private void btnGuardarMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarMovimientoActionPerformed
      
@@ -593,11 +581,11 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNuevaCuenta3ActionPerformed
 
     public JPanel getPanel_1_primario() {
-        return panel_1_primario;
+        return panelPrincipalTop;
     }
 
     public void setPanel_1_primario(JPanel panel_1_primario) {
-        this.panel_1_primario = panel_1_primario;
+        this.panelPrincipalTop = panel_1_primario;
     }
 
     public MaterialButton getBtnGuardarCuenta() {
@@ -648,14 +636,16 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         this.lblMotivo = lblMotivo;
     }
 
-
-    public JTextField getTxtBuscarHistorial() {
-        return txtBuscarHistorial;
+    public JTextField getTxtBuscar() {
+        return txtBuscar;
     }
 
-    public void setTxtBuscarHistorial(JTextField txtBuscarHistorial) {
-        this.txtBuscarHistorial = txtBuscarHistorial;
+    public void setTxtBuscar(JTextField txtBuscar) {
+        this.txtBuscar = txtBuscar;
     }
+
+
+  
 
     public MaterialButton getBtnEliminarMov() {
         return btnEliminarMov;
@@ -692,7 +682,6 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
 //
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> boxCuenta;
     private principal.MaterialButton btnEliminarMov;
     private principal.MaterialButton btnGuardarCuenta;
     private principal.MaterialButton btnGuardarMovimiento;
@@ -707,21 +696,20 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblBalance;
     private javax.swing.JLabel lblMotivo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblSalir;
-    private javax.swing.JPanel panel_1_primario;
-    private javax.swing.JTable tabla;
-    private javax.swing.JTextField txtBuscarHistorial;
+    private javax.swing.JPanel panelPrincipalTop;
+    private javax.swing.JTable tablaGraficaCuenta;
+    private javax.swing.JTable tablaGraficaMovimiento;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtMonto;
     private javax.swing.JTextField txtMontoInicial;
     // End of variables declaration//GEN-END:variables

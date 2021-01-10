@@ -46,7 +46,8 @@ public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio 
             InterfazGraficaFormularioEditarCliente formularioEditar = new InterfazGraficaFormularioEditarCliente();
             principalAdministrador.getCliente().setFormularioRegistrar(formularioRegistrar);
             principalAdministrador.getCliente().setFormularioEditar(formularioEditar);
-           
+            //solo para pasar admin al EscritorioCuenta
+            principalAdministrador.getCliente().setPrincipalAdministrador(principalAdministrador);
             if(caso){
                 //
             }else{

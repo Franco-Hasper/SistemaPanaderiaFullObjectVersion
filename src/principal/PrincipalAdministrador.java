@@ -5,6 +5,7 @@ import complementos.OptionPaneMateriaPrima;
 import escritorios.PrincipalCaja;
 import escritorios.PrincipalCliente;
 import escritorios.PrincipalConfiguracion;
+import escritorios.PrincipalCuenta;
 import escritorios.PrincipalGastos;
 import escritorios.PrincipalIngresoMatPrima;
 import escritorios.PrincipalMateriaPrima;
@@ -42,6 +43,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         configuracion = null;
         materiaPrima = null;
         ingresoMateriaPrima = null;
+        cuenta=null;
         setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -56,6 +58,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private PrincipalMateriaPrima materiaPrima;
     private PrincipalConfiguracion configuracion;
     private PrincipalIngresoMatPrima ingresoMateriaPrima;
+    private PrincipalCuenta cuenta;
 
     //se utiliza en los metodos de apertura de ventana-clases de control.
     private final InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
@@ -157,6 +160,16 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public void setConfiguracion(PrincipalConfiguracion configuracion) {
         this.configuracion = configuracion;
     }
+
+    public PrincipalCuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(PrincipalCuenta cuenta) {
+        this.cuenta = cuenta;
+    }
+    
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

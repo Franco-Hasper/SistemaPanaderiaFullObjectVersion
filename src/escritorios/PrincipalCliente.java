@@ -13,6 +13,7 @@ import operacionesCaja.OperacionesSecundariasCaja;
 import operacionesCliente.InterfazGraficaFormularioEditarCliente;
 import operacionesCliente.InterfazGraficaFormularioRegistrarCliente;
 import operacionesVenta.OperacionesSecundariasVenta;
+import operacionesCuenta.InterfazGraficaEscritorioCuenta;
 import principal.MaterialButton;
 import principal.PrincipalAdministrador;
 
@@ -36,6 +37,8 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     private final ABMCliente abm = new ABMCliente();
     private FormularioRegistrarVenta formularioRegistrarVenta;
     private int tipoFormulario;
+    private final InterfazGraficaEscritorioCuenta interfazGraficaCuenta = new InterfazGraficaEscritorioCuenta();
+    private PrincipalAdministrador principalAdministrador;
 
     public int getTipoFormulario() {
         return tipoFormulario;
@@ -44,7 +47,7 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     public void setTipoFormulario(int tipoFormulario) {
         this.tipoFormulario = tipoFormulario;
     }
-    
+
     public TablaCliente getTablaCliente() {
         return tablaCliente;
     }
@@ -108,8 +111,15 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     public void setFormularioRegistrarVenta(FormularioRegistrarVenta formularioRegistrarVenta) {
         this.formularioRegistrarVenta = formularioRegistrarVenta;
     }
-    
-    
+
+    public PrincipalAdministrador getPrincipalAdministrador() {
+        return principalAdministrador;
+    }
+
+    public void setPrincipalAdministrador(PrincipalAdministrador principalAdministrador) {
+        this.principalAdministrador = principalAdministrador;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -366,17 +376,17 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSeleccionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarClienteActionPerformed
-        OperacionesSecundariasVenta operacionesSecundariasVenta =new OperacionesSecundariasVenta (); 
-        if(tipoFormulario==1){
+        OperacionesSecundariasVenta operacionesSecundariasVenta = new OperacionesSecundariasVenta();
+        if (tipoFormulario == 1) {
             operacionesSecundariasVenta.setTipoFormulario(1);
             operacionesSecundariasVenta.setFormularioRegistrarVenta(formularioRegistrarVenta);
             operacionesSecundariasVenta.setPrincipalCliente(this);
             operacionesSecundariasVenta.rellenarTablaVentaCliente();
             operacionesSecundariasVenta.retornarFormularioVenta();
-        }else{
+        } else {
 
         }
-        
+
     }//GEN-LAST:event_btnSeleccionarClienteActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
@@ -404,7 +414,12 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnnuevoClienteActionPerformed
 
     private void btnCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuentaActionPerformed
-
+        interfazGraficaCuenta.setPrincipalAdministrador(this.getPrincipalAdministrador());
+        tablaCliente.setPrincipalCliente(this);
+        if (tablaCliente.verificarFilaSeleccionada()) {
+            interfazGraficaCuenta.setIdCliente(tablaCliente.obtenerIdFilaSeleccionada());
+            interfazGraficaCuenta.ejecutarNuevaVentana();
+        }
 
     }//GEN-LAST:event_btnCuentaActionPerformed
 
@@ -448,8 +463,6 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     public void setPanelPrincipalTop(JPanel panelPrincipalTop) {
         this.panelPrincipalTop = panelPrincipalTop;
     }
-
-
 
     public MaterialButton getBtnnuevocliente() {
         return btnnuevoCliente;

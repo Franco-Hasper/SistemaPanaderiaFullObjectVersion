@@ -9,6 +9,7 @@ import entidades.Direccion_Cliente;
 import entidades.TelefonoCliente;
 import escritorios.PrincipalCliente;
 import clasesUtilidadGeneral.OperacionesUtiles;
+import ds.desktop.notify.DesktopNotify;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -144,7 +145,8 @@ public class TablaCliente extends Tabla {
             principalCliente.getTablaGrafica().getValueAt(fila, 0).toString();
             return true;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            
+            DesktopNotify.showDesktopMessage("Informacion", "Debe seleccionar una fila", DesktopNotify.INFORMATION, 7000);
             return false;
         }
     }
