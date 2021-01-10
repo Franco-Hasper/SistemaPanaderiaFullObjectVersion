@@ -103,8 +103,6 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
         txtBuscar = new javax.swing.JTextField();
         btnEliminar = new principal.MaterialButton();
         btnEditar = new principal.MaterialButton();
-        btnTelefonos = new principal.MaterialButton();
-        btnDirecciones = new principal.MaterialButton();
 
         panelPrincipalTop.setBackground(new java.awt.Color(204, 0, 0));
         panelPrincipalTop.setForeground(new java.awt.Color(255, 255, 255));
@@ -240,28 +238,6 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
             }
         });
 
-        btnTelefonos.setBackground(new java.awt.Color(0,0,0,60));
-        btnTelefonos.setForeground(new java.awt.Color(255, 255, 255));
-        btnTelefonos.setText("TELEFONOS");
-        btnTelefonos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnTelefonos.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnTelefonos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTelefonosActionPerformed(evt);
-            }
-        });
-
-        btnDirecciones.setBackground(new java.awt.Color(0,0,0,60));
-        btnDirecciones.setForeground(new java.awt.Color(255, 255, 255));
-        btnDirecciones.setText("DIRECCIONES");
-        btnDirecciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDirecciones.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnDirecciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDireccionesActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelPrincipalTopLayout = new javax.swing.GroupLayout(panelPrincipalTop);
         panelPrincipalTop.setLayout(panelPrincipalTopLayout);
         panelPrincipalTopLayout.setHorizontalGroup(
@@ -275,11 +251,7 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDirecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnTelefonos, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 652, Short.MAX_VALUE)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -292,9 +264,7 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
                     .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTelefonos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDirecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -352,14 +322,6 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnTelefonosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTelefonosActionPerformed
-
-    }//GEN-LAST:event_btnTelefonosActionPerformed
-
-    private void btnDireccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDireccionesActionPerformed
-
-    }//GEN-LAST:event_btnDireccionesActionPerformed
-
     private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked
         this.dispose();
     }//GEN-LAST:event_lblSalirMouseClicked
@@ -382,10 +344,8 @@ public class PrincipalProveedor extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private principal.MaterialButton btnDirecciones;
     private principal.MaterialButton btnEditar;
     private principal.MaterialButton btnEliminar;
-    private principal.MaterialButton btnTelefonos;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

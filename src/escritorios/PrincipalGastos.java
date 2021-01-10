@@ -11,6 +11,7 @@ import formularios.FormularioRegistrarGasto;
 import javax.swing.JTable;
 import operacionesGasto.InterfazGraficaFormularioEditarGasto;
 import operacionesGasto.InterfazGraficaFormularioRegistrarGasto;
+import operacionesGasto.InterfazGraficaReporteGastos;
 
 import principal.MaterialButton;
 
@@ -174,10 +175,7 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addComponent(jScrollPane1)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,7 +368,9 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblSalirMouseClicked
 
     private void btnEliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar2ActionPerformed
-         // TODO add your handling code here:
+          InterfazGraficaReporteGastos i = new InterfazGraficaReporteGastos();
+        i.setPrincipalGastos(this);
+        i.nuevoFormularioReporte();
     }//GEN-LAST:event_btnEliminar2ActionPerformed
 
     public JPanel getPanelPrincipalTop() {

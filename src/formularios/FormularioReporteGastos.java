@@ -1,6 +1,7 @@
 package formularios;
 
 import com.itextpdf.text.DocumentException;
+import escritorios.PrincipalGastos;
 import escritorios.PrincipalIngresoMatPrima;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
@@ -8,6 +9,7 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import operacionesGasto.ReporteGastos;
 import operacionesIngresoMateriaPrima.ReporteIngresos;
 
 import principal.MaterialButton;
@@ -18,34 +20,40 @@ import rojeru_san.componentes.RSDateChooser;
  *
  * @author FRANCO
  */
-public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
+public class FormularioReporteGastos extends javax.swing.JDialog {
 
     
-    private ReporteIngresos reporteIngresos;
-     private PrincipalIngresoMatPrima principalIngresoMateriaPrima;
+    private ReporteGastos reporteGastos;
+     private PrincipalGastos principalGastos;
     
     
-    public FormularioReporteIngresoMateriaPrima(java.awt.Frame parent, boolean modal) {
+    public FormularioReporteGastos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
-    public ReporteIngresos getReporteIngresos() {
-        return reporteIngresos;
+    public ReporteGastos getReporteGastos() {
+        return reporteGastos;
     }
 
-    public void setReporteIngresos(ReporteIngresos reporteIngresos) {
-        this.reporteIngresos = reporteIngresos;
+    public void setReporteGastos(ReporteGastos reporteGastos) {
+        this.reporteGastos = reporteGastos;
     }
 
-    public PrincipalIngresoMatPrima getPrincipalIngresoMateriaPrima() {
-        return principalIngresoMateriaPrima;
+
+
+    public PrincipalGastos getPrincipalGastos() {
+        return principalGastos;
     }
 
-    public void setPrincipalIngresoMateriaPrima(PrincipalIngresoMatPrima principalIngresoMateriaPrima) {
-        this.principalIngresoMateriaPrima = principalIngresoMateriaPrima;
+    public void setPrincipalGastos(PrincipalGastos principalGastos) {
+        this.principalGastos = principalGastos;
     }
+
+    
+    
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -80,7 +88,7 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("BUSCAR INGRESOS ");
+        jLabel1.setText("BUSCAR GASTOS ");
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/report_card_80px.png"))); // NOI18N
 
@@ -110,7 +118,7 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setText("LISTA DE INGRESOS:");
+        jLabel4.setText("LISTA DE GASTOS:");
 
         lbl.setText("IMPORTE TOTAL:");
 
@@ -119,11 +127,11 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
 
             },
             new String [] {
-                "MATERIA PRIMA", "TOTAL ENVASES", "UDS POR ENVASE", "TOTAL GASTADO", "FECHA"
+                "DESCRIPCIÓN", "TOTAL GASTADO", "FECHA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -200,10 +208,10 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
                                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(123, 123, 123))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelIngresoMateriaPrimaLayout.createSequentialGroup()
-                        .addGroup(PanelIngresoMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(PanelIngresoMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(PanelIngresoMateriaPrimaLayout.createSequentialGroup()
                                 .addComponent(fechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel4)
                                 .addGap(26, 26, 26)
                                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -274,16 +282,16 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
     }//GEN-LAST:event_PanelIngresoMateriaPrimaMouseDragged
      
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       reporteIngresos.ejecutarBusqueda();
+       reporteGastos.ejecutarBusqueda();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
         try {
-            reporteIngresos.ejecutarGenerarReportes();
+            reporteGastos.ejecutarGenerarReportes();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(FormularioReporteIngresoMateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormularioReporteGastos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
-            Logger.getLogger(FormularioReporteIngresoMateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormularioReporteGastos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
@@ -308,21 +316,23 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormularioReporteIngresoMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioReporteGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormularioReporteIngresoMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioReporteGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormularioReporteIngresoMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioReporteGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormularioReporteIngresoMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioReporteGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FormularioReporteIngresoMateriaPrima dialog = new FormularioReporteIngresoMateriaPrima(new javax.swing.JFrame(), true);
+                FormularioReporteGastos dialog = new FormularioReporteGastos(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
