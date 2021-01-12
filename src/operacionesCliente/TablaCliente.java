@@ -75,6 +75,21 @@ public class TablaCliente extends Tabla {
         return idTabla;
     }
 
+    public String obtenerNombreApellidoFilaSeleccionada() {
+        String nombre;
+        String apellido;
+        String nombreApellido;
+        try {
+            int fila = principalCliente.getTablaGrafica().getSelectedRow();
+            nombre = principalCliente.getTablaGrafica().getValueAt(fila, 0).toString();
+            apellido = principalCliente.getTablaGrafica().getValueAt(fila, 1).toString();
+            nombreApellido = nombre + " " + apellido;
+            return nombreApellido;
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
     @Override
     public void rellenarTabla(String valorBusqueda) {
 
@@ -145,7 +160,7 @@ public class TablaCliente extends Tabla {
             principalCliente.getTablaGrafica().getValueAt(fila, 0).toString();
             return true;
         } catch (Exception e) {
-            
+
             DesktopNotify.showDesktopMessage("Informacion", "Debe seleccionar una fila", DesktopNotify.INFORMATION, 7000);
             return false;
         }

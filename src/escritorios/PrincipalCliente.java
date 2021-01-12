@@ -9,7 +9,6 @@ import clasesUtilidadGeneral.OperacionesUtiles;
 import formularios.FormularioEditarCliente;
 import formularios.FormularioRegistrarCliente;
 import formularios.FormularioRegistrarVenta;
-import operacionesCaja.OperacionesSecundariasCaja;
 import operacionesCliente.InterfazGraficaFormularioEditarCliente;
 import operacionesCliente.InterfazGraficaFormularioRegistrarCliente;
 import operacionesVenta.OperacionesSecundariasVenta;
@@ -417,8 +416,12 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
         interfazGraficaCuenta.setPrincipalAdministrador(this.getPrincipalAdministrador());
         tablaCliente.setPrincipalCliente(this);
         if (tablaCliente.verificarFilaSeleccionada()) {
-            interfazGraficaCuenta.setIdCliente(tablaCliente.obtenerIdFilaSeleccionada());
-            interfazGraficaCuenta.ejecutarNuevaVentana();
+            if (tablaCliente.verficarClienteNoconsumidorFinal(2)) {
+                interfazGraficaCuenta.setNombreCliente(tablaCliente.obtenerNombreApellidoFilaSeleccionada());
+                interfazGraficaCuenta.setIdCliente(tablaCliente.obtenerIdFilaSeleccionada());
+                interfazGraficaCuenta.ejecutarNuevaVentana();
+            }
+
         }
 
     }//GEN-LAST:event_btnCuentaActionPerformed

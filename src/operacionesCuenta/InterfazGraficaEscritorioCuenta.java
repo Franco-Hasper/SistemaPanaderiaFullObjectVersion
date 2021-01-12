@@ -12,6 +12,9 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 public class InterfazGraficaEscritorioCuenta  extends InterfazGraficaEscritorio {
 
     private Integer idCliente;
+    
+    private  String nombreCliente;
+    
 
     public Integer getIdCliente() {
         return idCliente;
@@ -20,6 +23,15 @@ public class InterfazGraficaEscritorioCuenta  extends InterfazGraficaEscritorio 
     public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
+
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+    
     
     
     @Override
@@ -38,7 +50,11 @@ public class InterfazGraficaEscritorioCuenta  extends InterfazGraficaEscritorio 
             tablaCuenta.setPrincipalCuenta(principalAdministrador.getCuenta());
             tablaCuenta.setIdCliente(idCliente);
             tablaCuenta.ejecutarRellenarTabla();
+            TablaMovimientoCuenta tablaMovimientoCuenta = new TablaMovimientoCuenta();
+            tablaMovimientoCuenta.setPrincipalCuenta(principalAdministrador.getCuenta());
+            insertarNombreCliente();
             principalAdministrador.getCuenta().setTablaCuenta(tablaCuenta);
+            principalAdministrador.getCuenta().setTablaMovimientoCuenta(tablaMovimientoCuenta);
             InterfazGraficaFormularioEditarCuenta formularioEditar = new InterfazGraficaFormularioEditarCuenta();
           //  principalAdministrador.getCuenta().setFormularioEditar(formularioEditar);
             principalAdministrador.getCuenta().show();
@@ -63,5 +79,8 @@ public class InterfazGraficaEscritorioCuenta  extends InterfazGraficaEscritorio 
         principalAdministrador.getCuenta().getTablaGraficaMovimiento().setSelectionBackground(principalAdministrador.getPanelPrincipalTop().getBackground());
     }
     
-
+    private void insertarNombreCliente(){
+         principalAdministrador.getCuenta().getLblNombre().setText(this.nombreCliente);
+    }
+    
 }
