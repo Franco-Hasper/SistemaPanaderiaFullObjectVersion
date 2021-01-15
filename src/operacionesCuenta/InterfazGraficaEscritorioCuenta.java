@@ -50,6 +50,7 @@ public class InterfazGraficaEscritorioCuenta  extends InterfazGraficaEscritorio 
             tablaCuenta.setPrincipalCuenta(principalAdministrador.getCuenta());
             tablaCuenta.setIdCliente(idCliente);
             tablaCuenta.ejecutarRellenarTabla();
+            principalAdministrador.getCuenta().setIdCliente(idCliente);
             TablaMovimientoCuenta tablaMovimientoCuenta = new TablaMovimientoCuenta();
             tablaMovimientoCuenta.setPrincipalCuenta(principalAdministrador.getCuenta());
             insertarNombreCliente();
@@ -81,6 +82,33 @@ public class InterfazGraficaEscritorioCuenta  extends InterfazGraficaEscritorio 
     
     private void insertarNombreCliente(){
          principalAdministrador.getCuenta().getLblNombre().setText(this.nombreCliente);
+    }
+    
+    
+    public void habilitarNuevaCuenta(PrincipalCuenta p) {
+        p.getTxtMontoInicial().setEnabled(true);
+        p.getBtnGuardarCuenta().setEnabled(true);
+    }
+    
+    public void habilitarNuevoMovimientoCuenta(PrincipalCuenta p) {
+        p.getEditPaneMotivo().setEnabled(true);
+         p.getTxtMonto().setEnabled(true);
+        p.getBtnGuardarMovimiento().setEnabled(true);
+    }
+    
+       public void desHabilitarNuevoMovimientoCuenta(PrincipalCuenta p) {
+        p.getEditPaneMotivo().setEnabled(false);
+        p.getTxtMonto().setEnabled(false);
+        p.getBtnGuardarMovimiento().setEnabled(false);
+        p.getEditPaneMotivo().setText("");
+        p.getTxtMonto().setText("");
+        
+    }
+    
+       public void desHabilitarNuevaCuenta(PrincipalCuenta p) {
+        p.getTxtMontoInicial().setEnabled(false);
+        p.getBtnGuardarCuenta().setEnabled(false);
+        p.getTxtMontoInicial().setText("");
     }
     
 }

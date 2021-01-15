@@ -1,11 +1,16 @@
 package escritorios;
 
-
+import clasesUtilidadGeneral.OperacionesUtiles;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import operacionesCuenta.ABMCuenta;
+import operacionesCuenta.ABMMovimientoCuenta;
+import operacionesCuenta.InterfazGraficaEscritorioCuenta;
 import operacionesCuenta.TablaCuenta;
 import operacionesCuenta.TablaMovimientoCuenta;
 import principal.MaterialButton;
@@ -16,16 +21,17 @@ import principal.MaterialButton;
  */
 public class PrincipalCuenta extends javax.swing.JInternalFrame {
 
-
     public PrincipalCuenta() {
         initComponents();
         estadoInicialVentanaCuenta();
 
     }
-    
+
     private TablaCuenta tablaCuenta;
     private TablaMovimientoCuenta tablaMovimientoCuenta;
-
+    private Integer idCliente;
+    private final ABMCuenta abm = new ABMCuenta();
+    private final ABMMovimientoCuenta abmMovimiento = new ABMMovimientoCuenta();
 
     /**
      * Establece el estado inicial de los elementos de la pestaña Cuenta.
@@ -87,7 +93,26 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         this.panelPrincipalTop = panelPrincipalTop;
     }
 
-   
+    public Integer getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public List getListaCamposCuenta() {
+        List listCamposTexto = new ArrayList();
+        listCamposTexto.add(this.getTxtMontoInicial());
+        return listCamposTexto;
+    }
+
+    public List getListaCamposMovimientoCuenta() {
+        List listCamposTexto = new ArrayList();
+        listCamposTexto.add(this.getTxtMonto());
+        return listCamposTexto;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -504,9 +529,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tablaGraficaMovimientoGraficaMovimientoComponentHidden
 
     private void btnNuevaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCuentaActionPerformed
-         // TODO add your handling code here:
-       
-
+        new InterfazGraficaEscritorioCuenta().habilitarNuevaCuenta(this);
     }//GEN-LAST:event_btnNuevaCuentaActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
@@ -524,27 +547,51 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarKeyTyped
 
     private void btnGuardarMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarMovimientoActionPerformed
-     
+        abmMovimiento.setPrincipalCuenta(this);
+        if (abmMovimiento.ejecutarRegistrar()) {
+            tablaCuenta.setEstadoConsulta(0);
+            tablaCuenta.ejecutarRellenarTabla();
+            tablaMovimientoCuenta.setEstadoConsulta(0);
+            tablaMovimientoCuenta.ejecutarRellenarTabla();
+            new InterfazGraficaEscritorioCuenta().desHabilitarNuevoMovimientoCuenta(this);
+        }
     }//GEN-LAST:event_btnGuardarMovimientoActionPerformed
 
     private void btnGuardarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCuentaActionPerformed
-      
+        abm.setPrincipalCuenta(this);
+        if (abm.ejecutarRegistrar()) {
+            tablaCuenta.setEstadoConsulta(0);
+            tablaCuenta.ejecutarRellenarTabla();
+            new InterfazGraficaEscritorioCuenta().desHabilitarNuevaCuenta(this);
+        }
     }//GEN-LAST:event_btnGuardarCuentaActionPerformed
 
     private void btnNuevoMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoMovimientoActionPerformed
-      
+        new InterfazGraficaEscritorioCuenta().habilitarNuevoMovimientoCuenta(this);
     }//GEN-LAST:event_btnNuevoMovimientoActionPerformed
 
     private void txtMontoInicialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoInicialKeyTyped
-       
+
     }//GEN-LAST:event_txtMontoInicialKeyTyped
 
     private void btnnEditarMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnEditarMovActionPerformed
-     
+
     }//GEN-LAST:event_btnnEditarMovActionPerformed
 
     private void btnEliminarMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMovActionPerformed
-       
+        abmMovimiento.setPrincipalCuenta(this);
+        if (tablaMovimientoCuenta.verificarFilaSeleccionada()) {
+            if (OperacionesUtiles.mensajeEliminarRegistro()) {
+                if (abmMovimiento.ejecutarEliminar()) {
+                    //Quitar este if y autoseleccionar la fial, por que se deselecciona luego de una actualización
+                    if (tablaCuenta.verificarFilaSeleccionada()) {
+                        abmMovimiento.ejecutarActualizarMovimientoCuenta();
+                        tablaMovimientoCuenta.setEstadoConsulta(0);
+                        tablaMovimientoCuenta.ejecutarRellenarTabla();
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_btnEliminarMovActionPerformed
 
     private void txtMontoInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoInicialActionPerformed
@@ -560,7 +607,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblSalirMouseClicked
 
     private void btnNuevaCuenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCuenta1ActionPerformed
-         // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnNuevaCuenta1ActionPerformed
 
     private void btnNuevaCuenta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCuenta2ActionPerformed
@@ -568,13 +615,22 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNuevaCuenta2ActionPerformed
 
     private void btnNuevaCuenta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCuenta3ActionPerformed
-        // TODO add your handling code here:
+        abm.setPrincipalCuenta(this);
+        if (tablaCuenta.verificarFilaSeleccionada()) {
+            if (OperacionesUtiles.mensajeEliminarRegistro()) {
+                if (abm.ejecutarEliminar()) {
+                    tablaCuenta.setEstadoConsulta(0);
+                    tablaCuenta.ejecutarRellenarTabla();
+                }
+            }
+        }
+
     }//GEN-LAST:event_btnNuevaCuenta3ActionPerformed
 
     private void tablaGraficaCuentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaGraficaCuentaMousePressed
-       tablaMovimientoCuenta.setIdCuenta(tablaCuenta.obtenerIdFilaSeleccionada());
-       tablaMovimientoCuenta.ejecutarRellenarTabla();
-       tablaMovimientoCuenta.setEstadoConsulta(0);
+        tablaMovimientoCuenta.setIdCuenta(tablaCuenta.obtenerIdFilaSeleccionada());
+        tablaMovimientoCuenta.ejecutarRellenarTabla();
+        tablaMovimientoCuenta.setEstadoConsulta(0);
     }//GEN-LAST:event_tablaGraficaCuentaMousePressed
 
     public JPanel getPanel_1_primario() {
@@ -640,9 +696,6 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     public void setTxtBuscar(JTextField txtBuscar) {
         this.txtBuscar = txtBuscar;
     }
-
-
-  
 
     public MaterialButton getBtnEliminarMov() {
         return btnEliminarMov;

@@ -65,8 +65,12 @@ public abstract class ABM extends Consultas {
         obtenerFormularioRegistrar();
         if (operacionesUtilidad.verificarCamposTextoVacios(getListaCampos())) {
             conexionTransaccionRegistrar();
-            getFormularioRegistrar().dispose();
-            return true;
+            try {
+                getFormularioRegistrar().dispose();
+            } catch (NullPointerException e) {
+                return true;
+            }
+              return true;
         }
         return false;
     }
