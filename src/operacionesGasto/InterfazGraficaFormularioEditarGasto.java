@@ -4,6 +4,7 @@ import calsesPadre.InterfazGraficaFormularioEditar;
 import escritorios.PrincipalGastos;
 import formularios.FormularioEditarCliente;
 import formularios.FormularioEditarGasto;
+import java.util.Date;
 
 /**
  * @author Hasper Franco
@@ -46,7 +47,7 @@ public class InterfazGraficaFormularioEditarGasto extends InterfazGraficaFormula
 
     @Override
     public void transferirDatos() {
-        new TablaGastos().setPrincipalGastos(principalGastos);
+      //  new TablaGastos().setPrincipalGastos(principalGastos);
         int fila = principalGastos.getTablaGrafica().getSelectedRow();
         principalGastos.getEditarGasto().getTxtDescripcion().setText(principalGastos.getTablaGrafica().getValueAt(fila, 0).toString());
         principalGastos.getEditarGasto().getTxtTotalGastado().setText(principalGastos.getTablaGrafica().getValueAt(fila, 1).toString());

@@ -9,12 +9,11 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 /**
  * @author Hasper Franco
  */
-public class InterfazGraficaEscritorioCuenta  extends InterfazGraficaEscritorio {
+public class InterfazGraficaEscritorioCuenta extends InterfazGraficaEscritorio {
 
     private Integer idCliente;
-    
-    private  String nombreCliente;
-    
+
+    private String nombreCliente;
 
     public Integer getIdCliente() {
         return idCliente;
@@ -31,9 +30,7 @@ public class InterfazGraficaEscritorioCuenta  extends InterfazGraficaEscritorio 
     public void setNombreCliente(String nombreCliente) {
         this.nombreCliente = nombreCliente;
     }
-    
-    
-    
+
     @Override
     public void nuevaVentana() {
         if (principalAdministrador.getEscritorio().estacerrado(principalAdministrador.getCuenta())) {
@@ -56,8 +53,10 @@ public class InterfazGraficaEscritorioCuenta  extends InterfazGraficaEscritorio 
             insertarNombreCliente();
             principalAdministrador.getCuenta().setTablaCuenta(tablaCuenta);
             principalAdministrador.getCuenta().setTablaMovimientoCuenta(tablaMovimientoCuenta);
-            InterfazGraficaFormularioEditarCuenta formularioEditar = new InterfazGraficaFormularioEditarCuenta();
-          //  principalAdministrador.getCuenta().setFormularioEditar(formularioEditar);
+            InterfazGraficaEditarMovimiento formularioEditarMovimiento = new InterfazGraficaEditarMovimiento();
+            InterfazGraficaEditarCuenta formularioEditarCuenta = new InterfazGraficaEditarCuenta();
+            principalAdministrador.getCuenta().setInterfazEditarMovimiento(formularioEditarMovimiento);
+            principalAdministrador.getCuenta().setInterfazEditarCuenta(formularioEditarCuenta);
             principalAdministrador.getCuenta().show();
         }
         colorInterfazEscritorio();
@@ -66,7 +65,7 @@ public class InterfazGraficaEscritorioCuenta  extends InterfazGraficaEscritorio 
 
     @Override
     public void infoTextPrompt() {
-         new TextPrompt("BUSCAR POR FECHA, FORMATO (AAAA-MM-DD)", principalAdministrador.getCuenta().getTxtBuscar());
+        new TextPrompt("BUSCAR POR FECHA, FORMATO (AAAA-MM-DD)", principalAdministrador.getCuenta().getTxtBuscar());
         principalAdministrador.getCuenta().getTxtBuscar().grabFocus();
     }
 
@@ -75,40 +74,39 @@ public class InterfazGraficaEscritorioCuenta  extends InterfazGraficaEscritorio 
         principalAdministrador.getCuenta().getPanelPrincipalTop().setBackground(principalAdministrador.getPanelPrincipalTop().getBackground());
         principalAdministrador.getCuenta().getTablaGraficaCuenta().setForeground(principalAdministrador.getPanelPrincipalTop().getBackground());
         principalAdministrador.getCuenta().getTablaGraficaCuenta().setSelectionBackground(principalAdministrador.getPanelPrincipalTop().getBackground());
-   
+
         principalAdministrador.getCuenta().getTablaGraficaMovimiento().setForeground(principalAdministrador.getPanelPrincipalTop().getBackground());
         principalAdministrador.getCuenta().getTablaGraficaMovimiento().setSelectionBackground(principalAdministrador.getPanelPrincipalTop().getBackground());
     }
-    
-    private void insertarNombreCliente(){
-         principalAdministrador.getCuenta().getLblNombre().setText(this.nombreCliente);
+
+    private void insertarNombreCliente() {
+        principalAdministrador.getCuenta().getLblNombre().setText(this.nombreCliente);
     }
-    
-    
+
     public void habilitarNuevaCuenta(PrincipalCuenta p) {
         p.getTxtMontoInicial().setEnabled(true);
         p.getBtnGuardarCuenta().setEnabled(true);
     }
-    
+
     public void habilitarNuevoMovimientoCuenta(PrincipalCuenta p) {
         p.getEditPaneMotivo().setEnabled(true);
-         p.getTxtMonto().setEnabled(true);
+        p.getTxtMonto().setEnabled(true);
         p.getBtnGuardarMovimiento().setEnabled(true);
     }
-    
-       public void desHabilitarNuevoMovimientoCuenta(PrincipalCuenta p) {
+
+    public void desHabilitarNuevoMovimientoCuenta(PrincipalCuenta p) {
         p.getEditPaneMotivo().setEnabled(false);
         p.getTxtMonto().setEnabled(false);
         p.getBtnGuardarMovimiento().setEnabled(false);
         p.getEditPaneMotivo().setText("");
         p.getTxtMonto().setText("");
-        
+
     }
-    
-       public void desHabilitarNuevaCuenta(PrincipalCuenta p) {
+
+    public void desHabilitarNuevaCuenta(PrincipalCuenta p) {
         p.getTxtMontoInicial().setEnabled(false);
         p.getBtnGuardarCuenta().setEnabled(false);
         p.getTxtMontoInicial().setText("");
     }
-    
+
 }

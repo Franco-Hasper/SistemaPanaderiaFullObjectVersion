@@ -80,9 +80,7 @@ public class ABMGasto extends ABM {
         Gasto g = (Gasto) miSesion.get(Gasto.class, id);
         g.setDescripcion(formularioEditarGasto.getTxtDescripcion().getText());
         g.setPrecioTotal(Double.valueOf(formularioEditarGasto.getTxtTotalGastado().getText()));
-        try {
-            formularioEditarGasto.getrSDateChooser1().getDatoFecha();
-        } catch (NullPointerException e) {
+        if(formularioEditarGasto.getrSDateChooser1().getDatoFecha()!=null){
             g.setFecha(formularioEditarGasto.getrSDateChooser1().getDatoFecha());
         }
         miSesion.saveOrUpdate(g);

@@ -1,6 +1,8 @@
 package escritorios;
 
 import clasesUtilidadGeneral.OperacionesUtiles;
+import formularios.FormularioEditarCuenta;
+import formularios.FormularioEditarMovimientoCuenta;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JEditorPane;
@@ -10,6 +12,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import operacionesCuenta.ABMCuenta;
 import operacionesCuenta.ABMMovimientoCuenta;
+import operacionesCuenta.InterfazGraficaEditarCuenta;
+import operacionesCuenta.InterfazGraficaEditarMovimiento;
 import operacionesCuenta.InterfazGraficaEscritorioCuenta;
 import operacionesCuenta.TablaCuenta;
 import operacionesCuenta.TablaMovimientoCuenta;
@@ -24,7 +28,8 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     public PrincipalCuenta() {
         initComponents();
         estadoInicialVentanaCuenta();
-
+        formularioEditarMovimiento = null;
+        formularioEditarMovimiento = null;
     }
 
     private TablaCuenta tablaCuenta;
@@ -32,6 +37,10 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     private Integer idCliente;
     private final ABMCuenta abm = new ABMCuenta();
     private final ABMMovimientoCuenta abmMovimiento = new ABMMovimientoCuenta();
+    private FormularioEditarMovimientoCuenta formularioEditarMovimiento;
+    private InterfazGraficaEditarMovimiento InterfazEditarMovimiento;
+    private FormularioEditarCuenta formularioEditar;
+    private InterfazGraficaEditarCuenta InterfazEditarCuenta;
 
     /**
      * Establece el estado inicial de los elementos de la pestaña Cuenta.
@@ -53,8 +62,32 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         this.lblNombre = lblNombre;
     }
 
+    public FormularioEditarCuenta getFormularioEditar() {
+        return formularioEditar;
+    }
+
+    public void setFormularioEditar(FormularioEditarCuenta formularioEditar) {
+        this.formularioEditar = formularioEditar;
+    }
+
+    public InterfazGraficaEditarCuenta getInterfazEditarCuenta() {
+        return InterfazEditarCuenta;
+    }
+
+    public void setInterfazEditarCuenta(InterfazGraficaEditarCuenta InterfazEditarCuenta) {
+        this.InterfazEditarCuenta = InterfazEditarCuenta;
+    }
+
     public JTable getTablaGraficaCuenta() {
         return tablaGraficaCuenta;
+    }
+
+    public InterfazGraficaEditarMovimiento getInterfazEditarMovimiento() {
+        return InterfazEditarMovimiento;
+    }
+
+    public void setInterfazEditarMovimiento(InterfazGraficaEditarMovimiento InterfazEditarMovimiento) {
+        this.InterfazEditarMovimiento = InterfazEditarMovimiento;
     }
 
     public void setTablaGraficaCuenta(JTable tablaGraficaCuenta) {
@@ -91,6 +124,14 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
 
     public void setPanelPrincipalTop(JPanel panelPrincipalTop) {
         this.panelPrincipalTop = panelPrincipalTop;
+    }
+
+    public FormularioEditarMovimientoCuenta getFormularioEditarMovimiento() {
+        return formularioEditarMovimiento;
+    }
+
+    public void setFormularioEditarMovimiento(FormularioEditarMovimientoCuenta formularioEditarMovimiento) {
+        this.formularioEditarMovimiento = formularioEditarMovimiento;
     }
 
     public Integer getIdCliente() {
@@ -575,19 +616,28 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtMontoInicialKeyTyped
 
     private void btnnEditarMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnEditarMovActionPerformed
+        tablaMovimientoCuenta.setPrincipalCuenta(this);
+        if (tablaMovimientoCuenta.verificarFilaSeleccionada()) {
+            if (tablaMovimientoCuenta.verficarNoMontoInicial()) {
+                InterfazEditarMovimiento.setPrincipalCuenta(this);
+                InterfazEditarMovimiento.nuevoFormularioEditar();
+            }
 
+        }
     }//GEN-LAST:event_btnnEditarMovActionPerformed
 
     private void btnEliminarMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMovActionPerformed
         abmMovimiento.setPrincipalCuenta(this);
         if (tablaMovimientoCuenta.verificarFilaSeleccionada()) {
-            if (OperacionesUtiles.mensajeEliminarRegistro()) {
-                if (abmMovimiento.ejecutarEliminar()) {
-                    //Quitar este if y autoseleccionar la fial, por que se deselecciona luego de una actualización
-                    if (tablaCuenta.verificarFilaSeleccionada()) {
-                        abmMovimiento.ejecutarActualizarMovimientoCuenta();
-                        tablaMovimientoCuenta.setEstadoConsulta(0);
-                        tablaMovimientoCuenta.ejecutarRellenarTabla();
+            if (tablaMovimientoCuenta.verficarNoMontoInicial()) {
+                if (OperacionesUtiles.mensajeEliminarRegistro()) {
+                    if (abmMovimiento.ejecutarEliminar()) {
+                        //Quitar este if y autoseleccionar la fial, por que se deselecciona luego de una actualización
+                        if (tablaCuenta.verificarFilaSeleccionada()) {
+                            abmMovimiento.ejecutarActualizarMovimientoCuenta();
+                            tablaMovimientoCuenta.setEstadoConsulta(0);
+                            tablaMovimientoCuenta.ejecutarRellenarTabla();
+                        }
                     }
                 }
             }
@@ -611,7 +661,11 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNuevaCuenta1ActionPerformed
 
     private void btnNuevaCuenta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCuenta2ActionPerformed
-        // TODO add your handling code here:
+        tablaCuenta.setPrincipalCuenta(this);
+        if (tablaCuenta.verificarFilaSeleccionada()) {
+            InterfazEditarCuenta.setPrincipalCuenta(this);
+            InterfazEditarCuenta.nuevoFormularioEditar();
+        }
     }//GEN-LAST:event_btnNuevaCuenta2ActionPerformed
 
     private void btnNuevaCuenta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCuenta3ActionPerformed

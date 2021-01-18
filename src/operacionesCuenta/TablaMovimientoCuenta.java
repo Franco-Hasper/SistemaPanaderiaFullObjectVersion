@@ -2,6 +2,7 @@ package operacionesCuenta;
 
 import calsesPadre.Tabla;
 import clasesUtilidadGeneral.OperacionesUtiles;
+import ds.desktop.notify.DesktopNotify;
 import entidades.Cuenta;
 import entidades.MovimientoCuenta;
 import escritorios.PrincipalCuenta;
@@ -47,8 +48,6 @@ public class TablaMovimientoCuenta extends Tabla {
     public void setIdCuenta(Integer idCuenta) {
         this.idCuenta = idCuenta;
     }
-    
-    
 
     /**
      * Ejecuata los metodos necesarios para rellenar la tabla cuentas de la
@@ -102,6 +101,14 @@ public class TablaMovimientoCuenta extends Tabla {
 
         }
         OperacionesUtiles.ordenarLista(listaResutladosActuales);
+    }
+
+    public boolean verficarNoMontoInicial() {
+        if (obtenerIdFilaSeleccionada().equals(1)) {
+            DesktopNotify.showDesktopMessage("   Informacion    ", "  No se puede editar ni eliminar monto inicial", DesktopNotify.INFORMATION, 7000);
+            return false;
+        }
+        return true;
     }
 
     @Override

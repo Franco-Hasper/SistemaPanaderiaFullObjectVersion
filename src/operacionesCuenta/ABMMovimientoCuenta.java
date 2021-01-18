@@ -6,6 +6,7 @@ import ds.desktop.notify.DesktopNotify;
 import entidades.Cuenta;
 import entidades.MovimientoCuenta;
 import escritorios.PrincipalCuenta;
+import formularios.FormularioEditarMovimientoCuenta;
 import java.util.List;
 import org.hibernate.Session;
 
@@ -15,6 +16,7 @@ import org.hibernate.Session;
 public class ABMMovimientoCuenta extends ABM {
 
     private PrincipalCuenta principalCuenta;
+    private FormularioEditarMovimientoCuenta formularioEditarMovimiento;
 
     public PrincipalCuenta getPrincipalCuenta() {
         return principalCuenta;
@@ -24,6 +26,16 @@ public class ABMMovimientoCuenta extends ABM {
         this.principalCuenta = principalCuenta;
     }
 
+    public FormularioEditarMovimientoCuenta getFormularioEditarmovimiento() {
+        return formularioEditarMovimiento;
+    }
+
+    public void setFormularioEditarmovimiento(FormularioEditarMovimientoCuenta formularioEditarMovimiento) {
+        this.formularioEditarMovimiento = formularioEditarMovimiento;
+    }
+
+    
+    
     @Override
     public void obtenerFormularioRegistrar() {
         setFormularioRegistrar(null);
@@ -32,7 +44,9 @@ public class ABMMovimientoCuenta extends ABM {
 
     @Override
     public void obtenerFormularioEditar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+         setFormularioEditar(this.getFormularioEditarmovimiento());
+        setListaCampos(this.getFormularioEditarmovimiento().getListaCampos());
     }
 
     @Override
@@ -41,8 +55,8 @@ public class ABMMovimientoCuenta extends ABM {
         mc.setMotivo(principalCuenta.getEditPaneMotivo().getText());
         mc.setMonto(Double.valueOf(principalCuenta.getTxtMonto().getText()));
         Integer id = principalCuenta.getTablaCuenta().obtenerIdFilaSeleccionada();
-        Cuenta c = (Cuenta) miSesion.get(Cuenta.class, id);
-        mc.setBalance(c.getBalance() + mc.getMonto());
+        Cuenta c = (Cuenta) miSesion.get(Cuenta.class,id);
+        mc.setBalance(c.getBalance() + (mc.getMonto()));
         mc.setCodigoCuenta(c);
         miSesion.save(mc);
         c.setBalance(mc.getBalance());
@@ -51,7 +65,16 @@ public class ABMMovimientoCuenta extends ABM {
 
     @Override
     public void transaccionEditar(Session miSesion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       Integer id = principalCuenta.getTablaMovimientoCuenta().obtenerIdFilaSeleccionada();
+        MovimientoCuenta mc = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, id);
+        mc.setMonto(Double.valueOf(formularioEditarMovimiento.getTxtMonto().getText()));
+        mc.setMotivo(formularioEditarMovimiento.getTxtMotivo().getText());
+        Cuenta c = (Cuenta) miSesion.get(Cuenta.class, mc.getCodigoCuenta().getIdCuenta());
+        mc.setBalance(c.getBalance() + (mc.getMonto()));
+        mc.setCodigoCuenta(c);
+        miSesion.save(mc);
+        c.setBalance(mc.getBalance());
+        miSesion.saveOrUpdate(c);
     }
 
     @Override
@@ -59,19 +82,6 @@ public class ABMMovimientoCuenta extends ABM {
         Integer id = principalCuenta.getTablaMovimientoCuenta().obtenerIdFilaSeleccionada();
         MovimientoCuenta mc = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, id);
         miSesion.delete(mc);
-
-        /*
-        mc.setMotivo(principalCuenta.getEditPaneMotivo().getText());
-        mc.setMonto(Double.valueOf(principalCuenta.getTxtMonto().getText()));
-        id = principalCuenta.getTablaCuenta().obtenerIdFilaSeleccionada();
-        Cuenta c = (Cuenta) miSesion.get(Cuenta.class, id);
-        mc.setBalance(c.getBalance() + mc.getMonto());
-        mc.setCodigoCuenta(c);
-        miSesion.save(mc);
-        c.setBalance(mc.getBalance());
-        
-        */
-    
     }
     
     public void ejecutarActualizarMovimientoCuenta(){

@@ -343,7 +343,6 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         tablaGasto.setPrincipalGastos(this);
         if (tablaGasto.verificarFilaSeleccionada()) {
-            InterfazGraficaFormularioEditarGasto formularioEditar = new InterfazGraficaFormularioEditarGasto();
             formularioEditar.setPrincipalGastos(this);
             formularioEditar.nuevoFormularioEditar();
         }
