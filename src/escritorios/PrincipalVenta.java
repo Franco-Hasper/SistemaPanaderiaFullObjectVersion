@@ -37,7 +37,7 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
     private FormularioDetalleDeVenta detalleVenta;
     private TablaVenta tablaVenta;
     private final ABMVenta abm = new ABMVenta();
-    private PrincipalAdministrador  principalAdministrador;
+    private PrincipalAdministrador principalAdministrador;
 
     public PrincipalAdministrador getPrincipalAdministrador() {
         return principalAdministrador;
@@ -46,8 +46,6 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
     public void setPrincipalAdministrador(PrincipalAdministrador principalAdministrador) {
         this.principalAdministrador = principalAdministrador;
     }
-    
-    
 
     public InterfazGraficaFormularioRegistrarVenta getFormularioRegistrar() {
         return formularioRegistrar;
@@ -369,7 +367,7 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
         formularioRegistrar.setPrincipalVenta(this);
         formularioRegistrar.setPrincipalAdministrador(principalAdministrador);
         formularioRegistrar.nuevoFormularioRegistrar();
-        
+
     }//GEN-LAST:event_nuevoActionPerformed
 
 
@@ -386,6 +384,7 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
         tablaVenta.setPrincipalVenta(this);
         if (tablaVenta.verificarFilaSeleccionada()) {
             formularioEditar.setPrincipalVenta(this);
+            formularioEditar.setPrincipalAdministrador(principalAdministrador);
             formularioEditar.nuevoFormularioEditar();
 
         }

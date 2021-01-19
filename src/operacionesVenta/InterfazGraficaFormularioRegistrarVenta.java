@@ -50,12 +50,14 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
 
         //Seccion Tabla Productos Disponibles
         TablaProductosDisponibles tablaProductosDisponibles = new TablaProductosDisponibles();
+        tablaProductosDisponibles.setTipoFormulario(1);
         tablaProductosDisponibles.setPrincipalVenta(principalVenta);
         tablaProductosDisponibles.ejecutarRellenarTabla();
         principalVenta.getRegistrarVenta().setTablaProductosDisponibles(tablaProductosDisponibles);
 
         //Seccion Tabla Productos Listados
         TablaProductosListados tablaProductosListados = new TablaProductosListados();
+        tablaProductosListados.setTipoFormulario(1);
         principalVenta.getRegistrarVenta().setTablaProductosListados(tablaProductosListados);
         configuracionTxtCantidadTxtTotal();
 

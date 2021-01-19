@@ -7,6 +7,7 @@ import operacionesCliente.ABMCliente;
 import operacionesCliente.TablaCliente;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import formularios.FormularioEditarCliente;
+import formularios.FormularioEditarVenta;
 import formularios.FormularioRegistrarCliente;
 import formularios.FormularioRegistrarVenta;
 import operacionesCliente.InterfazGraficaFormularioEditarCliente;
@@ -35,6 +36,7 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     private TablaCliente tablaCliente;
     private final ABMCliente abm = new ABMCliente();
     private FormularioRegistrarVenta formularioRegistrarVenta;
+    private FormularioEditarVenta formularioEditarVenta;
     private int tipoFormulario;
     private final InterfazGraficaEscritorioCuenta interfazGraficaCuenta = new InterfazGraficaEscritorioCuenta();
     private PrincipalAdministrador principalAdministrador;
@@ -117,6 +119,14 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
 
     public void setPrincipalAdministrador(PrincipalAdministrador principalAdministrador) {
         this.principalAdministrador = principalAdministrador;
+    }
+
+    public FormularioEditarVenta getFormularioEditarVenta() {
+        return formularioEditarVenta;
+    }
+
+    public void setFormularioEditarVenta(FormularioEditarVenta formularioEditarVenta) {
+        this.formularioEditarVenta = formularioEditarVenta;
     }
 
     @SuppressWarnings("unchecked")
@@ -383,7 +393,11 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
             operacionesSecundariasVenta.rellenarTablaVentaCliente();
             operacionesSecundariasVenta.retornarFormularioVenta();
         } else {
-
+            operacionesSecundariasVenta.setTipoFormulario(2);
+            operacionesSecundariasVenta.setFormularioEditarVenta(formularioEditarVenta);
+            operacionesSecundariasVenta.setPrincipalCliente(this);
+            operacionesSecundariasVenta.rellenarTablaVentaCliente();
+            operacionesSecundariasVenta.retornarFormularioVenta();
         }
 
     }//GEN-LAST:event_btnSeleccionarClienteActionPerformed

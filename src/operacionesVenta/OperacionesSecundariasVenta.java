@@ -107,14 +107,13 @@ public class OperacionesSecundariasVenta {
         }
 
     }
-  
 
     public void rellenarTablaVentaCliente() {
         int fila = principalCliente.getTablaGrafica().getSelectedRow();
         String nombre = principalCliente.getTablaGrafica().getValueAt(fila, 0).toString() + " " + principalCliente.getTablaGrafica().getValueAt(fila, 1).toString();
         String telefono = principalCliente.getTablaGrafica().getValueAt(fila, 7).toString();
         String direccion = principalCliente.getTablaGrafica().getValueAt(fila, 3).toString() + "/" + principalCliente.getTablaGrafica().getValueAt(fila, 4).toString() + "-" + principalCliente.getTablaGrafica().getValueAt(fila, 5).toString() + "-" + principalCliente.getTablaGrafica().getValueAt(fila, 6).toString();
-     
+
         switch (tipoFormulario) {
             case 1:
                 DefaultTableModel tablaVentaCliente = (DefaultTableModel) formularioRegistrarVenta.getTablaCliente().getModel();
@@ -129,9 +128,9 @@ public class OperacionesSecundariasVenta {
                 DefaultTableModel tablaVentaClienteE = (DefaultTableModel) formularioEditarVenta.getTablaCliente().getModel();
                 OperacionesUtiles.removerFilas(tablaVentaClienteE);
                 Vector datosTablaE = new Vector();
-                datosTablaE.add("Cons. Final");
-                datosTablaE.add("---");
-                datosTablaE.add("----");
+                datosTablaE.add(nombre);
+                datosTablaE.add(telefono);
+                datosTablaE.add(direccion);
                 tablaVentaClienteE.addRow(datosTablaE);
                 break;
         }
@@ -293,10 +292,12 @@ public class OperacionesSecundariasVenta {
                 formularioRegistrarVenta.setPrincipalCliente(principalCliente);
                 formularioRegistrarVenta.setVisible(true);
                 formularioRegistrarVenta.toFront();
-                
+
                 break;
             case 2:
+                formularioEditarVenta.setPrincipalCliente(principalCliente);
                 formularioEditarVenta.setVisible(true);
+                formularioEditarVenta.toFront();
                 break;
         }
     }

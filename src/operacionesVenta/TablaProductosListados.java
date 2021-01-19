@@ -19,11 +19,13 @@ public class TablaProductosListados extends Tabla {
 
     private PrincipalVenta principalVenta;
 
-    private TablaProductosDisponibles tablaRegistrarVenta;
+    private TablaProductosDisponibles tablaProductosDisponibles;
 
     private List<Integer> listaProductosListados = new ArrayList<Integer>();
 
     private JTable tablaProductosListados;
+
+    private int tipoFormulario;
 
     public JTable getTablaProductosListados() {
         return tablaProductosListados;
@@ -41,12 +43,12 @@ public class TablaProductosListados extends Tabla {
         this.principalVenta = principalVenta;
     }
 
-    public TablaProductosDisponibles getTablaRegistrarVenta() {
-        return tablaRegistrarVenta;
+    public TablaProductosDisponibles getTablaProductosDisponibles() {
+        return tablaProductosDisponibles;
     }
 
-    public void setTablaRegistrarVenta(TablaProductosDisponibles tablaRegistrarVenta) {
-        this.tablaRegistrarVenta = tablaRegistrarVenta;
+    public void setTablaProductosDisponibles(TablaProductosDisponibles tablaProductosDisponibles) {
+        this.tablaProductosDisponibles = tablaProductosDisponibles;
     }
 
     public List<Integer> getListaProductosListados() {
@@ -57,35 +59,62 @@ public class TablaProductosListados extends Tabla {
         this.listaProductosListados = listaProductosListados;
     }
 
+    public int getTipoFormulario() {
+        return tipoFormulario;
+    }
+
+    public void setTipoFormulario(int tipoFormulario) {
+        this.tipoFormulario = tipoFormulario;
+    }
+
     /**
      * ejecuta los metodos necesarios para listar un nuevo producto en la tabla
      * productos listados.
      */
     public void ejecutarAgregarProducto() {
-        setTabla(principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles());
-        setTablaProductosListados(principalVenta.getRegistrarVenta().getTablaListarProductos());
-        agregarProducto();
+        switch (tipoFormulario) {
+            case 1:
+                setTabla(principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles());
+                setTablaProductosListados(principalVenta.getRegistrarVenta().getTablaListarProductos());
+                agregarProducto();
+                break;
+
+            case 2:
+                setTabla(principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles());
+                setTablaProductosListados(principalVenta.getEditarVenta().getTablaListarProductos());
+                agregarProducto();
+                break;
+
+        }
+
     }
 
-    
-    
-    
-        public void agregarProducto() {
+    public void agregarProducto() {
         DefaultTableModel tablaProductosListados = (DefaultTableModel) getTablaProductosListados().getModel();
         DefaultTableModel tablaProductosDisponibles = (DefaultTableModel) getTabla().getModel();
         int filaSeleccionada = getTabla().getSelectedRow();
         Vector<Object> fila = new Vector<>();
         fila.add(tablaProductosDisponibles.getValueAt(filaSeleccionada, 0).toString());
+        Double total;
+        switch (tipoFormulario) {
+            case 1:
+                fila.add(principalVenta.getRegistrarVenta().getTxtCantidad().getText());
+                total = Double.valueOf(tablaProductosDisponibles.getValueAt(filaSeleccionada, 2).toString()) * Double.valueOf(principalVenta.getRegistrarVenta().getTxtCantidad().getText());
+                fila.add(total);
+                tablaProductosListados.addRow(fila);
+                break;
+            case 2:
+                fila.add(principalVenta.getEditarVenta().getTxtCantidad().getText());
+                total = Double.valueOf(tablaProductosDisponibles.getValueAt(filaSeleccionada, 2).toString()) * Double.valueOf(principalVenta.getEditarVenta().getTxtCantidad().getText());
+                fila.add(total);
+                tablaProductosListados.addRow(fila);
+                break;
 
-        fila.add(principalVenta.getRegistrarVenta().getTxtCantidad().getText());
-        Double total = Double.valueOf(tablaProductosDisponibles.getValueAt(filaSeleccionada, 2).toString()) * Double.valueOf(principalVenta.getRegistrarVenta().getTxtCantidad().getText());
-        fila.add(total);
+        }
 
-        tablaProductosListados.addRow(fila);
         conexion();
     }
-    
-        
+
     /**
      * abre una conexion para obtener la id de los prouctos listados desde
      * precio_producto
@@ -99,18 +128,17 @@ public class TablaProductosListados extends Tabla {
         } catch (Exception e) {
         }
     }
-        public void agregarIdsEnLista(Session miSesion) {
+
+    public void agregarIdsEnLista(Session miSesion) {
         Integer totalFilasProductosDisponibles = getTabla().getRowCount();
         Integer filasSeleccionadaProductosDisponibles = getTabla().getSelectedRow();
-        List<Integer> listaResutadosActuales = tablaRegistrarVenta.getListaResutladosActuales();
+        List<Integer> listaResutadosActuales = tablaProductosDisponibles.getListaResutladosActuales();
         Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilasProductosDisponibles, filasSeleccionadaProductosDisponibles);
         PrecioProducto prepro = (PrecioProducto) miSesion.get(PrecioProducto.class, id);
         Integer idProductosDisponibles = prepro.getCodigoProducto().getIdProducto();
         listaProductosListados.add(idProductosDisponibles);
     }
-    
-    
-    
+
     public void quitarProducto() {
         quitarIdsEnLista();
         DefaultTableModel tablaProductosListados = (DefaultTableModel) getTablaProductosListados().getModel();
@@ -124,9 +152,6 @@ public class TablaProductosListados extends Tabla {
         listaProductosListados.remove(filaSeleccionada);
     }
 
-
-
-
     /**
      * Agrega la id del producto listado en un arreglo que se usara para guardar
      * en el registro de venta en la bd.
@@ -135,30 +160,52 @@ public class TablaProductosListados extends Tabla {
      * @version 1.0
      * @since 2020-12-07
      */
-
-
     @Override
     public boolean verificarFilaSeleccionada() {
-        try {
-            int fila = principalVenta.getRegistrarVenta().getTablaListarProductos().getSelectedRow();
-            principalVenta.getRegistrarVenta().getTablaListarProductos().getValueAt(fila, 0).toString();
-            return true;
-        } catch (Exception e) {
-            DesktopNotify.showDesktopMessage("  Iinformación   ", " Debe seleccionar una fila ", DesktopNotify.INFORMATION, 5000);
 
-            return false;
+        switch (tipoFormulario) {
+            case 1:
+                try {
+                    int fila = principalVenta.getRegistrarVenta().getTablaListarProductos().getSelectedRow();
+                    principalVenta.getRegistrarVenta().getTablaListarProductos().getValueAt(fila, 0).toString();
+                    return true;
+                } catch (Exception e) {
+                    DesktopNotify.showDesktopMessage("  Iinformación   ", " Debe seleccionar una fila ", DesktopNotify.INFORMATION, 5000);
+                    return false;
+                }
+
+            case 2:
+                try {
+                    int fila = principalVenta.getEditarVenta().getTablaListarProductos().getSelectedRow();
+                    principalVenta.getEditarVenta().getTablaListarProductos().getValueAt(fila, 0).toString();
+                    return true;
+                } catch (Exception e) {
+                    DesktopNotify.showDesktopMessage("  Iinformación   ", " Debe seleccionar una fila ", DesktopNotify.INFORMATION, 5000);
+                    return false;
+                }
         }
+        return false;
+
     }
 
     public boolean verificarValor() {
-
-        if (principalVenta.getRegistrarVenta().getTxtCantidad().getText().equals("")) {
-            DesktopNotify.showDesktopMessage("  Iinformación   ", " El campo (cantidad) debe contener un valor ", DesktopNotify.INFORMATION, 5000);
-            return false;
-        } else {
-            return true;
+        switch (tipoFormulario) {
+            case 1:
+                if (principalVenta.getRegistrarVenta().getTxtCantidad().getText().equals("")) {
+                    DesktopNotify.showDesktopMessage("  Iinformación   ", " El campo (cantidad) debe contener un valor ", DesktopNotify.INFORMATION, 5000);
+                    return false;
+                } else {
+                    return true;
+                }
+            case 2:
+                if (principalVenta.getEditarVenta().getTxtCantidad().getText().equals("")) {
+                    DesktopNotify.showDesktopMessage("  Iinformación   ", " El campo (cantidad) debe contener un valor ", DesktopNotify.INFORMATION, 5000);
+                    return false;
+                } else {
+                    return true;
+                }
         }
-
+        return false;
     }
 
     @Deprecated

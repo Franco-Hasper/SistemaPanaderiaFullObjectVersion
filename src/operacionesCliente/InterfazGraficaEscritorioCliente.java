@@ -5,6 +5,7 @@ import escritorios.PrincipalCliente;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import clasesUtilidadGeneral.TextPrompt;
+import formularios.FormularioEditarVenta;
 import formularios.FormularioRegistrarVenta;
 import principal.PrincipalAdministrador;
 
@@ -13,7 +14,7 @@ import principal.PrincipalAdministrador;
  * @author Hasper Franco
  */
 public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio {
- 
+
     private boolean caso;
 
     public boolean isCaso() {
@@ -24,8 +25,6 @@ public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio 
         this.caso = caso;
     }
 
-
-    
     @Override
     public void nuevaVentana() {
         if (principalAdministrador.getEscritorio().estacerrado(principalAdministrador.getCliente())) {
@@ -48,17 +47,17 @@ public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio 
             principalAdministrador.getCliente().setFormularioEditar(formularioEditar);
             //solo para pasar admin al EscritorioCuenta
             principalAdministrador.getCliente().setPrincipalAdministrador(principalAdministrador);
-            if(caso){
+            if (caso) {
                 //
-            }else{
+            } else {
                 principalAdministrador.getCliente().show();
             }
-            
+
         }
-        if(caso){
+        if (caso) {
             //
-        }else{
-             habilitarBotones();
+        } else {
+            habilitarBotones();
         }
         colorInterfazEscritorio();
         principalAdministrador.getCliente().toFront();
@@ -77,8 +76,9 @@ public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio 
         principalAdministrador.getCliente().getTxtBuscar().grabFocus();
     }
 
-    public void deshabilitarBotones(PrincipalAdministrador principalAdministrador,FormularioRegistrarVenta formularioRegistrarVenta,int tipoFormulario) {
-       principalAdministrador.getCliente().setTipoFormulario(1);
+    public void deshabilitarBotones(PrincipalAdministrador principalAdministrador,
+            FormularioRegistrarVenta formularioRegistrarVenta, int tipoFormulario) {
+        principalAdministrador.getCliente().setTipoFormulario(1);
         principalAdministrador.getCliente().setFormularioRegistrarVenta(formularioRegistrarVenta);
         principalAdministrador.getCliente().show();
         principalAdministrador.getCliente().toFront();
@@ -87,15 +87,28 @@ public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio 
         principalAdministrador.getCliente().getBtnnEditarCl().setEnabled(false);
         principalAdministrador.getCliente().getBtnnuevocliente().setEnabled(false);
         principalAdministrador.getCliente().getBtnCuenta().setEnabled(false);
- 
     }
+
+    public void deshabilitarBotonesEditar(PrincipalAdministrador principalAdministrador,
+            FormularioEditarVenta formularioEditarVenta, int tipoFormulario) {
+        principalAdministrador.getCliente().setTipoFormulario(2);
+        principalAdministrador.getCliente().setFormularioEditarVenta(formularioEditarVenta);
+        principalAdministrador.getCliente().show();
+        principalAdministrador.getCliente().toFront();
+        principalAdministrador.getCliente().getBtnSeleccionarCliente().setEnabled(true);
+        principalAdministrador.getCliente().getBtnEliminarCli().setEnabled(false);
+        principalAdministrador.getCliente().getBtnnEditarCl().setEnabled(false);
+        principalAdministrador.getCliente().getBtnnuevocliente().setEnabled(false);
+        principalAdministrador.getCliente().getBtnCuenta().setEnabled(false);
+    }
+
     public void habilitarBotones() {
         principalAdministrador.getCliente().getBtnSeleccionarCliente().setEnabled(false);
         principalAdministrador.getCliente().getBtnEliminarCli().setEnabled(true);
         principalAdministrador.getCliente().getBtnnEditarCl().setEnabled(true);
         principalAdministrador.getCliente().getBtnnuevocliente().setEnabled(true);
         principalAdministrador.getCliente().getBtnCuenta().setEnabled(true);
-     
+
     }
-    
+
 }

@@ -38,7 +38,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private TablaProductosDisponibles tablaProductosDisponibles;
     private TablaProductosListados tablaProductosListados;
     private OperacionesSecundariasVenta operacionesSecundariasVenta;
-    private final InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
+   // private final InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
     private PrincipalAdministrador principalAdministrador;
     private PrincipalCliente principalCliente;
 
@@ -620,7 +620,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         new InterfazGraficaEscritorioCliente().deshabilitarBotones(principalAdministrador, this, 1);
         this.setVisible(false);
-
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void radButonConsumidorFinalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radButonConsumidorFinalItemStateChanged
@@ -650,7 +649,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (tablaProductosDisponibles.verificarFilaSeleccionada()) {
             tablaProductosListados.setPrincipalVenta(principalVenta);
-            tablaProductosListados.setTablaRegistrarVenta(tablaProductosDisponibles);
+            tablaProductosListados.setTablaProductosDisponibles(tablaProductosDisponibles);
             if (tablaProductosListados.verificarValor()) {
                 tablaProductosListados.ejecutarAgregarProducto();
                 operacionesSecundariasVenta.obtenerPrecioTotal();

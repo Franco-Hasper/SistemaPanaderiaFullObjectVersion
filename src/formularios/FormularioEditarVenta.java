@@ -1,5 +1,6 @@
 package formularios;
 
+import escritorios.PrincipalCliente;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -10,15 +11,20 @@ import javax.swing.JTextField;
 import escritorios.PrincipalVenta;
 import java.util.ArrayList;
 import java.util.List;
+import operacionesCliente.InterfazGraficaEscritorioCliente;
 import operacionesVenta.ABMVenta;
+import operacionesVenta.OperacionesSecundariasVenta;
+import operacionesVenta.TablaProductosDisponibles;
+import operacionesVenta.TablaProductosListados;
 import principal.MaterialButton;
+import principal.PrincipalAdministrador;
 import rojeru_san.componentes.RSDateChooser;
 
 /**
  *
  * @author FRANCO
  */
-public class FormularioEditarVenta extends javax.swing.JDialog{
+public class FormularioEditarVenta extends javax.swing.JDialog {
 
     /**
      * Creates new form FormularioEditarVenta
@@ -27,13 +33,33 @@ public class FormularioEditarVenta extends javax.swing.JDialog{
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        setCambiarCliente(0);
+        //setCambiarCliente(0);
     }
 
     private PrincipalVenta principalVenta;
     private final ABMVenta abm = new ABMVenta();
-
+    private PrincipalAdministrador principalAdministrador;
     private Integer cambiarCliente;
+    private PrincipalCliente principalCliente;
+    private OperacionesSecundariasVenta operacionesSecundariasVenta;
+    private TablaProductosDisponibles tablaProductosDisponibles;
+    private TablaProductosListados tablaProductosListados;
+
+    public OperacionesSecundariasVenta getOperacionesSecundariasVenta() {
+        return operacionesSecundariasVenta;
+    }
+
+    public void setOperacionesSecundariasVenta(OperacionesSecundariasVenta operacionesSecundariasVenta) {
+        this.operacionesSecundariasVenta = operacionesSecundariasVenta;
+    }
+
+    public PrincipalCliente getPrincipalCliente() {
+        return principalCliente;
+    }
+
+    public void setPrincipalCliente(PrincipalCliente principalCliente) {
+        this.principalCliente = principalCliente;
+    }
 
     public Integer getCambiarCliente() {
         return cambiarCliente;
@@ -50,13 +76,41 @@ public class FormularioEditarVenta extends javax.swing.JDialog{
     public void setPrincipalVenta(PrincipalVenta principalVenta) {
         this.principalVenta = principalVenta;
     }
+
+    public TablaProductosListados getTablaProductosListados() {
+        return tablaProductosListados;
+    }
+
+    public void setTablaProductosListados(TablaProductosListados tablaProductosListados) {
+        this.tablaProductosListados = tablaProductosListados;
+    }
+
     
-      public List getListaCampos() {
+    
+    public List getListaCampos() {
         List listCamposTexto = new ArrayList();
         listCamposTexto.add(this.getLblPrecioTotal());
         return listCamposTexto;
     }
+
+    public PrincipalAdministrador getPrincipalAdministrador() {
+        return principalAdministrador;
+    }
+
+    public void setPrincipalAdministrador(PrincipalAdministrador principalAdministrador) {
+        this.principalAdministrador = principalAdministrador;
+    }
+
+    public TablaProductosDisponibles getTablaProductosDisponibles() {
+        return tablaProductosDisponibles;
+    }
+
+    public void setTablaProductosDisponibles(TablaProductosDisponibles tablaProductosDisponibles) {
+        this.tablaProductosDisponibles = tablaProductosDisponibles;
+    }
     
+    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -66,7 +120,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog{
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaListarProductos = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tablaBuscarProducto = new javax.swing.JTable();
+        tablaGraficaProductosDisponibles = new javax.swing.JTable();
         btnQuitar = new principal.MaterialButton();
         btnBuscarCliente = new principal.MaterialButton();
         rSDateChooser = new rojeru_san.componentes.RSDateChooser();
@@ -94,7 +148,6 @@ public class FormularioEditarVenta extends javax.swing.JDialog{
         txtBuscarEnLista = new javax.swing.JTextField();
 
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1482, 894));
 
         panel.setBackground(new java.awt.Color(255, 255, 255));
         panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 102, 102), java.awt.Color.gray, new java.awt.Color(102, 102, 102), java.awt.Color.gray));
@@ -131,10 +184,10 @@ public class FormularioEditarVenta extends javax.swing.JDialog{
         tablaListarProductos.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tablaListarProductos);
 
-        tablaBuscarProducto.setBackground(new java.awt.Color(255, 255, 255));
-        tablaBuscarProducto.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        tablaBuscarProducto.setForeground(new java.awt.Color(102, 0, 0));
-        tablaBuscarProducto.setModel(new javax.swing.table.DefaultTableModel(
+        tablaGraficaProductosDisponibles.setBackground(new java.awt.Color(255, 255, 255));
+        tablaGraficaProductosDisponibles.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        tablaGraficaProductosDisponibles.setForeground(new java.awt.Color(102, 0, 0));
+        tablaGraficaProductosDisponibles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -150,16 +203,16 @@ public class FormularioEditarVenta extends javax.swing.JDialog{
                 return canEdit [columnIndex];
             }
         });
-        tablaBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaBuscarProducto.setDoubleBuffered(true);
-        tablaBuscarProducto.setRowHeight(40);
-        tablaBuscarProducto.setSelectionBackground(new java.awt.Color(153, 0, 0));
-        tablaBuscarProducto.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tablaBuscarProducto.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tablaBuscarProducto.setShowHorizontalLines(false);
-        tablaBuscarProducto.setShowVerticalLines(false);
-        tablaBuscarProducto.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(tablaBuscarProducto);
+        tablaGraficaProductosDisponibles.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tablaGraficaProductosDisponibles.setDoubleBuffered(true);
+        tablaGraficaProductosDisponibles.setRowHeight(40);
+        tablaGraficaProductosDisponibles.setSelectionBackground(new java.awt.Color(153, 0, 0));
+        tablaGraficaProductosDisponibles.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tablaGraficaProductosDisponibles.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablaGraficaProductosDisponibles.setShowHorizontalLines(false);
+        tablaGraficaProductosDisponibles.setShowVerticalLines(false);
+        tablaGraficaProductosDisponibles.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(tablaGraficaProductosDisponibles);
 
         btnQuitar.setBackground(new java.awt.Color(0,0,0,60));
         btnQuitar.setForeground(new java.awt.Color(255, 255, 255));
@@ -522,11 +575,11 @@ public class FormularioEditarVenta extends javax.swing.JDialog{
     }
 
     public JTable getTablaBuscarProducto() {
-        return tablaBuscarProducto;
+        return tablaGraficaProductosDisponibles;
     }
 
     public void setTablaBuscarProducto(JTable tablaBuscarProducto) {
-        this.tablaBuscarProducto = tablaBuscarProducto;
+        this.tablaGraficaProductosDisponibles = tablaBuscarProducto;
     }
 
     public JTextField getTxtBuscar() {
@@ -586,7 +639,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog{
     }
 
     private void boxTipoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoVentaActionPerformed
-      
+  operacionesSecundariasVenta.tipoVentaSeleccionada(boxTipoVenta.getSelectedItem().toString());
     }//GEN-LAST:event_boxTipoVentaActionPerformed
 
     private void boxTipoVentaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_boxTipoVentaKeyReleased
@@ -598,7 +651,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog{
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-     
+
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked
@@ -606,7 +659,14 @@ public class FormularioEditarVenta extends javax.swing.JDialog{
     }//GEN-LAST:event_lblSalirMouseClicked
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
+  if (tablaProductosDisponibles.verificarFilaSeleccionada()) {
+            tablaProductosListados.setPrincipalVenta(principalVenta);
+            tablaProductosListados.setTablaProductosDisponibles(tablaProductosDisponibles);
+            if (tablaProductosListados.verificarValor()) {
+                tablaProductosListados.ejecutarAgregarProducto();
+                operacionesSecundariasVenta.obtenerPrecioTotal();
+            }
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void txtCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyReleased
@@ -624,8 +684,8 @@ public class FormularioEditarVenta extends javax.swing.JDialog{
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         JOptionPane jop = new JOptionPane();
         if (jop.showConfirmDialog(jop, "¿SEGURO QUE DESEA CANCELAR LA ACCION?", "",
-            jop.OK_CANCEL_OPTION) == jop.OK_OPTION) {
-        this.dispose();
+                jop.OK_CANCEL_OPTION) == jop.OK_OPTION) {
+            this.dispose();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -650,11 +710,15 @@ public class FormularioEditarVenta extends javax.swing.JDialog{
     }//GEN-LAST:event_radButonConsumidorFinalItemStateChanged
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
-
+        new InterfazGraficaEscritorioCliente().deshabilitarBotonesEditar(principalAdministrador, this, 2);
+        this.setVisible(false);
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
-
+  if (tablaProductosListados.verificarFilaSeleccionada()) {
+            tablaProductosListados.quitarProducto();
+            operacionesSecundariasVenta.obtenerPrecioTotal();
+        }
     }//GEN-LAST:event_btnQuitarActionPerformed
 
     public JPanel getPanelPrincipalTop() {
@@ -664,8 +728,6 @@ public class FormularioEditarVenta extends javax.swing.JDialog{
     public void setPanelPrincipalTop(JPanel panelPrincipalTop) {
         this.panelPrincipalTop = panelPrincipalTop;
     }
- 
-    
 
     public RSDateChooser getrSDateChooser() {
         return rSDateChooser;
@@ -699,7 +761,17 @@ public class FormularioEditarVenta extends javax.swing.JDialog{
         this.txtBuscarEnLista = txtBuscarEnLista;
     }
 
+    public JTable getTablaGraficaProductosDisponibles() {
+        return tablaGraficaProductosDisponibles;
+    }
 
+    public void setTablaGraficaProductosDisponibles(JTable tablaGraficaProductosDisponibles) {
+        this.tablaGraficaProductosDisponibles = tablaGraficaProductosDisponibles;
+    }
+
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxTipoVenta;
     private principal.MaterialButton btnAgregar;
@@ -726,8 +798,8 @@ public class FormularioEditarVenta extends javax.swing.JDialog{
     private rojeru_san.componentes.RSDateChooser rSDateChooser;
     private javax.swing.JRadioButton radButonConsumidorFinal;
     private javax.swing.JRadioButton radioButtonFecha;
-    private javax.swing.JTable tablaBuscarProducto;
     private javax.swing.JTable tablaCliente;
+    private javax.swing.JTable tablaGraficaProductosDisponibles;
     private javax.swing.JTable tablaListarProductos;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtBuscarEnLista;

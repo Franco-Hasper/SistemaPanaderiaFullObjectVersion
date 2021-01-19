@@ -23,6 +23,16 @@ public class TablaProductosDisponibles extends Tabla {
     //se usa para manejar la id.
     private List<Integer> listaResutladosActuales = new ArrayList<Integer>();
 
+    private int tipoFormulario;
+
+    public int getTipoFormulario() {
+        return tipoFormulario;
+    }
+
+    public void setTipoFormulario(int tipoFormulario) {
+        this.tipoFormulario = tipoFormulario;
+    }
+
     public PrincipalVenta getPrincipalVenta() {
         return principalVenta;
     }
@@ -38,18 +48,28 @@ public class TablaProductosDisponibles extends Tabla {
     public void setListaResutladosActuales(List<Integer> listaResutladosActuales) {
         this.listaResutladosActuales = listaResutladosActuales;
     }
-    
-    
-    
-    
-    
+
     @Override
     public void ejecutarRellenarTabla() {
-        setTabla(principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles());
-        setStringConsulta("from PrecioProducto");
-        evaluarEstadoConsulta();
-        setCampoTexto(principalVenta.getRegistrarVenta().getTxtBuscar());
-        rellenarTabla(getCampoTexto().getText());
+
+        switch (tipoFormulario) {
+            case 1:
+                setTabla(principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles());
+                setStringConsulta("from PrecioProducto");
+                evaluarEstadoConsulta();
+                setCampoTexto(principalVenta.getRegistrarVenta().getTxtBuscar());
+                rellenarTabla(getCampoTexto().getText());
+
+                break;
+            case 2:
+                setTabla(principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles());
+                setStringConsulta("from PrecioProducto");
+                evaluarEstadoConsulta();
+                setCampoTexto(principalVenta.getEditarVenta().getTxtBuscar());
+                rellenarTabla(getCampoTexto().getText());
+                break;
+
+        }
     }
 
     @Override
@@ -57,12 +77,12 @@ public class TablaProductosDisponibles extends Tabla {
         DefaultTableModel tablaProducto = (DefaultTableModel) getTabla().getModel();
         List lista = this.getListaResultados();
         operacionesUtilidad.removerFilas(tablaProducto);
-        
+
         try {
             this.listaResutladosActuales.clear();
         } catch (NullPointerException e) {
         }
-         
+
         for (Object o : lista) {
             PrecioProducto pr = (PrecioProducto) o;
             Vector<Object> fila = new Vector<>();
@@ -79,11 +99,10 @@ public class TablaProductosDisponibles extends Tabla {
         OperacionesUtiles.ordenarLista(listaResutladosActuales);
     }
 
-    
     @Deprecated
     @Override
     public Integer obtenerIdFilaSeleccionada() {
-         try {
+        try {
             Integer totalFilas = principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getRowCount();
             Integer filasSeleccionada = principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getSelectedRow();
             List<Integer> listaResutadosActualesThis = principalVenta.getRegistrarVenta().getTablaProductosDisponibles().getListaResutladosActuales();
@@ -94,17 +113,32 @@ public class TablaProductosDisponibles extends Tabla {
         return idTabla;
     }
 
-
     @Override
     public boolean verificarFilaSeleccionada() {
-        try {
-            int fila = principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getSelectedRow();
-            principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getValueAt(fila, 0).toString();
-            return true;
-        } catch (Exception e) {
-            DesktopNotify.showDesktopMessage("  Iinformación   ", " Debe seleccionar una fila", DesktopNotify.INFORMATION, 5000);
-            return false;
+
+        switch (tipoFormulario) {
+            case 1:
+                try {
+                    int fila = principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getSelectedRow();
+                    principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getValueAt(fila, 0).toString();
+                    return true;
+                } catch (Exception e) {
+                    DesktopNotify.showDesktopMessage("  Iinformación   ", " Debe seleccionar una fila", DesktopNotify.INFORMATION, 5000);
+                    return false;
+                }
+            case 2:
+                try {
+                    int fila = principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles().getSelectedRow();
+                    principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles().getValueAt(fila, 0).toString();
+                    return true;
+                } catch (Exception e) {
+                    DesktopNotify.showDesktopMessage("  Iinformación   ", " Debe seleccionar una fila", DesktopNotify.INFORMATION, 5000);
+                    return false;
+                }
         }
+
+        return false;
+
     }
 
 }
