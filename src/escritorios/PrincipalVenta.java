@@ -385,8 +385,8 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
         if (tablaVenta.verificarFilaSeleccionada()) {
             formularioEditar.setPrincipalVenta(this);
             formularioEditar.setPrincipalAdministrador(principalAdministrador);
+            formularioEditar.setIdVenta(tablaVenta.obtenerIdFilaSeleccionada());
             formularioEditar.nuevoFormularioEditar();
-
         }
     }//GEN-LAST:event_btnEditarVentaActionPerformed
 

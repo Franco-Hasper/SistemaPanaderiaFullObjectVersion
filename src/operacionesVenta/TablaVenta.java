@@ -231,7 +231,7 @@ public class TablaVenta extends Tabla {
         setConsultaList("from Producto_Venta where codigo_venta=" + id);
         obtenerListaConsulta();
         rellenarTablaListaProducto();
-        setTabla(f.getTablaCliente());
+        setTabla(f.getTablaGraficaCliente());
         setConsultaObject("from Producto_Venta where codigo_venta=" + id);
         obtenerObjetoConsulta();
         cambiarEstadoBoxTipoVenta(f);
@@ -399,7 +399,7 @@ public class TablaVenta extends Tabla {
 
     public boolean RellenarTablaClienteEditar(FormularioEditarVenta f) {
         if (new TablaCliente().verificarFilaSeleccionada()) {
-            setTabla(f.getTablaCliente());
+            setTabla(f.getTablaGraficaCliente());
             Integer totalFilas = principalCliente.getTablaGrafica().getRowCount();
             Integer filasSeleccionada = principalCliente.getTablaGrafica().getSelectedRow();
             List<Integer> listaResutadosActualesThis = principalCliente.getTablaCliente().getListaResutladosActuales();

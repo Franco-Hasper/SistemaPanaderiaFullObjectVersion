@@ -30,6 +30,9 @@ public class Producto_Venta {
 
     @Column(name = "total_unidades")
     private Double totalUnidades;
+    
+    @Column(name = "precio_total")
+    private Double precioTotal;
 
     @ManyToOne
     @JoinColumn(name = "codigo_venta")
@@ -74,6 +77,14 @@ public class Producto_Venta {
 
     public void setTotalUnidades(Double totalUnidades) {
         this.totalUnidades = totalUnidades;
+    }
+
+    public Double getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(Double precioTotal) {
+        this.precioTotal = precioTotal;
     }
 
 }

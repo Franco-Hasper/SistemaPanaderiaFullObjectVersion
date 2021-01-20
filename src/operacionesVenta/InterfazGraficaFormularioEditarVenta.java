@@ -14,6 +14,16 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
     protected PrincipalVenta principalVenta;
     protected TablaVenta tablaVenta;
     private PrincipalAdministrador principalAdministrador;
+    private Integer idVenta;
+
+    public Integer getIdVenta() {
+        return idVenta;
+    }
+
+    public void setIdVenta(Integer idVenta) {
+        this.idVenta = idVenta;
+    }
+    
 
     public PrincipalVenta getPrincipalVenta() {
         return principalVenta;
@@ -59,6 +69,10 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
         //Seccion Tabla Productos Listados
         TablaProductosListados tablaProductosListados = new TablaProductosListados();
         tablaProductosListados.setTipoFormulario(2);
+        tablaProductosListados.setFormularioEditarVenta(formularioEditar);
+        tablaProductosListados.setIdVenta(idVenta);
+        tablaProductosListados.ejecutarRellenarTabla();
+        
         principalVenta.getEditarVenta().setTablaProductosListados(tablaProductosListados);
         configuracionTxtCantidadTxtTotal();
 
@@ -99,7 +113,7 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
     private void configuracionTxtCantidadTxtTotal() {
         principalVenta.getEditarVenta().getTxtCantidad().setText("1");
         principalVenta.getEditarVenta().getTxtCantidad().setHorizontalAlignment(SwingConstants.CENTER);
-        principalVenta.getEditarVenta().getLblPrecioTotal().setText("0.0");
+       // principalVenta.getEditarVenta().getLblPrecioTotal().setText("0.0");
     }
 
 }

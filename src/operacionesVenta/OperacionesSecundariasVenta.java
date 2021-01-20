@@ -125,7 +125,7 @@ public class OperacionesSecundariasVenta {
                 tablaVentaCliente.addRow(datosTabla);
                 break;
             case 2:
-                DefaultTableModel tablaVentaClienteE = (DefaultTableModel) formularioEditarVenta.getTablaCliente().getModel();
+                DefaultTableModel tablaVentaClienteE = (DefaultTableModel) formularioEditarVenta.getTablaGraficaCliente().getModel();
                 OperacionesUtiles.removerFilas(tablaVentaClienteE);
                 Vector datosTablaE = new Vector();
                 datosTablaE.add(nombre);
@@ -148,7 +148,7 @@ public class OperacionesSecundariasVenta {
                 tablaVentaCliente.addRow(datosTabla);
                 break;
             case 2:
-                DefaultTableModel tablaVentaClienteE = (DefaultTableModel) formularioEditarVenta.getTablaCliente().getModel();
+                DefaultTableModel tablaVentaClienteE = (DefaultTableModel) formularioEditarVenta.getTablaGraficaCliente().getModel();
                 OperacionesUtiles.removerFilas(tablaVentaClienteE);
                 Vector datosTablaE = new Vector();
                 datosTablaE.add("Cons. Final");
@@ -160,10 +160,10 @@ public class OperacionesSecundariasVenta {
     }
 
     private void modeloTabla() {
-
         switch (tipoFormulario) {
+           
             case 1:
-                Vector datosTabla = new Vector();
+               Vector datosTabla = new Vector();
                 Vector<String> encabezadoTabla = new Vector<>();
                 encabezadoTabla.add("NOMBRE");
                 encabezadoTabla.add("TELEFONO");
@@ -176,7 +176,7 @@ public class OperacionesSecundariasVenta {
                 encabezadoTablaE.add("NOMBRE");
                 encabezadoTablaE.add("TELEFONO");
                 encabezadoTablaE.add("DIRECCION");
-                formularioEditarVenta.getTablaCliente().setModel(new DefaultTableModel(datosTablaE, encabezadoTablaE));
+                formularioEditarVenta.getTablaGraficaCliente().setModel(new DefaultTableModel(datosTablaE, encabezadoTablaE));
                 break;
         }
 
@@ -276,7 +276,7 @@ public class OperacionesSecundariasVenta {
                     return true;
                 }
             case 2:
-                if (formularioEditarVenta.getTablaCliente().getRowCount() < 1) {
+                if (formularioEditarVenta.getTablaGraficaCliente().getRowCount() < 1) {
                     DesktopNotify.showDesktopMessage(" Informacion", " Debe seleccionar un cliente o consumidor final", DesktopNotify.INFORMATION, 7000);
                     return false;
                 } else {

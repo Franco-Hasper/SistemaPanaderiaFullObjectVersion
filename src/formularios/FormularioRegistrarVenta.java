@@ -107,11 +107,11 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     }
 
     public JTable getTablaCliente() {
-        return tablaCliente;
+        return tablaGraficaCliente;
     }
 
     public void setTablaCliente(JTable tablaCliente) {
-        this.tablaCliente = tablaCliente;
+        this.tablaGraficaCliente = tablaCliente;
     }
 
     public JTable getTablaListarProductos() {
@@ -189,7 +189,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         btnQuitar = new principal.MaterialButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tablaCliente = new javax.swing.JTable();
+        tablaGraficaCliente = new javax.swing.JTable();
         btnBuscarCliente = new principal.MaterialButton();
         rSDateChooser = new rojeru_san.componentes.RSDateChooser();
         radButonConsumidorFinal = new javax.swing.JRadioButton();
@@ -294,10 +294,10 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
             }
         });
 
-        tablaCliente.setBackground(new java.awt.Color(255, 255, 255));
-        tablaCliente.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        tablaCliente.setForeground(new java.awt.Color(102, 0, 0));
-        tablaCliente.setModel(new javax.swing.table.DefaultTableModel(
+        tablaGraficaCliente.setBackground(new java.awt.Color(255, 255, 255));
+        tablaGraficaCliente.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        tablaGraficaCliente.setForeground(new java.awt.Color(102, 0, 0));
+        tablaGraficaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -305,17 +305,17 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
 
             }
         ));
-        tablaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaCliente.setDoubleBuffered(true);
-        tablaCliente.setEnabled(false);
-        tablaCliente.setRowHeight(40);
-        tablaCliente.setSelectionBackground(new java.awt.Color(153, 0, 0));
-        tablaCliente.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tablaCliente.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tablaCliente.setShowHorizontalLines(false);
-        tablaCliente.setShowVerticalLines(false);
-        tablaCliente.getTableHeader().setReorderingAllowed(false);
-        jScrollPane4.setViewportView(tablaCliente);
+        tablaGraficaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tablaGraficaCliente.setDoubleBuffered(true);
+        tablaGraficaCliente.setEnabled(false);
+        tablaGraficaCliente.setRowHeight(40);
+        tablaGraficaCliente.setSelectionBackground(new java.awt.Color(153, 0, 0));
+        tablaGraficaCliente.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tablaGraficaCliente.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablaGraficaCliente.setShowHorizontalLines(false);
+        tablaGraficaCliente.setShowVerticalLines(false);
+        tablaGraficaCliente.getTableHeader().setReorderingAllowed(false);
+        jScrollPane4.setViewportView(tablaGraficaCliente);
 
         btnBuscarCliente.setBackground(new java.awt.Color(0,0,0,60));
         btnBuscarCliente.setForeground(new java.awt.Color(255, 255, 255));
@@ -757,7 +757,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private javax.swing.JPanel panelPrincipalTop;
     private rojeru_san.componentes.RSDateChooser rSDateChooser;
     private javax.swing.JRadioButton radButonConsumidorFinal;
-    private javax.swing.JTable tablaCliente;
+    private javax.swing.JTable tablaGraficaCliente;
     private javax.swing.JTable tablaGraficaProductosDisponibles;
     private javax.swing.JTable tablaListarProductos;
     private javax.swing.JTextField txtBuscar;

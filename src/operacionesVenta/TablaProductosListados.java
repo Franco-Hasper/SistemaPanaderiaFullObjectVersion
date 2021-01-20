@@ -1,11 +1,17 @@
 package operacionesVenta;
 
 import calsesPadre.Tabla;
+import clasesUtilidadGeneral.OperacionesUtiles;
 import conexion.ConexionHibernate;
 import ds.desktop.notify.DesktopNotify;
+import entidades.Direccion_Cliente;
 import entidades.PrecioProducto;
+import entidades.Producto_Venta;
+import entidades.TelefonoCliente;
 import escritorios.PrincipalVenta;
+import formularios.FormularioEditarVenta;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JTable;
@@ -17,15 +23,30 @@ import org.hibernate.Session;
  */
 public class TablaProductosListados extends Tabla {
 
+    public TablaProductosListados() {
+        setEstadoConsulta(0);
+    }
+
+    private Integer idVenta;
     private PrincipalVenta principalVenta;
 
     private TablaProductosDisponibles tablaProductosDisponibles;
 
     private List<Integer> listaProductosListados = new ArrayList<Integer>();
 
+    private FormularioEditarVenta formularioEditarVenta;
+
     private JTable tablaProductosListados;
 
     private int tipoFormulario;
+
+    public Integer getIdVenta() {
+        return idVenta;
+    }
+
+    public void setIdVenta(Integer idVenta) {
+        this.idVenta = idVenta;
+    }
 
     public JTable getTablaProductosListados() {
         return tablaProductosListados;
@@ -65,6 +86,14 @@ public class TablaProductosListados extends Tabla {
 
     public void setTipoFormulario(int tipoFormulario) {
         this.tipoFormulario = tipoFormulario;
+    }
+
+    public FormularioEditarVenta getFormularioEditarVenta() {
+        return formularioEditarVenta;
+    }
+
+    public void setFormularioEditarVenta(FormularioEditarVenta formularioEditarVenta) {
+        this.formularioEditarVenta = formularioEditarVenta;
     }
 
     /**
@@ -109,9 +138,7 @@ public class TablaProductosListados extends Tabla {
                 fila.add(total);
                 tablaProductosListados.addRow(fila);
                 break;
-
         }
-
         conexion();
     }
 
@@ -214,16 +241,59 @@ public class TablaProductosListados extends Tabla {
         return 0;
     }
 
-    @Deprecated
-    @Override
-    public void rellenarTabla(String valorBusqueda) {
-
-    }
-
-    @Deprecated
     @Override
     public void ejecutarRellenarTabla() {
+        setTabla(formularioEditarVenta.getTablaGraficaProductosListados());
+        setStringConsulta("from Producto_Venta where codigoVenta=" + this.idVenta.toString());
+        evaluarEstadoConsulta();
+        setCampoTexto(formularioEditarVenta.getTxtBuscarEnLista());
+        rellenarTabla(getCampoTexto().getText());
+    }
+
+    @Override
+    public void rellenarTabla(String valorBusqueda) {
+        Double sumaTotal = 0.0;
+        Date fechaVenta = new Date();
+
+        
+        DefaultTableModel tablaProducto = (DefaultTableModel) getTabla().getModel();
+        List lista = this.getListaResultados();
+        operacionesUtilidad.removerFilas(tablaProducto);
+
+        try {
+            this.listaProductosListados.clear();
+        } catch (NullPointerException e) {
+        }
+
+        for (Object o : lista) {
+            
+            Producto_Venta p = (Producto_Venta) o;
+            Vector<Object> fila = new Vector<>();
+            boolean resultadoComparacion = OperacionesUtiles.convertirResultado(p.getCodigoProducto().getNombre(), valorBusqueda);
+            if (resultadoComparacion) {
+                //caso especial :v
+                this.listaProductosListados.add(0, p.getIdProductoVenta());
+                fila.add(p.getCodigoProducto().getNombre());
+                fila.add(p.getTotalUnidades());
+                fila.add(p.getPrecioTotal());
+                tablaProducto.addRow(fila);
+                
+                //SECCION DATOS SECUNDARIOS CAMBIAR DE LUGAR 
+                sumaTotal += p.getPrecioTotal();
+                fechaVenta = p.getCodigoVenta().getFechaHoraVenta();
+
+            }
+        }
+        OperacionesUtiles.ordenarLista(listaProductosListados);
+        totalFecha(sumaTotal, fechaVenta);
+    }
+
+    private void totalFecha(Double sumaTotal, Date fecha) {
+        formularioEditarVenta.getLblPrecioTotal().setText(sumaTotal.toString());
+        formularioEditarVenta.getrSDateChooser().setDatoFecha(fecha);
 
     }
+
+
 
 }
