@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 15-05-2020 a las 13:44:12
+-- Tiempo de generación: 20-01-2021 a las 23:17:32
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -23,26 +23,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cliente`
+-- Estructura de tabla para la tabla `clientes`
 --
 
-CREATE TABLE IF NOT EXISTS `cliente` (
-  `id_cliente` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `clientes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `apellido` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `codigo_razon_social` int(11) NOT NULL,
   `codigo_estado` int(11) NOT NULL,
   `codigo_tipo_cliente` int(11) NOT NULL,
-  PRIMARY KEY (`id_cliente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=4 ;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=8 ;
 
 --
--- Volcado de datos para la tabla `cliente`
+-- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `cliente` (`id_cliente`, `nombre`, `apellido`, `codigo_razon_social`, `codigo_estado`, `codigo_tipo_cliente`) VALUES
+INSERT INTO `clientes` (`id`, `nombre`, `apellido`, `codigo_razon_social`, `codigo_estado`, `codigo_tipo_cliente`) VALUES
 (1, 'Consumidor', 'Final', 1, 1, 1),
-(3, 'Nahuel', 'Hernandez', 1, 1, 2);
+(3, 'Nahuel', 'Hernandez', 2, 1, 2),
+(4, 'Oscar', 'Nuñes', 1, 2, 2),
+(5, 'Nahuel', 'asd', 1, 2, 2),
+(6, 'Oscar', 'LA', 1, 1, 2),
+(7, 'Gabriel', 'Gonzales', 1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -58,14 +62,23 @@ CREATE TABLE IF NOT EXISTS `corte_caja` (
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `codigo_estado` int(11) NOT NULL,
   PRIMARY KEY (`id_corte_caja`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `corte_caja`
 --
 
 INSERT INTO `corte_caja` (`id_corte_caja`, `total_ingresos`, `total_egresos`, `balance`, `fecha`, `codigo_estado`) VALUES
-(1, 4876.3, 3300, 1576.3, '2020-05-12 14:40:38', 1);
+(1, 48, 3300, 1576.3, '2020-11-09 03:00:00', 1),
+(2, 0, 0, 0, '2020-06-30 21:29:05', 2),
+(3, 629.2, 65000, -64370.8, '2020-08-17 01:20:49', 2),
+(4, 1212, 12, 1221, '2020-12-03 03:00:00', 2),
+(5, 5000, 3000, 2000, '2020-12-03 19:52:42', 2),
+(6, 200, 10, 190, '2020-12-08 00:37:46', 2),
+(7, 400, 58, 342, '2020-12-08 01:13:42', 1),
+(8, 625, 0, 625, '2020-12-09 21:58:12', 2),
+(9, 800, 710, -710, '2021-01-10 00:59:19', 1),
+(10, 40, 0, 40, '2021-01-10 22:01:30', 2);
 
 -- --------------------------------------------------------
 
@@ -78,7 +91,16 @@ CREATE TABLE IF NOT EXISTS `cuenta` (
   `balance` double NOT NULL,
   `codigo_cliente` int(11) NOT NULL,
   PRIMARY KEY (`id_cuenta`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `cuenta`
+--
+
+INSERT INTO `cuenta` (`id_cuenta`, `balance`, `codigo_cliente`) VALUES
+(1, 200, 3),
+(3, 870, 4),
+(4, 500, 6);
 
 -- --------------------------------------------------------
 
@@ -94,15 +116,18 @@ CREATE TABLE IF NOT EXISTS `direccion_cliente` (
   `codigo_tipo_domicilio` int(11) NOT NULL,
   `codigo_localidad` int(11) NOT NULL,
   PRIMARY KEY (`id_direccion_cliente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=8 ;
 
 --
 -- Volcado de datos para la tabla `direccion_cliente`
 --
 
 INSERT INTO `direccion_cliente` (`id_direccion_cliente`, `codigo_cliente`, `nombre`, `numero`, `codigo_tipo_domicilio`, `codigo_localidad`) VALUES
-(1, 3, 'Larrea', 6587, 1, 1515),
-(3, 3, 'Iguazu', 95954, 1, 1461);
+(3, 3, 'Iguazu', 95954, 1, 145),
+(4, 4, 'Catamarca', 8450, 1, 1479),
+(5, 5, 'asd', 6416, 1, 145),
+(6, 6, 'yyy', 666, 1, 145),
+(7, 7, 'Iguazu', 4522, 2, 1515);
 
 -- --------------------------------------------------------
 
@@ -117,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `direccion_proveedor` (
   `numero` int(11) NOT NULL,
   `codigo_localidad` int(11) NOT NULL,
   PRIMARY KEY (`id_direccion_proveedor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `direccion_proveedor`
@@ -125,7 +150,8 @@ CREATE TABLE IF NOT EXISTS `direccion_proveedor` (
 
 INSERT INTO `direccion_proveedor` (`id_direccion_proveedor`, `codigo_proveedor`, `nombre`, `numero`, `codigo_localidad`) VALUES
 (1, 1, 'Lavalle', 658, 1462),
-(2, 2, 'Iguazu', 65489, 1659);
+(2, 2, 'Iguazu', 65489, 1659),
+(3, 3, 'ooo', 111, 145);
 
 -- --------------------------------------------------------
 
@@ -163,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `gasto` (
   `fecha` date NOT NULL,
   `codigo_estado` int(11) NOT NULL,
   PRIMARY KEY (`id_gasto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=21 ;
 
 --
 -- Volcado de datos para la tabla `gasto`
@@ -173,14 +199,23 @@ INSERT INTO `gasto` (`id_gasto`, `descripcion`, `precio_total`, `fecha`, `codigo
 (1, 'mantenimiento de maquinarias', 1500, '2019-10-30', 1),
 (2, 'varios', 250, '2019-11-05', 1),
 (3, 'varios', 450, '2020-04-06', 1),
-(4, 'reparación de vehículo', 2500, '2020-04-07', 1),
-(5, 'nafta', 1200, '2020-04-07', 1),
+(4, 'reparación de vehículo', 25010, '2020-04-07', 1),
+(5, 'nafta', 1200, '2021-01-18', 1),
 (6, 'varios', 300, '2020-04-08', 1),
-(7, 'pintura para el local', 2300, '2020-04-08', 1),
+(7, 'pintura para el local', 2300, '2021-01-18', 1),
 (8, 'varios', 850, '2020-04-17', 1),
 (9, 'ruedas para el vehículo', 3000, '2020-04-24', 1),
 (10, 'varios', 150, '2020-04-24', 1),
-(11, 'Limpiaparabrizas', 800, '2020-05-12', 1);
+(11, 'Limpiaparabrizas', 800, '2020-05-12', 1),
+(12, 'adasd434', 5543, '2020-10-23', 2),
+(13, '561', 61, '2020-11-03', 2),
+(14, '51', 651, '2020-11-03', 1),
+(15, 'asd', 200, '2020-12-03', 1),
+(16, 'ooo4141', 11, '2020-12-03', 2),
+(17, 'uuu', 6, '2020-12-07', 1),
+(18, '414141', 41, '2021-01-09', 2),
+(19, '53', 543, '2021-01-09', 1),
+(20, 'asd', 88, '2021-01-09', 1);
 
 -- --------------------------------------------------------
 
@@ -199,15 +234,31 @@ CREATE TABLE IF NOT EXISTS `ingreso_mat_prima` (
   PRIMARY KEY (`id_ingreso_mat_prima`),
   KEY `codigoMateriaPrima` (`codigo_materia_prima`),
   KEY `estado` (`codigo_estado`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=19 ;
 
 --
 -- Volcado de datos para la tabla `ingreso_mat_prima`
 --
 
 INSERT INTO `ingreso_mat_prima` (`id_ingreso_mat_prima`, `codigo_materia_prima`, `total_envases`, `ud_por_envase`, `fecha`, `precio_total`, `codigo_estado`) VALUES
-(1, 1, 10, 25, '2020-05-12 14:18:04', 2500, 1),
-(2, 2, 15, 1, '2020-05-12 15:28:01', 800, 1);
+(1, 1, 10, 25, '2018-09-12 14:18:04', 2500, 1),
+(2, 2, 12, 1, '2021-01-14 03:00:00', 800, 1),
+(3, 2, 90, 1, '2020-08-17 01:13:22', 5000, 2),
+(4, 1, 50, 25, '2020-08-17 01:14:07', 60000, 2),
+(5, 4, 10, 1, '2020-10-13 22:08:40', 2500, 2),
+(6, 4, 5, 1, '2020-10-13 22:11:32', 1750, 2),
+(7, 6, 99, 98, '2020-12-03 03:00:00', 97, 1),
+(8, 4, 33, 33, '2020-12-03 21:20:16', 33, 1),
+(9, 4, 88, 88, '2020-12-03 21:22:56', 88, 1),
+(10, 4, 88, 88, '2020-12-03 21:23:41', 88, 2),
+(11, 2, 99999, 555, '2020-12-03 21:26:44', 555, 2),
+(12, 1, 77, 77, '2020-12-03 21:42:15', 77, 2),
+(13, 4, 88, 88, '2020-12-03 21:43:30', 88, 2),
+(14, 4, 5, 5, '2020-12-07 20:45:59', 5, 1),
+(15, 1, 3, 3, '2020-12-07 20:48:58', 3, 1),
+(16, 4, 44, 44, '2020-12-08 00:30:29', 44, 1),
+(17, 4, 55, 55, '2020-12-08 20:17:01', 55, 2),
+(18, 10, 50, 60, '2021-01-09 03:00:00', 669, 1);
 
 -- --------------------------------------------------------
 
@@ -395,7 +446,7 @@ INSERT INTO `localidad` (`id_localidad`, `nombre`, `cod_postal`, `codigo_provinc
 (142, 'Zárate', 0, 1),
 (143, '11 de Septiembre', 0, 2),
 (144, '20 de Junio', 0, 2),
-(145, '25 de Mayo', 0, 2),
+(145, '25 de Mayo', 0, 1),
 (146, 'Acassuso', 0, 2),
 (147, 'Adrogué', 0, 2),
 (148, 'Aldo Bonzi', 0, 2),
@@ -2363,7 +2414,7 @@ CREATE TABLE IF NOT EXISTS `materiaprima_marca_proveedor` (
   `codigo_marca` int(11) NOT NULL,
   `codigo_proveedor` int(11) NOT NULL,
   PRIMARY KEY (`id_materiaprima_marca_proveedor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `materiaprima_marca_proveedor`
@@ -2371,7 +2422,15 @@ CREATE TABLE IF NOT EXISTS `materiaprima_marca_proveedor` (
 
 INSERT INTO `materiaprima_marca_proveedor` (`id_materiaprima_marca_proveedor`, `codigo_materia_prima`, `codigo_marca`, `codigo_proveedor`) VALUES
 (1, 1, 1, 1),
-(2, 2, 5, 2);
+(2, 2, 3, 2),
+(3, 3, 2, 2),
+(4, 4, 2, 2),
+(5, 5, 1, 1),
+(6, 6, 1, 1),
+(7, 7, 1, 1),
+(8, 8, 1, 1),
+(9, 9, 1, 1),
+(10, 10, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -2387,15 +2446,23 @@ CREATE TABLE IF NOT EXISTS `matprima` (
   PRIMARY KEY (`id_materia_prima`),
   KEY `u_medida` (`codigo_ud_medida`),
   KEY `estado` (`codigo_estado`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `matprima`
 --
 
 INSERT INTO `matprima` (`id_materia_prima`, `nombre`, `codigo_ud_medida`, `codigo_estado`) VALUES
-(1, 'Harina', 2, 1),
-(2, 'Levadura', 2, 1);
+(1, 'Harina', 1, 1),
+(2, 'PPP', 2, 1),
+(3, 'Aceite8', 2, 1),
+(4, 'Aceiteaaaa', 2, 2),
+(5, 'Aceite', 1, 1),
+(6, 'Gas', 1, 2),
+(7, 'asdaaa', 1, 1),
+(8, '95215', 1, 1),
+(9, 'www', 1, 1),
+(10, 'Mejorador', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -2410,7 +2477,7 @@ CREATE TABLE IF NOT EXISTS `matprima_marca` (
   PRIMARY KEY (`id_materia_prima_marca`),
   KEY `idmatprima` (`codigo_materia_prima`),
   KEY `idmarca` (`codigo_marca`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `matprima_marca`
@@ -2418,7 +2485,15 @@ CREATE TABLE IF NOT EXISTS `matprima_marca` (
 
 INSERT INTO `matprima_marca` (`id_materia_prima_marca`, `codigo_materia_prima`, `codigo_marca`) VALUES
 (1, 1, 6),
-(2, 2, 5);
+(2, 2, 5),
+(3, 3, 6),
+(4, 4, 4),
+(5, 5, 1),
+(6, 6, 1),
+(7, 7, 1),
+(8, 8, 1),
+(9, 9, 1),
+(10, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -2433,7 +2508,7 @@ CREATE TABLE IF NOT EXISTS `matprima_proveedor` (
   PRIMARY KEY (`id_materiaprima_proveedor`),
   KEY `idmatprima` (`codigo_materia_prima`),
   KEY `idproveedor` (`codigo_proveedor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `matprima_proveedor`
@@ -2441,7 +2516,15 @@ CREATE TABLE IF NOT EXISTS `matprima_proveedor` (
 
 INSERT INTO `matprima_proveedor` (`id_materiaprima_proveedor`, `codigo_materia_prima`, `codigo_proveedor`) VALUES
 (1, 1, 1),
-(2, 2, 3);
+(2, 2, 3),
+(3, 3, 2),
+(4, 4, 2),
+(5, 5, 1),
+(6, 6, 1),
+(7, 7, 1),
+(8, 8, 1),
+(9, 9, 1),
+(10, 10, 2);
 
 -- --------------------------------------------------------
 
@@ -2457,7 +2540,16 @@ CREATE TABLE IF NOT EXISTS `movimiento_cuenta` (
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `codigo_cuenta` int(11) NOT NULL,
   PRIMARY KEY (`id_movimiento_cuenta`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=11 ;
+
+--
+-- Volcado de datos para la tabla `movimiento_cuenta`
+--
+
+INSERT INTO `movimiento_cuenta` (`id_movimiento_cuenta`, `motivo`, `monto`, `balance`, `fecha`, `codigo_cuenta`) VALUES
+(1, 'Monto Inicial', 900, 900, '2021-01-18 23:15:14', 1),
+(9, 'depostio', 500, 1400, '2021-01-15 22:16:29', 1),
+(10, 'retiro pan 50 kg.', -1200, 200, '2021-01-18 23:22:09', 1);
 
 -- --------------------------------------------------------
 
@@ -2486,56 +2578,87 @@ INSERT INTO `precio_materia_prima` (`id_precio_materia_prima`, `codigo_materia_p
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `precio_producto`
+-- Estructura de tabla para la tabla `precio__productos`
 --
 
-CREATE TABLE IF NOT EXISTS `precio_producto` (
-  `id_precio` int(11) NOT NULL AUTO_INCREMENT,
-  `codigo_producto` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `precio__productos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `productoId` int(11) NOT NULL,
   `precio_bruto` float NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `precio_total` float NOT NULL,
   `codigo_iva` int(11) NOT NULL,
-  `codigo_estado` int(11) NOT NULL,
-  PRIMARY KEY (`id_precio`),
+  `estadoId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `iva` (`codigo_iva`),
-  KEY `idproducto` (`codigo_producto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=5 ;
+  KEY `idproducto` (`productoId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=33 ;
 
 --
--- Volcado de datos para la tabla `precio_producto`
+-- Volcado de datos para la tabla `precio__productos`
 --
 
-INSERT INTO `precio_producto` (`id_precio`, `codigo_producto`, `precio_bruto`, `fecha`, `precio_total`, `codigo_iva`, `codigo_estado`) VALUES
-(1, 4, 40, '2020-05-12 14:26:08', 48.4, 3, 2),
-(2, 4, 52, '2020-05-12 14:26:16', 62.92, 3, 2),
-(3, 4, 47, '2020-05-12 14:26:33', 56.87, 3, 2),
-(4, 4, 65, '2020-05-12 14:26:40', 78.65, 3, 1);
+INSERT INTO `precio__productos` (`id`, `productoId`, `precio_bruto`, `fecha`, `precio_total`, `codigo_iva`, `estadoId`) VALUES
+(1, 1, 40, '2021-01-04 13:13:16', 48, 3, 2),
+(2, 2, 52, '2020-12-07 13:46:13', 62.92, 3, 2),
+(3, 3, 47, '2020-12-07 13:46:09', 56.87, 3, 2),
+(4, 4, 65, '2020-05-12 14:26:40', 78.65, 3, 2),
+(5, 4, 85, '2020-12-07 13:44:40', 102.85, 3, 2),
+(6, 4, 85, '2020-12-07 13:44:21', 102.85, 3, 2),
+(7, 6, 56, '2020-12-07 13:45:06', 67.76, 3, 1),
+(8, 7, 220, '2020-12-07 13:45:12', 266.2, 3, 2),
+(9, 5, 20, '2020-12-07 13:43:08', 20, 3, 1),
+(10, 6, 58, '2020-11-03 22:35:57', 70.18, 3, 2),
+(11, 6, 455, '2020-11-03 22:36:11', 455, 3, 2),
+(12, 6, 84, '2020-12-07 13:44:59', 101.64, 3, 2),
+(13, 7, 99, '2020-12-04 01:44:26', 119.79, 3, 2),
+(14, 1, 50, '2021-01-04 13:13:28', 60, 3, 2),
+(15, 7, 900, '2020-12-08 00:06:25', 1089, 3, 2),
+(16, 1, 500, '2020-12-08 00:06:56', 500, 3, 2),
+(17, 1, 200, '2020-12-08 00:07:16', 200, 3, 2),
+(18, 7, 605, '2020-12-08 00:07:29', 605, 3, 1),
+(19, 2, 70, '2021-01-14 21:20:35', 70, 3, 1),
+(20, 1, 600, '2020-12-08 00:13:13', 600, 3, 2),
+(21, 1, 69, '2020-12-08 00:13:20', 69, 3, 2),
+(22, 1, 44, '2021-01-04 13:13:24', 53, 3, 1),
+(23, 2, 4, '2020-12-09 00:56:17', 4, 3, 2),
+(24, 2, 44, '2020-12-09 00:56:25', 44, 3, 2),
+(25, 2, 88, '2020-12-09 02:18:42', 106.48, 3, 2),
+(26, 2, 99, '2020-12-09 02:18:51', 119.79, 3, 1),
+(27, 4, 55, '2020-12-09 02:20:27', 66.55, 3, 2),
+(28, 4, 53, '2020-12-09 02:21:50', 57, 3, 1),
+(29, 3, 77, '2020-12-09 02:22:58', 77, 3, 2),
+(30, 3, 88, '2020-12-09 02:23:08', 88, 3, 2),
+(31, 3, 74, '2020-12-09 02:23:15', 74, 3, 2),
+(32, 3, 55, '2021-01-10 00:56:40', 66.55, 3, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `producto`
+-- Estructura de tabla para la tabla `productos`
 --
 
-CREATE TABLE IF NOT EXISTS `producto` (
-  `id_producto` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `productos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `descripcion` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
   `codigo_estado` int(11) NOT NULL,
-  PRIMARY KEY (`id_producto`),
+  PRIMARY KEY (`id`),
   KEY `estado` (`codigo_estado`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=8 ;
 
 --
--- Volcado de datos para la tabla `producto`
+-- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `producto` (`id_producto`, `nombre`, `descripcion`, `codigo_estado`) VALUES
-(1, 'Pan', 'panificados', 1),
-(2, 'Torraditas', 'panificados', 1),
-(3, 'Torta', 'dulces', 1),
-(4, 'Pan', 'Panificados', 1);
+INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `codigo_estado`) VALUES
+(1, 'P66pp', 'panificados', 1),
+(2, 'Panllaaapppppppp', 'panificados', 2),
+(3, 'Torta4', 'dulces', 1),
+(4, 'Panllaaa88poo', 'panificados', 2),
+(5, 'Galleta', 'Panificados', 1),
+(6, 'Pa7', 'Panificados', 1),
+(7, 'Torradita', 'Panificado', 1);
 
 -- --------------------------------------------------------
 
@@ -2547,19 +2670,19 @@ CREATE TABLE IF NOT EXISTS `producto_venta` (
   `id_producto_venta` int(11) NOT NULL AUTO_INCREMENT,
   `codigo_producto` int(11) NOT NULL,
   `total_unidades` double NOT NULL,
+  `precio_total` double NOT NULL,
   `codigo_venta` int(11) NOT NULL,
   PRIMARY KEY (`id_producto_venta`),
   KEY `idproducto` (`codigo_producto`),
   KEY `idpedido` (`codigo_venta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=39 ;
 
 --
 -- Volcado de datos para la tabla `producto_venta`
 --
 
-INSERT INTO `producto_venta` (`id_producto_venta`, `codigo_producto`, `total_unidades`, `codigo_venta`) VALUES
-(2, 4, 10, 1),
-(3, 4, 52, 2);
+INSERT INTO `producto_venta` (`id_producto_venta`, `codigo_producto`, `total_unidades`, `precio_total`, `codigo_venta`) VALUES
+(2, 5, 1, 20, 1);
 
 -- --------------------------------------------------------
 
@@ -2573,7 +2696,7 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
   `codigo_estado` int(11) NOT NULL,
   PRIMARY KEY (`id_proveedor`),
   KEY `estado` (`codigo_estado`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `proveedor`
@@ -2581,7 +2704,8 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
 
 INSERT INTO `proveedor` (`id_proveedor`, `nombre`, `codigo_estado`) VALUES
 (1, 'AndesDistribuciones', 1),
-(2, 'MariaClara', 1);
+(2, 'MariaClaraaa', 2),
+(3, 'oooppp', 2);
 
 -- --------------------------------------------------------
 
@@ -2636,14 +2760,17 @@ CREATE TABLE IF NOT EXISTS `razon_social` (
   `id_razon_social` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_razon_social`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `razon_social`
 --
 
 INSERT INTO `razon_social` (`id_razon_social`, `nombre`) VALUES
-(1, 'Particular');
+(1, 'no posee'),
+(2, 'AAA'),
+(3, 'BBBB'),
+(4, 'a');
 
 -- --------------------------------------------------------
 
@@ -2658,14 +2785,19 @@ CREATE TABLE IF NOT EXISTS `telefono_cliente` (
   `codigo_tipo_telefono` int(11) NOT NULL,
   PRIMARY KEY (`id_telefono`),
   KEY `tipo` (`codigo_tipo_telefono`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=7 ;
 
 --
 -- Volcado de datos para la tabla `telefono_cliente`
 --
 
 INSERT INTO `telefono_cliente` (`id_telefono`, `codigo_cliente`, `numero`, `codigo_tipo_telefono`) VALUES
-(1, 3, '3755548784', 2);
+(1, 3, '3755548784', 1),
+(2, 3, '3755986598', 1),
+(3, 4, '3755215487', 1),
+(4, 5, '65416', 1),
+(5, 6, '6651', 1),
+(6, 7, '375565478', 1);
 
 -- --------------------------------------------------------
 
@@ -2679,7 +2811,7 @@ CREATE TABLE IF NOT EXISTS `telefono_proveedor` (
   `numero` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `codigo_tipo_telefono` int(11) NOT NULL,
   PRIMARY KEY (`id_telefono_proveedor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `telefono_proveedor`
@@ -2687,7 +2819,8 @@ CREATE TABLE IF NOT EXISTS `telefono_proveedor` (
 
 INSERT INTO `telefono_proveedor` (`id_telefono_proveedor`, `codigo_proveedor`, `numero`, `codigo_tipo_telefono`) VALUES
 (1, 1, '3769845412', 2),
-(2, 2, '3758985623', 2);
+(2, 2, '3758985623', 2),
+(3, 3, '111', 1);
 
 -- --------------------------------------------------------
 
@@ -2746,8 +2879,8 @@ CREATE TABLE IF NOT EXISTS `tipo_telefono` (
 --
 
 INSERT INTO `tipo_telefono` (`id_tipo_telefono`, `nombre`) VALUES
-(1, 'fijo'),
-(2, 'movil');
+(1, 'movil'),
+(2, 'fijo');
 
 -- --------------------------------------------------------
 
@@ -2808,15 +2941,24 @@ CREATE TABLE IF NOT EXISTS `venta` (
   KEY `idtipo` (`codigo_tipo_venta`),
   KEY `idestadoventa` (`codigo_estado`),
   KEY `idcliente` (`codigo_cliente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=16 ;
 
 --
 -- Volcado de datos para la tabla `venta`
 --
 
 INSERT INTO `venta` (`id_venta`, `codigo_cliente`, `fecha_hora_venta`, `preciototal`, `codigo_estado`, `codigo_tipo_venta`) VALUES
-(1, 3, '2020-05-12 11:27:29', 786.5, 3, 1),
-(2, 1, '2020-05-12 11:30:02', 4089.8, 3, 1);
+(1, 3, '2020-05-12 11:27:29', 20, 3, 1);
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `precio__productos`
+--
+ALTER TABLE `precio__productos`
+  ADD CONSTRAINT `FKtemtahw5l77j1wjcgqiskw248` FOREIGN KEY (`productoId`) REFERENCES `productos` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
