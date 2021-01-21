@@ -62,8 +62,9 @@ public abstract class ABM extends Consultas {
      *
      */
     public boolean ejecutarRegistrar() {
+         DesktopNotify.showDesktopMessage("","VERIFICAR CAMPOS VACIOS EN ABM", DesktopNotify.ERROR, 7000);
         obtenerFormularioRegistrar();
-        if (operacionesUtilidad.verificarCamposTextoVacios(getListaCampos())) {
+//        if (operacionesUtilidad.verificarCamposTextoVacios(getListaCampos())) {
             conexionTransaccionRegistrar();
             try {
                 getFormularioRegistrar().dispose();
@@ -71,8 +72,8 @@ public abstract class ABM extends Consultas {
                 return true;
             }
               return true;
-        }
-        return false;
+  //      }
+    //    return false;
     }
 
     /**
@@ -82,13 +83,14 @@ public abstract class ABM extends Consultas {
      *
      */
     public boolean ejecutarEditar() {
+         DesktopNotify.showDesktopMessage("","VERIFICAR CAMPOS VACIOS EN ABM", DesktopNotify.ERROR, 7000);
         obtenerFormularioEditar();
-        if (operacionesUtilidad.verificarCamposTextoVacios(getListaCampos())) {
+        //if (operacionesUtilidad.verificarCamposTextoVacios(getListaCampos())) {
             conexionTransaccionEditar();
             getFormularioEditar().dispose();
             return true;
-        }
-        return false;
+        //}
+    //    return false;
     }
 
     /**

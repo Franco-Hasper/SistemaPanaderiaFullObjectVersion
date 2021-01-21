@@ -1,5 +1,6 @@
 package formularios;
 
+import entidades.Producto_Venta;
 import escritorios.PrincipalCliente;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -39,11 +40,29 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
     private PrincipalVenta principalVenta;
     private final ABMVenta abm = new ABMVenta();
     private PrincipalAdministrador principalAdministrador;
-    private Integer cambiarCliente;
+    private boolean cambiarCliente;
     private PrincipalCliente principalCliente;
     private OperacionesSecundariasVenta operacionesSecundariasVenta;
     private TablaProductosDisponibles tablaProductosDisponibles;
     private TablaProductosListados tablaProductosListados;
+    private Integer idCliente;
+    private List<Producto_Venta> listaProductosEliminar;
+
+    public List<Producto_Venta> getListaProductosEliminar() {
+        return listaProductosEliminar;
+    }
+
+    public void setListaProductosEliminar(List<Producto_Venta> listaProductosEliminar) {
+        this.listaProductosEliminar = listaProductosEliminar;
+    }
+
+    public Integer getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
+    }
 
     public OperacionesSecundariasVenta getOperacionesSecundariasVenta() {
         return operacionesSecundariasVenta;
@@ -61,11 +80,11 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
         this.principalCliente = principalCliente;
     }
 
-    public Integer getCambiarCliente() {
+    public boolean isCambiarCliente() {
         return cambiarCliente;
     }
 
-    public void setCambiarCliente(Integer cambiarCliente) {
+    public void setCambiarCliente(boolean cambiarCliente) {
         this.cambiarCliente = cambiarCliente;
     }
 
@@ -85,14 +104,6 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
         this.tablaProductosListados = tablaProductosListados;
     }
 
-    
-    
-    public List getListaCampos() {
-        List listCamposTexto = new ArrayList();
-        listCamposTexto.add(this.getLblPrecioTotal());
-        return listCamposTexto;
-    }
-
     public PrincipalAdministrador getPrincipalAdministrador() {
         return principalAdministrador;
     }
@@ -108,8 +119,6 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
     public void setTablaProductosDisponibles(TablaProductosDisponibles tablaProductosDisponibles) {
         this.tablaProductosDisponibles = tablaProductosDisponibles;
     }
-    
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -577,8 +586,6 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
         this.txtBuscar = txtBuscar;
     }
 
-
-
     public JTable getTablaListarProductos() {
         return tablaGraficaProductosListados;
     }
@@ -620,7 +627,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
     }
 
     private void boxTipoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoVentaActionPerformed
-  operacionesSecundariasVenta.tipoVentaSeleccionada(boxTipoVenta.getSelectedItem().toString());
+        operacionesSecundariasVenta.tipoVentaSeleccionada(boxTipoVenta.getSelectedItem().toString());
     }//GEN-LAST:event_boxTipoVentaActionPerformed
 
     private void boxTipoVentaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_boxTipoVentaKeyReleased
@@ -640,7 +647,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_lblSalirMouseClicked
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-  if (tablaProductosDisponibles.verificarFilaSeleccionada()) {
+        if (tablaProductosDisponibles.verificarFilaSeleccionada()) {
             tablaProductosListados.setPrincipalVenta(principalVenta);
             tablaProductosListados.setTablaProductosDisponibles(tablaProductosDisponibles);
             if (tablaProductosListados.verificarValor()) {
@@ -659,6 +666,22 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCantidadActionPerformed
 
     private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed
+
+        if (operacionesSecundariasVenta.validarListaProductos()) {
+            if (operacionesSecundariasVenta.validarTablaCliente()) {
+                if (operacionesSecundariasVenta.validarFecha()) {
+                    abm.setFormularioEditarVenta(this);
+                    abm.setListaProductosListados(tablaProductosListados.getListaProductosListados());
+                    abm.setPrincipalCliente(principalCliente);
+                    abm.setPrincipalVenta(principalVenta);
+                    abm.setListaProductosEliminar(listaProductosEliminar);
+                    abm.ejecutarEditar();
+                    principalVenta.getTablaVenta().setPrincipalVenta(principalVenta);
+                    principalVenta.getTablaVenta().setEstadoConsulta(0);
+                    principalVenta.getTablaVenta().ejecutarRellenarTabla();
+                }
+            }
+        }
 
     }//GEN-LAST:event_btnGuardarCambiosActionPerformed
 
@@ -679,7 +702,8 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_txtBuscarEnListaActionPerformed
 
     private void radButonConsumidorFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radButonConsumidorFinalActionPerformed
-operacionesSecundariasVenta.tipoConsumidorFinalEnabled();
+        operacionesSecundariasVenta.tipoConsumidorFinalEnabled();
+        setCambiarCliente(true);
     }//GEN-LAST:event_radButonConsumidorFinalActionPerformed
 
     private void radButonConsumidorFinalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radButonConsumidorFinalItemStateChanged
@@ -689,10 +713,11 @@ operacionesSecundariasVenta.tipoConsumidorFinalEnabled();
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         new InterfazGraficaEscritorioCliente().deshabilitarBotonesEditar(principalAdministrador, this, 2);
         this.setVisible(false);
+        setCambiarCliente(true);
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
-  if (tablaProductosListados.verificarFilaSeleccionada()) {
+        if (tablaProductosListados.verificarFilaSeleccionada()) {
             tablaProductosListados.quitarProducto();
             operacionesSecundariasVenta.obtenerPrecioTotal();
         }
@@ -763,11 +788,6 @@ operacionesSecundariasVenta.tipoConsumidorFinalEnabled();
     }
 
 
-
-    
-
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxTipoVenta;
     private principal.MaterialButton btnAgregar;

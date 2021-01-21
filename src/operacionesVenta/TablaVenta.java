@@ -33,15 +33,7 @@ public class TablaVenta extends Tabla {
     private PrincipalVenta principalVenta;
     private PrincipalCliente principalCliente;
     private List<Integer> listaResutladosActuales = new ArrayList<Integer>();
-    private static List<Producto_Venta> listaProductosEliminar;
-
-    public static List<Producto_Venta> getListaProductosEliminar() {
-        return listaProductosEliminar;
-    }
-
-    public static void setListaProductosEliminar(List<Producto_Venta> listaProductosEliminar) {
-        TablaVenta.listaProductosEliminar = listaProductosEliminar;
-    }
+    
 
     public PrincipalVenta getPrincipalVenta() {
         return principalVenta;
@@ -321,7 +313,6 @@ public class TablaVenta extends Tabla {
     public void rellenarTablaListaProducto() {
         DefaultTableModel tablaDetallesVenta = (DefaultTableModel) getTabla().getModel();
         List lista = this.getListaResultados();
-        this.setListaProductosEliminar(lista);
         OperacionesUtiles.removerFilas(tablaDetallesVenta);
         for (Object o : lista) {
             Producto_Venta pr = (Producto_Venta) o;

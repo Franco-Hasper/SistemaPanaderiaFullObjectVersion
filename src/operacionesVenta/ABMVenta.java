@@ -30,6 +30,16 @@ public class ABMVenta extends ABM {
     private PrincipalVenta principalVenta;
     //para obtener el idCliente
     private PrincipalCliente principalCliente;
+    //se borran todos los productos de listados y se vuelven a cargar desde cero
+    private List<Producto_Venta> listaProductosEliminar;
+
+    public List<Producto_Venta> getListaProductosEliminar() {
+        return listaProductosEliminar;
+    }
+
+    public void setListaProductosEliminar(List<Producto_Venta> listaProductosEliminar) {
+        this.listaProductosEliminar = listaProductosEliminar;
+    }
 
     public PrincipalCliente getPrincipalCliente() {
         return principalCliente;
@@ -82,18 +92,19 @@ public class ABMVenta extends ABM {
     @Override
     public void obtenerFormularioRegistrar() {
         setFormularioRegistrar(this.getFormularioRegistrarVenta());
-        setListaCampos(this.getFormularioRegistrarVenta().getListaCampos());
+        //setListaCampos(null);
     }
 
     @Override
     public void obtenerFormularioEditar() {
         setFormularioEditar(this.getFormularioEditarVenta());
-        setListaCampos(this.getFormularioEditarVenta().getListaCampos());
+        //setListaCampos(null);
     }
 
     @Override
     public void transaccionRegistrar(Session miSesion) {
         Double totalunidades;
+        Double precioTotal;
 
         Venta v = new Venta();
         if (formularioRegistrarVenta.getRadButonConsumidorFinal().isSelected()) {
@@ -129,9 +140,11 @@ public class ABMVenta extends ABM {
             Integer id = listaProductosListados.get(i);
             Producto p = (Producto) miSesion.get(Producto.class, id);
             totalunidades = Double.valueOf(formularioRegistrarVenta.getTablaListarProductos().getValueAt(i, 1).toString());
+            precioTotal = Double.valueOf(formularioRegistrarVenta.getTablaListarProductos().getValueAt(i, 2).toString());
             pv.setCodigoProducto(p);
             pv.setCodigoVenta(v);
             pv.setTotalUnidades(totalunidades);
+            pv.setPrecioTotal(precioTotal);
             miSesion.save(pv);
         }
     }
@@ -169,28 +182,29 @@ public class ABMVenta extends ABM {
 
     @Override
     public void transaccionEditar(Session miSesion) {
+        Integer idCliente;
+        Integer idVenta;
 
-        Integer totalFilas = principalVenta.getTablaGrafica().getRowCount();
-        Integer filasSeleccionada = principalVenta.getTablaGrafica().getSelectedRow();
-        List<Integer> listaResutadosActuales = principalVenta.getTablaVenta().getListaResutladosActuales();
-        Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
+        idVenta = principalVenta.getTablaVenta().obtenerIdFilaSeleccionada();
 
-        Integer totalFilasCliente = principalCliente.getTablaGrafica().getRowCount();
-        Integer filasSeleccionadaCliente = principalCliente.getTablaGrafica().getSelectedRow();
-        List<Integer> listaResutadosActualesCliente = principalCliente.getTablaCliente().getListaResutladosActuales();
-        Integer idCliente = operacionesUtilidad.obtenerId(listaResutadosActualesCliente, totalFilasCliente, filasSeleccionadaCliente);
+        if (formularioEditarVenta.isCambiarCliente()) {
+            idCliente = principalCliente.getTablaCliente().obtenerIdFilaSeleccionada();
+        } else {
+            idCliente = formularioEditarVenta.getIdCliente();
+        }
 
         Double totalunidades;
-
-        List lista = TablaVenta.getListaProductosEliminar();
+        Double precioTotal;
+        List lista = getListaProductosEliminar();
 
         for (Object o : lista) {
             Producto_Venta pr = (Producto_Venta) o;
             Producto_Venta productoEliminar = (Producto_Venta) miSesion.get(Producto_Venta.class, pr.getIdProductoVenta());
             miSesion.delete(productoEliminar);
         }
-        Venta v = (Venta) miSesion.get(Venta.class, id);
-        if (formularioEditarVenta.getCambiarCliente().equals(1)) {
+        Venta v = (Venta) miSesion.get(Venta.class, idVenta);
+
+        if (formularioEditarVenta.isCambiarCliente()) {
             Cliente c = (Cliente) miSesion.get(Cliente.class, idCliente);
             v.setCodigoCliente(c);
         } else if (formularioEditarVenta.getRadButonConsumidorFinal().isSelected()) {
@@ -214,13 +228,19 @@ public class ABMVenta extends ABM {
         }
         miSesion.saveOrUpdate(v);
 
-        for (int i = 0; i < formularioEditarVenta.getTablaListarProductos().getRowCount(); i++) {
+        
+        //VER EL TEMA DE AGREGAR IDS EN LISTA DE PRODUCTOS(los que vienen de bd al inicio creo que ya estan
+        //verficar con los sout en todas las seccioens)
+        for (int i = 0; i < listaProductosListados.size(); i++) {
             Producto_Venta pv = new Producto_Venta();
-            Producto p = (Producto) miSesion.get(Producto.class, Integer.valueOf(formularioEditarVenta.getTablaListarProductos().getValueAt(i, 0).toString()));
-            totalunidades = Double.valueOf(formularioEditarVenta.getTablaListarProductos().getValueAt(i, 2).toString());
+            Integer id = listaProductosListados.get(i);
+            Producto p = (Producto) miSesion.get(Producto.class, id);
+            totalunidades = Double.valueOf(formularioEditarVenta.getTablaListarProductos().getValueAt(i, 1).toString());
+            precioTotal = Double.valueOf(formularioEditarVenta.getTablaListarProductos().getValueAt(i, 2).toString());
             pv.setCodigoProducto(p);
             pv.setCodigoVenta(v);
             pv.setTotalUnidades(totalunidades);
+            pv.setPrecioTotal(precioTotal);
             miSesion.save(pv);
         }
 

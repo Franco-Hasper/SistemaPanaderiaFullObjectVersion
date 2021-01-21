@@ -170,11 +170,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         this.txtBuscarEnLista = txtBuscarEnLista;
     }
 
-    public List getListaCampos() {
-        List listCamposTexto = new ArrayList();
-        listCamposTexto.add(this.getTxtCantidad());
-        return listCamposTexto;
-    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

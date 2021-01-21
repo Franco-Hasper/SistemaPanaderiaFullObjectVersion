@@ -39,6 +39,18 @@ public class TablaProductosListados extends Tabla {
     private JTable tablaProductosListados;
 
     private int tipoFormulario;
+    
+    private List<Producto_Venta> listaProductosEliminar;
+
+    public List<Producto_Venta> getListaProductosEliminar() {
+        return listaProductosEliminar;
+    }
+
+    public void setListaProductosEliminar(List<Producto_Venta> listaProductosEliminar) {
+        this.listaProductosEliminar = listaProductosEliminar;
+    }
+
+
 
     public Integer getIdVenta() {
         return idVenta;
@@ -258,6 +270,7 @@ public class TablaProductosListados extends Tabla {
         
         DefaultTableModel tablaProducto = (DefaultTableModel) getTabla().getModel();
         List lista = this.getListaResultados();
+        this.setListaProductosEliminar(lista);
         operacionesUtilidad.removerFilas(tablaProducto);
 
         try {

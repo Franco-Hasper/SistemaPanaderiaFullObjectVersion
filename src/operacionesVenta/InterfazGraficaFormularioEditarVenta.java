@@ -1,9 +1,12 @@
 package operacionesVenta;
 
 import calsesPadre.InterfazGraficaFormularioEditar;
+import clasesUtilidadGeneral.OperacionesUtiles;
 import escritorios.PrincipalVenta;
 import formularios.FormularioEditarVenta;
+import java.util.Vector;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 import principal.PrincipalAdministrador;
 
 /**
@@ -23,7 +26,6 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
     public void setIdVenta(Integer idVenta) {
         this.idVenta = idVenta;
     }
-    
 
     public PrincipalVenta getPrincipalVenta() {
         return principalVenta;
@@ -72,7 +74,8 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
         tablaProductosListados.setFormularioEditarVenta(formularioEditar);
         tablaProductosListados.setIdVenta(idVenta);
         tablaProductosListados.ejecutarRellenarTabla();
-        
+        principalVenta.getEditarVenta().setListaProductosEliminar(tablaProductosListados.getListaProductosEliminar());
+
         principalVenta.getEditarVenta().setTablaProductosListados(tablaProductosListados);
         configuracionTxtCantidadTxtTotal();
 
@@ -86,6 +89,14 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
         //guardo el la instancia en el formulario grafico
         principalVenta.getEditarVenta().setOperacionesSecundariasVenta(operacionesSecundariasVenta);
         rellenarBoxes();
+
+        //seccion tablaCliente
+        TablaClienteWhenEdit tablaCliente = new TablaClienteWhenEdit();
+        tablaCliente.setIdVenta(idVenta);
+        tablaCliente.setFormularioEditarVenta(formularioEditar);
+        tablaCliente.ejecutarRellenenarTabla();
+        principalVenta.getEditarVenta().setIdCliente(tablaCliente.getIdCliente());
+
         principalVenta.getEditarVenta().setVisible(true);
     }
 
@@ -113,7 +124,7 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
     private void configuracionTxtCantidadTxtTotal() {
         principalVenta.getEditarVenta().getTxtCantidad().setText("1");
         principalVenta.getEditarVenta().getTxtCantidad().setHorizontalAlignment(SwingConstants.CENTER);
-       // principalVenta.getEditarVenta().getLblPrecioTotal().setText("0.0");
+        // principalVenta.getEditarVenta().getLblPrecioTotal().setText("0.0");
     }
 
 }
