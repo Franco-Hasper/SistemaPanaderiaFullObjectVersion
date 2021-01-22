@@ -39,7 +39,7 @@ public class TablaProductosListados extends Tabla {
     private JTable tablaProductosListados;
 
     private int tipoFormulario;
-    
+
     private List<Producto_Venta> listaProductosEliminar;
 
     public List<Producto_Venta> getListaProductosEliminar() {
@@ -49,8 +49,6 @@ public class TablaProductosListados extends Tabla {
     public void setListaProductosEliminar(List<Producto_Venta> listaProductosEliminar) {
         this.listaProductosEliminar = listaProductosEliminar;
     }
-
-
 
     public Integer getIdVenta() {
         return idVenta;
@@ -267,7 +265,6 @@ public class TablaProductosListados extends Tabla {
         Double sumaTotal = 0.0;
         Date fechaVenta = new Date();
 
-        
         DefaultTableModel tablaProducto = (DefaultTableModel) getTabla().getModel();
         List lista = this.getListaResultados();
         this.setListaProductosEliminar(lista);
@@ -279,18 +276,18 @@ public class TablaProductosListados extends Tabla {
         }
 
         for (Object o : lista) {
-            
+
             Producto_Venta p = (Producto_Venta) o;
             Vector<Object> fila = new Vector<>();
             boolean resultadoComparacion = OperacionesUtiles.convertirResultado(p.getCodigoProducto().getNombre(), valorBusqueda);
             if (resultadoComparacion) {
                 //caso especial :v
-                this.listaProductosListados.add(0, p.getIdProductoVenta());
+                this.listaProductosListados.add(0, p.getCodigoProducto().getIdProducto());
                 fila.add(p.getCodigoProducto().getNombre());
                 fila.add(p.getTotalUnidades());
                 fila.add(p.getPrecioTotal());
                 tablaProducto.addRow(fila);
-                
+
                 //SECCION DATOS SECUNDARIOS CAMBIAR DE LUGAR 
                 sumaTotal += p.getPrecioTotal();
                 fechaVenta = p.getCodigoVenta().getFechaHoraVenta();
@@ -306,7 +303,5 @@ public class TablaProductosListados extends Tabla {
         formularioEditarVenta.getrSDateChooser().setDatoFecha(fecha);
 
     }
-
-
 
 }

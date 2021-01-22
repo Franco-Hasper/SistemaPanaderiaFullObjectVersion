@@ -717,6 +717,8 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
+        tablaProductosListados.setPrincipalVenta(principalVenta);
+        tablaProductosListados.setTablaProductosListados(this.tablaGraficaProductosListados);
         if (tablaProductosListados.verificarFilaSeleccionada()) {
             tablaProductosListados.quitarProducto();
             operacionesSecundariasVenta.obtenerPrecioTotal();

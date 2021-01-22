@@ -27,40 +27,45 @@ public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio 
 
     @Override
     public void nuevaVentana() {
-        if (principalAdministrador.getEscritorio().estacerrado(principalAdministrador.getCliente())) {
-            PrincipalCliente principalCliente = new PrincipalCliente();
-            principalAdministrador.setCliente(principalCliente);
-            BasicInternalFrameTitlePane menupanel = (BasicInternalFrameTitlePane) ((BasicInternalFrameUI) principalCliente.getUI()).getNorthPane();
-            int width = principalAdministrador.getEscritorio().getWidth();
-            int Height = principalAdministrador.getEscritorio().getHeight();
-            principalAdministrador.getCliente().remove(menupanel);
-            principalAdministrador.getCliente().setSize(width, Height);
-            principalAdministrador.getEscritorio().add(principalAdministrador.getCliente());
-            infoTextPrompt();
-            TablaCliente tablaCliente = new TablaCliente();
-            tablaCliente.setPrincipalCliente(principalAdministrador.getCliente());
-            tablaCliente.ejecutarRellenarTabla();
-            principalAdministrador.getCliente().setTablaCliente(tablaCliente);
-            InterfazGraficaFormularioRegistrarCliente formularioRegistrar = new InterfazGraficaFormularioRegistrarCliente();
-            InterfazGraficaFormularioEditarCliente formularioEditar = new InterfazGraficaFormularioEditarCliente();
-            principalAdministrador.getCliente().setFormularioRegistrar(formularioRegistrar);
-            principalAdministrador.getCliente().setFormularioEditar(formularioEditar);
-            //solo para pasar admin al EscritorioCuenta
-            principalAdministrador.getCliente().setPrincipalAdministrador(principalAdministrador);
+
+        try {
+            if (principalAdministrador.getEscritorio().estacerrado(principalAdministrador.getCliente())) {
+                PrincipalCliente principalCliente = new PrincipalCliente();
+                principalAdministrador.setCliente(principalCliente);
+                BasicInternalFrameTitlePane menupanel = (BasicInternalFrameTitlePane) ((BasicInternalFrameUI) principalCliente.getUI()).getNorthPane();
+                int width = principalAdministrador.getEscritorio().getWidth();
+                int Height = principalAdministrador.getEscritorio().getHeight();
+                principalAdministrador.getCliente().remove(menupanel);
+                principalAdministrador.getCliente().setSize(width, Height);
+                principalAdministrador.getEscritorio().add(principalAdministrador.getCliente());
+                infoTextPrompt();
+                TablaCliente tablaCliente = new TablaCliente();
+                tablaCliente.setPrincipalCliente(principalAdministrador.getCliente());
+                tablaCliente.ejecutarRellenarTabla();
+                principalAdministrador.getCliente().setTablaCliente(tablaCliente);
+                InterfazGraficaFormularioRegistrarCliente formularioRegistrar = new InterfazGraficaFormularioRegistrarCliente();
+                InterfazGraficaFormularioEditarCliente formularioEditar = new InterfazGraficaFormularioEditarCliente();
+                principalAdministrador.getCliente().setFormularioRegistrar(formularioRegistrar);
+                principalAdministrador.getCliente().setFormularioEditar(formularioEditar);
+                //solo para pasar admin al EscritorioCuenta
+                principalAdministrador.getCliente().setPrincipalAdministrador(principalAdministrador);
+                if (caso) {
+                    //
+                } else {
+                    principalAdministrador.getCliente().show();
+                }
+
+            }
             if (caso) {
                 //
             } else {
-                principalAdministrador.getCliente().show();
+                habilitarBotones();
             }
+            colorInterfazEscritorio();
+            principalAdministrador.getCliente().toFront();
+        } catch (ClassCastException e) {
+        }
 
-        }
-        if (caso) {
-            //
-        } else {
-            habilitarBotones();
-        }
-        colorInterfazEscritorio();
-        principalAdministrador.getCliente().toFront();
     }
 
     @Override

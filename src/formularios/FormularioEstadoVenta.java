@@ -4,8 +4,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import clasesUtilidadGeneral.OperacionesUtiles;
+import ds.desktop.notify.DesktopNotify;
 import escritorios.PrincipalVenta;
 import operacionesVenta.ABMVenta;
+import operacionesVenta.InterfazGraficaDetalleVenta;
 //import static operacionesVenta.InterfacesGraficasVenta.i;
 import principal.MaterialButton;
 
@@ -18,12 +20,12 @@ public class FormularioEstadoVenta extends javax.swing.JDialog {
     public FormularioEstadoVenta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
         setEstado(0);
     }
     private PrincipalVenta principalVenta;
     private final ABMVenta abm = new ABMVenta();
 
-    
     Integer estado;
 
     public Integer getEstado() {
@@ -41,9 +43,6 @@ public class FormularioEstadoVenta extends javax.swing.JDialog {
     public void setPrincipalVenta(PrincipalVenta principalVenta) {
         this.principalVenta = principalVenta;
     }
-    
-    
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -291,31 +290,42 @@ public class FormularioEstadoVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_panelMouseDragged
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
+        if (getEstado().equals(0)) {
+            DesktopNotify.showDesktopMessage("   Informacion    ", "   Debe seleccionar una opcion", DesktopNotify.INFORMATION, 5000);
+        } else {
+            abm.setFormularioEstadoVenta(this);
+            abm.setPrincipalVenta(principalVenta);
+            if (abm.ejecutarEliminar()) {
+                this.dispose();
+                principalVenta.getTablaVenta().setPrincipalVenta(principalVenta);
+                principalVenta.getTablaVenta().setEstadoConsulta(0);
+                principalVenta.getTablaVenta().ejecutarRellenarTabla();
+            }
+        }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         setEstado(2);
-   //     i.seleccionElminar(this);
+        new InterfazGraficaDetalleVenta().seleccionElminar(this);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCanceladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCanceladoActionPerformed
         setEstado(5);
-  //      i.seleccionCancelar(this);
+        new InterfazGraficaDetalleVenta().seleccionCancelar(this);
     }//GEN-LAST:event_btnCanceladoActionPerformed
 
     private void btnPendienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPendienteActionPerformed
         setEstado(4);
-  //      i.seleccionPendiente(this);
+        new InterfazGraficaDetalleVenta().seleccionPendiente(this);
     }//GEN-LAST:event_btnPendienteActionPerformed
 
     private void btnRealizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizadoActionPerformed
         setEstado(3);
-       // i.seleccionRealizado(this);
+        new InterfazGraficaDetalleVenta().seleccionRealizado(this);
     }//GEN-LAST:event_btnRealizadoActionPerformed
 
     /**
@@ -400,8 +410,6 @@ public class FormularioEstadoVenta extends javax.swing.JDialog {
     public void setPanelPrincipalTop(JPanel panelPrincipalTop) {
         this.panelPrincipalTop = panelPrincipalTop;
     }
-
-
 
     public MaterialButton getBtnCancelado() {
         return btnCancelado;

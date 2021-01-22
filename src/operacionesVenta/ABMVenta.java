@@ -1,6 +1,9 @@
 package operacionesVenta;
 
 import calsesPadre.ABM;
+import clasesUtilidadGeneral.OperacionesUtiles;
+import conexion.ConexionHibernate;
+import ds.desktop.notify.DesktopNotify;
 import entidades.Cliente;
 import entidades.Estado;
 import entidades.Producto;
@@ -88,6 +91,8 @@ public class ABMVenta extends ABM {
     public void setPrincipalVenta(PrincipalVenta principalVenta) {
         this.principalVenta = principalVenta;
     }
+    
+   
 
     @Override
     public void obtenerFormularioRegistrar() {
@@ -151,11 +156,8 @@ public class ABMVenta extends ABM {
 
     @Override
     public void transaccionEliminar(Session miSesion) {
-
-        Integer totalFilas = principalVenta.getTablaGrafica().getRowCount();
-        Integer filasSeleccionada = principalVenta.getTablaGrafica().getSelectedRow();
-        List<Integer> listaResutadosActuales = principalVenta.getTablaVenta().getListaResutladosActuales();
-        Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
+        
+        Integer id = principalVenta.getTablaVenta().obtenerIdFilaSeleccionada();
 
         Estado eE = (Estado) miSesion.get(Estado.class, 2);
         Estado eR = (Estado) miSesion.get(Estado.class, 3);
@@ -228,9 +230,9 @@ public class ABMVenta extends ABM {
         }
         miSesion.saveOrUpdate(v);
 
+
+
         
-        //VER EL TEMA DE AGREGAR IDS EN LISTA DE PRODUCTOS(los que vienen de bd al inicio creo que ya estan
-        //verficar con los sout en todas las seccioens)
         for (int i = 0; i < listaProductosListados.size(); i++) {
             Producto_Venta pv = new Producto_Venta();
             Integer id = listaProductosListados.get(i);
@@ -245,5 +247,8 @@ public class ABMVenta extends ABM {
         }
 
     }
+    
+    
+
 
 }

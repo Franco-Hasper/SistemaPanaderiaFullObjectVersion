@@ -71,12 +71,12 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
         //Seccion Tabla Productos Listados
         TablaProductosListados tablaProductosListados = new TablaProductosListados();
         tablaProductosListados.setTipoFormulario(2);
+        principalVenta.getEditarVenta().setTablaProductosListados(tablaProductosListados);
         tablaProductosListados.setFormularioEditarVenta(formularioEditar);
         tablaProductosListados.setIdVenta(idVenta);
         tablaProductosListados.ejecutarRellenarTabla();
         principalVenta.getEditarVenta().setListaProductosEliminar(tablaProductosListados.getListaProductosEliminar());
 
-        principalVenta.getEditarVenta().setTablaProductosListados(tablaProductosListados);
         configuracionTxtCantidadTxtTotal();
 
         //Seccion Operaciones Secundarias

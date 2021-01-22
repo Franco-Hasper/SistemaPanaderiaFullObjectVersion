@@ -2,6 +2,7 @@ package escritorios;
 
 import formularios.FormularioDetalleDeVenta;
 import formularios.FormularioEditarVenta;
+import formularios.FormularioEstadoVenta;
 import formularios.FormularioRegistrarVenta;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -10,6 +11,7 @@ import javax.swing.JTextField;
 import operacionesVenta.ABMVenta;
 import operacionesVenta.InterfazGraficaDetalleVenta;
 import operacionesVenta.InterfazGraficaFormularioEditarVenta;
+import operacionesVenta.InterfazGraficaFormularioEstadoVenta;
 import operacionesVenta.InterfazGraficaFormularioRegistrarVenta;
 import operacionesVenta.TablaDetalleVenta;
 import operacionesVenta.TablaVenta;
@@ -26,15 +28,18 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
         registrarVenta = null;
         editarVenta = null;
         detalleVenta = null;
+        formularioEstadoVenta=null;
         radButtonPendientes.setEnabled(false);
     }
 
     private InterfazGraficaFormularioRegistrarVenta formularioRegistrar;
     private InterfazGraficaFormularioEditarVenta formularioEditar;
     private InterfazGraficaDetalleVenta formularioDetalleVenta;
+    private InterfazGraficaFormularioEstadoVenta interfazGraficaEstadoVenta;
     private FormularioRegistrarVenta registrarVenta;
     private FormularioEditarVenta editarVenta;
     private FormularioDetalleDeVenta detalleVenta;
+    private FormularioEstadoVenta formularioEstadoVenta;
     private TablaVenta tablaVenta;
     private final ABMVenta abm = new ABMVenta();
     private PrincipalAdministrador principalAdministrador;
@@ -62,6 +67,25 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
     public void setFormularioEditar(InterfazGraficaFormularioEditarVenta formularioEditar) {
         this.formularioEditar = formularioEditar;
     }
+
+    public FormularioEstadoVenta getFormularioEstadoVenta() {
+        return formularioEstadoVenta;
+    }
+
+    public void setFormularioEstadoVenta(FormularioEstadoVenta formularioEstadoVenta) {
+        this.formularioEstadoVenta = formularioEstadoVenta;
+    }
+
+    public InterfazGraficaFormularioEstadoVenta getInterfazGraficaEstadoVenta() {
+        return interfazGraficaEstadoVenta;
+    }
+
+    public void setInterfazGraficaEstadoVenta(InterfazGraficaFormularioEstadoVenta interfazGraficaEstadoVenta) {
+        this.interfazGraficaEstadoVenta = interfazGraficaEstadoVenta;
+    }
+    
+    
+    
 
     public FormularioRegistrarVenta getRegistrarVenta() {
         return registrarVenta;
@@ -395,15 +419,23 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnVentaWebActionPerformed
 
     private void radButonSoloPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radButonSoloPedidosActionPerformed
-
+        if (radButonSoloPedidos.isSelected()) {
+            radButtonPendientes.setEnabled(true);
+        } else {
+            radButtonPendientes.setEnabled(false);
+        }
+        tablaVenta.ejecutarRellenarTabla();
     }//GEN-LAST:event_radButonSoloPedidosActionPerformed
 
     private void radButtonPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radButtonPendientesActionPerformed
-
+        tablaVenta.ejecutarRellenarTabla();
     }//GEN-LAST:event_radButtonPendientesActionPerformed
 
     private void bntCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCambiarEstadoActionPerformed
-
+ if (tablaVenta.verificarFilaSeleccionada()) {
+     interfazGraficaEstadoVenta.setPrincipalVenta(this);
+    interfazGraficaEstadoVenta.nuevoFormularioEstadoVenta();
+ }
 
     }//GEN-LAST:event_bntCambiarEstadoActionPerformed
 

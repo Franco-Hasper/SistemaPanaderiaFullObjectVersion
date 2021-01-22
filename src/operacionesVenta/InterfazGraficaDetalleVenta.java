@@ -3,6 +3,7 @@ package operacionesVenta;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import escritorios.PrincipalVenta;
 import formularios.FormularioDetalleDeVenta;
+import formularios.FormularioEstadoVenta;
 import java.awt.Frame;
 
 /**
@@ -34,6 +35,35 @@ public class InterfazGraficaDetalleVenta {
 
     public void colorTema() {
         principalVenta.getDetalleVenta().getPanelPrincipalTop().setBackground(principalVenta.getPanelPrincipalTop().getBackground());
+    }
+    
+    
+    public void seleccionElminar(FormularioEstadoVenta f) {
+        f.getLblC().setVisible(false);
+        f.getLblE().setVisible(true);
+        f.getLblP().setVisible(false);
+        f.getLblR().setVisible(false);
+    }
+
+    public void seleccionCancelar(FormularioEstadoVenta f) {
+        f.getLblC().setVisible(true);
+        f.getLblE().setVisible(false);
+        f.getLblP().setVisible(false);
+        f.getLblR().setVisible(false);
+    }
+
+    public void seleccionPendiente(FormularioEstadoVenta f) {
+        f.getLblC().setVisible(false);
+        f.getLblE().setVisible(false);
+        f.getLblP().setVisible(true);
+        f.getLblR().setVisible(false);
+    }
+
+    public void seleccionRealizado(FormularioEstadoVenta f) {
+        f.getLblC().setVisible(false);
+        f.getLblE().setVisible(false);
+        f.getLblP().setVisible(false);
+        f.getLblR().setVisible(true);
     }
 
 }

@@ -31,6 +31,9 @@ public class InterfazGraficaEscritorioVenta extends InterfazGraficaEscritorio {
             InterfazGraficaFormularioRegistrarVenta formularioRegistrar = new InterfazGraficaFormularioRegistrarVenta();
             InterfazGraficaFormularioEditarVenta formularioEditar = new InterfazGraficaFormularioEditarVenta();
             InterfazGraficaDetalleVenta formularioDetalleVenta = new InterfazGraficaDetalleVenta();
+            InterfazGraficaFormularioEstadoVenta interfazGraficaEstadoVenta =new InterfazGraficaFormularioEstadoVenta();
+            
+            principalAdministrador.getVenta().setInterfazGraficaEstadoVenta(interfazGraficaEstadoVenta);
             principalAdministrador.getVenta().setFormularioRegistrar(formularioRegistrar);
             principalAdministrador.getVenta().setFormularioEditar(formularioEditar);
             principalAdministrador.getVenta().setFormularioDetalleVenta(formularioDetalleVenta);
