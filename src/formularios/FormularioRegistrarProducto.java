@@ -384,7 +384,8 @@ public class FormularioRegistrarProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-          abm.setFormularioRegistrarProducto(this);
+          
+        abm.setFormularioRegistrarProducto(this);
         if (abm.ejecutarRegistrar()) {
             principalProducto.getTablaProducto().setPrincipalProducto(principalProducto);
             principalProducto.getTablaProducto().setEstadoConsulta(0);

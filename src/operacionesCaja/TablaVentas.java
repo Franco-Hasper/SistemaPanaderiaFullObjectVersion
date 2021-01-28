@@ -5,6 +5,7 @@ import entidades.PrecioProducto;
 import entidades.Producto_Venta;
 import entidades.Venta;
 import formularios.FormularioRegistrarCorte;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
@@ -30,8 +31,8 @@ public class TablaVentas extends Tabla {
         obtenerListaConsulta();
         rellenarTablaFromVenatas();
     }
-    
-        /**
+
+    /**
      * Toma los resultados de la consulta entradas y los agrega en la tabla
      * entradas de la ventana Corte de Caja.
      *
@@ -43,30 +44,22 @@ public class TablaVentas extends Tabla {
 
         for (Object o : lista) {
             Venta v = (Venta) o;
-            Vector<Object> fila = new Vector<>();
+            
             if (operacionesUtilidad.compararFecha(v.getFechaHoraVenta())) {
                 List<Producto_Venta> productos = v.getProductos();
                 for (Producto_Venta pr : productos) {
+                    Vector<Object> fila = new Vector<>();
                     fila.add(pr.getCodigoProducto().getNombre());
                     fila.add(pr.getTotalUnidades());
-                    List<PrecioProducto> precios
-                            = pr.getCodigoProducto().getPrecios();
-                    for (PrecioProducto pre : precios) {
-                        if (pre.getCodigoEstado().getIdEstado().equals(1)) {
-                            fila.add(pr.getTotalUnidades() * pre.getPrecioTotal());
-                        }
-                    }
+                    fila.add(pr.getPrecioTotal().toString());
+                    tablaEntradas.addRow(fila);
                 }
-                fila.add(v.getPrecioTotal().toString());
-                tablaEntradas.addRow(fila);
 
             }
 
         }
 
     }
-    
-    
 
     @Deprecated
     @Override

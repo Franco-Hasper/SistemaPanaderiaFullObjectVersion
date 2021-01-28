@@ -57,7 +57,7 @@ public class TablaGastos extends Tabla {
         for (Object o : lista) {
             IngresoMateriaPrima i = (IngresoMateriaPrima) o;
             Vector<Object> fila = new Vector<>();
-            if ( operacionesUtilidad.compararFecha(i.getFecha())) {
+            if ( operacionesUtilidad.compararFecha(i.getFecha())&&i.getCodigoEstado().getIdEstado().equals(1)) {
                 fila.add(i.getCodigoMateriaPrima().getNombre());
                 fila.add("Ingreso de materia prima");
                 fila.add(i.getPrecioTotal());
@@ -78,7 +78,7 @@ public class TablaGastos extends Tabla {
         for (Object o : lista) {
             Gasto g = (Gasto) o;
             Vector<Object> fila = new Vector<>();
-            if (operacionesUtilidad.compararFecha(g.getFecha())) {
+            if (operacionesUtilidad.compararFecha(g.getFecha())&&g.getCodigoEstado().getIdEstado().equals(1)) {
                 fila.add("otros");
                 fila.add(g.getDescripcion());
                 fila.add(g.getPrecioTotal());

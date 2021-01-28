@@ -44,14 +44,8 @@ public class TablaDetalleVenta extends Tabla {
      */
     @Override
     public void ejecutarRellenarTabla() {
-
-        Integer totalFilas = principalVenta.getTablaGrafica().getRowCount();
-        Integer filasSeleccionada = principalVenta.getTablaGrafica().getSelectedRow();
-        List<Integer> listaResutadosActuales = principalVenta.getTablaVenta().getListaResutladosActuales();
-        Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
-        
+        Integer id = principalVenta.getTablaVenta().obtenerIdFilaSeleccionada();
         setIdVenta(id);
-        
         setConsultaObject("from Producto_Venta where codigo_venta=" + id);
         obtenerObjetoConsulta();
         rellenarLabelsDetalleDeVenta(principalVenta.getDetalleVenta());
@@ -74,13 +68,7 @@ public class TablaDetalleVenta extends Tabla {
             Vector<Object> fila = new Vector<>();
             fila.add(pr.getCodigoProducto().getNombre());
             fila.add(pr.getTotalUnidades());
-            List<PrecioProducto> precios
-                    = pr.getCodigoProducto().getPrecios();
-            for (PrecioProducto pre : precios) {
-                if (pre.getCodigoEstado().getIdEstado().equals(1)) {
-                    fila.add(pr.getTotalUnidades() * pre.getPrecioTotal());
-                }
-            }
+            fila.add(pr.getPrecioTotal());
             tablaDetallesVenta.addRow(fila);
         }
     }

@@ -62,14 +62,14 @@ public class ABMProducto extends ABM {
     public boolean ejecutarRegistrarPrecio() {
         obtenerFormularioRegistrarPrecio();
         if (operacionesUtilidad.verificarCamposTextoVacios(getListaCampos())) {
-            conexionTransaccionRegistrar();
+            conexionTransaccionRegistrarPrecio();
             getFormularioRegistrarPrecioProducto().dispose();
             return true;
         }
         return false;
     }
 
-    public void conexionTransaccionRegistrar() {
+    public void conexionTransaccionRegistrarPrecio() {
         Session miSesion = ConexionHibernate.tomarConexion();
         try {
             miSesion.beginTransaction();
@@ -126,11 +126,8 @@ public class ABMProducto extends ABM {
     }
 
     public void transaccionRegistrarPrecio(Session miSesion) {
-        Integer totalFilas = principalProducto.getTablaGrafica().getRowCount();
-        Integer filasSeleccionada = principalProducto.getTablaGrafica().getSelectedRow();
-        List<Integer> listaResutadosActuales = principalProducto.getTablaProducto().getListaResutladosActuales();
-
-        Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
+        
+        Integer id = principalProducto.getTablaProducto().obtenerIdFilaSeleccionada();
         PrecioProducto prepro = (PrecioProducto) miSesion.get(PrecioProducto.class, id);
         id = prepro.getCodigoProducto().getIdProducto();
 

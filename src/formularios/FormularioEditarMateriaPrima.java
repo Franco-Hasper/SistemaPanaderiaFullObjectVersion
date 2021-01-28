@@ -123,19 +123,6 @@ public class FormularioEditarMateriaPrima extends javax.swing.JDialog {
 
         txtNombreMAteriaPrima.setToolTipText("");
         txtNombreMAteriaPrima.setName(""); // NOI18N
-        txtNombreMAteriaPrima.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreMAteriaPrimaActionPerformed(evt);
-            }
-        });
-        txtNombreMAteriaPrima.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNombreMAteriaPrimaKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreMAteriaPrimaKeyTyped(evt);
-            }
-        });
 
         boxProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,15 +265,6 @@ public class FormularioEditarMateriaPrima extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNombreMAteriaPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreMAteriaPrimaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreMAteriaPrimaActionPerformed
-
-    private void txtNombreMAteriaPrimaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreMAteriaPrimaKeyTyped
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_txtNombreMAteriaPrimaKeyTyped
-
     private void boxProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxProveedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boxProveedorActionPerformed
@@ -298,11 +276,6 @@ public class FormularioEditarMateriaPrima extends javax.swing.JDialog {
     private void boxMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMarcaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boxMarcaActionPerformed
-
-    private void txtNombreMAteriaPrimaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreMAteriaPrimaKeyReleased
-        // TODO add your handling code here:
-        new OperacionesUtiles().advertenciaChar(evt);
-    }//GEN-LAST:event_txtNombreMAteriaPrimaKeyReleased
 
     private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed
         abm.setFormularioEditarMateriaPrima(this);

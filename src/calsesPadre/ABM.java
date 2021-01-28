@@ -66,12 +66,12 @@ public abstract class ABM extends Consultas {
         obtenerFormularioRegistrar();
 //        if (operacionesUtilidad.verificarCamposTextoVacios(getListaCampos())) {
             conexionTransaccionRegistrar();
-            try {
+       //     try {
                 getFormularioRegistrar().dispose();
-            } catch (NullPointerException e) {
+        //    } catch (NullPointerException e) {
                 return true;
-            }
-              return true;
+         //   }
+          //    return true;
   //      }
     //    return false;
     }
@@ -116,9 +116,9 @@ public abstract class ABM extends Consultas {
             miSesion.beginTransaction();
             transaccionRegistrar(miSesion);
             miSesion.getTransaction().commit();
-            DesktopNotify.showDesktopMessage("   exito   ", "   Nuevo registro creado con exito", DesktopNotify.SUCCESS, 7000);
+        //    DesktopNotify.showDesktopMessage("   exito   ", "   Nuevo registro creado con exito", DesktopNotify.SUCCESS, 7000);
     //    } catch (Exception e) {
-            DesktopNotify.showDesktopMessage("   error    ", "   Error al intentar crear  registro", DesktopNotify.ERROR, 7000);
+        //    DesktopNotify.showDesktopMessage("   error    ", "   Error al intentar crear  registro", DesktopNotify.ERROR, 7000);
      //  }
     }
 

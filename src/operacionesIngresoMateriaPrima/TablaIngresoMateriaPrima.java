@@ -51,10 +51,7 @@ public class TablaIngresoMateriaPrima extends Tabla {
     @Override
     public Integer obtenerIdFilaSeleccionada() {
         try {
-            Integer totalFilas = principalIngresoMateriaPrima.getTablaGrafica().getRowCount();
-            Integer filasSeleccionada = principalIngresoMateriaPrima.getTablaGrafica().getSelectedRow();
-            List<Integer> listaResutadosActualesThis = principalIngresoMateriaPrima.getTablaIngresoMateriaPrima().getListaResutladosActuales();
-            Integer id = operacionesUtilidad.obtenerId(listaResutadosActualesThis, totalFilas, filasSeleccionada);
+            Integer id = principalIngresoMateriaPrima.getTablaIngresoMateriaPrima().obtenerIdFilaSeleccionada();
             this.setIdTabla(id);
         } catch (Exception e) {
         }
@@ -74,7 +71,8 @@ public class TablaIngresoMateriaPrima extends Tabla {
           for (Object o : lista) {
             IngresoMateriaPrima inmt = (IngresoMateriaPrima) o;
            
-            Integer resutadoComparacion = (inmt.getFecha().toString().indexOf(valorBusqueda));
+            Integer resutadoComparacion = (OperacionesUtiles.formatoFechaSinHora(inmt.getFecha()).toString().indexOf(valorBusqueda));
+            
             if (inmt.getCodigoEstado().getIdEstado().equals(1) && (resutadoComparacion.equals(0))) {
                 this.listaResutladosActuales.add(0, inmt.getIdIngresoMateriaPrima());
                  Vector<Object> fila = new Vector<>();
