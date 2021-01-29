@@ -9,6 +9,8 @@ import javax.swing.JTextField;
 import operacionesCliente.ABMCliente;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import escritorios.PrincipalCliente;
+import java.awt.MouseInfo;
+import java.awt.Point;
 
 /**
  *
@@ -22,8 +24,8 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
     }
 
-    private  PrincipalCliente principalCliente;
-    private   final ABMCliente abm = new ABMCliente();
+    private PrincipalCliente principalCliente;
+    private final ABMCliente abm = new ABMCliente();
 
     public PrincipalCliente getPrincipalCliente() {
         return principalCliente;
@@ -100,6 +102,16 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
         panelBase.setBackground(new java.awt.Color(255, 255, 255));
         panelBase.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 102, 102), java.awt.Color.gray, new java.awt.Color(102, 102, 102), java.awt.Color.gray));
@@ -229,7 +241,7 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void butonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonGuardarCambiosActionPerformed
-       abm.setFormularioEditarCliente(this);
+        abm.setFormularioEditarCliente(this);
         abm.setPrincipalCliente(principalCliente);
         if (abm.ejecutarEditar()) {
             principalCliente.getTablaCliente().setEstadoConsulta(0);
@@ -251,6 +263,16 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_radioButonActionPerformed
+    int x, y;
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_formMousePressed
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
+    }//GEN-LAST:event_formMouseDragged
 
     /**
      * @param args the command line arguments
@@ -316,8 +338,6 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
     public void setPanelprincipalBody(JPanel panelprincipalBody) {
         this.panelprincipalBody = panelprincipalBody;
     }
-
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

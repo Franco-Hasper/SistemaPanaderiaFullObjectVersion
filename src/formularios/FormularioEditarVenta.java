@@ -10,6 +10,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import escritorios.PrincipalVenta;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import operacionesCliente.InterfazGraficaEscritorioCliente;
@@ -156,6 +158,16 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
         txtBuscarEnLista = new javax.swing.JTextField();
 
         setUndecorated(true);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
         panel.setBackground(new java.awt.Color(255, 255, 255));
         panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 102, 102), java.awt.Color.gray, new java.awt.Color(102, 102, 102), java.awt.Color.gray));
@@ -724,6 +736,18 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
             operacionesSecundariasVenta.obtenerPrecioTotal();
         }
     }//GEN-LAST:event_btnQuitarActionPerformed
+   
+    int x, y;
+    
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
+    }//GEN-LAST:event_formMouseDragged
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_formMousePressed
 
     public JPanel getPanelPrincipalTop() {
         return panelPrincipalTop;

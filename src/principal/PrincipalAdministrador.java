@@ -424,6 +424,8 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
     private void btnGestionMateriPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMateriPrimaActionPerformed
         OptionPaneMateriaPrima optionPaneMateriaPrima = new OptionPaneMateriaPrima(this, true);
+        optionPaneMateriaPrima.getBtnIngresoMateriaPrima().setBackground(this.getPanelPrincipalTop().getBackground());
+        optionPaneMateriaPrima.getBtnMateriaPrima().setBackground(this.getPanelPrincipalTop().getBackground());
         optionPaneMateriaPrima.setPrincipalAdministrador(this);
         optionPaneMateriaPrima.setVisible(true);
     }//GEN-LAST:event_btnGestionMateriPrimaActionPerformed

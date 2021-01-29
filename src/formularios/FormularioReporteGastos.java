@@ -3,6 +3,8 @@ package formularios;
 import com.itextpdf.text.DocumentException;
 import escritorios.PrincipalGastos;
 import escritorios.PrincipalIngresoMatPrima;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,11 +24,9 @@ import rojeru_san.componentes.RSDateChooser;
  */
 public class FormularioReporteGastos extends javax.swing.JDialog {
 
-    
     private ReporteGastos reporteGastos;
-     private PrincipalGastos principalGastos;
-    
-    
+    private PrincipalGastos principalGastos;
+
     public FormularioReporteGastos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -41,8 +41,6 @@ public class FormularioReporteGastos extends javax.swing.JDialog {
         this.reporteGastos = reporteGastos;
     }
 
-
-
     public PrincipalGastos getPrincipalGastos() {
         return principalGastos;
     }
@@ -50,10 +48,6 @@ public class FormularioReporteGastos extends javax.swing.JDialog {
     public void setPrincipalGastos(PrincipalGastos principalGastos) {
         this.principalGastos = principalGastos;
     }
-
-    
-    
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -78,6 +72,16 @@ public class FormularioReporteGastos extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 102, 102), java.awt.Color.gray, new java.awt.Color(102, 102, 102), java.awt.Color.gray));
@@ -280,9 +284,9 @@ public class FormularioReporteGastos extends javax.swing.JDialog {
     private void PanelIngresoMateriaPrimaMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelIngresoMateriaPrimaMouseDragged
 
     }//GEN-LAST:event_PanelIngresoMateriaPrimaMouseDragged
-     
+
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       reporteGastos.ejecutarBusqueda();
+        reporteGastos.ejecutarBusqueda();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
@@ -298,6 +302,16 @@ public class FormularioReporteGastos extends javax.swing.JDialog {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+    int x, y;
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_formMousePressed
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
+    }//GEN-LAST:event_formMouseDragged
 
     /**
      * @param args the command line arguments

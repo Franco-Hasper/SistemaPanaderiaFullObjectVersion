@@ -57,9 +57,9 @@ public class OptionPaneMateriaPrima extends javax.swing.JDialog {
         jPanel2.setMaximumSize(new java.awt.Dimension(415, 300));
         jPanel2.setMinimumSize(new java.awt.Dimension(415, 300));
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 204, 204), new java.awt.Color(153, 153, 153)));
-        jPanel1.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         btnMateriaPrima.setBackground(new java.awt.Color(153, 0, 51));
         btnMateriaPrima.setForeground(new java.awt.Color(255, 255, 255));

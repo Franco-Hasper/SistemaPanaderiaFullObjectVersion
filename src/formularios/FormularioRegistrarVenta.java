@@ -10,6 +10,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import escritorios.PrincipalVenta;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import operacionesCliente.InterfazGraficaEscritorioCliente;
@@ -38,7 +40,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private TablaProductosDisponibles tablaProductosDisponibles;
     private TablaProductosListados tablaProductosListados;
     private OperacionesSecundariasVenta operacionesSecundariasVenta;
-   // private final InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
+    // private final InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
     private PrincipalAdministrador principalAdministrador;
     private PrincipalCliente principalCliente;
 
@@ -170,8 +172,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         this.txtBuscarEnLista = txtBuscarEnLista;
     }
 
-
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -208,6 +208,16 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         lblSalir = new javax.swing.JLabel();
 
         setUndecorated(true);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 102, 102), java.awt.Color.gray, new java.awt.Color(102, 102, 102), java.awt.Color.gray));
@@ -694,6 +704,16 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
             OperacionesUtiles.borrarCampo(txtCantidad);
         }
     }//GEN-LAST:event_txtCantidadKeyTyped
+    int x, y;
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_formMousePressed
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
+    }//GEN-LAST:event_formMouseDragged
 
     public JPanel getPanelPrincipalTop() {
         return panelPrincipalTop;
