@@ -121,6 +121,7 @@ public class TablaCliente extends Tabla {
                     fila.add("sin registros");
                     fila.add("sin registros");
                     fila.add("sin registros");
+                    fila.add("sin registros");
                 } else {
                     for (Direccion_Cliente drCl : direcciones) {
                         if (vueltaDir != 1) {
@@ -128,6 +129,7 @@ public class TablaCliente extends Tabla {
                             fila.add(drCl.getNumero());
                             fila.add(drCl.getCodigoLocalidad().getNombre());
                             fila.add(drCl.getCodigoLocalidad().getCodigoProvincia().getNombre());
+                            fila.add(drCl.getCodigoTipoDomicilio().getNombre());
                             vueltaDir = 1;
                         }
                     }

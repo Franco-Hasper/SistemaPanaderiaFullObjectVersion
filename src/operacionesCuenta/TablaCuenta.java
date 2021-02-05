@@ -2,6 +2,7 @@ package operacionesCuenta;
 
 import calsesPadre.Tabla;
 import clasesUtilidadGeneral.OperacionesUtiles;
+import ds.desktop.notify.DesktopNotify;
 import entidades.Cuenta;
 import escritorios.PrincipalCuenta;
 import java.util.ArrayList;
@@ -108,9 +109,15 @@ public class TablaCuenta extends Tabla{
             principalCuenta.getTablaGraficaCuenta().getValueAt(fila, 0).toString();
             return true;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            DesktopNotify.showDesktopMessage("Informacion", "Debe seleccionar una fila", DesktopNotify.INFORMATION, 7000);
             return false;
         }
+    }
+    
+    
+    public Integer filaSeleccionada(){
+        int fila = principalCuenta.getTablaGraficaCuenta().getSelectedRow();
+        return fila;
     }
     
 

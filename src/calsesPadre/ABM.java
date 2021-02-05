@@ -62,18 +62,18 @@ public abstract class ABM extends Consultas {
      *
      */
     public boolean ejecutarRegistrar() {
-         DesktopNotify.showDesktopMessage("","VERIFICAR CAMPOS VACIOS EN ABM", DesktopNotify.ERROR, 7000);
+        DesktopNotify.showDesktopMessage("", "VERIFICAR CAMPOS VACIOS EN ABM", DesktopNotify.ERROR, 7000);
         obtenerFormularioRegistrar();
 //        if (operacionesUtilidad.verificarCamposTextoVacios(getListaCampos())) {
-            conexionTransaccionRegistrar();
-       //     try {
-                getFormularioRegistrar().dispose();
-        //    } catch (NullPointerException e) {
-                return true;
-         //   }
-          //    return true;
-  //      }
-    //    return false;
+        conexionTransaccionRegistrar();
+       // try {
+            getFormularioRegistrar().dispose();
+            return true;
+       // } catch (NullPointerException e) {
+         //   return true;
+        //}
+        //    return true;
+        //      }
     }
 
     /**
@@ -83,14 +83,14 @@ public abstract class ABM extends Consultas {
      *
      */
     public boolean ejecutarEditar() {
-         DesktopNotify.showDesktopMessage("","VERIFICAR CAMPOS VACIOS EN ABM", DesktopNotify.ERROR, 7000);
+        DesktopNotify.showDesktopMessage("", "VERIFICAR CAMPOS VACIOS EN ABM", DesktopNotify.ERROR, 7000);
         obtenerFormularioEditar();
         //if (operacionesUtilidad.verificarCamposTextoVacios(getListaCampos())) {
-            conexionTransaccionEditar();
-            getFormularioEditar().dispose();
-            return true;
+        conexionTransaccionEditar();
+        getFormularioEditar().dispose();
+        return true;
         //}
-    //    return false;
+        //    return false;
     }
 
     /**
@@ -112,14 +112,14 @@ public abstract class ABM extends Consultas {
     //DESCOMENTAR ESTA PARTE
     public void conexionTransaccionRegistrar() {
         Session miSesion = ConexionHibernate.tomarConexion();
-      //  try {
-            miSesion.beginTransaction();
-            transaccionRegistrar(miSesion);
-            miSesion.getTransaction().commit();
+        //  try {
+        miSesion.beginTransaction();
+        transaccionRegistrar(miSesion);
+        miSesion.getTransaction().commit();
         //    DesktopNotify.showDesktopMessage("   exito   ", "   Nuevo registro creado con exito", DesktopNotify.SUCCESS, 7000);
-    //    } catch (Exception e) {
+        //    } catch (Exception e) {
         //    DesktopNotify.showDesktopMessage("   error    ", "   Error al intentar crear  registro", DesktopNotify.ERROR, 7000);
-     //  }
+        //  }
     }
 
     /**
@@ -131,11 +131,11 @@ public abstract class ABM extends Consultas {
      */
     public void conexionTransaccionEditar() {
         Session miSesion = ConexionHibernate.tomarConexion();
-       // try {
-            miSesion.beginTransaction();
-            transaccionEditar(miSesion);
-            miSesion.getTransaction().commit();
-            DesktopNotify.showDesktopMessage("   exito   ", "    Registro editado con exito", DesktopNotify.SUCCESS, 7000);
+        // try {
+        miSesion.beginTransaction();
+        transaccionEditar(miSesion);
+        miSesion.getTransaction().commit();
+        DesktopNotify.showDesktopMessage("   exito   ", "    Registro editado con exito", DesktopNotify.SUCCESS, 7000);
 //        } catch (Exception e) {
 //            DesktopNotify.showDesktopMessage("   error   ", "   Error al intentar editar  registro", DesktopNotify.ERROR, 7000);
 //        }
@@ -150,10 +150,10 @@ public abstract class ABM extends Consultas {
     public void conexionTransaccionEliminar() {
         Session miSesion = ConexionHibernate.tomarConexion();
 //        try {
-            miSesion.beginTransaction();
-            transaccionEliminar(miSesion);
-            miSesion.getTransaction().commit();
-            DesktopNotify.showDesktopMessage("   exito   ", "    Registro eliminado con exito", DesktopNotify.SUCCESS, 7000);
+        miSesion.beginTransaction();
+        transaccionEliminar(miSesion);
+        miSesion.getTransaction().commit();
+        DesktopNotify.showDesktopMessage("   exito   ", "    Registro eliminado con exito", DesktopNotify.SUCCESS, 7000);
 //        } catch (Exception e) {
 //            DesktopNotify.showDesktopMessage("   error    ", "    Error al intentar eliminar  registro", DesktopNotify.ERROR, 7000);
 //        }

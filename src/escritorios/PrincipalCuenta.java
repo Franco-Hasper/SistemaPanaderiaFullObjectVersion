@@ -1,22 +1,25 @@
 package escritorios;
 
+import clasesUtilidadGeneral.ColorFila;
 import clasesUtilidadGeneral.OperacionesUtiles;
-import formularios.FormularioEditarCuenta;
+import ds.desktop.notify.DesktopNotify;
 import formularios.FormularioEditarMovimientoCuenta;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import operacionesCuenta.ABMCuenta;
 import operacionesCuenta.ABMMovimientoCuenta;
-import operacionesCuenta.InterfazGraficaEditarCuenta;
 import operacionesCuenta.InterfazGraficaEditarMovimiento;
 import operacionesCuenta.InterfazGraficaEscritorioCuenta;
+import operacionesCuenta.InterfazGraficaReporteMovimientos;
 import operacionesCuenta.TablaCuenta;
 import operacionesCuenta.TablaMovimientoCuenta;
+import operacionesIngresoMateriaPrima.InterfazGraficaReporteIngresos;
 import principal.MaterialButton;
 
 /**
@@ -39,8 +42,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     private final ABMMovimientoCuenta abmMovimiento = new ABMMovimientoCuenta();
     private FormularioEditarMovimientoCuenta formularioEditarMovimiento;
     private InterfazGraficaEditarMovimiento InterfazEditarMovimiento;
-    private FormularioEditarCuenta formularioEditar;
-    private InterfazGraficaEditarCuenta InterfazEditarCuenta;
+    private Integer cuantaFilaSeleccionada;
 
     /**
      * Establece el estado inicial de los elementos de la pestaña Cuenta.
@@ -51,7 +53,14 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         editPaneMotivo.setEnabled(false);
         txtMonto.setEnabled(false);
         btnGuardarMovimiento.setEnabled(false);
-        lblMotivo.setEnabled(false);
+    }
+
+    public Integer getCuantaFilaSeleccionada() {
+        return cuantaFilaSeleccionada;
+    }
+
+    public void setCuantaFilaSeleccionada(Integer cuantaFilaSeleccionada) {
+        this.cuantaFilaSeleccionada = cuantaFilaSeleccionada;
     }
 
     public JLabel getLblNombre() {
@@ -60,22 +69,6 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
 
     public void setLblNombre(JLabel lblNombre) {
         this.lblNombre = lblNombre;
-    }
-
-    public FormularioEditarCuenta getFormularioEditar() {
-        return formularioEditar;
-    }
-
-    public void setFormularioEditar(FormularioEditarCuenta formularioEditar) {
-        this.formularioEditar = formularioEditar;
-    }
-
-    public InterfazGraficaEditarCuenta getInterfazEditarCuenta() {
-        return InterfazEditarCuenta;
-    }
-
-    public void setInterfazEditarCuenta(InterfazGraficaEditarCuenta InterfazEditarCuenta) {
-        this.InterfazEditarCuenta = InterfazEditarCuenta;
     }
 
     public JTable getTablaGraficaCuenta() {
@@ -162,7 +155,6 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaGraficaMovimiento = new javax.swing.JTable();
-        lblMotivo = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         editPaneMotivo = new javax.swing.JEditorPane();
@@ -177,8 +169,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         btnEliminarMov = new principal.MaterialButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaGraficaCuenta = new javax.swing.JTable();
-        btnNuevaCuenta1 = new principal.MaterialButton();
-        btnNuevaCuenta2 = new principal.MaterialButton();
+        btnReporteMovimientos = new principal.MaterialButton();
         btnNuevaCuenta3 = new principal.MaterialButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -224,10 +215,6 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tablaGraficaMovimiento);
 
-        lblMotivo.setBackground(new java.awt.Color(0, 0, 0));
-        lblMotivo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblMotivo.setText("  MOTIVO:");
-
         txtBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,6 +231,11 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         });
 
         editPaneMotivo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        editPaneMotivo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                editPaneMotivoKeyReleased(evt);
+            }
+        });
 
         btnGuardarMovimiento.setBackground(new java.awt.Color(0, 0, 0,60));
         btnGuardarMovimiento.setForeground(new java.awt.Color(255, 255, 255));
@@ -347,27 +339,15 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tablaGraficaCuenta);
 
-        btnNuevaCuenta1.setBackground(new java.awt.Color(0, 0, 0,60));
-        btnNuevaCuenta1.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevaCuenta1.setText("GENERAR REPORTE");
-        btnNuevaCuenta1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNuevaCuenta1.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnNuevaCuenta1.setMaximumSize(new java.awt.Dimension(130, 35));
-        btnNuevaCuenta1.addActionListener(new java.awt.event.ActionListener() {
+        btnReporteMovimientos.setBackground(new java.awt.Color(0, 0, 0,60));
+        btnReporteMovimientos.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporteMovimientos.setText("GENERAR REPORTE");
+        btnReporteMovimientos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReporteMovimientos.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnReporteMovimientos.setMaximumSize(new java.awt.Dimension(130, 35));
+        btnReporteMovimientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevaCuenta1ActionPerformed(evt);
-            }
-        });
-
-        btnNuevaCuenta2.setBackground(new java.awt.Color(0, 0, 0,60));
-        btnNuevaCuenta2.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevaCuenta2.setText("EDITAR CUENTA");
-        btnNuevaCuenta2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNuevaCuenta2.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnNuevaCuenta2.setMaximumSize(new java.awt.Dimension(130, 35));
-        btnNuevaCuenta2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevaCuenta2ActionPerformed(evt);
+                btnReporteMovimientosActionPerformed(evt);
             }
         });
 
@@ -395,7 +375,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEliminarMov, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNuevaCuenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnReporteMovimientos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 827, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1)
@@ -409,22 +389,18 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
                                         .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnGuardarMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(editPaneMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(btnNuevaCuenta2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnNuevaCuenta3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(btnNuevaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtMontoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnGuardarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(btnGuardarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnNuevaCuenta3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 720, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(jSeparator2)
@@ -441,9 +417,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
                             .addComponent(txtMontoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnGuardarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnNuevaCuenta2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnNuevaCuenta3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnNuevaCuenta3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -452,8 +426,6 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNuevoMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(editPaneMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -466,7 +438,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
                     .addComponent(btnEliminarMov, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnnEditarMov, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevaCuenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnReporteMovimientos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66))
@@ -588,14 +560,20 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarKeyTyped
 
     private void btnGuardarMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarMovimientoActionPerformed
-        abmMovimiento.setPrincipalCuenta(this);
-        if (abmMovimiento.ejecutarRegistrar()) {
-            tablaCuenta.setEstadoConsulta(0);
-            tablaCuenta.ejecutarRellenarTabla();
-            tablaMovimientoCuenta.setEstadoConsulta(0);
-            tablaMovimientoCuenta.ejecutarRellenarTabla();
-            new InterfazGraficaEscritorioCuenta().desHabilitarNuevoMovimientoCuenta(this);
+        if (tablaCuenta.verificarFilaSeleccionada()) {
+            this.setCuantaFilaSeleccionada(tablaCuenta.filaSeleccionada());
+            abmMovimiento.setPrincipalCuenta(this);
+            if (abmMovimiento.ejecutarRegistrar()) {
+                tablaCuenta.setEstadoConsulta(0);
+                tablaCuenta.ejecutarRellenarTabla();
+                tablaMovimientoCuenta.setEstadoConsulta(0);
+                tablaMovimientoCuenta.ejecutarRellenarTabla();
+                new InterfazGraficaEscritorioCuenta().desHabilitarNuevoMovimientoCuenta(this);
+                Integer fila = this.getCuantaFilaSeleccionada();
+                this.tablaGraficaCuenta.changeSelection(fila, 0, closable, isIcon);
+            }
         }
+
     }//GEN-LAST:event_btnGuardarMovimientoActionPerformed
 
     private void btnGuardarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCuentaActionPerformed
@@ -616,31 +594,38 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtMontoInicialKeyTyped
 
     private void btnnEditarMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnEditarMovActionPerformed
-        tablaMovimientoCuenta.setPrincipalCuenta(this);
-        if (tablaMovimientoCuenta.verificarFilaSeleccionada()) {
-            if (tablaMovimientoCuenta.verficarNoMontoInicial()) {
+
+        if (tablaCuenta.verificarFilaSeleccionada()) {
+            this.setCuantaFilaSeleccionada(tablaCuenta.filaSeleccionada());
+            tablaMovimientoCuenta.setPrincipalCuenta(this);
+            if (tablaMovimientoCuenta.verificarFilaSeleccionada()) {
                 InterfazEditarMovimiento.setPrincipalCuenta(this);
                 InterfazEditarMovimiento.nuevoFormularioEditar();
             }
-
         }
     }//GEN-LAST:event_btnnEditarMovActionPerformed
 
     private void btnEliminarMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMovActionPerformed
-        abmMovimiento.setPrincipalCuenta(this);
-        if (tablaMovimientoCuenta.verificarFilaSeleccionada()) {
-            if (tablaMovimientoCuenta.verficarNoMontoInicial()) {
-                if (OperacionesUtiles.mensajeEliminarRegistro()) {
-                    if (abmMovimiento.ejecutarEliminar()) {
-                        //Quitar este if y autoseleccionar la fial, por que se deselecciona luego de una actualización
-                        if (tablaCuenta.verificarFilaSeleccionada()) {
+
+        if (tablaCuenta.verificarFilaSeleccionada()) {
+            this.setCuantaFilaSeleccionada(tablaCuenta.filaSeleccionada());
+            if (tablaMovimientoCuenta.verificarFilaSeleccionada()) {
+                if (tablaMovimientoCuenta.verificarNoMontoInicial()) {
+                    if (OperacionesUtiles.mensajeEliminarRegistro()) {
+                        abmMovimiento.setPrincipalCuenta(this);
+                        if (abmMovimiento.ejecutarEliminar()) {
                             abmMovimiento.ejecutarActualizarMovimientoCuenta();
                             tablaMovimientoCuenta.setEstadoConsulta(0);
                             tablaMovimientoCuenta.ejecutarRellenarTabla();
+                            tablaCuenta.setEstadoConsulta(0);
+                            tablaCuenta.ejecutarRellenarTabla();
+                            Integer fila = this.getCuantaFilaSeleccionada();
+                            this.tablaGraficaCuenta.changeSelection(fila, 0, closable, isIcon);
                         }
                     }
                 }
             }
+
         }
     }//GEN-LAST:event_btnEliminarMovActionPerformed
 
@@ -656,17 +641,14 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_lblSalirMouseClicked
 
-    private void btnNuevaCuenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCuenta1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevaCuenta1ActionPerformed
-
-    private void btnNuevaCuenta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCuenta2ActionPerformed
-        tablaCuenta.setPrincipalCuenta(this);
+    private void btnReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteMovimientosActionPerformed
         if (tablaCuenta.verificarFilaSeleccionada()) {
-            InterfazEditarCuenta.setPrincipalCuenta(this);
-            InterfazEditarCuenta.nuevoFormularioEditar();
+            InterfazGraficaReporteMovimientos i = new InterfazGraficaReporteMovimientos();
+            i.setPrincipalCuenta(this);
+            i.nuevoFormularioReporte();
         }
-    }//GEN-LAST:event_btnNuevaCuenta2ActionPerformed
+
+    }//GEN-LAST:event_btnReporteMovimientosActionPerformed
 
     private void btnNuevaCuenta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCuenta3ActionPerformed
         abm.setPrincipalCuenta(this);
@@ -685,7 +667,18 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         tablaMovimientoCuenta.setIdCuenta(tablaCuenta.obtenerIdFilaSeleccionada());
         tablaMovimientoCuenta.ejecutarRellenarTabla();
         tablaMovimientoCuenta.setEstadoConsulta(0);
+        //cambiar color a fila
+        ColorFila colorFila = new ColorFila(this.getPanelPrincipalTop().getBackground());
+        getTablaGraficaMovimiento().setDefaultRenderer(Object.class, colorFila);
     }//GEN-LAST:event_tablaGraficaCuentaMousePressed
+
+    private void editPaneMotivoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editPaneMotivoKeyReleased
+
+        if (this.getEditPaneMotivo().getText().toString().equals("Monto Inicial")) {
+            this.getEditPaneMotivo().setText("");
+            DesktopNotify.showDesktopMessage("Informacion", "'Monto Inicial' no es un motivo valido", DesktopNotify.INFORMATION, 7000);
+        }
+    }//GEN-LAST:event_editPaneMotivoKeyReleased
 
     public JPanel getPanel_1_primario() {
         return panelPrincipalTop;
@@ -735,14 +728,6 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         this.btnGuardarMovimiento = btnGuardarMovimiento;
     }
 
-    public JLabel getLblMotivo() {
-        return lblMotivo;
-    }
-
-    public void setLblMotivo(JLabel lblMotivo) {
-        this.lblMotivo = lblMotivo;
-    }
-
     public JTextField getTxtBuscar() {
         return txtBuscar;
     }
@@ -790,10 +775,9 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     private principal.MaterialButton btnGuardarCuenta;
     private principal.MaterialButton btnGuardarMovimiento;
     private principal.MaterialButton btnNuevaCuenta;
-    private principal.MaterialButton btnNuevaCuenta1;
-    private principal.MaterialButton btnNuevaCuenta2;
     private principal.MaterialButton btnNuevaCuenta3;
     private principal.MaterialButton btnNuevoMovimiento;
+    private principal.MaterialButton btnReporteMovimientos;
     private principal.MaterialButton btnnEditarMov;
     private javax.swing.JEditorPane editPaneMotivo;
     private javax.swing.JLabel jLabel1;
@@ -805,7 +789,6 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblCliente;
-    private javax.swing.JLabel lblMotivo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblSalir;
     private javax.swing.JPanel panelPrincipalTop;

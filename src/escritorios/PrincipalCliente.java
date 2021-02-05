@@ -242,11 +242,11 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "NOMBRE", "APELLIDO", "RAZON SOCIAL", "DIRECCION", "NUMERO/DIR", "LOCALIDAD", "PROVINCIA", "TELEFONO", "TIPO TEPLEFONO"
+                "NOMBRE", "APELLIDO", "RAZON SOCIAL", "DIRECCION", "NUMERO/DIR", "LOCALIDAD", "PROVINCIA", "TIPO DOMICILIO", "TELEFONO", "TIPO TEPLEFONO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -266,17 +266,6 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tablaGrafica);
-        if (tablaGrafica.getColumnModel().getColumnCount() > 0) {
-            tablaGrafica.getColumnModel().getColumn(0).setResizable(false);
-            tablaGrafica.getColumnModel().getColumn(1).setResizable(false);
-            tablaGrafica.getColumnModel().getColumn(2).setResizable(false);
-            tablaGrafica.getColumnModel().getColumn(3).setResizable(false);
-            tablaGrafica.getColumnModel().getColumn(4).setResizable(false);
-            tablaGrafica.getColumnModel().getColumn(5).setResizable(false);
-            tablaGrafica.getColumnModel().getColumn(6).setResizable(false);
-            tablaGrafica.getColumnModel().getColumn(7).setResizable(false);
-            tablaGrafica.getColumnModel().getColumn(8).setResizable(false);
-        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

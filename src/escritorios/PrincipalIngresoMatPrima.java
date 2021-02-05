@@ -346,7 +346,6 @@ public class PrincipalIngresoMatPrima extends javax.swing.JInternalFrame {
         InterfazGraficaReporteIngresos i = new InterfazGraficaReporteIngresos();
         i.setPrincipalIngresoMateriaPrima(this);
         i.nuevoFormularioReporte();
-
     }//GEN-LAST:event_btnReporteActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed

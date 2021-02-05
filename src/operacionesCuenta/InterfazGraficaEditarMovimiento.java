@@ -32,6 +32,7 @@ public class InterfazGraficaEditarMovimiento extends InterfazGraficaFormularioEd
     public void nuevoFormularioEditar() {
         FormularioEditarMovimientoCuenta formularioEditar = new FormularioEditarMovimientoCuenta(frame, true);
         formularioEditar.setPrincipalCuenta(principalCuenta);
+        formularioEditar.setCuantaFilaSeleccionada(principalCuenta.getCuantaFilaSeleccionada());
         principalCuenta.setFormularioEditarMovimiento(formularioEditar);
         transferirDatos();
         colorTema();
@@ -47,6 +48,9 @@ public class InterfazGraficaEditarMovimiento extends InterfazGraficaFormularioEd
     public void transferirDatos() {
 
         int fila = principalCuenta.getTablaGraficaMovimiento().getSelectedRow();
+        if (principalCuenta.getTablaGraficaMovimiento().getValueAt(fila, 0).toString().equals("Monto Inicial")) {
+            principalCuenta.getFormularioEditarMovimiento().getTxtMotivo().setEditable(false);
+        }
         principalCuenta.getFormularioEditarMovimiento().getTxtMotivo().setText(principalCuenta.getTablaGraficaMovimiento().getValueAt(fila, 0).toString());
         principalCuenta.getFormularioEditarMovimiento().getTxtMonto().setText(principalCuenta.getTablaGraficaMovimiento().getValueAt(fila, 1).toString());
     }

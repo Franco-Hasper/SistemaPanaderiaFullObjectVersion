@@ -22,6 +22,9 @@ public class FormularioEditarMovimientoCuenta extends javax.swing.JDialog {
     private PrincipalCuenta principalCuenta;
     private final ABMCuenta abmCuenta = new ABMCuenta();
     private final ABMMovimientoCuenta abmMC = new ABMMovimientoCuenta();
+     private Integer cuantaFilaSeleccionada;
+    
+    
     
     public FormularioEditarMovimientoCuenta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -37,6 +40,18 @@ public class FormularioEditarMovimientoCuenta extends javax.swing.JDialog {
         this.principalCuenta = principalCuenta;
     }
 
+    public Integer getCuantaFilaSeleccionada() {
+        return cuantaFilaSeleccionada;
+    }
+
+    public void setCuantaFilaSeleccionada(Integer cuantaFilaSeleccionada) {
+        this.cuantaFilaSeleccionada = cuantaFilaSeleccionada;
+    }
+
+
+
+    
+    
     
     public List getListaCampos() {
         List listCamposTexto = new ArrayList();
@@ -263,6 +278,8 @@ public class FormularioEditarMovimientoCuenta extends javax.swing.JDialog {
             principalCuenta.getTablaCuenta().ejecutarRellenarTabla();
             principalCuenta.getTablaMovimientoCuenta().setEstadoConsulta(0);
             principalCuenta.getTablaMovimientoCuenta().ejecutarRellenarTabla();
+            Integer fila=this.getCuantaFilaSeleccionada();
+            principalCuenta.getTablaGraficaCuenta().changeSelection(fila, 0, rootPaneCheckingEnabled, rootPaneCheckingEnabled);
         }
     }//GEN-LAST:event_btnGuardarCambiosActionPerformed
 

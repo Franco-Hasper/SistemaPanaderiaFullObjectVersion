@@ -53,10 +53,8 @@ public class InterfazGraficaEscritorioCuenta extends InterfazGraficaEscritorio {
             insertarNombreCliente();
             principalAdministrador.getCuenta().setTablaCuenta(tablaCuenta);
             principalAdministrador.getCuenta().setTablaMovimientoCuenta(tablaMovimientoCuenta);
-            InterfazGraficaEditarMovimiento formularioEditarMovimiento = new InterfazGraficaEditarMovimiento();
-            InterfazGraficaEditarCuenta formularioEditarCuenta = new InterfazGraficaEditarCuenta();
+            InterfazGraficaEditarMovimiento formularioEditarMovimiento = new InterfazGraficaEditarMovimiento();  
             principalAdministrador.getCuenta().setInterfazEditarMovimiento(formularioEditarMovimiento);
-            principalAdministrador.getCuenta().setInterfazEditarCuenta(formularioEditarCuenta);
             principalAdministrador.getCuenta().show();
         }
         colorInterfazEscritorio();
@@ -66,6 +64,9 @@ public class InterfazGraficaEscritorioCuenta extends InterfazGraficaEscritorio {
     @Override
     public void infoTextPrompt() {
         new TextPrompt("BUSCAR POR FECHA, FORMATO (AAAA-MM-DD)", principalAdministrador.getCuenta().getTxtBuscar());
+        new TextPrompt("MONTO INICIAL", principalAdministrador.getCuenta().getTxtMontoInicial());
+        new TextPrompt("MONTO", principalAdministrador.getCuenta().getTxtMonto());
+        new TextPrompt("MOTIVO", principalAdministrador.getCuenta().getEditPaneMotivo());
         principalAdministrador.getCuenta().getTxtBuscar().grabFocus();
     }
 

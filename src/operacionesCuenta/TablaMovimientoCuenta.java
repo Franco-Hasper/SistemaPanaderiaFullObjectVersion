@@ -103,6 +103,7 @@ public class TablaMovimientoCuenta extends Tabla {
         OperacionesUtiles.ordenarLista(listaResutladosActuales);
     }
 
+    @Deprecated
     public boolean verficarNoMontoInicial() {
         if (obtenerIdFilaSeleccionada().equals(1)) {
             DesktopNotify.showDesktopMessage("   Informacion    ", "  No se puede editar ni eliminar monto inicial", DesktopNotify.INFORMATION, 7000);
@@ -118,8 +119,17 @@ public class TablaMovimientoCuenta extends Tabla {
             principalCuenta.getTablaGraficaMovimiento().getValueAt(fila, 0).toString();
             return true;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            DesktopNotify.showDesktopMessage("Informacion", "Debe seleccionar una fila", DesktopNotify.INFORMATION, 7000);
             return false;
         }
     }
+
+    public boolean verificarNoMontoInicial() {
+        if (principalCuenta.getTablaGraficaMovimiento().getSelectedRow()==0) {
+            DesktopNotify.showDesktopMessage("Informacion", "No Se puede eliminar Monto Inicial Solamente Modificar su valor", DesktopNotify.ERROR, 7000);
+            return false;
+        }
+        return true;
+    }
+
 }

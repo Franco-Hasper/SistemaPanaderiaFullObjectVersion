@@ -10,10 +10,10 @@ import formularios.FormularioEditarProveedor;
  */
 public class InterfazGraficaFormularioEditarProveedor extends InterfazGraficaFormularioEditar {
 
-    public InterfazGraficaFormularioEditarProveedor(){
+    public InterfazGraficaFormularioEditarProveedor() {
         setEstadoConsulta(0);
     }
-    
+
     protected PrincipalProveedor principalProveedor;
 
     protected TablaProveedor tablaProveedor;
@@ -39,11 +39,11 @@ public class InterfazGraficaFormularioEditarProveedor extends InterfazGraficaFor
         FormularioEditarProveedor formularioEditar = new FormularioEditarProveedor(frame, true);
         formularioEditar.setPrincipalProveedor(principalProveedor);
         principalProveedor.setEditarProveedor(formularioEditar);
-        transferirDatos();
         colorTema();
         agregarBoxes();
         rellenarBoxes();
         infoTextPrompt();
+        transferirDatos();
         principalProveedor.getEditarProveedor().setVisible(true);
     }
 
@@ -57,8 +57,23 @@ public class InterfazGraficaFormularioEditarProveedor extends InterfazGraficaFor
         TablaProveedor tablaProveedor = new TablaProveedor();
         tablaProveedor.setPrincipalProveedor(principalProveedor);
         int fila = principalProveedor.getTablaGrafica().getSelectedRow();
-        principalProveedor.getEditarProveedor().getTxtNombre().setText(principalProveedor.getTablaGrafica().getValueAt(fila, 0).toString());
 
+        principalProveedor.getEditarProveedor().getTxtNombre().setText(principalProveedor.getTablaGrafica().getValueAt(fila, 0).toString());
+        principalProveedor.getEditarProveedor().getTxtDireccion().setText(principalProveedor.getTablaGrafica().getValueAt(fila, 1).toString());
+        principalProveedor.getEditarProveedor().getTxtnuemeroDireccion().setText(principalProveedor.getTablaGrafica().getValueAt(fila, 2).toString());
+        principalProveedor.getEditarProveedor().getTxtTelefono().setText(principalProveedor.getTablaGrafica().getValueAt(fila, 5).toString());
+
+        String provincia = principalProveedor.getTablaGrafica().getValueAt(fila, 4).toString();
+        String localidad = principalProveedor.getTablaGrafica().getValueAt(fila, 3).toString();
+        String tipotelefono = principalProveedor.getTablaGrafica().getValueAt(fila, 6).toString();
+        
+        autoSelectBox(provincia, localidad, tipotelefono);
+    }
+
+    private void autoSelectBox(String provincia, String localidad, String tipotelefono) {
+        principalProveedor.getEditarProveedor().getBoxProvincia().setSelectedItem(provincia);
+        principalProveedor.getEditarProveedor().getBoxLocalidad().setSelectedItem(localidad);
+        principalProveedor.getEditarProveedor().getBoxTipoTelefono().setSelectedItem(tipotelefono);
     }
 
     protected void infoTextPrompt() {

@@ -10,13 +10,12 @@ import formularios.FormularioEditarCliente;
  */
 public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormularioEditar {
 
-    public InterfazGraficaFormularioEditarCliente(){
+    public InterfazGraficaFormularioEditarCliente() {
         setEstadoConsulta(0);
     }
-    
+
     protected PrincipalCliente principalCliente;
     protected TablaCliente tablaCliente;
-    
 
     public void setPrincipalCliente(PrincipalCliente principalCliente) {
         this.principalCliente = principalCliente;
@@ -35,15 +34,13 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
         FormularioEditarCliente formularioEditar = new FormularioEditarCliente(frame, true);
         formularioEditar.setPrincipalCliente(principalCliente);
         principalCliente.setEditarCliente(formularioEditar);
-        transferirDatos();
         colorTema();
         agregarBoxes();
         rellenarBoxes();
         infoTextPrompt();
+        transferirDatos();
         principalCliente.getEditarCliente().setVisible(true);
     }
-
-
 
     @Override
     public void colorTema() {
@@ -57,8 +54,24 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
         principalCliente.getEditarCliente().getTxtNombre().setText(principalCliente.getTablaGrafica().getValueAt(fila, 0).toString());
         principalCliente.getEditarCliente().getTxtApellido().setText(principalCliente.getTablaGrafica().getValueAt(fila, 1).toString());
         principalCliente.getEditarCliente().getTxtRazonSocial().setText(principalCliente.getTablaGrafica().getValueAt(fila, 2).toString());
+        principalCliente.getEditarCliente().getTxtDireccion().setText(principalCliente.getTablaGrafica().getValueAt(fila, 3).toString());
+        principalCliente.getEditarCliente().getTxtnuemroDireccion().setText(principalCliente.getTablaGrafica().getValueAt(fila, 4).toString());
+        principalCliente.getEditarCliente().getTxtTelefono().setText(principalCliente.getTablaGrafica().getValueAt(fila, 8).toString());
+
+        String localidad = principalCliente.getTablaGrafica().getValueAt(fila, 5).toString();
+        String provincia = principalCliente.getTablaGrafica().getValueAt(fila, 6).toString();
+        String tipodomicilio = principalCliente.getTablaGrafica().getValueAt(fila, 7).toString();
+        String tipotelefono = principalCliente.getTablaGrafica().getValueAt(fila, 9).toString();
+
+        autoSelectBox(provincia, localidad, tipodomicilio, tipotelefono);
     }
-    
+
+    private void autoSelectBox(String provincia, String localidad, String tipodomicilio, String tipotelefono) {
+        principalCliente.getEditarCliente().getBoxProvincia().setSelectedItem(provincia);
+        principalCliente.getEditarCliente().getBoxLocalidad().setSelectedItem(localidad);
+        principalCliente.getEditarCliente().getBoxTipoTelefono().setSelectedItem(tipotelefono);
+        principalCliente.getEditarCliente().getBoxtipoDom().setSelectedItem(tipodomicilio);
+    }
 
     public void infoTextPrompt() {
         new TextPrompt("NOMBRE", principalCliente.getEditarCliente().getTxtNombre());
@@ -80,7 +93,7 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
 
     @Override
     public void rellenarBoxes() {
-       this.consultaRellenarProvincia();
+        this.consultaRellenarProvincia();
         this.consultaRellenarLocalidad();
         this.consultaRellenarTipoDomicilio();
         this.consultaRellenarTipoTelefono();

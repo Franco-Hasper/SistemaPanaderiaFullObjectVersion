@@ -34,18 +34,17 @@ public class ABMMovimientoCuenta extends ABM {
         this.formularioEditarMovimiento = formularioEditarMovimiento;
     }
 
-    
-    
     @Override
     public void obtenerFormularioRegistrar() {
-        setFormularioRegistrar(null);
+        //para eviatar el nullEception
+        setFormularioRegistrar(new javax.swing.JDialog());
         setListaCampos(this.principalCuenta.getListaCamposMovimientoCuenta());
     }
 
     @Override
     public void obtenerFormularioEditar() {
-        
-         setFormularioEditar(this.getFormularioEditarmovimiento());
+
+        setFormularioEditar(this.getFormularioEditarmovimiento());
         setListaCampos(this.getFormularioEditarmovimiento().getListaCampos());
     }
 
@@ -55,7 +54,7 @@ public class ABMMovimientoCuenta extends ABM {
         mc.setMotivo(principalCuenta.getEditPaneMotivo().getText());
         mc.setMonto(Double.valueOf(principalCuenta.getTxtMonto().getText()));
         Integer id = principalCuenta.getTablaCuenta().obtenerIdFilaSeleccionada();
-        Cuenta c = (Cuenta) miSesion.get(Cuenta.class,id);
+        Cuenta c = (Cuenta) miSesion.get(Cuenta.class, id);
         mc.setBalance(c.getBalance() + (mc.getMonto()));
         mc.setCodigoCuenta(c);
         miSesion.save(mc);
@@ -65,16 +64,21 @@ public class ABMMovimientoCuenta extends ABM {
 
     @Override
     public void transaccionEditar(Session miSesion) {
-       Integer id = principalCuenta.getTablaMovimientoCuenta().obtenerIdFilaSeleccionada();
+        Integer id = principalCuenta.getTablaMovimientoCuenta().obtenerIdFilaSeleccionada();
         MovimientoCuenta mc = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, id);
         mc.setMonto(Double.valueOf(formularioEditarMovimiento.getTxtMonto().getText()));
         mc.setMotivo(formularioEditarMovimiento.getTxtMotivo().getText());
         Cuenta c = (Cuenta) miSesion.get(Cuenta.class, mc.getCodigoCuenta().getIdCuenta());
-        mc.setBalance(c.getBalance() + (mc.getMonto()));
+        if (formularioEditarMovimiento.getTxtMotivo().getText().toString().equals("Monto Inicial")) {
+            mc.setBalance(mc.getMonto());
+        } else {
+            mc.setBalance(c.getBalance() + (mc.getMonto()));
+        }
         mc.setCodigoCuenta(c);
         miSesion.save(mc);
         c.setBalance(mc.getBalance());
         miSesion.saveOrUpdate(c);
+        
     }
 
     @Override
@@ -82,9 +86,10 @@ public class ABMMovimientoCuenta extends ABM {
         Integer id = principalCuenta.getTablaMovimientoCuenta().obtenerIdFilaSeleccionada();
         MovimientoCuenta mc = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, id);
         miSesion.delete(mc);
+       
     }
-    
-    public void ejecutarActualizarMovimientoCuenta(){
+
+    public void ejecutarActualizarMovimientoCuenta() {
         Integer id = principalCuenta.getTablaCuenta().obtenerIdFilaSeleccionada();
         setConsultaList("FROM MovimientoCuenta where codigoCuenta=" + id);
         obtenerListaConsulta();
@@ -92,41 +97,40 @@ public class ABMMovimientoCuenta extends ABM {
     }
 
     private void actualizarMovimeintoCuenta() {
-        
+
         Integer idMovCuenta;
         Double monto;
         Double balance;
-        
 
-            List lista = this.getListaResultados();
-            for (Object o : lista) {
-                MovimientoCuenta resultsMC = (MovimientoCuenta) o;
+        List lista = this.getListaResultados();
+        for (Object o : lista) {
+            MovimientoCuenta resultsMC = (MovimientoCuenta) o;
 
-                idMovCuenta = resultsMC.getIdMovimientoCuenta();
-                monto = resultsMC.getMonto();
-                balance = resultsMC.getBalance();
-                
-                Session miSesion = ConexionHibernate.tomarConexion();
-                miSesion.beginTransaction();
-                MovimientoCuenta actualizarMC = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, idMovCuenta);
+            idMovCuenta = resultsMC.getIdMovimientoCuenta();
+            monto = resultsMC.getMonto();
+            balance = resultsMC.getBalance();
 
-                Cuenta cnt = (Cuenta) miSesion.get(Cuenta.class, resultsMC.getCodigoCuenta().getIdCuenta());
+            Session miSesion = ConexionHibernate.tomarConexion();
+            miSesion.beginTransaction();
+            MovimientoCuenta actualizarMC = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, idMovCuenta);
 
-                if (resultsMC.getMotivo().equals("Monto Inicial")) {
-                    actualizarMC.setMonto(monto);
-                    actualizarMC.setBalance(balance);
-                    cnt.setBalance(balance);
-                } else {
-                    Double nuevoBalance = (cnt.getBalance() + (monto));
-                    actualizarMC.setMonto(monto);
-                    actualizarMC.setBalance(nuevoBalance);
-                    cnt.setBalance(nuevoBalance);
-                }
+            Cuenta cnt = (Cuenta) miSesion.get(Cuenta.class, resultsMC.getCodigoCuenta().getIdCuenta());
 
-                miSesion.saveOrUpdate(actualizarMC);
-                miSesion.saveOrUpdate(cnt);
-                miSesion.getTransaction().commit();
+            if (resultsMC.getMotivo().equals("Monto Inicial")) {
+                actualizarMC.setMonto(monto);
+                actualizarMC.setBalance(balance);
+                cnt.setBalance(balance);
+            } else {
+                Double nuevoBalance = (cnt.getBalance() + (monto));
+                actualizarMC.setMonto(monto);
+                actualizarMC.setBalance(nuevoBalance);
+                cnt.setBalance(nuevoBalance);
             }
+
+            miSesion.saveOrUpdate(actualizarMC);
+            miSesion.saveOrUpdate(cnt);
+            miSesion.getTransaction().commit();
+        }
 
     }
 

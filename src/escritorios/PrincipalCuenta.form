@@ -84,7 +84,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnEliminarMov" min="-2" pref="195" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnNuevaCuenta1" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="btnReporteMovimientos" min="-2" pref="200" max="-2" attributes="0"/>
                               <EmptySpace pref="827" max="32767" attributes="0"/>
                               <Component id="txtBuscar" min="-2" pref="300" max="-2" attributes="0"/>
                           </Group>
@@ -100,7 +100,6 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="btnGuardarMovimiento" min="-2" pref="195" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="lblMotivo" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
                                           <Component id="editPaneMotivo" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -108,18 +107,14 @@
                                       <Component id="jScrollPane2" min="-2" pref="389" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="btnNuevaCuenta2" min="-2" pref="200" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="btnNuevaCuenta3" min="-2" pref="200" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
                                               <Component id="btnNuevaCuenta" min="-2" pref="200" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="txtMontoInicial" min="-2" pref="196" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="btnGuardarCuenta" min="-2" pref="200" max="-2" attributes="0"/>
                                           </Group>
+                                          <Component id="btnNuevaCuenta3" min="-2" pref="200" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -144,10 +139,7 @@
                                   <Component id="btnGuardarCuenta" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnNuevaCuenta2" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="btnNuevaCuenta3" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="btnNuevaCuenta3" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -159,8 +151,6 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnNuevoMovimiento" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="lblMotivo" min="-2" pref="34" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="editPaneMotivo" min="-2" pref="62" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -174,7 +164,7 @@
                           <Component id="btnEliminarMov" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
                           <Component id="btnnEditarMov" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
                           <Component id="txtBuscar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="btnNuevaCuenta1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="btnReporteMovimientos" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="363" max="-2" attributes="0"/>
@@ -260,17 +250,6 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="lblMotivo">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dialog" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="  MOTIVO:"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JTextField" name="txtBuscar">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -305,6 +284,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="editPaneMotivoKeyReleased"/>
+              </Events>
             </Component>
             <Component class="principal.MaterialButton" name="btnGuardarMovimiento">
               <Properties>
@@ -490,7 +472,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="principal.MaterialButton" name="btnNuevaCuenta1">
+            <Component class="principal.MaterialButton" name="btnReporteMovimientos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new java.awt.Color(0, 0, 0,60)" type="code"/>
@@ -510,30 +492,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevaCuenta1ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="principal.MaterialButton" name="btnNuevaCuenta2">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new java.awt.Color(0, 0, 0,60)" type="code"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="EDITAR CUENTA"/>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Cursor de Mano"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Roboto Medium" size="14" style="1"/>
-                </Property>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[130, 35]"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevaCuenta2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporteMovimientosActionPerformed"/>
               </Events>
             </Component>
             <Component class="principal.MaterialButton" name="btnNuevaCuenta3">
