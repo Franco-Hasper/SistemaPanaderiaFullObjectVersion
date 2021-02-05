@@ -108,7 +108,7 @@ public class ReporteIngresos extends Consultas {
             texto.add(dottedline);
             texto.setFont(datosfuente);
             texto.add("\n");
-            texto.add("Fecha:");
+            texto.add("Fecha en la que se genero este reporte: "+OperacionesUtiles.formatoFechaSinHora(new Date()));
             texto.add("\n");
             String fechaIicioPdf = (String) new OperacionesUtiles().formatoFechaSinHora(formularioReporteIngresoMateriaPrima.getFechaInicio().getDatoFecha());
             String fechaFinPdf = (String) new OperacionesUtiles().formatoFechaSinHora(formularioReporteIngresoMateriaPrima.getFechaFin().getDatoFecha());

@@ -1,6 +1,7 @@
 package operacionesProveedor;
 
 import calsesPadre.InterfazGraficaFormularioEditar;
+import clasesUtilidadGeneral.TextPrompt;
 import escritorios.PrincipalProveedor;
 import formularios.FormularioEditarProveedor;
 
@@ -9,6 +10,10 @@ import formularios.FormularioEditarProveedor;
  */
 public class InterfazGraficaFormularioEditarProveedor extends InterfazGraficaFormularioEditar {
 
+    public InterfazGraficaFormularioEditarProveedor(){
+        setEstadoConsulta(0);
+    }
+    
     protected PrincipalProveedor principalProveedor;
 
     protected TablaProveedor tablaProveedor;
@@ -36,6 +41,9 @@ public class InterfazGraficaFormularioEditarProveedor extends InterfazGraficaFor
         principalProveedor.setEditarProveedor(formularioEditar);
         transferirDatos();
         colorTema();
+        agregarBoxes();
+        rellenarBoxes();
+        infoTextPrompt();
         principalProveedor.getEditarProveedor().setVisible(true);
     }
 
@@ -53,14 +61,26 @@ public class InterfazGraficaFormularioEditarProveedor extends InterfazGraficaFor
 
     }
 
+    protected void infoTextPrompt() {
+        new TextPrompt("NOMBRE", principalProveedor.getEditarProveedor().getTxtNombre());
+        new TextPrompt("DIRECCION", principalProveedor.getEditarProveedor().getTxtDireccion());
+        new TextPrompt("N° DIREICCION", principalProveedor.getEditarProveedor().getTxtnuemeroDireccion());
+        new TextPrompt("N° TELEFONO", principalProveedor.getEditarProveedor().getTxtTelefono());
+        principalProveedor.getEditarProveedor().getTxtNombre().grabFocus();
+    }
+
     @Override
     public void agregarBoxes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setBoxLocalidad(principalProveedor.getEditarProveedor().getBoxLocalidad());
+        this.setBoxProvincia(principalProveedor.getEditarProveedor().getBoxProvincia());
+        this.setBoxTipoTelefono(principalProveedor.getEditarProveedor().getBoxTipoTelefono());
     }
 
     @Override
     public void rellenarBoxes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.consultaRellenarProvincia();
+        this.consultaRellenarLocalidad();
+        this.consultaRellenarTipoTelefono();
     }
 
 }

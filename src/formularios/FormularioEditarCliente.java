@@ -11,6 +11,9 @@ import clasesUtilidadGeneral.OperacionesUtiles;
 import escritorios.PrincipalCliente;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import javax.swing.JComboBox;
+import operacionesCliente.InterfazGraficaFormularioEditarCliente;
+import operacionesProveedor.InterfazGraficaFormularioRegistrarProveedor;
 
 /**
  *
@@ -26,6 +29,7 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
 
     private PrincipalCliente principalCliente;
     private final ABMCliente abm = new ABMCliente();
+    private final InterfazGraficaFormularioEditarCliente interfazGraficaEditarCliente = new InterfazGraficaFormularioEditarCliente();
 
     public PrincipalCliente getPrincipalCliente() {
         return principalCliente;
@@ -33,14 +37,6 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
 
     public void setPrincipalCliente(PrincipalCliente principalCliente) {
         this.principalCliente = principalCliente;
-    }
-
-    public JLabel getLblID() {
-        return lblID;
-    }
-
-    public void setLblID(JLabel lblID) {
-        this.lblID = lblID;
     }
 
     public JRadioButton getRadioButon() {
@@ -92,13 +88,19 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         panelprincipalBody = new javax.swing.JPanel();
-        butonGuardarCambios = new javax.swing.JButton();
-        lblID = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        butonCancel = new javax.swing.JButton();
         txtApellido = new javax.swing.JTextField();
         txtRazonSocial = new javax.swing.JTextField();
         radioButon = new javax.swing.JRadioButton();
+        boxProvincia = new javax.swing.JComboBox<>();
+        boxLocalidad = new javax.swing.JComboBox<>();
+        txtDireccion = new javax.swing.JTextField();
+        txtnuemroDireccion = new javax.swing.JTextField();
+        boxtipoDom = new javax.swing.JComboBox<>();
+        txtTelefono = new javax.swing.JTextField();
+        boxTipoTelefono = new javax.swing.JComboBox<>();
+        btnCancelar = new principal.MaterialButton();
+        btnGuardarCambios = new principal.MaterialButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -132,7 +134,7 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         panelPrincipalTopLayout.setVerticalGroup(
             panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,20 +146,6 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
 
         panelprincipalBody.setBackground(new java.awt.Color(255, 255, 255));
 
-        butonGuardarCambios.setText("GUARDAR CAMBIOS");
-        butonGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butonGuardarCambiosActionPerformed(evt);
-            }
-        });
-
-        butonCancel.setText("CANCELAR");
-        butonCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butonCancelActionPerformed(evt);
-            }
-        });
-
         radioButon.setText("razon soscial (no posee)");
         radioButon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,50 +153,106 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
             }
         });
 
+        boxProvincia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxProvinciaActionPerformed(evt);
+            }
+        });
+
+        txtnuemroDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnuemroDireccionKeyTyped(evt);
+            }
+        });
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
+
+        btnCancelar.setBackground(new java.awt.Color(0, 0, 0,60));
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("CANCELAR");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnCancelar.setPreferredSize(new java.awt.Dimension(70, 50));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnGuardarCambios.setBackground(new java.awt.Color(0, 0, 0,60));
+        btnGuardarCambios.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardarCambios.setText("GUARDAR CAMBIOS");
+        btnGuardarCambios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardarCambios.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnGuardarCambios.setMaximumSize(new java.awt.Dimension(170, 35));
+        btnGuardarCambios.setMinimumSize(new java.awt.Dimension(170, 35));
+        btnGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarCambiosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelprincipalBodyLayout = new javax.swing.GroupLayout(panelprincipalBody);
         panelprincipalBody.setLayout(panelprincipalBodyLayout);
         panelprincipalBodyLayout.setHorizontalGroup(
             panelprincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelprincipalBodyLayout.createSequentialGroup()
-                .addGroup(panelprincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(panelprincipalBodyLayout.createSequentialGroup()
+                .addGroup(panelprincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelprincipalBodyLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(radioButon, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44)
+                        .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelprincipalBodyLayout.createSequentialGroup()
-                        .addGap(0, 15, Short.MAX_VALUE)
-                        .addGroup(panelprincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelprincipalBodyLayout.createSequentialGroup()
-                                .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addGroup(panelprincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panelprincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(panelprincipalBodyLayout.createSequentialGroup()
-                                    .addComponent(butonGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(butonCancel))))))
-                .addGap(57, 57, 57))
+                        .addGap(66, 66, 66)
+                        .addGroup(panelprincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(boxProvincia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtRazonSocial)
+                            .addComponent(txtNombre)
+                            .addComponent(radioButon, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtApellido)
+                            .addComponent(boxLocalidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(boxtipoDom, 0, 363, Short.MAX_VALUE)
+                            .addComponent(txtTelefono)
+                            .addComponent(boxTipoTelefono, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtnuemroDireccion)
+                            .addComponent(txtDireccion))))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         panelprincipalBodyLayout.setVerticalGroup(
             panelprincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelprincipalBodyLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(panelprincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
                 .addComponent(radioButon)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(txtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
+                .addComponent(boxProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(boxLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtnuemroDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(boxtipoDom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(boxTipoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addGroup(panelprincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(butonGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(butonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(442, 442, 442))
+                    .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelBaseLayout = new javax.swing.GroupLayout(panelBase);
@@ -223,7 +267,7 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
             .addGroup(panelBaseLayout.createSequentialGroup()
                 .addComponent(panelPrincipalTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelprincipalBody, javax.swing.GroupLayout.PREFERRED_SIZE, 337, Short.MAX_VALUE))
+                .addComponent(panelprincipalBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -239,20 +283,6 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void butonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonGuardarCambiosActionPerformed
-        abm.setFormularioEditarCliente(this);
-        abm.setPrincipalCliente(principalCliente);
-        if (abm.ejecutarEditar()) {
-            principalCliente.getTablaCliente().setEstadoConsulta(0);
-            principalCliente.getTablaCliente().ejecutarRellenarTabla();
-        }
-
-    }//GEN-LAST:event_butonGuardarCambiosActionPerformed
-
-    private void butonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonCancelActionPerformed
-        OperacionesUtiles.mensajeCancelarFormulario(this);
-    }//GEN-LAST:event_butonCancelActionPerformed
 
     private void radioButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButonActionPerformed
         // TODO add your handling code here:
@@ -273,6 +303,39 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
         Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_formMouseDragged
+
+    private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed
+     abm.setFormularioEditarCliente(this);
+        abm.setPrincipalCliente(principalCliente);
+        if (abm.ejecutarEditar()) {
+            principalCliente.getTablaCliente().setEstadoConsulta(0);
+            principalCliente.getTablaCliente().ejecutarRellenarTabla();
+        }
+    }//GEN-LAST:event_btnGuardarCambiosActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        OperacionesUtiles.mensajeCancelarFormulario(this);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void boxProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxProvinciaActionPerformed
+  interfazGraficaEditarCliente.setBoxProvincia(boxProvincia);
+        interfazGraficaEditarCliente.setBoxLocalidad(boxLocalidad);
+        interfazGraficaEditarCliente.evaluarEstadoConsultaLocalidad();  
+    }//GEN-LAST:event_boxProvinciaActionPerformed
+
+    private void txtnuemroDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnuemroDireccionKeyTyped
+        // TODO add your handling code here:
+        if (new OperacionesUtiles().advertenciaNum(evt)) {
+            OperacionesUtiles.borrarCampo(txtnuemroDireccion);
+        }
+    }//GEN-LAST:event_txtnuemroDireccionKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        // TODO add your handling code here:
+        if (new OperacionesUtiles().advertenciaNum(evt)) {
+            OperacionesUtiles.borrarCampo(txtTelefono);
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -335,23 +398,88 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
         return panelprincipalBody;
     }
 
+    public JComboBox<String> getBoxLocalidad() {
+        return boxLocalidad;
+    }
+
+    public void setBoxLocalidad(JComboBox<String> boxLocalidad) {
+        this.boxLocalidad = boxLocalidad;
+    }
+
+    public JComboBox<String> getBoxProvincia() {
+        return boxProvincia;
+    }
+
+    public void setBoxProvincia(JComboBox<String> boxProvincia) {
+        this.boxProvincia = boxProvincia;
+    }
+
+    public JComboBox<String> getBoxTipoTelefono() {
+        return boxTipoTelefono;
+    }
+
+    public void setBoxTipoTelefono(JComboBox<String> boxTipoTelefono) {
+        this.boxTipoTelefono = boxTipoTelefono;
+    }
+
+    public JComboBox<String> getBoxtipoDom() {
+        return boxtipoDom;
+    }
+
+    public void setBoxtipoDom(JComboBox<String> boxtipoDom) {
+        this.boxtipoDom = boxtipoDom;
+    }
+
     public void setPanelprincipalBody(JPanel panelprincipalBody) {
         this.panelprincipalBody = panelprincipalBody;
     }
 
+    public JTextField getTxtDireccion() {
+        return txtDireccion;
+    }
+
+    public void setTxtDireccion(JTextField txtDireccion) {
+        this.txtDireccion = txtDireccion;
+    }
+
+    public JTextField getTxtTelefono() {
+        return txtTelefono;
+    }
+
+    public void setTxtTelefono(JTextField txtTelefono) {
+        this.txtTelefono = txtTelefono;
+    }
+
+    public JTextField getTxtnuemroDireccion() {
+        return txtnuemroDireccion;
+    }
+
+    public void setTxtnuemroDireccion(JTextField txtnuemroDireccion) {
+        this.txtnuemroDireccion = txtnuemroDireccion;
+    }
+    
+    
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton butonCancel;
-    private javax.swing.JButton butonGuardarCambios;
+    private javax.swing.JComboBox<String> boxLocalidad;
+    private javax.swing.JComboBox<String> boxProvincia;
+    private javax.swing.JComboBox<String> boxTipoTelefono;
+    private javax.swing.JComboBox<String> boxtipoDom;
+    public static principal.MaterialButton btnCancelar;
+    public static principal.MaterialButton btnGuardarCambios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel lblID;
     private javax.swing.JPanel panelBase;
     private javax.swing.JPanel panelPrincipalTop;
     private javax.swing.JPanel panelprincipalBody;
     private javax.swing.JRadioButton radioButon;
     private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtRazonSocial;
+    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtnuemroDireccion;
     // End of variables declaration//GEN-END:variables
 }

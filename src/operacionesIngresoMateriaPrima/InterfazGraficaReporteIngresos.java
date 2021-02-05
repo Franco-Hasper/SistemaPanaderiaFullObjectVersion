@@ -28,11 +28,11 @@ public class InterfazGraficaReporteIngresos {
         formularioReporte.setVisible(true);
 
     }
-    
 
     private void colorTema(FormularioReporteIngresoMateriaPrima formularioReporte) {
-       formularioReporte.getPanelPrincipalTop().setBackground(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
+        formularioReporte.getFechaInicio().setColorBackground(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
+        formularioReporte.getFechaFin().setColorBackground(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
+        formularioReporte.getPanelPrincipalTop().setBackground(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
     }
-    
 
 }

@@ -161,7 +161,7 @@ public class PrincipalConfiguracion extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("COLOR");
+        jLabel4.setText("COLOR TEMA");
 
         btnColorAzul.setBackground(new java.awt.Color(0, 85, 142,90));
         btnColorAzul.setForeground(new java.awt.Color(255, 255, 255));

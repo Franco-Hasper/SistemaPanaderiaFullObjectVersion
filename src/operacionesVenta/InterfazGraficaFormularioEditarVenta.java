@@ -103,6 +103,16 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
     @Override
     public void colorTema() {
         principalVenta.getEditarVenta().getPanelPrincipalTop().setBackground(principalVenta.getPanelPrincipalTop().getBackground());
+          principalVenta.getEditarVenta().getrSDateChooser().setColorBackground(principalVenta.getPanelPrincipalTop().getBackground());
+          
+          principalVenta.getEditarVenta().getTablaGraficaCliente().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+          principalVenta.getEditarVenta().getTablaGraficaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+         
+          principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+          principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+          
+          principalVenta.getEditarVenta().getTablaGraficaProductosListados().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+          principalVenta.getEditarVenta().getTablaGraficaProductosListados().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
     }
 
     @Override

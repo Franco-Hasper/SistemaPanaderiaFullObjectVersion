@@ -237,7 +237,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
         btnGestionMateriPrima.setBackground(new java.awt.Color(177, 159, 65));
         btnGestionMateriPrima.setForeground(new java.awt.Color(255, 255, 255));
-        btnGestionMateriPrima.setText("GESTIONAR MATERIA PRIMA");
+        btnGestionMateriPrima.setText(" MATERIA PRIMA");
         btnGestionMateriPrima.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGestionMateriPrima.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,7 +247,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
         btnGestionProducto.setBackground(new java.awt.Color(177, 159, 65));
         btnGestionProducto.setForeground(new java.awt.Color(255, 255, 255));
-        btnGestionProducto.setText("GESTION DE PRODUCTO");
+        btnGestionProducto.setText(" PRODUCTOS");
         btnGestionProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGestionProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,7 +257,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
         btnGestionProveedor.setBackground(new java.awt.Color(177, 159, 65));
         btnGestionProveedor.setForeground(new java.awt.Color(255, 255, 255));
-        btnGestionProveedor.setText("GESTION DE PROVEEDOR");
+        btnGestionProveedor.setText(" PROVEEDORES");
         btnGestionProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGestionProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,7 +267,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
         btnGestionCliente.setBackground(new java.awt.Color(177, 159, 65));
         btnGestionCliente.setForeground(new java.awt.Color(255, 255, 255));
-        btnGestionCliente.setText("GESTION DE CLIENTE");
+        btnGestionCliente.setText("  CLIENTES");
         btnGestionCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGestionCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,7 +297,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
         btnConfiguracion.setBackground(new java.awt.Color(177, 159, 65));
         btnConfiguracion.setForeground(new java.awt.Color(255, 255, 255));
-        btnConfiguracion.setText("CONFIGURACION");
+        btnConfiguracion.setText("CONFIGURACIÓN");
         btnConfiguracion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -424,6 +424,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
     private void btnGestionMateriPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMateriPrimaActionPerformed
         OptionPaneMateriaPrima optionPaneMateriaPrima = new OptionPaneMateriaPrima(this, true);
+         optionPaneMateriaPrima.getPanelTop().setBackground(this.getPanelPrincipalTop().getBackground());
         optionPaneMateriaPrima.getBtnIngresoMateriaPrima().setBackground(this.getPanelPrincipalTop().getBackground());
         optionPaneMateriaPrima.getBtnMateriaPrima().setBackground(this.getPanelPrincipalTop().getBackground());
         optionPaneMateriaPrima.setPrincipalAdministrador(this);

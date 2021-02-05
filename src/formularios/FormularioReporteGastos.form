@@ -162,8 +162,6 @@
                                   <Group type="102" attributes="0">
                                       <Component id="fechaFin" min="-2" pref="221" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                       <Component id="btnBuscar" min="-2" pref="190" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
@@ -188,10 +186,7 @@
                       <EmptySpace pref="26" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="fechaFin" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel4" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
-                              <Component id="btnBuscar" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btnBuscar" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="309" max="-2" attributes="0"/>
@@ -212,11 +207,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="LISTA DE GASTOS:"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="lbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="IMPORTE TOTAL:"/>

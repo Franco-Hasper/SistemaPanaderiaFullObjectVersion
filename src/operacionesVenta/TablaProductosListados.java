@@ -256,7 +256,8 @@ public class TablaProductosListados extends Tabla {
         setTabla(formularioEditarVenta.getTablaGraficaProductosListados());
         setStringConsulta("from Producto_Venta where codigoVenta=" + this.idVenta.toString());
         evaluarEstadoConsulta();
-        setCampoTexto(formularioEditarVenta.getTxtBuscarEnLista());
+        setCampoTexto(formularioEditarVenta.getTxtBuscar());
+
         rellenarTabla(getCampoTexto().getText());
     }
 

@@ -41,6 +41,7 @@ public class InterfazGraficaFormularioEditarCorte  extends InterfazGraficaFormul
     @Override
     public void colorTema() {
         principalCaja.getEditarCorte().getPanelPrincipalTop().setBackground(principalCaja.getPanelPrincipalTop().getBackground());
+         principalCaja.getEditarCorte().getrSDateChooser().setColorBackground(principalCaja.getPanelPrincipalTop().getBackground());
     }
 
     @Override

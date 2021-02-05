@@ -43,6 +43,8 @@ public class InterfazGraficaEscritorioCaja extends InterfazGraficaEscritorio{
         principalAdministrador.getCaja().getTablaGrafica().setForeground(principalAdministrador.getPanelPrincipalTop().getBackground());
         principalAdministrador.getCaja().getTablaGrafica().setSelectionBackground(principalAdministrador.getPanelPrincipalTop().getBackground());
     }
+    
+
 
     @Override
     public void colorInterfazEscritorio() {

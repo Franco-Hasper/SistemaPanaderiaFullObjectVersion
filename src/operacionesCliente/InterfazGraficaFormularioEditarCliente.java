@@ -1,6 +1,7 @@
 package operacionesCliente;
 
 import calsesPadre.InterfazGraficaFormularioEditar;
+import clasesUtilidadGeneral.TextPrompt;
 import escritorios.PrincipalCliente;
 import formularios.FormularioEditarCliente;
 
@@ -9,6 +10,10 @@ import formularios.FormularioEditarCliente;
  */
 public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormularioEditar {
 
+    public InterfazGraficaFormularioEditarCliente(){
+        setEstadoConsulta(0);
+    }
+    
     protected PrincipalCliente principalCliente;
     protected TablaCliente tablaCliente;
     
@@ -32,6 +37,9 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
         principalCliente.setEditarCliente(formularioEditar);
         transferirDatos();
         colorTema();
+        agregarBoxes();
+        rellenarBoxes();
+        infoTextPrompt();
         principalCliente.getEditarCliente().setVisible(true);
     }
 
@@ -50,15 +58,32 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
         principalCliente.getEditarCliente().getTxtApellido().setText(principalCliente.getTablaGrafica().getValueAt(fila, 1).toString());
         principalCliente.getEditarCliente().getTxtRazonSocial().setText(principalCliente.getTablaGrafica().getValueAt(fila, 2).toString());
     }
+    
+
+    public void infoTextPrompt() {
+        new TextPrompt("NOMBRE", principalCliente.getEditarCliente().getTxtNombre());
+        new TextPrompt("APELLIDO", principalCliente.getEditarCliente().getTxtApellido());
+        new TextPrompt("DIRECCION", principalCliente.getEditarCliente().getTxtDireccion());
+        new TextPrompt("RAZON SOCIAL", principalCliente.getEditarCliente().getTxtRazonSocial());
+        new TextPrompt("TELEFONO", principalCliente.getEditarCliente().getTxtTelefono());
+        new TextPrompt("NUMERO DE DIRECCION", principalCliente.getEditarCliente().getTxtnuemroDireccion());
+        principalCliente.getEditarCliente().getTxtNombre().grabFocus();
+    }
 
     @Override
     public void agregarBoxes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setBoxLocalidad(principalCliente.getEditarCliente().getBoxLocalidad());
+        this.setBoxProvincia(principalCliente.getEditarCliente().getBoxProvincia());
+        this.setBoxTipoDomicilio(principalCliente.getEditarCliente().getBoxtipoDom());
+        this.setBoxTipoTelefono(principalCliente.getEditarCliente().getBoxTipoTelefono());
     }
 
     @Override
     public void rellenarBoxes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       this.consultaRellenarProvincia();
+        this.consultaRellenarLocalidad();
+        this.consultaRellenarTipoDomicilio();
+        this.consultaRellenarTipoTelefono();
     }
 
 }

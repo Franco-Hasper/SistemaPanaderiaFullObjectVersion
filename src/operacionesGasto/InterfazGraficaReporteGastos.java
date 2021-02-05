@@ -18,10 +18,6 @@ public class InterfazGraficaReporteGastos {
     public void setPrincipalGastos(PrincipalGastos principalGastos) {
         this.principalGastos = principalGastos;
     }
-    
-    
-
-
 
     public void nuevoFormularioReporte() {
         FormularioReporteGastos formularioReporteGastos = new FormularioReporteGastos(new Frame(), true);
@@ -32,11 +28,11 @@ public class InterfazGraficaReporteGastos {
         formularioReporteGastos.setVisible(true);
 
     }
-    
 
     private void colorTema(FormularioReporteGastos formularioReporte) {
-       formularioReporte.getPanelPrincipalTop().setBackground(principalGastos.getPanelPrincipalTop().getBackground());
+        formularioReporte.getPanelPrincipalTop().setBackground(principalGastos.getPanelPrincipalTop().getBackground());
+        formularioReporte.getFechaInicio().setColorBackground(principalGastos.getPanelPrincipalTop().getBackground());
+        formularioReporte.getFechaFin().setColorBackground(principalGastos.getPanelPrincipalTop().getBackground());
     }
-    
 
 }

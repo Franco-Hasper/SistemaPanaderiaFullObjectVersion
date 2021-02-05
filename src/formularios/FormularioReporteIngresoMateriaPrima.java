@@ -56,7 +56,6 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         PanelIngresoMateriaPrima = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         lbl = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaGrafica = new javax.swing.JTable();
@@ -109,8 +108,6 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
                 PanelIngresoMateriaPrimaMouseDragged(evt);
             }
         });
-
-        jLabel4.setText("LISTA DE INGRESOS:");
 
         lbl.setText("IMPORTE TOTAL:");
 
@@ -203,9 +200,7 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
                         .addGroup(PanelIngresoMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(PanelIngresoMateriaPrimaLayout.createSequentialGroup()
                                 .addComponent(fechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4)
-                                .addGap(26, 26, 26)
+                                .addGap(160, 160, 160)
                                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(PanelIngresoMateriaPrimaLayout.createSequentialGroup()
                                 .addComponent(lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,9 +218,7 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(PanelIngresoMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PanelIngresoMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -392,7 +385,6 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
     private rojeru_san.componentes.RSDateChooser fechaInicio;
     private javax.swing.Box.Filler filler23;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;

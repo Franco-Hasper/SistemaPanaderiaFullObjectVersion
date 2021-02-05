@@ -155,7 +155,6 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
         txtBuscar = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txtBuscarEnLista = new javax.swing.JTextField();
 
         setUndecorated(true);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -516,18 +515,6 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("LISTA PRODUCTOS");
 
-        txtBuscarEnLista.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
-        txtBuscarEnLista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarEnListaActionPerformed(evt);
-            }
-        });
-        txtBuscarEnLista.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtBuscarEnListaKeyReleased(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -540,9 +527,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBuscarEnLista, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(392, 392, 392))
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelLayout.setVerticalGroup(
@@ -554,9 +539,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
                     .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtBuscarEnLista, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -705,14 +688,6 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void txtBuscarEnListaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarEnListaKeyReleased
-
-    }//GEN-LAST:event_txtBuscarEnListaKeyReleased
-
-    private void txtBuscarEnListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarEnListaActionPerformed
-
-    }//GEN-LAST:event_txtBuscarEnListaActionPerformed
-
     private void radButonConsumidorFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radButonConsumidorFinalActionPerformed
         operacionesSecundariasVenta.tipoConsumidorFinalEnabled();
         setCambiarCliente(true);
@@ -781,13 +756,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
         this.btnQuitar = btnQuitar;
     }
 
-    public JTextField getTxtBuscarEnLista() {
-        return txtBuscarEnLista;
-    }
 
-    public void setTxtBuscarEnLista(JTextField txtBuscarEnLista) {
-        this.txtBuscarEnLista = txtBuscarEnLista;
-    }
 
     public JTable getTablaGraficaProductosDisponibles() {
         return tablaGraficaProductosDisponibles;
@@ -843,7 +812,6 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
     private javax.swing.JTable tablaGraficaProductosDisponibles;
     private javax.swing.JTable tablaGraficaProductosListados;
     private javax.swing.JTextField txtBuscar;
-    private javax.swing.JTextField txtBuscarEnLista;
     private javax.swing.JTextField txtCantidad;
     // End of variables declaration//GEN-END:variables
 }

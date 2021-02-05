@@ -141,11 +141,8 @@ public class ABMCliente extends ABM {
 
     @Override
     public void transaccionEditar(Session miSesion) {
-
-        Integer totalFilas = principalCliente.getTablaGrafica().getRowCount();
-        Integer filasSeleccionada = principalCliente.getTablaGrafica().getSelectedRow();
-        List<Integer> listaResutadosActuales = principalCliente.getTablaCliente().getListaResutladosActuales();
-        Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
+        
+        Integer id =principalCliente.getTablaCliente().obtenerIdFilaSeleccionada();
         Cliente c = (Cliente) miSesion.get(Cliente.class, id);
 
         c.setNombre(formularioEditarCliente.getTxtNombre().getText());
@@ -172,6 +169,59 @@ public class ABMCliente extends ABM {
         }
 
         miSesion.saveOrUpdate(c);
+        
+        
+          //Telefono
+
+        List<TelefonoCliente> telefonos = c.getTelefonos();
+        List<TipoTelefono> lista_tipotelefono
+                = (List<TipoTelefono>) miSesion.createQuery("from TipoTelefono").list();
+        for (TelefonoCliente tc : telefonos) {
+            tc.setNuemero(formularioEditarCliente.getTxtTelefono().getText());
+            
+            for (TipoTelefono tt : lista_tipotelefono) {
+                if (tt.getNombre().equals(formularioEditarCliente.getBoxTipoTelefono().getSelectedItem())) {
+                    tc.setCodigoTipoTelefono(tt);
+                }
+            }
+            miSesion.saveOrUpdate(tc);
+        }
+        
+        //Direccion
+
+        List<Direccion_Cliente> direcciones = c.getDireccionesclientes();
+        List<Localidad> lista_Lc
+                = (List<Localidad>) miSesion.createQuery("from Localidad").list();
+        List<Provincia> lista_Pr
+                = (List<Provincia>) miSesion.createQuery("from Provincia").list();
+        List<TipoDomicilio> lista_Td
+                = (List<TipoDomicilio>) miSesion.createQuery("from TipoDomicilio").list();
+        
+        for (Direccion_Cliente d : direcciones) {
+            d.setNombre(formularioEditarCliente.getTxtDireccion().getText());
+            d.setNumero(Integer.valueOf(formularioEditarCliente.getTxtnuemroDireccion().getText()));
+            
+                      for (TipoDomicilio td : lista_Td) {
+                        if (td.getNombre().equals(formularioEditarCliente.getBoxtipoDom().getSelectedItem())) {
+                            d.setCodigoTipoDomicilio(td);
+                        }
+                    }
+            
+            
+            for (Localidad lc : lista_Lc) {
+                if (lc.getNombre().equals(formularioEditarCliente.getBoxLocalidad().getSelectedItem())) {
+                    d.setCodigoLocalidad(lc);
+                    for (Provincia pr : lista_Pr) {
+                        if (pr.getNombre().equals(formularioEditarCliente.getBoxProvincia().getSelectedItem())) {
+                            lc.setCodigoProvincia(pr);
+                        }
+                    }
+                }
+            }
+            miSesion.saveOrUpdate(d);
+        }
+                
+        
     }
 
     @Override
