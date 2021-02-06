@@ -8,7 +8,8 @@ import java.awt.Frame;
  * @author Hasper Franco
  */
 public class InterfazGraficaReporteMovimientos {
- private PrincipalCuenta principalCuenta;
+
+    private PrincipalCuenta principalCuenta;
 
     public PrincipalCuenta getPrincipalCuenta() {
         return principalCuenta;
@@ -18,14 +19,15 @@ public class InterfazGraficaReporteMovimientos {
         this.principalCuenta = principalCuenta;
     }
 
-
-
     public void nuevoFormularioReporte() {
         FormularioReporteMovimientos formularioReporte = new FormularioReporteMovimientos(new Frame(), true);
         ReporteMovimientos reporteMovimientos = new ReporteMovimientos();
+        reporteMovimientos.setIdCuenta(principalCuenta.getTablaCuenta().obtenerIdFilaSeleccionada());
         reporteMovimientos.setFormularioReporteMovimientos(formularioReporte);
         formularioReporte.setReporteMovimientos(reporteMovimientos);
+
         colorTema(formularioReporte);
+        transferirDaros(formularioReporte);
         formularioReporte.setVisible(true);
 
     }
@@ -34,6 +36,13 @@ public class InterfazGraficaReporteMovimientos {
         formularioReporte.getFechaInicio().setColorBackground(principalCuenta.getPanelPrincipalTop().getBackground());
         formularioReporte.getFechaFin().setColorBackground(principalCuenta.getPanelPrincipalTop().getBackground());
         formularioReporte.getPanelPrincipalTop().setBackground(principalCuenta.getPanelPrincipalTop().getBackground());
+    }
+
+    private void transferirDaros(FormularioReporteMovimientos formularioReporte) {
+        formularioReporte.getLblCliente().setText(principalCuenta.getLblNombre().getText());
+        Integer filasSeleccionada = principalCuenta.getTablaGraficaCuenta().getSelectedRow();
+        formularioReporte.getLblNroCuenta().setText(principalCuenta.getTablaGraficaCuenta().getValueAt(filasSeleccionada, 0).toString());
+        formularioReporte.getLblBalance().setText("$"+principalCuenta.getTablaGraficaCuenta().getValueAt(filasSeleccionada, 1).toString());
     }
 
 }

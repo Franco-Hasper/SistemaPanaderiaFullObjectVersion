@@ -34,8 +34,24 @@ public class ReporteMovimientos extends Consultas {
     private String fechaIicio;
     private String fechaFin;
     private List lista;
-    private static final Font titulofuente = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
-    private static final Font datosfuente = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
+    private Integer idCuenta;
+
+    private String cliente = "";
+    private String nroCuenta = "";
+    private String balanceActual = "";
+
+    private static final Font titulofuente = new Font(Font.FontFamily.UNDEFINED, 12, Font.BOLD);
+    private static final Font datosfuente = new Font(Font.FontFamily.UNDEFINED, 10, Font.BOLD);
+
+    
+
+    public Integer getIdCuenta() {
+        return idCuenta;
+    }
+
+    public void setIdCuenta(Integer idCuenta) {
+        this.idCuenta = idCuenta;
+    }
 
     public FormularioReporteMovimientos getFormularioReporteMovimientos() {
         return formularioReporteMovimientos;
@@ -58,15 +74,11 @@ public class ReporteMovimientos extends Consultas {
 
     private void consultaIngresos() {
         //necesito obtener el numero de cuenta 
-        setConsultaList("from MovimientoCuenta where fecha BETWEEN '" + fechaIicio + "' AND '" + fechaFin + "' AND codigoCuenta=10");
+        setConsultaList("from MovimientoCuenta where fecha BETWEEN '" + fechaIicio + "' AND '" + fechaFin + "' AND codigoCuenta=" + idCuenta.toString());
         obtenerListaConsulta();
     }
 
     private void rellenarTabla() {
-
-        String cliente = "";
-        String nroCuenta = "";
-        String balanceActual = "";
 
         DefaultTableModel tablaIngresos = (DefaultTableModel) formularioReporteMovimientos.getTablaGrafica().getModel();
         lista = this.getListaResultados();
@@ -74,15 +86,14 @@ public class ReporteMovimientos extends Consultas {
 
         for (Object o : lista) {
             MovimientoCuenta m = (MovimientoCuenta) o;
-
             Vector<Object> fila = new Vector<>();
             fila.add(m.getMotivo());
             fila.add(m.getMonto());
             fila.add(m.getBalance());
             fila.add(new OperacionesUtiles().formatoFechaSinHora(m.getFecha()));
-            cliente = m.getCodigoCuenta().getCodigoCliente().getNombre() + " " + m.getCodigoCuenta().getCodigoCliente().getApellido();
-            nroCuenta = m.getCodigoCuenta().getIdCuenta().toString();
-            balanceActual = m.getCodigoCuenta().getBalance().toString();
+            this.cliente = m.getCodigoCuenta().getCodigoCliente().getNombre() + " " + m.getCodigoCuenta().getCodigoCliente().getApellido();
+            this.nroCuenta = m.getCodigoCuenta().getIdCuenta().toString();
+            this.balanceActual = m.getCodigoCuenta().getBalance().toString();
             tablaIngresos.addRow(fila);
 
         }
@@ -93,7 +104,7 @@ public class ReporteMovimientos extends Consultas {
     }
 
     public void ejecutarGenerarReportes() throws FileNotFoundException, DocumentException {
-        generarReportePDF5(new File("reportes//IngresosMateriaPrima//IngresosMateriaPrima " + fechaIicio + " " + fechaFin + ".pdf"));
+        generarReportePDF5(new File("reportes//MovimientosCuenta//Movimientos " + fechaIicio + " hasta " + fechaFin + ".pdf"));
     }
 
     public void generarReportePDF5(File pdfNewFile) {
@@ -107,7 +118,7 @@ public class ReporteMovimientos extends Consultas {
             // Chapter chapterOne = new Chapter(0);
             Paragraph texto = new Paragraph();
             texto.setFont(titulofuente);
-            texto.add("Reporte Ingresos Materia Prima");
+            texto.add("Reporte Movimientos Cuenta");
 
             DottedLineSeparator dottedline = new DottedLineSeparator();
             dottedline.setOffset(-2);
@@ -115,6 +126,15 @@ public class ReporteMovimientos extends Consultas {
             texto.add(dottedline);
             texto.setFont(datosfuente);
             texto.add("\n");
+            texto.add("Cliente: " + this.cliente);
+            texto.add("\n");
+
+            texto.add("N° Cuenta: " + this.nroCuenta);
+            texto.add("\n");
+
+            texto.add("Balance Actual: $" + this.balanceActual);
+            texto.add("\n");
+
             texto.add("Fecha en la que se genero este reporte: " + OperacionesUtiles.formatoFechaSinHora(new Date()));
             texto.add("\n");
             String fechaIicioPdf = (String) new OperacionesUtiles().formatoFechaSinHora(formularioReporteMovimientos.getFechaInicio().getDatoFecha());
@@ -126,16 +146,14 @@ public class ReporteMovimientos extends Consultas {
 
             Double resultado = 0.0;
 
-            PdfPTable table = new PdfPTable(5);
+            PdfPTable table = new PdfPTable(4);
             PdfPCell columnHeader;
 
-            columnHeader = new PdfPCell(new Phrase("Materia prima"));
+            columnHeader = new PdfPCell(new Phrase("Motivo"));
             table.addCell(columnHeader);
-            columnHeader = new PdfPCell(new Phrase("Total envases"));
+            columnHeader = new PdfPCell(new Phrase("Monto"));
             table.addCell(columnHeader);
-            columnHeader = new PdfPCell(new Phrase("Uds por envase"));
-            table.addCell(columnHeader);
-            columnHeader = new PdfPCell(new Phrase("Total gastado"));
+            columnHeader = new PdfPCell(new Phrase("Balance"));
             table.addCell(columnHeader);
             columnHeader = new PdfPCell(new Phrase("Fecha"));
             table.addCell(columnHeader);
@@ -144,20 +162,14 @@ public class ReporteMovimientos extends Consultas {
             table.setHeaderRows(1);
 
             for (Object o : lista) {
-                IngresoMateriaPrima i = (IngresoMateriaPrima) o;
-                if (i.getCodigoEstado().getIdEstado().equals(1)) {
-                    table.addCell(i.getCodigoMateriaPrima().getNombre());
-                    table.addCell(i.getTotalEnvases().toString());
-                    table.addCell(i.getUdPorEnvase().toString());
-                    table.addCell("$ " + i.getPrecioTotal().toString());
-                    resultado += i.getPrecioTotal();
-                    table.addCell((String) new OperacionesUtiles().formatoFechaSinHora(i.getFecha()));
-                }
+                MovimientoCuenta m = (MovimientoCuenta) o;
+                table.addCell(m.getMotivo());
+                table.addCell("$ " + m.getMonto().toString());
+                table.addCell("$ " + m.getBalance().toString());
+                table.addCell((String) new OperacionesUtiles().formatoFechaSinHora(m.getFecha()));
             }
 
             texto.add(table);
-            texto.add(new Paragraph("\n"));
-            texto.add("Importe Total: " + resultado);
             document.add(texto);
             document.close();
             DesktopNotify.showDesktopMessage("exito ", "   REPORTE GENERADO\n   CON EXITO", DesktopNotify.SUCCESS, 7000);

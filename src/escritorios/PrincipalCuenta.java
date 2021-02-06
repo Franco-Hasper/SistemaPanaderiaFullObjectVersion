@@ -44,6 +44,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     private InterfazGraficaEditarMovimiento InterfazEditarMovimiento;
     private Integer cuantaFilaSeleccionada;
 
+
     /**
      * Establece el estado inicial de los elementos de la pestaña Cuenta.
      */
@@ -55,6 +56,8 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         btnGuardarMovimiento.setEnabled(false);
     }
 
+
+    
     public Integer getCuantaFilaSeleccionada() {
         return cuantaFilaSeleccionada;
     }
@@ -646,6 +649,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
             InterfazGraficaReporteMovimientos i = new InterfazGraficaReporteMovimientos();
             i.setPrincipalCuenta(this);
             i.nuevoFormularioReporte();
+            
         }
 
     }//GEN-LAST:event_btnReporteMovimientosActionPerformed

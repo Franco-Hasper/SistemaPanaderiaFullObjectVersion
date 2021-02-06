@@ -22,17 +22,19 @@ import rojeru_san.componentes.RSDateChooser;
  */
 public class FormularioReporteMovimientos extends javax.swing.JDialog {
 
-    
     private ReporteMovimientos reporteMovimientos;
-     private PrincipalCuenta principalCuenta;
+    private PrincipalCuenta principalCuenta;
+
     
-    
+
     public FormularioReporteMovimientos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
+
+    
     public ReporteMovimientos getReporteMovimientos() {
         return reporteMovimientos;
     }
@@ -48,8 +50,6 @@ public class FormularioReporteMovimientos extends javax.swing.JDialog {
     public void setPrincipalCuenta(PrincipalCuenta principalCuenta) {
         this.principalCuenta = principalCuenta;
     }
-
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -304,14 +304,15 @@ public class FormularioReporteMovimientos extends javax.swing.JDialog {
     private void PanelIngresoMateriaPrimaMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelIngresoMateriaPrimaMouseDragged
 
     }//GEN-LAST:event_PanelIngresoMateriaPrimaMouseDragged
-     
+
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       reporteMovimientos.ejecutarBusqueda();
+        reporteMovimientos.ejecutarBusqueda();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
         try {
             reporteMovimientos.ejecutarGenerarReportes();
+            this.dispose();;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FormularioReporteMovimientos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
@@ -384,7 +385,6 @@ public class FormularioReporteMovimientos extends javax.swing.JDialog {
         this.tablaGrafica = tablaGrafica;
     }
 
-
     public MaterialButton getBtnBuscar() {
         return btnBuscar;
     }
@@ -433,8 +433,6 @@ public class FormularioReporteMovimientos extends javax.swing.JDialog {
         this.lblNroCuenta = lblNroCuenta;
     }
 
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel PanelIngresoMateriaPrima;
