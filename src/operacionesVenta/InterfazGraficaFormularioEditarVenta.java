@@ -97,22 +97,32 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
         tablaCliente.ejecutarRellenenarTabla();
         principalVenta.getEditarVenta().setIdCliente(tablaCliente.getIdCliente());
 
+        TablaClienteLista tablaClienteLista = new TablaClienteLista();
+        tablaClienteLista.setFormularioEditarVenta(principalVenta.getEditarVenta());
+        tablaClienteLista.ejecutarRellenarTabla();
+        formularioEditar.setTablaClienteLista(tablaClienteLista);
+        
+        
+        TablaCuenta tablaCuenta=new TablaCuenta();
+        tablaCuenta.setFormularioEditarVenta(formularioEditar);
+        formularioEditar.setTablaCuenta(tablaCuenta);
+
         principalVenta.getEditarVenta().setVisible(true);
     }
 
     @Override
     public void colorTema() {
         principalVenta.getEditarVenta().getPanelPrincipalTop().setBackground(principalVenta.getPanelPrincipalTop().getBackground());
-          principalVenta.getEditarVenta().getrSDateChooser().setColorBackground(principalVenta.getPanelPrincipalTop().getBackground());
-          
-          principalVenta.getEditarVenta().getTablaGraficaCliente().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-          principalVenta.getEditarVenta().getTablaGraficaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
-         
-          principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-          principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
-          
-          principalVenta.getEditarVenta().getTablaGraficaProductosListados().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-          principalVenta.getEditarVenta().getTablaGraficaProductosListados().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getEditarVenta().getrSDateChooser().setColorBackground(principalVenta.getPanelPrincipalTop().getBackground());
+
+        principalVenta.getEditarVenta().getTablaGraficaCliente().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getEditarVenta().getTablaGraficaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+
+        principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+
+        principalVenta.getEditarVenta().getTablaGraficaProductosListados().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getEditarVenta().getTablaGraficaProductosListados().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
     }
 
     @Override

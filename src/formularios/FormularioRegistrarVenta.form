@@ -107,13 +107,13 @@
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Component id="jScrollPane3" min="-2" pref="596" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane6" alignment="0" min="-2" pref="596" max="-2" attributes="0"/>
+                                          <Component id="radButonConsumidorFinal" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="txtBuscarClientes" min="-2" pref="314" max="-2" attributes="0"/>
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Component id="btnBuscarCliente" min="-2" pref="206" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="jScrollPane6" alignment="1" min="-2" pref="596" max="-2" attributes="0"/>
-                                          <Component id="radButonConsumidorFinal" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -199,26 +199,15 @@
                           <Component id="jScrollPane3" alignment="0" pref="343" max="32767" attributes="0"/>
                           <Component id="jScrollPane2" alignment="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtBuscarClientes" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                                  <Component id="btnBuscarCliente" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="lblInfoSuma" min="-2" pref="26" max="-2" attributes="0"/>
                                   <Component id="lblPrecioTotal" min="-2" pref="26" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane4" min="-2" pref="86" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="radBtnDescontar" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnDescontar" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
@@ -226,17 +215,24 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jScrollPane5" min="-2" pref="95" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane6" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnBuscarCliente" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="txtBuscarClientes" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jScrollPane6" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="radButonConsumidorFinal" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="lblInfoSuma1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="radButonConsumidorFinal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lblInfoSuma1" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="lblNuevoBalance" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="8" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">

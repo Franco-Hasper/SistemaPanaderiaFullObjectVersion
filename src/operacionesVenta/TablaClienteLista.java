@@ -6,7 +6,7 @@ import ds.desktop.notify.DesktopNotify;
 import entidades.Cliente;
 import entidades.Direccion_Cliente;
 import entidades.TelefonoCliente;
-import escritorios.PrincipalVenta;
+import formularios.FormularioEditarVenta;
 import formularios.FormularioRegistrarVenta;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +24,7 @@ public class TablaClienteLista extends Tabla {
     }
 
     private FormularioRegistrarVenta formularioRegistrarVenta;
+    private FormularioEditarVenta formularioEditarVenta;
     private List<Integer> listaIds = new ArrayList<Integer>();
 
     public FormularioRegistrarVenta getFormularioRegistrarVenta() {
@@ -32,6 +33,14 @@ public class TablaClienteLista extends Tabla {
 
     public void setFormularioRegistrarVenta(FormularioRegistrarVenta formularioRegistrarVenta) {
         this.formularioRegistrarVenta = formularioRegistrarVenta;
+    }
+
+    public FormularioEditarVenta getFormularioEditarVenta() {
+        return formularioEditarVenta;
+    }
+
+    public void setFormularioEditarVenta(FormularioEditarVenta formularioEditarVenta) {
+        this.formularioEditarVenta = formularioEditarVenta;
     }
 
     public List<Integer> getListaIds() {
@@ -44,11 +53,20 @@ public class TablaClienteLista extends Tabla {
 
     @Override
     public void ejecutarRellenarTabla() {
-        setTabla(formularioRegistrarVenta.getTablaGraficaListaCliente());
-        setStringConsulta("from Cliente");
-        evaluarEstadoConsulta();
-        setCampoTexto(formularioRegistrarVenta.getTxtBuscarClientes());
-        rellenarTabla(getCampoTexto().getText());
+        if (getFormularioRegistrarVenta() == null) {
+            setTabla(formularioEditarVenta.getTablaGraficaListaCliente());
+            setStringConsulta("from Cliente");
+            evaluarEstadoConsulta();
+            setCampoTexto(formularioEditarVenta.getTxtBuscarClientes());
+            rellenarTabla(getCampoTexto().getText());
+
+        } else {
+            setTabla(formularioRegistrarVenta.getTablaGraficaListaCliente());
+            setStringConsulta("from Cliente");
+            evaluarEstadoConsulta();
+            setCampoTexto(formularioRegistrarVenta.getTxtBuscarClientes());
+            rellenarTabla(getCampoTexto().getText());
+        }
     }
 
     @Override
@@ -68,7 +86,7 @@ public class TablaClienteLista extends Tabla {
             Cliente c = (Cliente) o;
             boolean resultadoComparacion = OperacionesUtiles.convertirResultado(c.getNombre(), valorBusqueda);
             //***********************
-            if (c.getCodigoEstado().getIdEstado().equals(1) && resultadoComparacion && c.getIdCliente()!=1) {
+            if (c.getCodigoEstado().getIdEstado().equals(1) && resultadoComparacion && c.getIdCliente() != 1) {
                 this.listaIds.add(0, c.getIdCliente());
                 Vector<Object> fila = new Vector<>();
                 fila.add(c.getNombre() + " " + c.getApellido());
@@ -104,9 +122,16 @@ public class TablaClienteLista extends Tabla {
 
     @Override
     public boolean verificarFilaSeleccionada() {
+        int fila;
         try {
-            int fila = formularioRegistrarVenta.getTablaGraficaListaCliente().getSelectedRow();
-            formularioRegistrarVenta.getTablaGraficaListaCliente().getValueAt(fila, 0).toString();
+            if (getFormularioRegistrarVenta() == null) {
+                fila = formularioEditarVenta.getTablaGraficaListaCliente().getSelectedRow();
+                formularioEditarVenta.getTablaGraficaListaCliente().getValueAt(fila, 0).toString();
+            } else {
+                fila = formularioRegistrarVenta.getTablaGraficaListaCliente().getSelectedRow();
+                formularioRegistrarVenta.getTablaGraficaListaCliente().getValueAt(fila, 0).toString();
+            }
+
             return true;
         } catch (Exception e) {
 
@@ -126,12 +151,25 @@ public class TablaClienteLista extends Tabla {
 
     @Override
     public Integer obtenerIdFilaSeleccionada() {
+        Integer totalFilas;
+        Integer filasSeleccionada;
+        List<Integer> listaIds;
+        Integer id;
         try {
-            Integer totalFilas = formularioRegistrarVenta.getTablaGraficaListaCliente().getRowCount();
-            Integer filasSeleccionada = formularioRegistrarVenta.getTablaGraficaListaCliente().getSelectedRow();
-            List<Integer> listaIds = formularioRegistrarVenta.getTablaClienteLista().getListaIds();
-            Integer id = operacionesUtilidad.obtenerId(listaIds, totalFilas, filasSeleccionada);
-            this.setIdTabla(id);
+            if (getFormularioRegistrarVenta() == null) {
+                totalFilas = formularioEditarVenta.getTablaGraficaListaCliente().getRowCount();
+                filasSeleccionada = formularioEditarVenta.getTablaGraficaListaCliente().getSelectedRow();
+                listaIds = formularioEditarVenta.getTablaClienteLista().getListaIds();
+                id = operacionesUtilidad.obtenerId(listaIds, totalFilas, filasSeleccionada);
+                this.setIdTabla(id);
+            } else {
+                totalFilas = formularioRegistrarVenta.getTablaGraficaListaCliente().getRowCount();
+                filasSeleccionada = formularioRegistrarVenta.getTablaGraficaListaCliente().getSelectedRow();
+                listaIds = formularioRegistrarVenta.getTablaClienteLista().getListaIds();
+                id = operacionesUtilidad.obtenerId(listaIds, totalFilas, filasSeleccionada);
+                this.setIdTabla(id);
+            }
+
         } catch (Exception e) {
         }
         return idTabla;

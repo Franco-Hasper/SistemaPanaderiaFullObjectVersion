@@ -20,6 +20,7 @@ public class TablaCuenta extends Tabla {
 
     private Integer idCliente;
     private FormularioRegistrarVenta formularioRegistrarVenta;
+    private FormularioEditarVenta formularioEditarVenta;
     private List<Integer> listaIds = new ArrayList<Integer>();
 
     public TablaCuenta() {
@@ -42,6 +43,14 @@ public class TablaCuenta extends Tabla {
         this.formularioRegistrarVenta = formularioRegistrarVenta;
     }
 
+    public FormularioEditarVenta getFormularioEditarVenta() {
+        return formularioEditarVenta;
+    }
+
+    public void setFormularioEditarVenta(FormularioEditarVenta formularioEditarVenta) {
+        this.formularioEditarVenta = formularioEditarVenta;
+    }
+
     public List<Integer> getListaIds() {
         return listaIds;
     }
@@ -58,20 +67,37 @@ public class TablaCuenta extends Tabla {
      */
     @Override
     public void ejecutarRellenarTabla() {
-        setTabla(formularioRegistrarVenta.getTablaGraficaDescontarCuenta());
-        setStringConsulta("from Cuenta where codigoCliente=" + this.idCliente);
-        evaluarEstadoConsulta();
-        rellenarTabla("");
+        if (getFormularioRegistrarVenta() == null) {
+            setTabla(formularioEditarVenta.getTablaGraficaDescontarCuenta());
+            setStringConsulta("from Cuenta where codigoCliente=" + this.idCliente);
+            evaluarEstadoConsulta();
+            rellenarTabla("");
+        } else {
+            setTabla(formularioRegistrarVenta.getTablaGraficaDescontarCuenta());
+            setStringConsulta("from Cuenta where codigoCliente=" + this.idCliente);
+            evaluarEstadoConsulta();
+            rellenarTabla("");
+        }
+
     }
 
     @Override
     public Integer obtenerIdFilaSeleccionada() {
         try {
-            Integer totalFilas = formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getRowCount();
-            Integer filasSeleccionada = formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getSelectedRow();
-            List<Integer> listaResutadosActualesThis = formularioRegistrarVenta.getTablaCuenta().listaIds;
-            Integer id = operacionesUtilidad.obtenerId(listaResutadosActualesThis, totalFilas, filasSeleccionada);
-            this.setIdTabla(id);
+            if (getFormularioRegistrarVenta() == null) {
+                Integer totalFilas = formularioEditarVenta.getTablaGraficaDescontarCuenta().getRowCount();
+                Integer filasSeleccionada = formularioEditarVenta.getTablaGraficaDescontarCuenta().getSelectedRow();
+                List<Integer> listaResutadosActualesThis = formularioEditarVenta.getTablaCuenta().listaIds;
+                Integer id = operacionesUtilidad.obtenerId(listaResutadosActualesThis, totalFilas, filasSeleccionada);
+                this.setIdTabla(id);
+            } else {
+                Integer totalFilas = formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getRowCount();
+                Integer filasSeleccionada = formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getSelectedRow();
+                List<Integer> listaResutadosActualesThis = formularioRegistrarVenta.getTablaCuenta().listaIds;
+                Integer id = operacionesUtilidad.obtenerId(listaResutadosActualesThis, totalFilas, filasSeleccionada);
+                this.setIdTabla(id);
+            }
+
         } catch (Exception e) {
         }
         return idTabla;
@@ -104,9 +130,17 @@ public class TablaCuenta extends Tabla {
     @Override
     public boolean verificarFilaSeleccionada() {
         try {
-            int fila = formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getSelectedRow();
-            formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getValueAt(fila, 0).toString();
-            return true;
+
+            if (getFormularioRegistrarVenta() == null) {
+                int fila = formularioEditarVenta.getTablaGraficaDescontarCuenta().getSelectedRow();
+                formularioEditarVenta.getTablaGraficaDescontarCuenta().getValueAt(fila, 0).toString();
+                return true;
+            } else {
+                int fila = formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getSelectedRow();
+                formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getValueAt(fila, 0).toString();
+                return true;
+            }
+
         } catch (Exception e) {
             DesktopNotify.showDesktopMessage("Informacion", "Debe seleccionar una fila", DesktopNotify.INFORMATION, 7000);
             return false;
@@ -114,11 +148,20 @@ public class TablaCuenta extends Tabla {
     }
 
     public void cacularNuevoBalance() {
-        int fila = formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getSelectedRow();
-        Double totalCompra = Double.valueOf(formularioRegistrarVenta.getLblPrecioTotal().getText());
-        Double balance = Double.valueOf(formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getValueAt(fila, 1).toString());
-        Double nuevoBalance = balance - totalCompra;
-        formularioRegistrarVenta.getLblNuevoBalance().setText(nuevoBalance.toString());
+        if (getFormularioRegistrarVenta() == null) {
+            int fila = formularioEditarVenta.getTablaGraficaDescontarCuenta().getSelectedRow();
+            Double totalCompra = Double.valueOf(formularioEditarVenta.getLblPrecioTotal().getText());
+            Double balance = Double.valueOf(formularioEditarVenta.getTablaGraficaDescontarCuenta().getValueAt(fila, 1).toString());
+            Double nuevoBalance = balance - totalCompra;
+            formularioEditarVenta.getLblNuevoBalance().setText(nuevoBalance.toString());
+        } else {
+            int fila = formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getSelectedRow();
+            Double totalCompra = Double.valueOf(formularioRegistrarVenta.getLblPrecioTotal().getText());
+            Double balance = Double.valueOf(formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getValueAt(fila, 1).toString());
+            Double nuevoBalance = balance - totalCompra;
+            formularioRegistrarVenta.getLblNuevoBalance().setText(nuevoBalance.toString());
+        }
+
     }
 
 }

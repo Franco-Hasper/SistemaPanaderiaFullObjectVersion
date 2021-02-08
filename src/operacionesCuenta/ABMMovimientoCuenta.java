@@ -51,7 +51,7 @@ public class ABMMovimientoCuenta extends ABM {
 
     @Override
     public void transaccionRegistrar(Session miSesion) {
-          Estado e = (Estado) miSesion.get(Estado.class, 1);
+        Estado e = (Estado) miSesion.get(Estado.class, 1);
         MovimientoCuenta mc = new MovimientoCuenta();
         mc.setMotivo(principalCuenta.getEditPaneMotivo().getText());
         mc.setMonto(Double.valueOf(principalCuenta.getTxtMonto().getText()));
@@ -81,20 +81,22 @@ public class ABMMovimientoCuenta extends ABM {
         miSesion.save(mc);
         c.setBalance(mc.getBalance());
         miSesion.saveOrUpdate(c);
-        
+
     }
 
     @Override
     public void transaccionEliminar(Session miSesion) {
+        Estado e = (Estado) miSesion.get(Estado.class, 2);
         Integer id = principalCuenta.getTablaMovimientoCuenta().obtenerIdFilaSeleccionada();
         MovimientoCuenta mc = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, id);
-        miSesion.delete(mc);
-       
+        mc.setCodigoEstado(e);
+        miSesion.saveOrUpdate(mc);
+
     }
 
     public void ejecutarActualizarMovimientoCuenta() {
         Integer id = principalCuenta.getTablaCuenta().obtenerIdFilaSeleccionada();
-        setConsultaList("FROM MovimientoCuenta where codigoCuenta=" + id);
+        setConsultaList("FROM MovimientoCuenta WHERE codigoCuenta=" + id +" AND codigoEstado=1");
         obtenerListaConsulta();
         actualizarMovimeintoCuenta();
     }

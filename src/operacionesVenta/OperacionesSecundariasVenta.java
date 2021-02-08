@@ -321,25 +321,42 @@ public class OperacionesSecundariasVenta {
     }
 
     public void cuentaDisable() {
-        
-        formularioRegistrarVenta.getRadBtnDescontar().setSelected(false);
-       
-        DefaultTableModel tablaCuenta = (DefaultTableModel) formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getModel();
-        new OperacionesUtiles().removerFilas(tablaCuenta);
-        formularioRegistrarVenta.getLblNuevoBalance().setText("");
-        formularioRegistrarVenta.setIdCuenta(null);
-         
+        if (formularioRegistrarVenta == null) {
+            formularioEditarVenta.getRadBtnDescontar().setSelected(false);
+            DefaultTableModel tablaCuenta = (DefaultTableModel) formularioEditarVenta.getTablaGraficaDescontarCuenta().getModel();
+            new OperacionesUtiles().removerFilas(tablaCuenta);
+            formularioEditarVenta.getLblNuevoBalance().setText("");
+            formularioEditarVenta.setIdCuenta(null);
+        } else {
+            formularioRegistrarVenta.getRadBtnDescontar().setSelected(false);
+            DefaultTableModel tablaCuenta = (DefaultTableModel) formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getModel();
+            new OperacionesUtiles().removerFilas(tablaCuenta);
+            formularioRegistrarVenta.getLblNuevoBalance().setText("");
+            formularioRegistrarVenta.setIdCuenta(null);
+        }
+
     }
-    
-    public void deshabilitarBotonesCuenta(){
-        formularioRegistrarVenta.getRadBtnDescontar().setEnabled(false);
-        formularioRegistrarVenta.getBtnDescontar().setEnabled(false);
+
+    public void deshabilitarBotonesCuenta() {
+        if (formularioRegistrarVenta == null) {
+            formularioEditarVenta.getRadBtnDescontar().setEnabled(false);
+            formularioEditarVenta.getBtnDescontar().setEnabled(false);
+        } else {
+            formularioRegistrarVenta.getRadBtnDescontar().setEnabled(false);
+            formularioRegistrarVenta.getBtnDescontar().setEnabled(false);
+        }
+
     }
-    
-    private void habilitarBotonesCuenta(){
-        formularioRegistrarVenta.getRadBtnDescontar().setEnabled(true);
-        formularioRegistrarVenta.getBtnDescontar().setEnabled(true);
+
+    private void habilitarBotonesCuenta() {
+        if (formularioRegistrarVenta == null) {
+            formularioEditarVenta.getRadBtnDescontar().setEnabled(true);
+            formularioEditarVenta.getBtnDescontar().setEnabled(true);
+        } else {
+            formularioRegistrarVenta.getRadBtnDescontar().setEnabled(true);
+            formularioRegistrarVenta.getBtnDescontar().setEnabled(true);
+        }
+
     }
-    
 
 }

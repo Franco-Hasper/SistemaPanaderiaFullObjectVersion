@@ -157,7 +157,7 @@ public class ABMVenta extends ABM {
                 mc.setMonto(Double.valueOf("-" + formularioRegistrarVenta.getLblPrecioTotal().getText().toString()));
                 mc.setMotivo("compra de productos");
 
-                System.out.println(mc.getMonto());
+               
                 
                 id = formularioRegistrarVenta.getIdCuenta();
                 Cuenta c = (Cuenta) miSesion.get(Cuenta.class, id);

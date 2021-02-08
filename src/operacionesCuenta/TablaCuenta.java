@@ -14,14 +14,14 @@ import javax.swing.table.DefaultTableModel;
 /**
  * @author Hasper Franco
  */
-public class TablaCuenta extends Tabla{
+public class TablaCuenta extends Tabla {
 
     private Integer idCliente;
-     private PrincipalCuenta principalCuenta;
+    private PrincipalCuenta principalCuenta;
     private List<Integer> listaResutladosActuales = new ArrayList<Integer>();
-    
+
     public TablaCuenta() {
-     setEstadoConsulta(0);
+        setEstadoConsulta(0);
     }
 
     public Integer getIdCliente() {
@@ -47,23 +47,22 @@ public class TablaCuenta extends Tabla{
     public void setListaResutladosActuales(List<Integer> listaResutladosActuales) {
         this.listaResutladosActuales = listaResutladosActuales;
     }
-    
+
     /**
-     * Ejecuata los metodos necesarios para rellenar la tabla cuentas de la ventana
-     * PrincipalCuenta.
+     * Ejecuata los metodos necesarios para rellenar la tabla cuentas de la
+     * ventana PrincipalCuenta.
      *
      * @param p
      */
     @Override
     public void ejecutarRellenarTabla() {
         setTabla(principalCuenta.getTablaGraficaCuenta());
-        setStringConsulta("from Cuenta where codigoCliente="+this.idCliente);
+        setStringConsulta("from Cuenta where codigoCliente=" + this.idCliente);
         evaluarEstadoConsulta();
         //setCampoTexto(principalCuenta.getTxtBuscar());
         rellenarTabla("");
     }
-    
-    
+
     @Override
     public Integer obtenerIdFilaSeleccionada() {
         try {
@@ -83,7 +82,6 @@ public class TablaCuenta extends Tabla{
         DefaultTableModel tablaCuenta = (DefaultTableModel) getTabla().getModel();
         List lista = this.getListaResultados();
         operacionesUtilidad.removerFilas(tablaCuenta);
-      
 
         try {
             this.listaResutladosActuales.clear();
@@ -92,12 +90,14 @@ public class TablaCuenta extends Tabla{
 
         for (Object o : lista) {
             Cuenta c = (Cuenta) o;
+            if (c.getCodigoEstado().getIdEstado().equals(1)) {
                 this.listaResutladosActuales.add(0, c.getIdCuenta());
                 Vector<Object> fila = new Vector<>();
                 fila.add(c.getIdCuenta());
                 fila.add(c.getBalance());
                 tablaCuenta.addRow(fila);
-            
+            }
+
         }
         OperacionesUtiles.ordenarLista(listaResutladosActuales);
     }
@@ -113,12 +113,10 @@ public class TablaCuenta extends Tabla{
             return false;
         }
     }
-    
-    
-    public Integer filaSeleccionada(){
+
+    public Integer filaSeleccionada() {
         int fila = principalCuenta.getTablaGraficaCuenta().getSelectedRow();
         return fila;
     }
-    
 
 }

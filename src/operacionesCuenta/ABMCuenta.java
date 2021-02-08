@@ -65,9 +65,11 @@ public class ABMCuenta extends ABM {
 
     @Override
     public void transaccionEliminar(Session miSesion) {
+        Estado e = (Estado) miSesion.get(Estado.class, 2);
         Integer id = principalCuenta.getTablaCuenta().obtenerIdFilaSeleccionada();
         Cuenta c = (Cuenta) miSesion.get(Cuenta.class, id);
-        miSesion.delete(c);
+        c.setCodigoEstado(e);
+        miSesion.saveOrUpdate(c);
     }
 
 }

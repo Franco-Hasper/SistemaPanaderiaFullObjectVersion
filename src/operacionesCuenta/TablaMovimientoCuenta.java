@@ -91,13 +91,15 @@ public class TablaMovimientoCuenta extends Tabla {
 
         for (Object o : lista) {
             MovimientoCuenta mc = (MovimientoCuenta) o;
-            this.listaResutladosActuales.add(0, mc.getIdMovimientoCuenta());
-            Vector<Object> fila = new Vector<>();
-            fila.add(mc.getMotivo());
-            fila.add(mc.getMonto());
-            fila.add(mc.getBalance());
-            fila.add(new OperacionesUtiles().formatoFechaSinHora(mc.getFecha()));
-            tablaMovimientoCuenta.addRow(fila);
+            if (mc.getCodigoEstado().getIdEstado().equals(1)) {
+                this.listaResutladosActuales.add(0, mc.getIdMovimientoCuenta());
+                Vector<Object> fila = new Vector<>();
+                fila.add(mc.getMotivo());
+                fila.add(mc.getMonto());
+                fila.add(mc.getBalance());
+                fila.add(new OperacionesUtiles().formatoFechaSinHora(mc.getFecha()));
+                tablaMovimientoCuenta.addRow(fila);
+            }
 
         }
         OperacionesUtiles.ordenarLista(listaResutladosActuales);
@@ -125,7 +127,7 @@ public class TablaMovimientoCuenta extends Tabla {
     }
 
     public boolean verificarNoMontoInicial() {
-        if (principalCuenta.getTablaGraficaMovimiento().getSelectedRow()==0) {
+        if (principalCuenta.getTablaGraficaMovimiento().getSelectedRow() == 0) {
             DesktopNotify.showDesktopMessage("Informacion", "No Se puede eliminar Monto Inicial Solamente Modificar su valor", DesktopNotify.ERROR, 7000);
             return false;
         }
