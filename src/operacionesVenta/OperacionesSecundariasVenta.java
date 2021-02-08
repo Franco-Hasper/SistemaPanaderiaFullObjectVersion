@@ -90,9 +90,11 @@ public class OperacionesSecundariasVenta {
                     formularioRegistrarVenta.getBtnBuscarCliente().setEnabled(false);
                     modeloTabla();
                     datosventaSimpleConsumidorFinal();
+                    deshabilitarBotonesCuenta();
                 } else {
                     formularioRegistrarVenta.getBtnBuscarCliente().setEnabled(true);
                     modeloTabla();
+                    habilitarBotonesCuenta();
                 }
                 break;
             case 2:
@@ -317,5 +319,27 @@ public class OperacionesSecundariasVenta {
                 break;
         }
     }
+
+    public void cuentaDisable() {
+        
+        formularioRegistrarVenta.getRadBtnDescontar().setSelected(false);
+       
+        DefaultTableModel tablaCuenta = (DefaultTableModel) formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getModel();
+        new OperacionesUtiles().removerFilas(tablaCuenta);
+        formularioRegistrarVenta.getLblNuevoBalance().setText("");
+        formularioRegistrarVenta.setIdCuenta(null);
+         
+    }
+    
+    public void deshabilitarBotonesCuenta(){
+        formularioRegistrarVenta.getRadBtnDescontar().setEnabled(false);
+        formularioRegistrarVenta.getBtnDescontar().setEnabled(false);
+    }
+    
+    private void habilitarBotonesCuenta(){
+        formularioRegistrarVenta.getRadBtnDescontar().setEnabled(true);
+        formularioRegistrarVenta.getBtnDescontar().setEnabled(true);
+    }
+    
 
 }

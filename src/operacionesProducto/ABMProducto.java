@@ -13,7 +13,9 @@ import formularios.FormularioRegistrarProducto;
 import java.util.Date;
 import java.util.List;
 import escritorios.PrincipalProducto;
+import com.mysql.jdbc.Blob;
 import org.hibernate.Session;
+import org.hibernate.type.BlobType;
 
 /**
  *
@@ -106,7 +108,9 @@ public class ABMProducto extends ABM {
 
         p.setNombre(formularioRegistrarProducto.getTxtNombre().getText());
         p.setDescripcion(formularioRegistrarProducto.getTxtDescripcion().getText());
+        p.setImagen(null);
         p.setCodigoEstado(e);
+        
         miSesion.save(p);
 
         PrecioProducto prp = new PrecioProducto();

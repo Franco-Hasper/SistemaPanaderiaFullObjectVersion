@@ -42,16 +42,25 @@ public class TablaProducto extends Tabla {
     }
 
     @Override
+    public void ejecutarRellenarTabla() {
+        setTabla(principalProducto.getTablaGrafica());
+        setStringConsulta("from PrecioProducto");
+        evaluarEstadoConsulta();
+        setCampoTexto(principalProducto.getTxtBuscar());
+        rellenarTabla(getCampoTexto().getText());
+    }
+
+    @Override
     public void rellenarTabla(String valorBusqueda) {
         DefaultTableModel tablaProducto = (DefaultTableModel) getTabla().getModel();
         List lista = this.getListaResultados();
         operacionesUtilidad.removerFilas(tablaProducto);
-        
+
         try {
             this.listaResutladosActuales.clear();
         } catch (NullPointerException e) {
         }
-         
+
         for (Object o : lista) {
             PrecioProducto pr = (PrecioProducto) o;
             Vector<Object> fila = new Vector<>();
@@ -70,7 +79,6 @@ public class TablaProducto extends Tabla {
         OperacionesUtiles.ordenarLista(listaResutladosActuales);
     }
 
-    
     @Override
     public boolean verificarFilaSeleccionada() {
         try {
@@ -83,16 +91,6 @@ public class TablaProducto extends Tabla {
         }
     }
 
-    @Override
-    public void ejecutarRellenarTabla() {
-        setTabla(principalProducto.getTablaGrafica());
-        setStringConsulta("from PrecioProducto");
-        evaluarEstadoConsulta();
-        setCampoTexto(principalProducto.getTxtBuscar());
-        rellenarTabla(getCampoTexto().getText());
-    }
-
-    
     //id precioproducto
     @Override
     public Integer obtenerIdFilaSeleccionada() {

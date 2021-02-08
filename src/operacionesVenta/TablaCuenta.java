@@ -42,7 +42,6 @@ public class TablaCuenta extends Tabla {
         this.formularioRegistrarVenta = formularioRegistrarVenta;
     }
 
-
     public List<Integer> getListaIds() {
         return listaIds;
     }
@@ -70,7 +69,7 @@ public class TablaCuenta extends Tabla {
         try {
             Integer totalFilas = formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getRowCount();
             Integer filasSeleccionada = formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getSelectedRow();
-            List<Integer> listaResutadosActualesThis =formularioRegistrarVenta.getTablaCuenta().listaIds;
+            List<Integer> listaResutadosActualesThis = formularioRegistrarVenta.getTablaCuenta().listaIds;
             Integer id = operacionesUtilidad.obtenerId(listaResutadosActualesThis, totalFilas, filasSeleccionada);
             this.setIdTabla(id);
         } catch (Exception e) {
@@ -114,12 +113,12 @@ public class TablaCuenta extends Tabla {
         }
     }
 
-    
-    public void cacularNuevoBalance(){
-        formularioRegistrarVenta.getLblNuevoBalance().setText("adasdkaopsd");
+    public void cacularNuevoBalance() {
+        int fila = formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getSelectedRow();
+        Double totalCompra = Double.valueOf(formularioRegistrarVenta.getLblPrecioTotal().getText());
+        Double balance = Double.valueOf(formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getValueAt(fila, 1).toString());
+        Double nuevoBalance = balance - totalCompra;
+        formularioRegistrarVenta.getLblNuevoBalance().setText(nuevoBalance.toString());
     }
-    
-    
-    
 
 }

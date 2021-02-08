@@ -4,6 +4,7 @@ import calsesPadre.ABM;
 import conexion.ConexionHibernate;
 import ds.desktop.notify.DesktopNotify;
 import entidades.Cuenta;
+import entidades.Estado;
 import entidades.MovimientoCuenta;
 import escritorios.PrincipalCuenta;
 import formularios.FormularioEditarMovimientoCuenta;
@@ -50,6 +51,7 @@ public class ABMMovimientoCuenta extends ABM {
 
     @Override
     public void transaccionRegistrar(Session miSesion) {
+          Estado e = (Estado) miSesion.get(Estado.class, 1);
         MovimientoCuenta mc = new MovimientoCuenta();
         mc.setMotivo(principalCuenta.getEditPaneMotivo().getText());
         mc.setMonto(Double.valueOf(principalCuenta.getTxtMonto().getText()));
@@ -57,6 +59,7 @@ public class ABMMovimientoCuenta extends ABM {
         Cuenta c = (Cuenta) miSesion.get(Cuenta.class, id);
         mc.setBalance(c.getBalance() + (mc.getMonto()));
         mc.setCodigoCuenta(c);
+        mc.setCodigoEstado(e);
         miSesion.save(mc);
         c.setBalance(mc.getBalance());
         miSesion.saveOrUpdate(c);

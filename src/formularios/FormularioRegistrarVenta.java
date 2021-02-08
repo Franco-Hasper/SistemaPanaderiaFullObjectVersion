@@ -827,9 +827,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
             tablaCuenta.ejecutarRellenarTabla();
             tablaCuenta.setEstadoConsulta(0);
         } else {
-            DefaultTableModel tablaCuenta = (DefaultTableModel) this.tablaGraficaDescontarCuenta.getModel();
-            new OperacionesUtiles().removerFilas(tablaCuenta);
-            this.lblNuevoBalance.setText("");
+            operacionesSecundariasVenta.cuentaDisable();
         }
 
     }//GEN-LAST:event_radBtnDescontarActionPerformed
@@ -898,9 +896,8 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private void radButonConsumidorFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radButonConsumidorFinalActionPerformed
         operacionesSecundariasVenta.tipoConsumidorFinalEnabled();
         this.radBtnDescontar.setSelected(false);
-        DefaultTableModel tablaCuenta = (DefaultTableModel) this.tablaGraficaDescontarCuenta.getModel();
-        new OperacionesUtiles().removerFilas(tablaCuenta);
-        this.lblNuevoBalance.setText("");
+        operacionesSecundariasVenta.cuentaDisable();
+        
     }//GEN-LAST:event_radButonConsumidorFinalActionPerformed
 
     private void radButonConsumidorFinalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radButonConsumidorFinalItemStateChanged
@@ -912,11 +909,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
             if (tablaClienteLista.verficarClienteNoconsumidorFinal()) {
                 operacionesSecundariasVenta.transferirDatos(this.tablaGraficaListaCliente, this.tablaGraficaCliente);
                 this.IdCliente = tablaClienteLista.obtenerIdFilaSeleccionada();
-
-                this.radBtnDescontar.setSelected(false);
-                DefaultTableModel tablaCuenta = (DefaultTableModel) this.tablaGraficaDescontarCuenta.getModel();
-                new OperacionesUtiles().removerFilas(tablaCuenta);
-                this.lblNuevoBalance.setText("");
+                operacionesSecundariasVenta.cuentaDisable();
             }
         }
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
@@ -1011,6 +1004,22 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
 
     public void setLblNuevoBalance(JLabel lblNuevoBalance) {
         this.lblNuevoBalance = lblNuevoBalance;
+    }
+
+    public JRadioButton getRadBtnDescontar() {
+        return radBtnDescontar;
+    }
+
+    public void setRadBtnDescontar(JRadioButton radBtnDescontar) {
+        this.radBtnDescontar = radBtnDescontar;
+    }
+
+    public MaterialButton getBtnDescontar() {
+        return btnDescontar;
+    }
+
+    public void setBtnDescontar(MaterialButton btnDescontar) {
+        this.btnDescontar = btnDescontar;
     }
 
 

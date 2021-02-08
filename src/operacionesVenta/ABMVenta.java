@@ -5,17 +5,21 @@ import clasesUtilidadGeneral.OperacionesUtiles;
 import conexion.ConexionHibernate;
 import ds.desktop.notify.DesktopNotify;
 import entidades.Cliente;
+import entidades.Cuenta;
 import entidades.Estado;
+import entidades.MovimientoCuenta;
 import entidades.Producto;
 import entidades.Producto_Venta;
 import entidades.TipoVenta;
 import entidades.Venta;
+import entidades.Venta_MovimientoCuenta;
 import escritorios.PrincipalCliente;
 import escritorios.PrincipalVenta;
 import formularios.FormularioEditarVenta;
 import formularios.FormularioEstadoVenta;
 import formularios.FormularioRegistrarVenta;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 
@@ -91,8 +95,6 @@ public class ABMVenta extends ABM {
     public void setPrincipalVenta(PrincipalVenta principalVenta) {
         this.principalVenta = principalVenta;
     }
-    
-   
 
     @Override
     public void obtenerFormularioRegistrar() {
@@ -116,12 +118,8 @@ public class ABMVenta extends ABM {
             Cliente c = (Cliente) miSesion.get(Cliente.class, 1);
             v.setCodigoCliente(c);
         } else {
-            Integer totalFilas = principalCliente.getTablaGrafica().getRowCount();
-            Integer filasSeleccionada = principalCliente.getTablaGrafica().getSelectedRow();
-            List<Integer> listaResutadosActuales = principalCliente.getTablaCliente().getListaResutladosActuales();
-            Integer id = operacionesUtilidad.obtenerId(listaResutadosActuales, totalFilas, filasSeleccionada);
-
-            Cliente c = (Cliente) miSesion.get(Cliente.class, (id));
+            Integer id = formularioRegistrarVenta.getIdCliente();
+            Cliente c = (Cliente) miSesion.get(Cliente.class, id);
             v.setCodigoCliente(c);
         }
         v.setFechaHoraVenta(formularioRegistrarVenta.getrSDateChooser().getDatoFecha());
@@ -151,12 +149,43 @@ public class ABMVenta extends ABM {
             pv.setTotalUnidades(totalunidades);
             pv.setPrecioTotal(precioTotal);
             miSesion.save(pv);
+
+            if (formularioRegistrarVenta.getRadBtnDescontar().isSelected()) {
+                Estado e = (Estado) miSesion.get(Estado.class, 1);
+
+                MovimientoCuenta mc = new MovimientoCuenta();
+                mc.setMonto(Double.valueOf("-" + formularioRegistrarVenta.getLblPrecioTotal().getText().toString()));
+                mc.setMotivo("compra de productos");
+
+                System.out.println(mc.getMonto());
+                
+                id = formularioRegistrarVenta.getIdCuenta();
+                Cuenta c = (Cuenta) miSesion.get(Cuenta.class, id);
+                mc.setBalance(c.getBalance() + (mc.getMonto()));
+
+                mc.setFecha(new Date());
+                mc.setCodigoEstado(e);
+                mc.setCodigoCuenta(c);
+
+                miSesion.save(mc);
+
+                c.setBalance(mc.getBalance());
+                miSesion.saveOrUpdate(c);
+
+                Venta_MovimientoCuenta vmc = new Venta_MovimientoCuenta();
+                vmc.setVentaId(v);
+                vmc.setMovimientoCuentaId(mc);
+
+                miSesion.save(vmc);
+
+            }
+
         }
     }
 
     @Override
     public void transaccionEliminar(Session miSesion) {
-        
+
         Integer id = principalVenta.getTablaVenta().obtenerIdFilaSeleccionada();
 
         Estado eE = (Estado) miSesion.get(Estado.class, 2);
@@ -230,9 +259,6 @@ public class ABMVenta extends ABM {
         }
         miSesion.saveOrUpdate(v);
 
-
-
-        
         for (int i = 0; i < listaProductosListados.size(); i++) {
             Producto_Venta pv = new Producto_Venta();
             Integer id = listaProductosListados.get(i);
@@ -247,8 +273,5 @@ public class ABMVenta extends ABM {
         }
 
     }
-    
-    
-
 
 }

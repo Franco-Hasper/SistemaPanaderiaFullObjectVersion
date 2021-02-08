@@ -1,5 +1,6 @@
 package entidades;
 
+import java.sql.Blob;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,6 +30,9 @@ public class Producto {
     @Column(name = "nombre")
     private String nombre;
 
+    @Column(name = "imagen")
+    private Blob imagen;
+    
     @Column(name = "descripcion")
     private String descripcion;
 
@@ -45,11 +49,15 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String nombre, String descripcion, Estado codigoEstado) {
+    public Producto(String nombre, Blob imagen, String descripcion, Estado codigoEstado) {
         this.nombre = nombre;
+        this.imagen = imagen;
         this.descripcion = descripcion;
         this.codigoEstado = codigoEstado;
     }
+
+
+
 
     public Integer getIdProducto() {
         return idProducto;
@@ -75,6 +83,17 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
+    public Blob getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Blob imagen) {
+        this.imagen = imagen;
+    }
+
+
+    
+    
     public Estado getCodigoEstado() {
         return codigoEstado;
     }
