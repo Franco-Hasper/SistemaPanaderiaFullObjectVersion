@@ -71,6 +71,11 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
         //guardo el la instancia en el formulario grafico
         principalVenta.getRegistrarVenta().setOperacionesSecundariasVenta(operacionesSecundariasVenta);
 
+        TablaClienteLista tablaClienteLista = new TablaClienteLista();
+        tablaClienteLista.setFormularioRegistrarVenta(principalVenta.getRegistrarVenta());
+        tablaClienteLista.ejecutarRellenarTabla();
+        formularioRegistrar.setTablaClienteLista(tablaClienteLista);
+        
         rellenarBoxes();
         fechaActual();
         principalVenta.getRegistrarVenta().setVisible(true);
@@ -99,16 +104,16 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
     public void colorTema() {
         principalVenta.getRegistrarVenta().getPanelPrincipalTop().setBackground(principalVenta.getPanelPrincipalTop().getBackground());
         principalVenta.getRegistrarVenta().getrSDateChooser().setColorBackground(principalVenta.getPanelPrincipalTop().getBackground());
-        
+
         principalVenta.getRegistrarVenta().getTablaCliente().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-          principalVenta.getRegistrarVenta().getTablaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
-         
-          principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-          principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
-          
-          principalVenta.getRegistrarVenta().getTablaListarProductos().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-          principalVenta.getRegistrarVenta().getTablaListarProductos().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
-      
+        principalVenta.getRegistrarVenta().getTablaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+
+        principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+
+        principalVenta.getRegistrarVenta().getTablaListarProductos().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getRegistrarVenta().getTablaListarProductos().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+
     }
 
     private void configuracionTxtCantidadTxtTotal() {

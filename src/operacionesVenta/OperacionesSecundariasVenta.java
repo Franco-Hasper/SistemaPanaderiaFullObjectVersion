@@ -10,6 +10,7 @@ import formularios.FormularioEditarVenta;
 import formularios.FormularioRegistrarVenta;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Session;
 
@@ -108,6 +109,21 @@ public class OperacionesSecundariasVenta {
 
     }
 
+    public void transferirDatos(JTable tablaOrigen, JTable tablaDestino) {
+        int fila = tablaOrigen.getSelectedRow();
+        String nombreApellido = tablaOrigen.getValueAt(fila, 0).toString();
+        String direccion = tablaOrigen.getValueAt(fila, 1).toString();
+        String telefono = tablaOrigen.getValueAt(fila, 2).toString();
+
+        DefaultTableModel tablaCliente = (DefaultTableModel) tablaDestino.getModel();
+        OperacionesUtiles.removerFilas(tablaCliente);
+        Vector datosTabla = new Vector();
+        datosTabla.add(nombreApellido);
+        datosTabla.add(telefono);
+        datosTabla.add(direccion);
+        tablaCliente.addRow(datosTabla);
+    }
+
     public void rellenarTablaVentaCliente() {
         int fila = principalCliente.getTablaGrafica().getSelectedRow();
         String nombre = principalCliente.getTablaGrafica().getValueAt(fila, 0).toString() + " " + principalCliente.getTablaGrafica().getValueAt(fila, 1).toString();
@@ -161,9 +177,9 @@ public class OperacionesSecundariasVenta {
 
     private void modeloTabla() {
         switch (tipoFormulario) {
-           
+
             case 1:
-               Vector datosTabla = new Vector();
+                Vector datosTabla = new Vector();
                 Vector<String> encabezadoTabla = new Vector<>();
                 encabezadoTabla.add("NOMBRE");
                 encabezadoTabla.add("TELEFONO");

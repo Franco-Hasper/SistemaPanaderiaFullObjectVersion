@@ -292,8 +292,7 @@ public class TablaVenta extends Tabla {
             } else {
                 for (Direccion_Cliente drCl : direcciones) {
                     if (vueltaDir != 1) {
-                        fila.add(drCl.getNombre() + " - " + drCl.getNumero() + " - " + drCl.getCodigoLocalidad().getNombre()
-                                + " / " + drCl.getCodigoTipoDomicilio().getNombre());
+                        fila.add(drCl.getNombre() + " - " + drCl.getNumero() + " - " + drCl.getCodigoLocalidad().getNombre());
                         vueltaDir = 1;
                     }
                 }
@@ -437,8 +436,7 @@ public class TablaVenta extends Tabla {
                 } else {
                     for (Direccion_Cliente drCl : direcciones) {
                         if (vueltaDir != 1) {
-                            fila.add(drCl.getNombre() + " - " + drCl.getNumero() + " - " + drCl.getCodigoLocalidad().getNombre()
-                                    + " / " + drCl.getCodigoTipoDomicilio().getNombre());
+                            fila.add(drCl.getNombre() + " - " + drCl.getNumero() + " - " + drCl.getCodigoLocalidad().getNombre());
                             vueltaDir = 1;
                         }
                     }

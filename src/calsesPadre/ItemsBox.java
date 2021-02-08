@@ -5,7 +5,6 @@ import entidades.Localidad;
 import entidades.Marca;
 import entidades.Proveedor;
 import entidades.Provincia;
-import entidades.TipoDomicilio;
 import entidades.TipoTelefono;
 import entidades.UnidaddeMedida;
 import java.util.List;
@@ -156,15 +155,7 @@ public abstract class ItemsBox extends Consultas {
         rellenarBoxLocalidad();
     }
 
-    /**
-     * Genera la consulta, obtiene los resultados y ejecuta el metodo
-     * rellenarTipoDomicilio.
-     */
-    public void consultaRellenarTipoDomicilio() {
-        setConsultaList("from TipoDomicilio");
-        obtenerListaConsulta();
-        rellenarTipoDomicilio();
-    }
+
 
     /**
      * Genera la consulta, obtiene los resultados y ejecuta el metodo
@@ -192,20 +183,7 @@ public abstract class ItemsBox extends Consultas {
 
     }
 
-    /**
-     * Agrega Items obtenidos de la consulta al boxTipoDomicilio
-     */
-    public void rellenarTipoDomicilio() {
-        List lista = this.getListaResultados();
-        List<TipoDomicilio> lista_tipoDom
-                = (List<TipoDomicilio>) lista;
-        for (Object o : lista_tipoDom) {
-            TipoDomicilio td = (TipoDomicilio) o;
-            operacionesUtilidad.agregarItem(td.getNombre(), getBoxTipoDomicilio());
 
-        }
-
-    }
 
     /**
      * Agrega Items obtenidos de la consulta al boxProvincia.

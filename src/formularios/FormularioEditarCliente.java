@@ -96,7 +96,6 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
         boxLocalidad = new javax.swing.JComboBox<>();
         txtDireccion = new javax.swing.JTextField();
         txtnuemroDireccion = new javax.swing.JTextField();
-        boxtipoDom = new javax.swing.JComboBox<>();
         txtTelefono = new javax.swing.JTextField();
         boxTipoTelefono = new javax.swing.JComboBox<>();
         btnCancelar = new principal.MaterialButton();
@@ -210,13 +209,12 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
                     .addGroup(panelprincipalBodyLayout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addGroup(panelprincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(boxProvincia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(boxProvincia, 0, 363, Short.MAX_VALUE)
                             .addComponent(txtRazonSocial)
                             .addComponent(txtNombre)
                             .addComponent(radioButon, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtApellido)
                             .addComponent(boxLocalidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(boxtipoDom, 0, 363, Short.MAX_VALUE)
                             .addComponent(txtTelefono)
                             .addComponent(boxTipoTelefono, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtnuemroDireccion)
@@ -243,8 +241,6 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(txtnuemroDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(boxtipoDom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(boxTipoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,7 +248,7 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
                 .addGroup(panelprincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelBaseLayout = new javax.swing.GroupLayout(panelBase);
@@ -422,13 +418,6 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
         this.boxTipoTelefono = boxTipoTelefono;
     }
 
-    public JComboBox<String> getBoxtipoDom() {
-        return boxtipoDom;
-    }
-
-    public void setBoxtipoDom(JComboBox<String> boxtipoDom) {
-        this.boxtipoDom = boxtipoDom;
-    }
 
     public void setPanelprincipalBody(JPanel panelprincipalBody) {
         this.panelprincipalBody = panelprincipalBody;
@@ -466,7 +455,6 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> boxLocalidad;
     private javax.swing.JComboBox<String> boxProvincia;
     private javax.swing.JComboBox<String> boxTipoTelefono;
-    private javax.swing.JComboBox<String> boxtipoDom;
     public static principal.MaterialButton btnCancelar;
     public static principal.MaterialButton btnGuardarCambios;
     private javax.swing.JLabel jLabel1;

@@ -60,17 +60,14 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
 
         String localidad = principalCliente.getTablaGrafica().getValueAt(fila, 5).toString();
         String provincia = principalCliente.getTablaGrafica().getValueAt(fila, 6).toString();
-        String tipodomicilio = principalCliente.getTablaGrafica().getValueAt(fila, 7).toString();
-        String tipotelefono = principalCliente.getTablaGrafica().getValueAt(fila, 9).toString();
-
-        autoSelectBox(provincia, localidad, tipodomicilio, tipotelefono);
+        String tipotelefono = principalCliente.getTablaGrafica().getValueAt(fila, 7).toString();
+        autoSelectBox(provincia, localidad, tipotelefono);
     }
 
-    private void autoSelectBox(String provincia, String localidad, String tipodomicilio, String tipotelefono) {
+    private void autoSelectBox(String provincia, String localidad, String tipotelefono) {
         principalCliente.getEditarCliente().getBoxProvincia().setSelectedItem(provincia);
         principalCliente.getEditarCliente().getBoxLocalidad().setSelectedItem(localidad);
         principalCliente.getEditarCliente().getBoxTipoTelefono().setSelectedItem(tipotelefono);
-        principalCliente.getEditarCliente().getBoxtipoDom().setSelectedItem(tipodomicilio);
     }
 
     public void infoTextPrompt() {
@@ -87,7 +84,6 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
     public void agregarBoxes() {
         this.setBoxLocalidad(principalCliente.getEditarCliente().getBoxLocalidad());
         this.setBoxProvincia(principalCliente.getEditarCliente().getBoxProvincia());
-        this.setBoxTipoDomicilio(principalCliente.getEditarCliente().getBoxtipoDom());
         this.setBoxTipoTelefono(principalCliente.getEditarCliente().getBoxTipoTelefono());
     }
 
@@ -95,7 +91,6 @@ public class InterfazGraficaFormularioEditarCliente extends InterfazGraficaFormu
     public void rellenarBoxes() {
         this.consultaRellenarProvincia();
         this.consultaRellenarLocalidad();
-        this.consultaRellenarTipoDomicilio();
         this.consultaRellenarTipoTelefono();
     }
 

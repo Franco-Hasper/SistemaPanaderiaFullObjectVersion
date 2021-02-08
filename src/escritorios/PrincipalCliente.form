@@ -273,7 +273,7 @@
                       <Color blue="0" green="0" red="66" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="10" rowCount="0">
+                      <Table columnCount="9" rowCount="0">
                         <Column editable="false" title="NOMBRE" type="java.lang.Object"/>
                         <Column editable="false" title="APELLIDO" type="java.lang.Object"/>
                         <Column editable="false" title="RAZON SOCIAL" type="java.lang.Object"/>
@@ -281,18 +281,12 @@
                         <Column editable="false" title="NUMERO/DIR" type="java.lang.Object"/>
                         <Column editable="false" title="LOCALIDAD" type="java.lang.Object"/>
                         <Column editable="false" title="PROVINCIA" type="java.lang.Object"/>
-                        <Column editable="false" title="TIPO DOMICILIO" type="java.lang.Object"/>
                         <Column editable="false" title="TELEFONO" type="java.lang.Object"/>
-                        <Column editable="true" title="TIPO TEPLEFONO" type="java.lang.Object"/>
+                        <Column editable="false" title="TIPO TEPLEFONO" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>

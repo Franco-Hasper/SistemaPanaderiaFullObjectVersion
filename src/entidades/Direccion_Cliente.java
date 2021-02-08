@@ -35,10 +35,7 @@ public class Direccion_Cliente {
   @JoinColumn(name="codigo_cliente")
     private Cliente codigoCliente;
     
-    
-    @ManyToOne
-  @JoinColumn(name="codigo_tipo_domicilio")
-    private TipoDomicilio codigoTipoDomicilio;
+   
     
     
     @ManyToOne
@@ -48,11 +45,11 @@ public class Direccion_Cliente {
     public Direccion_Cliente() {
     }
 
-    public Direccion_Cliente(Cliente codigoCliente, String nombre, Integer numero, TipoDomicilio codigoTipoDomicilio, Localidad codigoLocalidad) {
+    public Direccion_Cliente(Cliente codigoCliente, String nombre, Integer numero, Localidad codigoLocalidad) {
         this.codigoCliente = codigoCliente;
         this.nombre = nombre;
         this.numero = numero;
-        this.codigoTipoDomicilio = codigoTipoDomicilio;
+
         this.codigoLocalidad = codigoLocalidad;
     }
 
@@ -88,13 +85,7 @@ public class Direccion_Cliente {
         this.numero = numero;
     }
 
-    public TipoDomicilio getCodigoTipoDomicilio() {
-        return codigoTipoDomicilio;
-    }
-
-    public void setCodigoTipoDomicilio(TipoDomicilio codigoTipoDomicilio) {
-        this.codigoTipoDomicilio = codigoTipoDomicilio;
-    }
+  
 
     public Localidad getCodigoLocalidad() {
         return codigoLocalidad;

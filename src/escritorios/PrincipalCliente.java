@@ -242,11 +242,11 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "NOMBRE", "APELLIDO", "RAZON SOCIAL", "DIRECCION", "NUMERO/DIR", "LOCALIDAD", "PROVINCIA", "TIPO DOMICILIO", "TELEFONO", "TIPO TEPLEFONO"
+                "NOMBRE", "APELLIDO", "RAZON SOCIAL", "DIRECCION", "NUMERO/DIR", "LOCALIDAD", "PROVINCIA", "TELEFONO", "TIPO TEPLEFONO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

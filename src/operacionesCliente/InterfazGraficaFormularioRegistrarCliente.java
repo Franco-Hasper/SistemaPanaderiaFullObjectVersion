@@ -52,7 +52,6 @@ public class InterfazGraficaFormularioRegistrarCliente extends InterfazGraficaFo
     public void agregarBoxes() {
         this.setBoxLocalidad(principalCliente.getRegistrarCliente().getBoxLocalidad());
         this.setBoxProvincia(principalCliente.getRegistrarCliente().getBoxProvincia());
-        this.setBoxTipoDomicilio(principalCliente.getRegistrarCliente().getBoxtipoDom());
         this.setBoxTipoTelefono(principalCliente.getRegistrarCliente().getBoxTipoTelefono());
     }
 
@@ -60,7 +59,6 @@ public class InterfazGraficaFormularioRegistrarCliente extends InterfazGraficaFo
     public void rellenarBoxes() {
         this.consultaRellenarProvincia();
         this.consultaRellenarLocalidad();
-        this.consultaRellenarTipoDomicilio();
         this.consultaRellenarTipoTelefono();
     }
 

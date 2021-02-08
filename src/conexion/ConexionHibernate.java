@@ -26,7 +26,6 @@ import entidades.RazonSocial;
 import entidades.TelefonoCliente;
 import entidades.TelefonoProveedor;
 import entidades.TipoCliente;
-import entidades.TipoDomicilio;
 import entidades.TipoTelefono;
 import entidades.TipoVenta;
 import entidades.UnidaddeMedida;
@@ -62,7 +61,6 @@ public class ConexionHibernate {
                 .addAnnotatedClass(TelefonoCliente.class)
                 .addAnnotatedClass(TelefonoProveedor.class)
                 .addAnnotatedClass(TipoCliente.class)
-                .addAnnotatedClass(TipoDomicilio.class)
                 .addAnnotatedClass(TipoTelefono.class)
                 .addAnnotatedClass(TipoVenta.class)
                 .addAnnotatedClass(Venta.class)

@@ -73,13 +73,7 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
         this.boxTipoTelefono = boxTipoTelefono;
     }
 
-    public JComboBox<String> getBoxtipoDom() {
-        return boxtipoDom;
-    }
 
-    public void setBoxtipoDom(JComboBox<String> boxtipoDom) {
-        this.boxtipoDom = boxtipoDom;
-    }
 
     public JRadioButton getRadioButon() {
         return radioButon;
@@ -166,7 +160,6 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
         txtDireccion = new javax.swing.JTextField();
         boxLocalidad = new javax.swing.JComboBox<>();
         txtnuemroDireccion = new javax.swing.JTextField();
-        boxtipoDom = new javax.swing.JComboBox<>();
         txtApellido = new javax.swing.JTextField();
         txtRazonSocial = new javax.swing.JTextField();
         radioButon = new javax.swing.JRadioButton();
@@ -271,28 +264,28 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
         panelPrincipalBody.setLayout(panelPrincipalBodyLayout);
         panelPrincipalBodyLayout.setHorizontalGroup(
             panelPrincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalBodyLayout.createSequentialGroup()
+                .addContainerGap(49, Short.MAX_VALUE)
+                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
             .addGroup(panelPrincipalBodyLayout.createSequentialGroup()
+                .addGap(68, 68, 68)
                 .addGroup(panelPrincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPrincipalBodyLayout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addGroup(panelPrincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNombre)
-                            .addComponent(txtApellido)
-                            .addComponent(txtRazonSocial)
-                            .addComponent(radioButon, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boxProvincia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(boxLocalidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtDireccion)
-                            .addComponent(txtnuemroDireccion)
-                            .addComponent(boxtipoDom, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtTelefono)
-                            .addComponent(boxTipoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelPrincipalBodyLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                    .addGroup(panelPrincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtTelefono)
+                        .addComponent(boxTipoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPrincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtNombre)
+                        .addComponent(txtApellido)
+                        .addComponent(txtRazonSocial)
+                        .addComponent(radioButon, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(boxProvincia, 0, 365, Short.MAX_VALUE)
+                        .addComponent(boxLocalidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtDireccion)
+                        .addComponent(txtnuemroDireccion)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelPrincipalBodyLayout.setVerticalGroup(
             panelPrincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,16 +307,14 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtnuemroDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(boxtipoDom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(boxTipoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(37, 37, 37)
                 .addGroup(panelPrincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
+                .addGap(83, 83, 83))
         );
 
         javax.swing.GroupLayout panelBaseLayout = new javax.swing.GroupLayout(panelBase);
@@ -333,7 +324,7 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
             .addGroup(panelBaseLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelPrincipalBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
             .addComponent(panelPrincipalTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelBaseLayout.setVerticalGroup(
@@ -341,8 +332,8 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
             .addGroup(panelBaseLayout.createSequentialGroup()
                 .addComponent(panelPrincipalTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelPrincipalBody, javax.swing.GroupLayout.PREFERRED_SIZE, 719, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panelPrincipalBody, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -466,7 +457,6 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> boxLocalidad;
     private javax.swing.JComboBox<String> boxProvincia;
     private javax.swing.JComboBox<String> boxTipoTelefono;
-    private javax.swing.JComboBox<String> boxtipoDom;
     public static principal.MaterialButton btnCancelar;
     public static principal.MaterialButton btnRegistrar;
     private javax.swing.JLabel jLabel1;

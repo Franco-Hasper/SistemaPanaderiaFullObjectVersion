@@ -10,7 +10,6 @@ import entidades.Provincia;
 import entidades.RazonSocial;
 import entidades.TelefonoCliente;
 import entidades.TipoCliente;
-import entidades.TipoDomicilio;
 import entidades.TipoTelefono;
 import formularios.FormularioEditarCliente;
 import formularios.FormularioRegistrarCliente;
@@ -107,14 +106,6 @@ public class ABMCliente extends ABM {
         miSesion.save(tlc);
         Direccion_Cliente dc = new Direccion_Cliente();
 
-        List<TipoDomicilio> lista_tipodomicilio
-                = (List<TipoDomicilio>) miSesion.createQuery("from TipoDomicilio").list();
-        for (TipoDomicilio tdm : lista_tipodomicilio) {
-            if (tdm.getNombre().equals(formularioRegistrarCliente.getBoxtipoDom().getSelectedItem())) {
-                dc.setCodigoTipoDomicilio(tdm);
-            }
-        }
-
         dc.setCodigoCliente(c);
         dc.setNombre(formularioRegistrarCliente.getTxtDireccion().getText());
         dc.setNumero(Integer.parseInt(formularioRegistrarCliente.getTxtnuemroDireccion().getText()));
@@ -194,19 +185,11 @@ public class ABMCliente extends ABM {
                 = (List<Localidad>) miSesion.createQuery("from Localidad").list();
         List<Provincia> lista_Pr
                 = (List<Provincia>) miSesion.createQuery("from Provincia").list();
-        List<TipoDomicilio> lista_Td
-                = (List<TipoDomicilio>) miSesion.createQuery("from TipoDomicilio").list();
+     
         
         for (Direccion_Cliente d : direcciones) {
             d.setNombre(formularioEditarCliente.getTxtDireccion().getText());
             d.setNumero(Integer.valueOf(formularioEditarCliente.getTxtnuemroDireccion().getText()));
-            
-                      for (TipoDomicilio td : lista_Td) {
-                        if (td.getNombre().equals(formularioEditarCliente.getBoxtipoDom().getSelectedItem())) {
-                            d.setCodigoTipoDomicilio(td);
-                        }
-                    }
-            
             
             for (Localidad lc : lista_Lc) {
                 if (lc.getNombre().equals(formularioEditarCliente.getBoxLocalidad().getSelectedItem())) {
