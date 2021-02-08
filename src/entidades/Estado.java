@@ -58,10 +58,20 @@ public class Estado {
 
     @OneToMany(mappedBy = "codigoEstado")
     private List<Iva> ivas;
+    
+    @OneToMany(mappedBy = "codigoEstado")
+    private List<MovimientoCuenta> movimientos;
+    
+    @OneToMany(mappedBy = "codigoEstado")
+    private List<Cuenta> cuentas;
+    
+    
 
     public Estado() {
     }
 
+    
+    
     public Estado(String valor) {
         this.valor = valor;
     }
@@ -162,6 +172,22 @@ public class Estado {
 
     public void setIvas(List<Iva> ivas) {
         this.ivas = ivas;
+    }
+
+    public List<MovimientoCuenta> getMovimientos() {
+        return movimientos;
+    }
+
+    public void setMovimientos(List<MovimientoCuenta> movimientos) {
+        this.movimientos = movimientos;
+    }
+
+    public List<Cuenta> getCuentas() {
+        return cuentas;
+    }
+
+    public void setCuentas(List<Cuenta> cuentas) {
+        this.cuentas = cuentas;
     }
     
     

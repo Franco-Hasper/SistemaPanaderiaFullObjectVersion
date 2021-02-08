@@ -65,13 +65,7 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
         this.tablaGrafica = tablaGrafica;
     }
 
-    public MaterialButton getBtnSeleccionarCliente() {
-        return btnSeleccionarCliente;
-    }
 
-    public void setBtnSeleccionarCliente(MaterialButton btnSeleccionarCliente) {
-        this.btnSeleccionarCliente = btnSeleccionarCliente;
-    }
 
     public FormularioRegistrarCliente getRegistrarCliente() {
         return registrarCliente;
@@ -134,7 +128,6 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         panelPrincipalTop = new javax.swing.JPanel();
-        btnSeleccionarCliente = new principal.MaterialButton();
         txtBuscar = new javax.swing.JTextField();
         btnnuevoCliente = new principal.MaterialButton();
         btnCuenta = new principal.MaterialButton();
@@ -149,20 +142,6 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
         lblSalir = new javax.swing.JLabel();
 
         panelPrincipalTop.setBackground(new java.awt.Color(204, 0, 0));
-
-        btnSeleccionarCliente.setBackground(new java.awt.Color(0, 0, 0,60));
-        btnSeleccionarCliente.setForeground(new java.awt.Color(255, 255, 255));
-        btnSeleccionarCliente.setText("SELECCIONAR CLIENTE");
-        btnSeleccionarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSeleccionarCliente.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnSeleccionarCliente.setMaximumSize(new java.awt.Dimension(130, 35));
-        btnSeleccionarCliente.setMinimumSize(new java.awt.Dimension(130, 35));
-        btnSeleccionarCliente.setPreferredSize(new java.awt.Dimension(130, 35));
-        btnSeleccionarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSeleccionarClienteActionPerformed(evt);
-            }
-        });
 
         txtBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -333,9 +312,7 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
                 .addComponent(btnEliminarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSeleccionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(397, 397, 397)
+                .addGap(593, 593, 593)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -348,7 +325,6 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSeleccionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnnEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnnuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -372,24 +348,6 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSeleccionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarClienteActionPerformed
-        OperacionesSecundariasVenta operacionesSecundariasVenta = new OperacionesSecundariasVenta();
-        if (tipoFormulario == 1) {
-            operacionesSecundariasVenta.setTipoFormulario(1);
-            operacionesSecundariasVenta.setFormularioRegistrarVenta(formularioRegistrarVenta);
-            operacionesSecundariasVenta.setPrincipalCliente(this);
-            operacionesSecundariasVenta.rellenarTablaVentaCliente();
-            operacionesSecundariasVenta.retornarFormularioVenta();
-        } else {
-            operacionesSecundariasVenta.setTipoFormulario(2);
-            operacionesSecundariasVenta.setFormularioEditarVenta(formularioEditarVenta);
-            operacionesSecundariasVenta.setPrincipalCliente(this);
-            operacionesSecundariasVenta.rellenarTablaVentaCliente();
-            operacionesSecundariasVenta.retornarFormularioVenta();
-        }
-
-    }//GEN-LAST:event_btnSeleccionarClienteActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
@@ -514,7 +472,6 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButton btnCuenta;
     private principal.MaterialButton btnEliminarCli;
-    private principal.MaterialButton btnSeleccionarCliente;
     private principal.MaterialButton btnnEditarCliente;
     private principal.MaterialButton btnnuevoCliente;
     private javax.swing.JLabel jLabel1;

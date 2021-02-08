@@ -1,6 +1,7 @@
 package entidades;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -38,17 +40,38 @@ public class MovimientoCuenta {
     @ManyToOne
     @JoinColumn(name = "codigo_cuenta")
     private Cuenta codigoCuenta;
+    
+     @OneToMany(mappedBy = "movimientoCuentaId")
+    private List<Venta_MovimientoCuenta> ventas;
 
+     @ManyToOne
+    @JoinColumn(name = "estado_id")
+    private Estado codigoEstado;
+    
+    
     public MovimientoCuenta() {
     }
 
-    public MovimientoCuenta(String motivo, Double monto, Double balance, Date fecha, Cuenta codigoCuenta) {
+    public MovimientoCuenta(String motivo, Double monto, Double balance, Date fecha, Cuenta codigoCuenta, Estado codigoEstado) {
         this.motivo = motivo;
         this.monto = monto;
         this.balance = balance;
         this.fecha = fecha;
         this.codigoCuenta = codigoCuenta;
+        this.codigoEstado = codigoEstado;
     }
+
+    
+    
+    public Estado getCodigoEstado() {
+        return codigoEstado;
+    }
+
+    public void setCodigoEstado(Estado codigoEstado) {
+        this.codigoEstado = codigoEstado;
+    }
+
+
 
     public Integer getIdMovimientoCuenta() {
         return idMovimientoCuenta;
@@ -98,4 +121,14 @@ public class MovimientoCuenta {
         this.balance = balance;
     }
 
+    public List<Venta_MovimientoCuenta> getVentas() {
+        return ventas;
+    }
+
+    public void setVentas(List<Venta_MovimientoCuenta> ventas) {
+        this.ventas = ventas;
+    }
+
+    
+    
 }

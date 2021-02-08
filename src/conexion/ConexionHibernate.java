@@ -30,6 +30,7 @@ import entidades.TipoTelefono;
 import entidades.TipoVenta;
 import entidades.UnidaddeMedida;
 import entidades.Venta;
+import entidades.Venta_MovimientoCuenta;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -66,6 +67,7 @@ public class ConexionHibernate {
                 .addAnnotatedClass(Venta.class)
                 .addAnnotatedClass(MateriaPrima.class)
                 .addAnnotatedClass(IngresoMateriaPrima.class)
+                 .addAnnotatedClass(Venta_MovimientoCuenta.class)
                 .addAnnotatedClass(Estado.class)
                 .addAnnotatedClass(UnidaddeMedida.class)
                 .addAnnotatedClass(Marca.class)

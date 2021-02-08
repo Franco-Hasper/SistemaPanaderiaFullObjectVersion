@@ -29,15 +29,22 @@ public class Cuenta {
     @ManyToOne
     @JoinColumn(name = "codigo_cliente")
     private Cliente codigoCliente;
-    
+
     @OneToMany(mappedBy = "codigoCuenta")
     private List<MovimientoCuenta> movimientos;
+
+    @ManyToOne
+    @JoinColumn(name = "estado_id")
+    private Estado codigoEstado;
+    
+    
 
     public Cuenta() {
     }
 
-    public Cuenta(Double balance, Cliente codigoCliente) {
+    public Cuenta(Double balance, Estado codigoEstado, Cliente codigoCliente) {
         this.balance = balance;
+        this.codigoEstado = codigoEstado;
         this.codigoCliente = codigoCliente;
     }
 
@@ -72,6 +79,13 @@ public class Cuenta {
     public void setMovimientos(List<MovimientoCuenta> movimientos) {
         this.movimientos = movimientos;
     }
-    
+
+    public Estado getCodigoEstado() {
+        return codigoEstado;
+    }
+
+    public void setCodigoEstado(Estado codigoEstado) {
+        this.codigoEstado = codigoEstado;
+    }
 
 }

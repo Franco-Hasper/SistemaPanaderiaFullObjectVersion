@@ -698,9 +698,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_radButonConsumidorFinalItemStateChanged
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
-        new InterfazGraficaEscritorioCliente().deshabilitarBotonesEditar(principalAdministrador, this, 2);
-        this.setVisible(false);
-        setCambiarCliente(true);
+
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed

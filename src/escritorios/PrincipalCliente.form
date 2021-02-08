@@ -48,9 +48,7 @@
                   <Component id="btnEliminarCli" min="-2" pref="190" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnCuenta" min="-2" pref="189" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnSeleccionarCliente" min="-2" pref="190" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="397" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="593" max="-2" attributes="0"/>
                   <Component id="txtBuscar" pref="284" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -65,7 +63,6 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnCuenta" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="btnSeleccionarCliente" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="btnEliminarCli" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="btnnEditarCliente" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="btnnuevoCliente" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
@@ -78,35 +75,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="principal.MaterialButton" name="btnSeleccionarCliente">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new java.awt.Color(0, 0, 0,60)" type="code"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="SELECCIONAR CLIENTE"/>
-            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Cursor de Mano"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Roboto Medium" size="14" style="1"/>
-            </Property>
-            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[130, 35]"/>
-            </Property>
-            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[130, 35]"/>
-            </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[130, 35]"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSeleccionarClienteActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JTextField" name="txtBuscar">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

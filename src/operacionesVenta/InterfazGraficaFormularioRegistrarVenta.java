@@ -76,6 +76,10 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
         tablaClienteLista.ejecutarRellenarTabla();
         formularioRegistrar.setTablaClienteLista(tablaClienteLista);
         
+        TablaCuenta tablaCuenta=new TablaCuenta();
+        tablaCuenta.setFormularioRegistrarVenta(formularioRegistrar);
+        formularioRegistrar.setTablaCuenta(tablaCuenta);
+        
         rellenarBoxes();
         fechaActual();
         principalVenta.getRegistrarVenta().setVisible(true);

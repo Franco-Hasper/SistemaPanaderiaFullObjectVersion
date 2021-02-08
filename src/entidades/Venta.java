@@ -47,6 +47,10 @@ public class Venta {
 
     @OneToMany(mappedBy = "codigoVenta")
     private List<Producto_Venta> productos;
+    
+    @OneToMany(mappedBy = "ventaId")
+    private List<Venta_MovimientoCuenta> movimientos;
+    
 
     public Venta() {
     }
@@ -115,4 +119,14 @@ public class Venta {
         this.productos = productos;
     }
 
+    public List<Venta_MovimientoCuenta> getMovimientos() {
+        return movimientos;
+    }
+
+    public void setMovimientos(List<Venta_MovimientoCuenta> movimientos) {
+        this.movimientos = movimientos;
+    }
+
+    
+    
 }

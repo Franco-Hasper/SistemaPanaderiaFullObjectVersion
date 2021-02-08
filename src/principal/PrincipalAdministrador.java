@@ -381,7 +381,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGestionClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionClienteActionPerformed
-        interfazGraficaCliente.setCaso(false);
         interfazGraficaCliente.setPrincipalAdministrador(this);
         interfazGraficaCliente.ejecutarNuevaVentana();
     }//GEN-LAST:event_btnGestionClienteActionPerformed
@@ -402,10 +401,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGestionGastosActionPerformed
 
     private void btnGestionVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionVentasActionPerformed
-        interfazGraficaCliente.setCaso(true);
-        interfazGraficaCliente.setPrincipalAdministrador(this);
-        interfazGraficaCliente.ejecutarNuevaVentana();
-        
         interfazGraficaVenta.setPrincipalAdministrador(this);
         interfazGraficaVenta.ejecutarNuevaVentana();
     }//GEN-LAST:event_btnGestionVentasActionPerformed
