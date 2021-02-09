@@ -4,10 +4,8 @@ import calsesPadre.Tabla;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import ds.desktop.notify.DesktopNotify;
 import entidades.Cuenta;
-import escritorios.PrincipalCuenta;
 import formularios.FormularioEditarVenta;
 import formularios.FormularioRegistrarVenta;
-import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -58,7 +56,8 @@ public class TablaCuenta extends Tabla {
     public void setListaIds(List<Integer> listaIds) {
         this.listaIds = listaIds;
     }
-
+    
+    
     /**
      * Ejecuata los metodos necesarios para rellenar la tabla cuentas de la
      * ventana PrincipalCuenta.

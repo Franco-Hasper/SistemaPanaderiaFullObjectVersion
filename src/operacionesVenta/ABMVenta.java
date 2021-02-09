@@ -150,6 +150,7 @@ public class ABMVenta extends ABM {
             pv.setPrecioTotal(precioTotal);
             miSesion.save(pv);
 
+            //seccion descontar cuenta
             if (formularioRegistrarVenta.getRadBtnDescontar().isSelected()) {
                 Estado e = (Estado) miSesion.get(Estado.class, 1);
 
@@ -157,8 +158,6 @@ public class ABMVenta extends ABM {
                 mc.setMonto(Double.valueOf("-" + formularioRegistrarVenta.getLblPrecioTotal().getText().toString()));
                 mc.setMotivo("compra de productos");
 
-               
-                
                 id = formularioRegistrarVenta.getIdCuenta();
                 Cuenta c = (Cuenta) miSesion.get(Cuenta.class, id);
                 mc.setBalance(c.getBalance() + (mc.getMonto()));
@@ -218,11 +217,7 @@ public class ABMVenta extends ABM {
 
         idVenta = principalVenta.getTablaVenta().obtenerIdFilaSeleccionada();
 
-        if (formularioEditarVenta.isCambiarCliente()) {
-            idCliente = principalCliente.getTablaCliente().obtenerIdFilaSeleccionada();
-        } else {
-            idCliente = formularioEditarVenta.getIdCliente();
-        }
+        idCliente = formularioEditarVenta.getIdCliente();
 
         Double totalunidades;
         Double precioTotal;
@@ -235,11 +230,11 @@ public class ABMVenta extends ABM {
         }
         Venta v = (Venta) miSesion.get(Venta.class, idVenta);
 
-        if (formularioEditarVenta.isCambiarCliente()) {
-            Cliente c = (Cliente) miSesion.get(Cliente.class, idCliente);
-            v.setCodigoCliente(c);
-        } else if (formularioEditarVenta.getRadButonConsumidorFinal().isSelected()) {
+        if (formularioEditarVenta.getRadButonConsumidorFinal().isSelected()) {
             Cliente c = (Cliente) miSesion.get(Cliente.class, 1);
+            v.setCodigoCliente(c);
+        } else {
+            Cliente c = (Cliente) miSesion.get(Cliente.class, idCliente);
             v.setCodigoCliente(c);
         }
 
@@ -270,7 +265,38 @@ public class ABMVenta extends ABM {
             pv.setTotalUnidades(totalunidades);
             pv.setPrecioTotal(precioTotal);
             miSesion.save(pv);
+
         }
+        
+            //seccion descontar cuenta
+            if (formularioEditarVenta.getRadBtnDescontar().isSelected()) {
+                Estado e = (Estado) miSesion.get(Estado.class, 1);
+
+                MovimientoCuenta mc = new MovimientoCuenta();
+                mc.setMonto(Double.valueOf("-" + formularioEditarVenta.getLblPrecioTotal().getText().toString()));
+                mc.setMotivo("compra de productos");
+
+                Integer id = formularioEditarVenta.getIdCuenta();
+                Cuenta c = (Cuenta) miSesion.get(Cuenta.class, id);
+                mc.setBalance(c.getBalance() + (mc.getMonto()));
+
+                mc.setFecha(new Date());
+                mc.setCodigoEstado(e);
+                mc.setCodigoCuenta(c);
+
+                miSesion.save(mc);
+
+                c.setBalance(mc.getBalance());
+                miSesion.saveOrUpdate(c);
+
+                Venta_MovimientoCuenta vmc = new Venta_MovimientoCuenta();
+                vmc.setVentaId(v);
+                vmc.setMovimientoCuentaId(mc);
+
+                miSesion.save(vmc);
+
+            }
+        
 
     }
 

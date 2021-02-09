@@ -95,7 +95,8 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
         tablaCliente.setIdVenta(idVenta);
         tablaCliente.setFormularioEditarVenta(formularioEditar);
         tablaCliente.ejecutarRellenenarTabla();
-        principalVenta.getEditarVenta().setIdCliente(tablaCliente.getIdCliente());
+        Integer idCliente=tablaCliente.getIdCliente();
+        principalVenta.getEditarVenta().setIdCliente(idCliente);
 
         TablaClienteLista tablaClienteLista = new TablaClienteLista();
         tablaClienteLista.setFormularioEditarVenta(principalVenta.getEditarVenta());
