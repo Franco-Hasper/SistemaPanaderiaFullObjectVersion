@@ -147,7 +147,7 @@ public class ABMVenta extends ABM {
             pv.setCodigoProducto(p);
             pv.setCodigoVenta(v);
             pv.setTotalUnidades(totalunidades);
-            pv.setPrecioTotal(precioTotal);
+            pv.setPrecioTotal(Double.valueOf(OperacionesUtiles.formatoDouble(precioTotal)));
             miSesion.save(pv);
 
             //seccion descontar cuenta

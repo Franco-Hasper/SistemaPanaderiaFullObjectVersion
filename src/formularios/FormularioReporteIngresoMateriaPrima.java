@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import operacionesIngresoMateriaPrima.ReporteIngresos;
 
@@ -66,6 +67,8 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
         btnSalir = new principal.MaterialButton();
         filler23 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         fechaFin = new rojeru_san.componentes.RSDateChooser();
+        radBtnAbrirDocumento = new javax.swing.JRadioButton();
+        radBtnImprimir = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -181,6 +184,10 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
         fechaFin.setColorForeground(new java.awt.Color(0, 0, 0));
         fechaFin.setPlaceholder("FECHA LIMITE FIN");
 
+        radBtnAbrirDocumento.setText("ABRIR AL FINALIZAR");
+
+        radBtnImprimir.setText("IMPRIMIR");
+
         javax.swing.GroupLayout PanelIngresoMateriaPrimaLayout = new javax.swing.GroupLayout(PanelIngresoMateriaPrima);
         PanelIngresoMateriaPrima.setLayout(PanelIngresoMateriaPrimaLayout);
         PanelIngresoMateriaPrimaLayout.setHorizontalGroup(
@@ -197,29 +204,38 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
                                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(123, 123, 123))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelIngresoMateriaPrimaLayout.createSequentialGroup()
-                        .addGroup(PanelIngresoMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(PanelIngresoMateriaPrimaLayout.createSequentialGroup()
-                                .addComponent(fechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(160, 160, 160)
-                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(PanelIngresoMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(PanelIngresoMateriaPrimaLayout.createSequentialGroup()
                                 .addComponent(lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblImporteTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fechaInicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelIngresoMateriaPrimaLayout.createSequentialGroup()
+                                .addGroup(PanelIngresoMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(radBtnAbrirDocumento, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(PanelIngresoMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(radBtnImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(38, 38, 38))))
         );
         PanelIngresoMateriaPrimaLayout.setVerticalGroup(
             PanelIngresoMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelIngresoMateriaPrimaLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(fechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(PanelIngresoMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PanelIngresoMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(fechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(PanelIngresoMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radBtnAbrirDocumento)
+                    .addComponent(radBtnImprimir))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelIngresoMateriaPrimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -278,6 +294,7 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
         } catch (DocumentException ex) {
             Logger.getLogger(FormularioReporteIngresoMateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
         }
+        this.dispose();
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -375,6 +392,24 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
         this.fechaInicio = fechaInicio;
     }
 
+    public JRadioButton getRadBtnAbrirDocumento() {
+        return radBtnAbrirDocumento;
+    }
+
+    public void setRadBtnAbrirDocumento(JRadioButton radBtnAbrirDocumento) {
+        this.radBtnAbrirDocumento = radBtnAbrirDocumento;
+    }
+
+    public JRadioButton getRadBtnImprimir() {
+        return radBtnImprimir;
+    }
+
+    public void setRadBtnImprimir(JRadioButton radBtnImprimir) {
+        this.radBtnImprimir = radBtnImprimir;
+    }
+
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel PanelIngresoMateriaPrima;
@@ -391,6 +426,8 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
     private javax.swing.JLabel lbl;
     private javax.swing.JLabel lblImporteTotal;
     private javax.swing.JPanel panelPrincipalTop;
+    private javax.swing.JRadioButton radBtnAbrirDocumento;
+    private javax.swing.JRadioButton radBtnImprimir;
     private javax.swing.JTable tablaGrafica;
     // End of variables declaration//GEN-END:variables
 }

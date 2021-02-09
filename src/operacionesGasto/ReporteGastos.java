@@ -15,12 +15,17 @@ import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 import ds.desktop.notify.DesktopNotify;
 import entidades.Gasto;
 import formularios.FormularioReporteGastos;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import operacionesIngresoMateriaPrima.ReporteIngresos;
 
 /**
  * @author Hasper Franco
@@ -31,8 +36,8 @@ public class ReporteGastos extends Consultas {
     private String fechaIicio;
     private String fechaFin;
     private List lista;
-    private static final Font titulofuente = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
-    private static final Font datosfuente = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
+    private static final Font titulofuente = new Font(Font.FontFamily.UNDEFINED, 12, Font.BOLD);
+    private static final Font datosfuente = new Font(Font.FontFamily.UNDEFINED, 10, Font.BOLD);
 
     public FormularioReporteGastos getFormularioReporteGastos() {
         return formularioReporteGastos;
@@ -142,6 +147,21 @@ public class ReporteGastos extends Consultas {
             document.add(texto);
             document.close();
             DesktopNotify.showDesktopMessage("exito ", "   REPORTE GENERADO\n   CON EXITO", DesktopNotify.SUCCESS, 7000);
+            
+            
+              if (this.formularioReporteGastos.getRadBtnAbrirDocumento().isSelected()) {
+                OperacionesUtiles.abrirArchivo(pdfNewFile.toString());
+            }
+            if (this.formularioReporteGastos.getRadBtnImprimir().isSelected()) {
+                try {
+                    Desktop.getDesktop().print(pdfNewFile);
+                } catch (IOException ex) {
+                    Logger.getLogger(ReporteIngresos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            
+            
         } catch (FileNotFoundException | DocumentException e) {
             DesktopNotify.showDesktopMessage("error ", "    NO SE PUDO GENERAR\n    EL REPORTE", DesktopNotify.ERROR, 7000);
         }

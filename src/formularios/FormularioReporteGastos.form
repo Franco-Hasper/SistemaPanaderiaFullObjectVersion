@@ -159,18 +159,28 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="fechaFin" min="-2" pref="221" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="btnBuscar" min="-2" pref="190" max="-2" attributes="0"/>
-                                  </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="lbl" min="-2" pref="110" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="lblImporteTotal" min="-2" pref="116" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane2" alignment="1" min="-2" pref="573" max="-2" attributes="0"/>
-                                  <Component id="fechaInicio" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="fechaInicio" pref="0" max="32767" attributes="0"/>
+                                          <Component id="radBtnAbrirDocumento" pref="180" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <Component id="fechaFin" min="-2" pref="165" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="radBtnImprimir" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnBuscar" min="-2" pref="190" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           </Group>
@@ -182,13 +192,19 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="fechaInicio" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="26" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="fechaFin" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="fechaInicio" min="-2" max="-2" attributes="0"/>
+                              <Component id="fechaFin" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="btnBuscar" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="radBtnAbrirDocumento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="radBtnImprimir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="309" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -379,6 +395,16 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="placeholder" type="java.lang.String" value="FECHA LIMITE FIN"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="radBtnAbrirDocumento">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="ABRIR AL FINALIZAR"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="radBtnImprimir">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
               </Properties>
             </Component>
           </SubComponents>

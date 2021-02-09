@@ -1,5 +1,6 @@
 package principal;
 
+import clasesUtilidadGeneral.OperacionesUtiles;
 import complementos.Cargar;
 import complementos.OptionPaneMateriaPrima;
 import escritorios.PrincipalCaja;
@@ -418,6 +419,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConfiguracionActionPerformed
 
     private void btnGestionMateriPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMateriPrimaActionPerformed
+
         OptionPaneMateriaPrima optionPaneMateriaPrima = new OptionPaneMateriaPrima(this, true);
          optionPaneMateriaPrima.getPanelTop().setBackground(this.getPanelPrincipalTop().getBackground());
         optionPaneMateriaPrima.getBtnIngresoMateriaPrima().setBackground(this.getPanelPrincipalTop().getBackground());

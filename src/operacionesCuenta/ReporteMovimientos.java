@@ -17,13 +17,18 @@ import entidades.IngresoMateriaPrima;
 import entidades.MovimientoCuenta;
 import formularios.FormularioReporteIngresoMateriaPrima;
 import formularios.FormularioReporteMovimientos;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import operacionesIngresoMateriaPrima.ReporteIngresos;
 
 /**
  * @author Hasper Franco
@@ -42,8 +47,6 @@ public class ReporteMovimientos extends Consultas {
 
     private static final Font titulofuente = new Font(Font.FontFamily.UNDEFINED, 12, Font.BOLD);
     private static final Font datosfuente = new Font(Font.FontFamily.UNDEFINED, 10, Font.BOLD);
-
-    
 
     public Integer getIdCuenta() {
         return idCuenta;
@@ -173,6 +176,18 @@ public class ReporteMovimientos extends Consultas {
             document.add(texto);
             document.close();
             DesktopNotify.showDesktopMessage("exito ", "   REPORTE GENERADO\n   CON EXITO", DesktopNotify.SUCCESS, 7000);
+
+            if (this.formularioReporteMovimientos.getRadBtnAbrirDocumento().isSelected()) {
+                OperacionesUtiles.abrirArchivo(pdfNewFile.toString());
+            }
+            if (this.formularioReporteMovimientos.getRadBtnImprimir().isSelected()) {
+                try {
+                    Desktop.getDesktop().print(pdfNewFile);
+                } catch (IOException ex) {
+                    Logger.getLogger(ReporteIngresos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
         } catch (FileNotFoundException | DocumentException e) {
             DesktopNotify.showDesktopMessage("error ", "    NO SE PUDO GENERAR\n    EL REPORTE", DesktopNotify.ERROR, 7000);
         }

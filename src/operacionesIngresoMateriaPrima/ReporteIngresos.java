@@ -18,12 +18,18 @@ import entidades.IngresoMateriaPrima;
 import entidades.PrecioProducto;
 import entidades.Producto_Venta;
 import formularios.FormularioReporteIngresoMateriaPrima;
+import java.awt.Desktop;
+import java.awt.Dialog;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -35,8 +41,8 @@ public class ReporteIngresos extends Consultas {
     private String fechaIicio;
     private String fechaFin;
     private List lista;
-    private static final Font titulofuente = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
-    private static final Font datosfuente = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
+    private static final Font titulofuente = new Font(Font.FontFamily.UNDEFINED, 12, Font.BOLD);
+    private static final Font datosfuente = new Font(Font.FontFamily.UNDEFINED, 10, Font.BOLD);
 
     public FormularioReporteIngresoMateriaPrima getFormularioReporteIngresoMateriaPrima() {
         return formularioReporteIngresoMateriaPrima;
@@ -63,11 +69,10 @@ public class ReporteIngresos extends Consultas {
     }
 
     private void rellenarTabla() {
- Double resultado=0.0;
+        Double resultado = 0.0;
         DefaultTableModel tablaIngresos = (DefaultTableModel) formularioReporteIngresoMateriaPrima.getTablaGrafica().getModel();
         lista = this.getListaResultados();
         new OperacionesUtiles().removerFilas(tablaIngresos);
-        
 
         for (Object o : lista) {
             IngresoMateriaPrima i = (IngresoMateriaPrima) o;
@@ -78,7 +83,7 @@ public class ReporteIngresos extends Consultas {
                 fila.add(i.getUdPorEnvase());
                 fila.add(i.getPrecioTotal());
                 fila.add(new OperacionesUtiles().formatoFechaSinHora(i.getFecha()));
-                resultado+=i.getPrecioTotal();
+                resultado += i.getPrecioTotal();
                 tablaIngresos.addRow(fila);
             }
         }
@@ -108,7 +113,7 @@ public class ReporteIngresos extends Consultas {
             texto.add(dottedline);
             texto.setFont(datosfuente);
             texto.add("\n");
-            texto.add("Fecha en la que se genero este reporte: "+OperacionesUtiles.formatoFechaSinHora(new Date()));
+            texto.add("Fecha en la que se genero este reporte: " + OperacionesUtiles.formatoFechaSinHora(new Date()));
             texto.add("\n");
             String fechaIicioPdf = (String) new OperacionesUtiles().formatoFechaSinHora(formularioReporteIngresoMateriaPrima.getFechaInicio().getDatoFecha());
             String fechaFinPdf = (String) new OperacionesUtiles().formatoFechaSinHora(formularioReporteIngresoMateriaPrima.getFechaFin().getDatoFecha());
@@ -117,7 +122,7 @@ public class ReporteIngresos extends Consultas {
 
             texto.add(new Paragraph("\n"));
 
-            Double resultado=0.0;
+            Double resultado = 0.0;
 
             PdfPTable table = new PdfPTable(5);
             PdfPCell columnHeader;
@@ -139,21 +144,34 @@ public class ReporteIngresos extends Consultas {
             for (Object o : lista) {
                 IngresoMateriaPrima i = (IngresoMateriaPrima) o;
                 if (i.getCodigoEstado().getIdEstado().equals(1)) {
-                table.addCell(i.getCodigoMateriaPrima().getNombre());
-                table.addCell(i.getTotalEnvases().toString());
-                table.addCell(i.getUdPorEnvase().toString());
-                table.addCell("$ "+i.getPrecioTotal().toString());
-                resultado+=i.getPrecioTotal();
-                table.addCell((String) new OperacionesUtiles().formatoFechaSinHora(i.getFecha()));
+                    table.addCell(i.getCodigoMateriaPrima().getNombre());
+                    table.addCell(i.getTotalEnvases().toString());
+                    table.addCell(i.getUdPorEnvase().toString());
+                    table.addCell("$ " + i.getPrecioTotal().toString());
+                    resultado += i.getPrecioTotal();
+                    table.addCell((String) new OperacionesUtiles().formatoFechaSinHora(i.getFecha()));
                 }
             }
 
             texto.add(table);
             texto.add(new Paragraph("\n"));
-            texto.add("Importe Total: " +resultado);
+            texto.add("Importe Total: " + resultado);
             document.add(texto);
             document.close();
+
             DesktopNotify.showDesktopMessage("exito ", "   REPORTE GENERADO\n   CON EXITO", DesktopNotify.SUCCESS, 7000);
+
+            if (this.formularioReporteIngresoMateriaPrima.getRadBtnAbrirDocumento().isSelected()) {
+                OperacionesUtiles.abrirArchivo(pdfNewFile.toString());
+            }
+            if (this.formularioReporteIngresoMateriaPrima.getRadBtnImprimir().isSelected()) {
+                try {
+                    Desktop.getDesktop().print(pdfNewFile);
+                } catch (IOException ex) {
+                    Logger.getLogger(ReporteIngresos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
         } catch (FileNotFoundException | DocumentException e) {
             DesktopNotify.showDesktopMessage("error ", "    NO SE PUDO GENERAR\n    EL REPORTE", DesktopNotify.ERROR, 7000);
         }

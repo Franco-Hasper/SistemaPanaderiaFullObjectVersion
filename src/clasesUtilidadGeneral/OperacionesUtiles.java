@@ -3,6 +3,7 @@ package clasesUtilidadGeneral;
 import ds.desktop.notify.DesktopNotify;
 import java.awt.Toolkit;
 import java.awt.Window;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -10,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -232,7 +235,7 @@ public class OperacionesUtiles {
         if (Character.isLetter(validar)) {
             getToolkit().beep();
             evt.consume();
-             DesktopNotify.showDesktopMessage("   información   ", "   Ingresar Solamente Números", DesktopNotify.INFORMATION, 5000);
+            DesktopNotify.showDesktopMessage("   información   ", "   Ingresar Solamente Números", DesktopNotify.INFORMATION, 5000);
             return true;
         }
         return false;
@@ -249,7 +252,7 @@ public class OperacionesUtiles {
     }
 
     /**
-     * Muestra un dialog de confirmacion.
+     * Muestra un dialog de confirmacion para eleiminar un registro.
      *
      * @return
      */
@@ -319,9 +322,8 @@ public class OperacionesUtiles {
         return dateFormat.format(fechaSinFormato);
 
     }
-    
-    
-        /**
+
+    /**
      * * Formatea la fecha indicada a yyyy-MM-dd
      *
      * @param fechaSinFormato
@@ -333,8 +335,6 @@ public class OperacionesUtiles {
         return dateFormat.format(fechaSinFormato);
 
     }
-    
-    
 
     /**
      * Devuelve true si la tabla pasada como parametro posee una fila
@@ -453,12 +453,11 @@ public class OperacionesUtiles {
 
     /**
      * toma los resultados de base de datos y la tabla grafica, obtiene la id de
-     * la fila seleccionada y retorna el valor de la Id.
-     * IMPORTANTE: ESTE METODO SOLO FUNCIONA CUANDO LA LISTA DE IDS RECIBIDA
-     * DE LA BD LLEGA ORDENADA DE MAYOR A MENOR Y LUEGO ES ORDENADA DE 
-     * MENOR A MAYOR MEDIANTE EL METODO ORDENAR LISTA.
-     * SI LA LISTA DE IDS DE BD LLEGA POR EJ: 3,1,2 ESTE ESTE METODO YA NO FUNCIONA
-     * LA FORMA CORRECTA DEBE SER 3,2,1
+     * la fila seleccionada y retorna el valor de la Id. IMPORTANTE: ESTE METODO
+     * SOLO FUNCIONA CUANDO LA LISTA DE IDS RECIBIDA DE LA BD LLEGA ORDENADA DE
+     * MAYOR A MENOR Y LUEGO ES ORDENADA DE MENOR A MAYOR MEDIANTE EL METODO
+     * ORDENAR LISTA. SI LA LISTA DE IDS DE BD LLEGA POR EJ: 3,1,2 ESTE ESTE
+     * METODO YA NO FUNCIONA LA FORMA CORRECTA DEBE SER 3,2,1
      *
      * @param listaResutladosActuales
      * @param totalFilas
@@ -474,17 +473,55 @@ public class OperacionesUtiles {
         }
         return id;
     }
-    
+
     /**
-     * Dar formato a un valor Double
+     * Dar formato a un valor Double retorna String
      */
-    public String formatoDouble(Double valor) {
+    public static String formatoDouble(Double valor) {
         DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
         separadoresPersonalizados.setDecimalSeparator('.');
         DecimalFormat formato = new DecimalFormat("#.00", separadoresPersonalizados);
         return formato.format(valor);
     }
+
+    /**
+     * Dar formato a un valor Double retorna Double
+     */
+    public static Double formatoDoubleDouble(Double valor) {
+        DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
+        separadoresPersonalizados.setDecimalSeparator('.');
+        DecimalFormat formato = new DecimalFormat("#.00", separadoresPersonalizados);
+        return Double.valueOf(formato.format(valor));
+    }
+
+    /*
+    abre cualquier archivo de la ruta recibida 
+    como parametro.
+     */
+    public static void abrirArchivo(String ruta) {
+        
+        try {
+            ProcessBuilder ejecutar=new ProcessBuilder();
+            ejecutar.command("cmd.exe","/c",ruta);
+            ejecutar.start();
+        } catch (IOException ex) {
+            Logger.getLogger(OperacionesUtiles.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     
     
-    
+        /**
+     * Muestra un dialog de confirmacion con string pasado como parametro.
+     *
+     * @return
+     */
+    public static boolean mensajeConfiramcion(String mensaje) {
+        if (JOptionPane.showConfirmDialog(null,mensaje, "",
+                JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+            return true;
+        }
+        return false;
+    }
+
 }
