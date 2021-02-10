@@ -96,9 +96,6 @@ public class FormularioRegistrarIngresoMateriaPrima extends javax.swing.JDialog 
         return listCamposTexto;
     }
 
-
-
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -339,8 +336,8 @@ public class FormularioRegistrarIngresoMateriaPrima extends javax.swing.JDialog 
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUdsPorEnvaseActionPerformed
 
-        int x, y;
-    
+    int x, y;
+
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:
         x = evt.getX();
@@ -359,12 +356,15 @@ public class FormularioRegistrarIngresoMateriaPrima extends javax.swing.JDialog 
     }//GEN-LAST:event_formMouseDragged
 
     private void txttotalEnvasesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttotalEnvasesKeyTyped
-
-
+        if (new OperacionesUtiles().advertenciaNum(evt)) {
+            OperacionesUtiles.borrarCampo(txttotalEnvases);
+        }
     }//GEN-LAST:event_txttotalEnvasesKeyTyped
 
     private void txtUdsPorEnvaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUdsPorEnvaseKeyTyped
-
+        if (new OperacionesUtiles().advertenciaNum(evt)) {
+            OperacionesUtiles.borrarCampo(txtUdsPorEnvase);
+        }
     }//GEN-LAST:event_txtUdsPorEnvaseKeyTyped
 
     private void txtPrecioTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioTotalActionPerformed
@@ -372,7 +372,9 @@ public class FormularioRegistrarIngresoMateriaPrima extends javax.swing.JDialog 
     }//GEN-LAST:event_txtPrecioTotalActionPerformed
 
     private void txtPrecioTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioTotalKeyTyped
-
+        if (new OperacionesUtiles().advertenciaNum(evt)) {
+            OperacionesUtiles.borrarCampo(txtPrecioTotal);
+        }
     }//GEN-LAST:event_txtPrecioTotalKeyTyped
 
     private void txttotalEnvasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalEnvasesActionPerformed
@@ -388,6 +390,7 @@ public class FormularioRegistrarIngresoMateriaPrima extends javax.swing.JDialog 
     }//GEN-LAST:event_txtMatPrActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+
         abm.setFormularioRegistraringresoMateriaPrima(this);
         abm.setPrincipalMateriaPrima(principalMateriaPrima);
         if (abm.ejecutarRegistrar()) {

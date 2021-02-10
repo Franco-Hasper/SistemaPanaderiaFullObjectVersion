@@ -35,19 +35,19 @@ public class InterfazGraficaFormularioRegistrarIngresoMateriaPrima extends Inter
         this.principalIngresoMateriaPrima = principalIngresoMateriaPrima;
     }
 
-    
-
-
     @Override
     public void nuevoFormularioRegistrar() {
-        FormularioRegistrarIngresoMateriaPrima formularioRegistrar = new FormularioRegistrarIngresoMateriaPrima(frame, true);
-        formularioRegistrar.setPrincipalMateriaPrima(principalMateriaPrima);
-        formularioRegistrar.setPrincipalIngresoMateriaPrima(getPrincipalIngresoMateriaPrima());
-        principalMateriaPrima.setRegistrarIngresoMateriaPrima(formularioRegistrar);
-        transferirDatos();
-        infoTextPrompt();
-        colorTema();
+        if (principalMateriaPrima.getRegistrarIngresoMateriaPrima() == null) {
+            FormularioRegistrarIngresoMateriaPrima formularioRegistrar = new FormularioRegistrarIngresoMateriaPrima(frame, true);
+            formularioRegistrar.setPrincipalMateriaPrima(principalMateriaPrima);
+            formularioRegistrar.setPrincipalIngresoMateriaPrima(getPrincipalIngresoMateriaPrima());
+            principalMateriaPrima.setRegistrarIngresoMateriaPrima(formularioRegistrar);
+            colorTema();
+            transferirDatos();
+            infoTextPrompt();
+        }
         principalMateriaPrima.getRegistrarIngresoMateriaPrima().setVisible(true);
+        principalMateriaPrima.setRegistrarIngresoMateriaPrima(null);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class InterfazGraficaFormularioRegistrarIngresoMateriaPrima extends Inter
         new TextPrompt("PRECIO TOTAL", principalMateriaPrima.getRegistrarIngresoMateriaPrima().getTxtPrecioTotal());
         principalMateriaPrima.getRegistrarIngresoMateriaPrima().getTxttotalEnvases().grabFocus();
     }
-    
+
     public void transferirDatos() {
         new TablaMateriaPrima().setPrincipalMateriaPrima(principalMateriaPrima);
         int fila = principalMateriaPrima.getTablaGrafica().getSelectedRow();

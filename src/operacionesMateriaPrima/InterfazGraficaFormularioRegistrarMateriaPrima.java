@@ -24,18 +24,19 @@ public class InterfazGraficaFormularioRegistrarMateriaPrima extends InterfazGraf
         this.principalMateriaPrima = principalMateriaPrima;
     }
 
-
-
     @Override
     public void nuevoFormularioRegistrar() {
-        FormularioRegistrarMateriaPrima formularioRegistrar = new FormularioRegistrarMateriaPrima(frame, true);    
-        formularioRegistrar.setPrincipalMateriaPrima(principalMateriaPrima);
-        principalMateriaPrima.setRegistrarMateriaPrima(formularioRegistrar);
-        agregarBoxes();
-        rellenarBoxes();
-        infoTextPrompt();
-        colorTema();
+        if (principalMateriaPrima.getRegistrarMateriaPrima() == null) {
+            FormularioRegistrarMateriaPrima formularioRegistrar = new FormularioRegistrarMateriaPrima(frame, true);
+            formularioRegistrar.setPrincipalMateriaPrima(principalMateriaPrima);
+            principalMateriaPrima.setRegistrarMateriaPrima(formularioRegistrar);
+            agregarBoxes();
+            rellenarBoxes();
+            infoTextPrompt();
+            colorTema();
+        }
         principalMateriaPrima.getRegistrarMateriaPrima().setVisible(true);
+        principalMateriaPrima.setRegistrarMateriaPrima(null);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class InterfazGraficaFormularioRegistrarMateriaPrima extends InterfazGraf
         this.setBoxMarca(principalMateriaPrima.getRegistrarMateriaPrima().getBoxMarca());
         this.setBoxProveedor(principalMateriaPrima.getRegistrarMateriaPrima().getBoxProveedor());
         this.setBoxUnidadMedida(principalMateriaPrima.getRegistrarMateriaPrima().getBoxUdeMedida());
-        
+
     }
 
     @Override

@@ -282,7 +282,7 @@ public abstract class ItemsBox extends Consultas {
      * rellenar Proveedor
      */
     public void consultaRellenarProveedor() {
-        setConsultaList("from Proveedor");
+        setConsultaList("from Proveedor where codigoEstado=1");
         obtenerListaConsulta();
         rellenarProveedor();
 

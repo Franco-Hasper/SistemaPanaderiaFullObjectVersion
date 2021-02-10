@@ -4,7 +4,6 @@ import calsesPadre.Tabla;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import entidades.IngresoMateriaPrima;
 import escritorios.PrincipalIngresoMatPrima;
-import escritorios.PrincipalMateriaPrima;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -51,7 +50,10 @@ public class TablaIngresoMateriaPrima extends Tabla {
     @Override
     public Integer obtenerIdFilaSeleccionada() {
         try {
-            Integer id = principalIngresoMateriaPrima.getTablaIngresoMateriaPrima().obtenerIdFilaSeleccionada();
+              Integer totalFilas = principalIngresoMateriaPrima.getTablaGrafica().getRowCount();
+            Integer filasSeleccionada = principalIngresoMateriaPrima.getTablaGrafica().getSelectedRow();
+            List<Integer> listaResutadosActualesThis = principalIngresoMateriaPrima.getTablaIngresoMateriaPrima().getListaResutladosActuales();
+            Integer id = operacionesUtilidad.obtenerId(listaResutadosActualesThis, totalFilas, filasSeleccionada);
             this.setIdTabla(id);
         } catch (Exception e) {
         }
@@ -81,7 +83,7 @@ public class TablaIngresoMateriaPrima extends Tabla {
                 fila.add(inmt.getUdPorEnvase());
                 fila.add(inmt.getCodigoMateriaPrima().getCodigoUnidaddeMedida().getNombre());
                 fila.add(inmt.getPrecioTotal());
-                fila.add(OperacionesUtiles.formatoFecha(inmt.getFecha()));
+                fila.add(OperacionesUtiles.formatoFechaSinHora(inmt.getFecha()));
                 tablaIngresoMateriaPrima.addRow(fila);
             }
         }

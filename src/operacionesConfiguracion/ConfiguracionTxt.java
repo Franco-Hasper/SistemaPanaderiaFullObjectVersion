@@ -55,9 +55,9 @@ public class ConfiguracionTxt {
         principalAdministrador.getPanelPrincipalBody().setBackground(color.getColorSecundario());
         principalAdministrador.getBtnConfiguracion().setBackground(color.getColorPrimario());
         principalAdministrador.getBtnGestionCliente().setBackground(color.getColorPrimario());
-        principalAdministrador.getBtnGestionFinanzas().setBackground(color.getColorPrimario());
+        principalAdministrador.getBtnGestionCaja().setBackground(color.getColorPrimario());
         principalAdministrador.getBtnGestionMateriPrima().setBackground(color.getColorPrimario());
-        principalAdministrador.getBtnGestionPedidos().setBackground(color.getColorPrimario());
+        principalAdministrador.getBtnGestionVentas().setBackground(color.getColorPrimario());
         principalAdministrador.getBtnGestionProducto().setBackground(color.getColorPrimario());
         principalAdministrador.getBtnGestionProveedor().setBackground(color.getColorPrimario());
         principalAdministrador.getBtnGestionGastos().setBackground(color.getColorPrimario());

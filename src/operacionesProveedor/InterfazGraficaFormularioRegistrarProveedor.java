@@ -26,14 +26,28 @@ public class InterfazGraficaFormularioRegistrarProveedor extends InterfazGrafica
 
     @Override
     public void nuevoFormularioRegistrar() {
-        FormularioRegistrarProveedor formularioRegistrar = new FormularioRegistrarProveedor(frame, true);
-        formularioRegistrar.setPrincipalProveedor(principalProveedor);
-        principalProveedor.setRegistrarProveedor(formularioRegistrar);
-        agregarBoxes();
-        rellenarBoxes();
-        infoTextPrompt();
-        colorTema();
+        if (principalProveedor.getRegistrarProveedor() == null) {
+            FormularioRegistrarProveedor formularioRegistrar = new FormularioRegistrarProveedor(frame, true);
+            formularioRegistrar.setPrincipalProveedor(principalProveedor);
+            principalProveedor.setRegistrarProveedor(formularioRegistrar);
+            colorTema();
+            agregarBoxes();
+            rellenarBoxes();
+            infoTextPrompt();
+            autoseccionarBoxes();
+        }
+
         principalProveedor.getRegistrarProveedor().setVisible(true);
+        principalProveedor.setRegistrarProveedor(null);
+    }
+
+    private void autoseccionarBoxes() {
+        String localidad = "Oberá";
+        String provincia = "Misiones";
+        String tipotelefono = "movil";
+        principalProveedor.getRegistrarProveedor().getBoxProvincia().setSelectedItem(provincia);
+        principalProveedor.getRegistrarProveedor().getBoxLocalidad().setSelectedItem(localidad);
+        principalProveedor.getRegistrarProveedor().getBoxTipoTelefono().setSelectedItem(tipotelefono);
     }
 
     @Override

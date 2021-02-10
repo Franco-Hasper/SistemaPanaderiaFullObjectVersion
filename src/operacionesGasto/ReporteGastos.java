@@ -47,7 +47,6 @@ public class ReporteGastos extends Consultas {
         this.formularioReporteGastos = formularioReporteGastos;
     }
 
-    
     public void ejecutarBusqueda() {
         obtenerFechas();
         consultaIngresos();
@@ -55,8 +54,13 @@ public class ReporteGastos extends Consultas {
     }
 
     private void obtenerFechas() {
-        fechaIicio = (String) new OperacionesUtiles().formatoFechaSinHoraYearFirst(formularioReporteGastos.getFechaInicio().getDatoFecha());
-        fechaFin = (String) new OperacionesUtiles().formatoFechaSinHoraYearFirst(formularioReporteGastos.getFechaFin().getDatoFecha());
+        try {
+            fechaIicio = (String) new OperacionesUtiles().formatoFechaSinHoraYearFirst(formularioReporteGastos.getFechaInicio().getDatoFecha());
+            fechaFin = (String) new OperacionesUtiles().formatoFechaSinHoraYearFirst(formularioReporteGastos.getFechaFin().getDatoFecha());
+        } catch (NullPointerException e) {
+            DesktopNotify.showDesktopMessage("informacion ", "   Debe ingresar una fecha limite  inicio y una fecha limite fin", DesktopNotify.INFORMATION, 5000);
+        }
+
     }
 
     private void consultaIngresos() {
@@ -147,9 +151,8 @@ public class ReporteGastos extends Consultas {
             document.add(texto);
             document.close();
             DesktopNotify.showDesktopMessage("exito ", "   REPORTE GENERADO\n   CON EXITO", DesktopNotify.SUCCESS, 7000);
-            
-            
-              if (this.formularioReporteGastos.getRadBtnAbrirDocumento().isSelected()) {
+
+            if (this.formularioReporteGastos.getRadBtnAbrirDocumento().isSelected()) {
                 OperacionesUtiles.abrirArchivo(pdfNewFile.toString());
             }
             if (this.formularioReporteGastos.getRadBtnImprimir().isSelected()) {
@@ -159,10 +162,8 @@ public class ReporteGastos extends Consultas {
                     Logger.getLogger(ReporteIngresos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            
-            
-            
-        } catch (FileNotFoundException | DocumentException e) {
+
+        } catch (FileNotFoundException | DocumentException | NullPointerException e) {
             DesktopNotify.showDesktopMessage("error ", "    NO SE PUDO GENERAR\n    EL REPORTE", DesktopNotify.ERROR, 7000);
         }
     }

@@ -188,7 +188,7 @@ public class ReporteMovimientos extends Consultas {
                 }
             }
 
-        } catch (FileNotFoundException | DocumentException e) {
+        } catch (FileNotFoundException | DocumentException  | NullPointerException e) {
             DesktopNotify.showDesktopMessage("error ", "    NO SE PUDO GENERAR\n    EL REPORTE", DesktopNotify.ERROR, 7000);
         }
     }

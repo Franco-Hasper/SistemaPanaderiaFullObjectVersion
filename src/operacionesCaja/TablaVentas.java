@@ -1,6 +1,7 @@
 package operacionesCaja;
 
 import calsesPadre.Tabla;
+import clasesUtilidadGeneral.OperacionesUtiles;
 import entidades.PrecioProducto;
 import entidades.Producto_Venta;
 import entidades.Venta;
@@ -51,7 +52,7 @@ public class TablaVentas extends Tabla {
                     Vector<Object> fila = new Vector<>();
                     fila.add(pr.getCodigoProducto().getNombre());
                     fila.add(pr.getTotalUnidades());
-                    fila.add(pr.getPrecioTotal().toString());
+                    fila.add(OperacionesUtiles.formatoDouble(pr.getPrecioTotal()));
                     tablaEntradas.addRow(fila);
                 }
 

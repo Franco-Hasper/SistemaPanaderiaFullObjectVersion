@@ -25,18 +25,20 @@ public class InterfazGraficaFormularioRegistrarCorte extends InterfazGraficaForm
 
     @Override
     public void nuevoFormularioRegistrar() {
-        FormularioRegistrarCorte formularioRegistrar = new FormularioRegistrarCorte(frame, true);
-        formularioRegistrar.setPrincipalCaja(principalCaja);
-        principalCaja.setRegistrarCorte(formularioRegistrar);
-        colorTema();
-        valoresIniciales();
-        new TablaGastos().ejecutarRellenarTabla(formularioRegistrar);
-        new TablaVentas().ejecutarRellenarTabla(formularioRegistrar);
-        new OperacionesSecundariasCaja().calcularTotalVentas(formularioRegistrar);
-        new OperacionesSecundariasCaja().calcularTotalGastos(formularioRegistrar);
-        new OperacionesSecundariasCaja().calcularBalance(formularioRegistrar);
+        if (principalCaja.getRegistrarCorte() == null) {
+            FormularioRegistrarCorte formularioRegistrar = new FormularioRegistrarCorte(frame, true);
+            formularioRegistrar.setPrincipalCaja(principalCaja);
+            principalCaja.setRegistrarCorte(formularioRegistrar);
+            colorTema();
+            valoresIniciales();
+            new TablaGastos().ejecutarRellenarTabla(formularioRegistrar);
+            new TablaVentas().ejecutarRellenarTabla(formularioRegistrar);
+            new OperacionesSecundariasCaja().calcularTotalVentas(formularioRegistrar);
+            new OperacionesSecundariasCaja().calcularTotalGastos(formularioRegistrar);
+            new OperacionesSecundariasCaja().calcularBalance(formularioRegistrar);
+        }
         principalCaja.getRegistrarCorte().setVisible(true);
-
+principalCaja.setRegistrarCorte(null);
     }
 
     @Override

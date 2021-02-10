@@ -25,7 +25,6 @@ public class InterfazGraficaReporteMovimientos {
         reporteMovimientos.setIdCuenta(principalCuenta.getTablaCuenta().obtenerIdFilaSeleccionada());
         reporteMovimientos.setFormularioReporteMovimientos(formularioReporte);
         formularioReporte.setReporteMovimientos(reporteMovimientos);
-
         colorTema(formularioReporte);
         transferirDaros(formularioReporte);
         formularioReporte.setVisible(true);

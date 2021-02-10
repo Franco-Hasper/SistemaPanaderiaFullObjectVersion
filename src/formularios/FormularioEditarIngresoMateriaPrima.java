@@ -37,11 +37,6 @@ public class FormularioEditarIngresoMateriaPrima extends javax.swing.JDialog {
         this.principalIngresoMateriaPrima = principalIngresoMateriaPrima;
     }
 
-    
-    
-    
-    
-    
     public JTextField getTxtUdsPorEnvase() {
         return txtUdsPorEnvase;
     }
@@ -81,8 +76,8 @@ public class FormularioEditarIngresoMateriaPrima extends javax.swing.JDialog {
     public void setDateFecha(RSDateChooser dateFecha) {
         this.dateFecha = dateFecha;
     }
-    
-     /**
+
+    /**
      * devuelve una lista con los campos de texto de esta interfaz grafica
      * (Formulario Registrar Materia Prima)
      *
@@ -199,6 +194,11 @@ public class FormularioEditarIngresoMateriaPrima extends javax.swing.JDialog {
                 txtPrecioTotalKeyTyped(evt);
             }
         });
+
+        dateFecha.setColorBackground(new java.awt.Color(0, 0, 0));
+        dateFecha.setColorButtonHover(new java.awt.Color(0, 0, 0));
+        dateFecha.setColorDiaActual(new java.awt.Color(0, 0, 0));
+        dateFecha.setColorForeground(new java.awt.Color(0, 0, 0));
 
         filler7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -376,12 +376,17 @@ public class FormularioEditarIngresoMateriaPrima extends javax.swing.JDialog {
     }//GEN-LAST:event_formMouseDragged
 
     private void txttotalEnvasesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttotalEnvasesKeyTyped
-        // TODO add your handling code here:
+        if (new OperacionesUtiles().advertenciaNum(evt)) {
+            OperacionesUtiles.borrarCampo(txttotalEnvases);
+        }
 
     }//GEN-LAST:event_txttotalEnvasesKeyTyped
 
     private void txtUdsPorEnvaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUdsPorEnvaseKeyTyped
-        // TODO add your handling code here:
+        if (new OperacionesUtiles().advertenciaNum(evt)) {
+            OperacionesUtiles.borrarCampo(txtUdsPorEnvase);
+        }
+
 
     }//GEN-LAST:event_txtUdsPorEnvaseKeyTyped
 
@@ -399,7 +404,9 @@ public class FormularioEditarIngresoMateriaPrima extends javax.swing.JDialog {
     }//GEN-LAST:event_txtPrecioTotalActionPerformed
 
     private void txtPrecioTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioTotalKeyTyped
-
+        if (new OperacionesUtiles().advertenciaNum(evt)) {
+            OperacionesUtiles.borrarCampo(txtPrecioTotal);
+        }
     }//GEN-LAST:event_txtPrecioTotalKeyTyped
 
     private void txttotalEnvasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalEnvasesActionPerformed

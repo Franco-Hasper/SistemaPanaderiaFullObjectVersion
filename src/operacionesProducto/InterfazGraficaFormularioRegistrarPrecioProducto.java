@@ -25,14 +25,16 @@ public class InterfazGraficaFormularioRegistrarPrecioProducto extends InterfazGr
     }
 
     public void nuevoFormularioRegistrarPrecio() {
-        FormularioRegistrarPrecioProducto formularioRegistrar = new FormularioRegistrarPrecioProducto(frame, true);
-        formularioRegistrar.setPrincipalProducto(principalProducto);
-        principalProducto.setRegistrarPrecioProducto(formularioRegistrar);
-        agregarBoxes();
-        rellenarBoxes();
-        infoTextPrompt();
-        colorTema();
+        if (principalProducto.getRegistrarPrecioProducto() == null) {
+            FormularioRegistrarPrecioProducto formularioRegistrar = new FormularioRegistrarPrecioProducto(frame, true);
+            formularioRegistrar.setPrincipalProducto(principalProducto);
+            principalProducto.setRegistrarPrecioProducto(formularioRegistrar);
+            infoTextPrompt();
+            colorTema();
+        }
+
         principalProducto.getRegistrarPrecioProducto().setVisible(true);
+        principalProducto.setRegistrarPrecioProducto(null);
     }
 
     @Override

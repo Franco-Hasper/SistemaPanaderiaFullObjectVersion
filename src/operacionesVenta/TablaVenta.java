@@ -109,7 +109,7 @@ public class TablaVenta extends Tabla {
                             }
                             this.listaResutladosActuales.add(0, vnt.getIdVenta());
                             fila.add(OperacionesUtiles.formatoFecha(vnt.getFechaHoraVenta()));
-                            fila.add(vnt.getPrecioTotal());
+                            fila.add(OperacionesUtiles.formatoDouble(vnt.getPrecioTotal()));
                             fila.add(vnt.getCodigoTipoVenta().getNombre());
                             fila.add(vnt.getCodigoEstado().getValor());
                             tablaVenta.addRow(fila);
@@ -127,7 +127,7 @@ public class TablaVenta extends Tabla {
                             }
                             this.listaResutladosActuales.add(0, vnt.getIdVenta());
                             fila.add(OperacionesUtiles.formatoFecha(vnt.getFechaHoraVenta()));
-                            fila.add(vnt.getPrecioTotal());
+                            fila.add(OperacionesUtiles.formatoDouble(vnt.getPrecioTotal()));
                             fila.add(vnt.getCodigoTipoVenta().getNombre());
                             fila.add(vnt.getCodigoEstado().getValor());
                             tablaVenta.addRow(fila);
@@ -141,7 +141,7 @@ public class TablaVenta extends Tabla {
                     }
                     this.listaResutladosActuales.add(0, vnt.getIdVenta());
                     fila.add(OperacionesUtiles.formatoFecha(vnt.getFechaHoraVenta()));
-                    fila.add(vnt.getPrecioTotal());
+                    fila.add(OperacionesUtiles.formatoDouble(vnt.getPrecioTotal()));
                     fila.add(vnt.getCodigoTipoVenta().getNombre());
                     fila.add(vnt.getCodigoEstado().getValor());
                     tablaVenta.addRow(fila);

@@ -36,15 +36,19 @@ public class InterfazGraficaFormularioEditarProveedor extends InterfazGraficaFor
 
     @Override
     public void nuevoFormularioEditar() {
-        FormularioEditarProveedor formularioEditar = new FormularioEditarProveedor(frame, true);
-        formularioEditar.setPrincipalProveedor(principalProveedor);
-        principalProveedor.setEditarProveedor(formularioEditar);
-        colorTema();
-        agregarBoxes();
-        rellenarBoxes();
-        infoTextPrompt();
-        transferirDatos();
+        if (principalProveedor.getEditarProveedor() == null) {
+            FormularioEditarProveedor formularioEditar = new FormularioEditarProveedor(frame, true);
+            formularioEditar.setPrincipalProveedor(principalProveedor);
+            principalProveedor.setEditarProveedor(formularioEditar);
+            colorTema();
+            agregarBoxes();
+            rellenarBoxes();
+            infoTextPrompt();
+            transferirDatos();
+        }
+
         principalProveedor.getEditarProveedor().setVisible(true);
+        principalProveedor.setEditarProveedor(null);
     }
 
     @Override
@@ -66,7 +70,7 @@ public class InterfazGraficaFormularioEditarProveedor extends InterfazGraficaFor
         String provincia = principalProveedor.getTablaGrafica().getValueAt(fila, 4).toString();
         String localidad = principalProveedor.getTablaGrafica().getValueAt(fila, 3).toString();
         String tipotelefono = principalProveedor.getTablaGrafica().getValueAt(fila, 6).toString();
-        
+
         autoSelectBox(provincia, localidad, tipotelefono);
     }
 

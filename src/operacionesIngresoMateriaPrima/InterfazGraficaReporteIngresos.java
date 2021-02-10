@@ -3,6 +3,7 @@ package operacionesIngresoMateriaPrima;
 import escritorios.PrincipalIngresoMatPrima;
 import formularios.FormularioReporteIngresoMateriaPrima;
 import java.awt.Frame;
+import java.util.Date;
 
 /**
  * @author Hasper Franco
@@ -25,6 +26,7 @@ public class InterfazGraficaReporteIngresos {
         reporteIngresos.setFormularioReporteIngresoMateriaPrima(formularioReporte);
         formularioReporte.setReporteIngresos(reporteIngresos);
         colorTema(formularioReporte);
+        fechas(formularioReporte);
         formularioReporte.setVisible(true);
 
     }
@@ -33,6 +35,11 @@ public class InterfazGraficaReporteIngresos {
         formularioReporte.getFechaInicio().setColorBackground(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
         formularioReporte.getFechaFin().setColorBackground(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
         formularioReporte.getPanelPrincipalTop().setBackground(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
+    }
+
+    private void fechas(FormularioReporteIngresoMateriaPrima formularioReporte) {
+        formularioReporte.getFechaInicio().setDatoFecha(new Date());
+        formularioReporte.getFechaFin().setDatoFecha(new Date());
     }
 
 }

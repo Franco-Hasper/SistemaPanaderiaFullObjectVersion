@@ -112,6 +112,7 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
             }
         });
 
+        lbl.setForeground(new java.awt.Color(0, 0, 0));
         lbl.setText("IMPORTE TOTAL:");
 
         tablaGrafica.setModel(new javax.swing.table.DefaultTableModel(
@@ -132,11 +133,13 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
         });
         jScrollPane2.setViewportView(tablaGrafica);
 
+        lblImporteTotal.setForeground(new java.awt.Color(0, 0, 0));
         lblImporteTotal.setText("0");
 
         fechaInicio.setForeground(new java.awt.Color(255, 255, 255));
-        fechaInicio.setColorBackground(new java.awt.Color(153, 0, 0));
-        fechaInicio.setColorButtonHover(new java.awt.Color(153, 0, 0));
+        fechaInicio.setColorBackground(new java.awt.Color(0, 0, 0));
+        fechaInicio.setColorButtonHover(new java.awt.Color(0, 0, 0));
+        fechaInicio.setColorDiaActual(new java.awt.Color(0, 0, 0));
         fechaInicio.setColorForeground(new java.awt.Color(0, 0, 0));
         fechaInicio.setPlaceholder("FECHA LIMITE INICIO");
 
@@ -179,8 +182,9 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
         filler23.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         fechaFin.setForeground(new java.awt.Color(255, 255, 255));
-        fechaFin.setColorBackground(new java.awt.Color(153, 0, 0));
-        fechaFin.setColorButtonHover(new java.awt.Color(153, 0, 0));
+        fechaFin.setColorBackground(new java.awt.Color(0, 0, 0));
+        fechaFin.setColorButtonHover(new java.awt.Color(0, 0, 0));
+        fechaFin.setColorDiaActual(new java.awt.Color(0, 0, 0));
         fechaFin.setColorForeground(new java.awt.Color(0, 0, 0));
         fechaFin.setPlaceholder("FECHA LIMITE FIN");
 
@@ -287,6 +291,8 @@ public class FormularioReporteIngresoMateriaPrima extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
+        
+        
         try {
             reporteIngresos.ejecutarGenerarReportes();
         } catch (FileNotFoundException ex) {

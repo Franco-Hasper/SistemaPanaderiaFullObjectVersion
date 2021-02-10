@@ -170,6 +170,11 @@ public class FormularioEditarMovimientoCuenta extends javax.swing.JDialog {
 
         filler6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        calendario.setColorBackground(new java.awt.Color(0, 0, 0));
+        calendario.setColorButtonHover(new java.awt.Color(0, 0, 0));
+        calendario.setColorDiaActual(new java.awt.Color(0, 0, 0));
+        calendario.setColorForeground(new java.awt.Color(0, 0, 0));
+
         filler9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         txtMonto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));

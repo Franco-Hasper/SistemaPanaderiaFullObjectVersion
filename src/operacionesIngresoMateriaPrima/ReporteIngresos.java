@@ -59,8 +59,12 @@ public class ReporteIngresos extends Consultas {
     }
 
     private void obtenerFechas() {
-        fechaIicio = (String) new OperacionesUtiles().formatoFechaSinHoraYearFirst(formularioReporteIngresoMateriaPrima.getFechaInicio().getDatoFecha());
-        fechaFin = (String) new OperacionesUtiles().formatoFechaSinHoraYearFirst(formularioReporteIngresoMateriaPrima.getFechaFin().getDatoFecha());
+        try {
+            fechaIicio = (String) new OperacionesUtiles().formatoFechaSinHoraYearFirst(formularioReporteIngresoMateriaPrima.getFechaInicio().getDatoFecha());
+            fechaFin = (String) new OperacionesUtiles().formatoFechaSinHoraYearFirst(formularioReporteIngresoMateriaPrima.getFechaFin().getDatoFecha());
+        } catch (NullPointerException e) {
+            DesktopNotify.showDesktopMessage("informacion ", "   Debe ingresar una fecha limite  inicio y una fecha limite fin", DesktopNotify.INFORMATION, 5000);
+        }
     }
 
     private void consultaIngresos() {
@@ -172,7 +176,7 @@ public class ReporteIngresos extends Consultas {
                 }
             }
 
-        } catch (FileNotFoundException | DocumentException e) {
+        } catch (FileNotFoundException | DocumentException | NullPointerException e) {
             DesktopNotify.showDesktopMessage("error ", "    NO SE PUDO GENERAR\n    EL REPORTE", DesktopNotify.ERROR, 7000);
         }
     }

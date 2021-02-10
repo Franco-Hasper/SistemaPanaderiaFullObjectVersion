@@ -147,8 +147,9 @@ public class FormularioReporteGastos extends javax.swing.JDialog {
         lblImporteTotal.setText("0");
 
         fechaInicio.setForeground(new java.awt.Color(255, 255, 255));
-        fechaInicio.setColorBackground(new java.awt.Color(153, 0, 0));
-        fechaInicio.setColorButtonHover(new java.awt.Color(153, 0, 0));
+        fechaInicio.setColorBackground(new java.awt.Color(0, 0, 0));
+        fechaInicio.setColorButtonHover(new java.awt.Color(0, 0, 0));
+        fechaInicio.setColorDiaActual(new java.awt.Color(0, 0, 0));
         fechaInicio.setColorForeground(new java.awt.Color(0, 0, 0));
         fechaInicio.setPlaceholder("FECHA LIMITE INICIO");
 
@@ -191,8 +192,9 @@ public class FormularioReporteGastos extends javax.swing.JDialog {
         filler23.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         fechaFin.setForeground(new java.awt.Color(255, 255, 255));
-        fechaFin.setColorBackground(new java.awt.Color(153, 0, 0));
-        fechaFin.setColorButtonHover(new java.awt.Color(153, 0, 0));
+        fechaFin.setColorBackground(new java.awt.Color(0, 0, 0));
+        fechaFin.setColorButtonHover(new java.awt.Color(0, 0, 0));
+        fechaFin.setColorDiaActual(new java.awt.Color(0, 0, 0));
         fechaFin.setColorForeground(new java.awt.Color(0, 0, 0));
         fechaFin.setPlaceholder("FECHA LIMITE FIN");
 

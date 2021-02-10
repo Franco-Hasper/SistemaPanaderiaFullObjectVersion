@@ -85,10 +85,10 @@ public class TablaCaja extends Tabla {
             if (corteCaja.getCodigoEstado().getIdEstado().equals(1) && resutadoComparacion.equals(0)) {
                 this.listaResutladosActuales.add(0, corteCaja.getIdCorteCaja());
                 Vector<Object> fila = new Vector<>();
-                fila.add(corteCaja.getTotalIngresos());
-                fila.add(corteCaja.getTotalEgresos());
-                fila.add(corteCaja.getBalance());
-                fila.add(OperacionesUtiles.formatoFecha(corteCaja.getFecha()));
+                fila.add(OperacionesUtiles.formatoDouble(corteCaja.getTotalIngresos()));
+                fila.add(OperacionesUtiles.formatoDouble(corteCaja.getTotalEgresos()));
+                fila.add(OperacionesUtiles.formatoDouble(corteCaja.getBalance()));
+                fila.add(OperacionesUtiles.formatoFechaSinHora(corteCaja.getFecha()));
                 tablaCaja.addRow(fila);
             }
 

@@ -21,11 +21,15 @@ public class InterfazGraficaFormularioEstadoVenta {
     }
 
     public void nuevoFormularioEstadoVenta() {
-        FormularioEstadoVenta formularioEstadoVenta = new FormularioEstadoVenta(new Frame(), true);
-        formularioEstadoVenta.setPrincipalVenta(principalVenta);
-        principalVenta.setFormularioEstadoVenta(formularioEstadoVenta);
-        colorTema();
+        if (principalVenta.getFormularioEstadoVenta() == null) {
+            FormularioEstadoVenta formularioEstadoVenta = new FormularioEstadoVenta(new Frame(), true);
+            formularioEstadoVenta.setPrincipalVenta(principalVenta);
+            principalVenta.setFormularioEstadoVenta(formularioEstadoVenta);
+            colorTema();
+        }
+
         principalVenta.getFormularioEstadoVenta().setVisible(true);
+        principalVenta.setFormularioEstadoVenta(null);
     }
 
     public void colorTema() {

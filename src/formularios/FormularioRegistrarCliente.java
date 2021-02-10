@@ -43,7 +43,9 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
         listCamposTexto.add(this.getTxtNombre());
         listCamposTexto.add(this.getTxtApellido());
         listCamposTexto.add(this.getTxtDireccion());
-        listCamposTexto.add(this.getTxtRazonSocial());
+         if(this.radioButon.isSelected()){
+            listCamposTexto.add(this.getTxtRazonSocial());
+        }
         listCamposTexto.add(this.getTxtTelefono());
         listCamposTexto.add(this.getTxtnuemroDireccion());
         return listCamposTexto;
@@ -72,8 +74,6 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
     public void setBoxTipoTelefono(JComboBox<String> boxTipoTelefono) {
         this.boxTipoTelefono = boxTipoTelefono;
     }
-
-
 
     public JRadioButton getRadioButon() {
         return radioButon;
@@ -228,7 +228,7 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
             }
         });
 
-        radioButon.setText("razon soscial (no posee)");
+        radioButon.setText("razon soscial");
         radioButon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioButonActionPerformed(evt);
@@ -350,9 +350,7 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-        
-    
-    
+
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
         // TODO add your handling code here:
         if (new OperacionesUtiles().advertenciaNum(evt)) {
@@ -370,9 +368,10 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
     private void radioButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButonActionPerformed
         // TODO add your handling code here:
         if (getRadioButon().isSelected()) {
-            getTxtRazonSocial().setEnabled(false);
-        } else {
             getTxtRazonSocial().setEnabled(true);
+        } else {
+            getTxtRazonSocial().setEnabled(false);
+            getTxtRazonSocial().setText("");
         }
 
     }//GEN-LAST:event_radioButonActionPerformed
@@ -391,11 +390,11 @@ public class FormularioRegistrarCliente extends javax.swing.JDialog {
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         Point point = MouseInfo.getPointerInfo().getLocation();
-        setLocation(point.x - x, point.y - y);        
+        setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_formMouseDragged
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-    abm.setFormularioRegistrarCliente(this);
+        abm.setFormularioRegistrarCliente(this);
         if (abm.ejecutarRegistrar()) {
             principalCliente.getTablaCliente().setPrincipalCliente(principalCliente);
             principalCliente.getTablaCliente().setEstadoConsulta(0);

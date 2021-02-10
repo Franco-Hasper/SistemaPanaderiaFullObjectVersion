@@ -1,8 +1,14 @@
 package operacionesCuenta;
 
 import calsesPadre.InterfazGraficaFormularioEditar;
+import conexion.ConexionHibernate;
+import entidades.IngresoMateriaPrima;
+import entidades.MovimientoCuenta;
 import escritorios.PrincipalCuenta;
 import formularios.FormularioEditarMovimientoCuenta;
+import java.awt.HeadlessException;
+import java.util.Date;
+import org.hibernate.Session;
 
 /**
  * @author Hasper Franco
@@ -30,13 +36,17 @@ public class InterfazGraficaEditarMovimiento extends InterfazGraficaFormularioEd
 
     @Override
     public void nuevoFormularioEditar() {
-        FormularioEditarMovimientoCuenta formularioEditar = new FormularioEditarMovimientoCuenta(frame, true);
-        formularioEditar.setPrincipalCuenta(principalCuenta);
-        formularioEditar.setCuantaFilaSeleccionada(principalCuenta.getCuantaFilaSeleccionada());
-        principalCuenta.setFormularioEditarMovimiento(formularioEditar);
-        transferirDatos();
-        colorTema();
+        if (principalCuenta.getFormularioEditarMovimiento() == null) {
+            FormularioEditarMovimientoCuenta formularioEditar = new FormularioEditarMovimientoCuenta(frame, true);
+            formularioEditar.setPrincipalCuenta(principalCuenta);
+            formularioEditar.setCuantaFilaSeleccionada(principalCuenta.getCuantaFilaSeleccionada());
+            principalCuenta.setFormularioEditarMovimiento(formularioEditar);
+            colorTema();
+            transferirDatos();
+        }
+
         principalCuenta.getFormularioEditarMovimiento().setVisible(true);
+        principalCuenta.setFormularioEditarMovimiento(null);
     }
 
     @Override
@@ -53,6 +63,9 @@ public class InterfazGraficaEditarMovimiento extends InterfazGraficaFormularioEd
         }
         principalCuenta.getFormularioEditarMovimiento().getTxtMotivo().setText(principalCuenta.getTablaGraficaMovimiento().getValueAt(fila, 0).toString());
         principalCuenta.getFormularioEditarMovimiento().getTxtMonto().setText(principalCuenta.getTablaGraficaMovimiento().getValueAt(fila, 1).toString());
+
+        fechaMovimiento();
+
     }
 
     @Deprecated
@@ -65,5 +78,27 @@ public class InterfazGraficaEditarMovimiento extends InterfazGraficaFormularioEd
     @Override
     public void rellenarBoxes() {
 
+    }
+
+    private void fechaMovimiento() {
+        transferirFecha(obtenerDatos());
+    }
+
+    private Date obtenerDatos() {
+        Date fecha = new Date();
+        Integer id = principalCuenta.getTablaMovimientoCuenta().obtenerIdFilaSeleccionada();
+        Session miSesion = ConexionHibernate.tomarConexion();
+        try {
+            miSesion.beginTransaction();
+            MovimientoCuenta mc = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, id);
+            fecha = mc.getFecha();
+            miSesion.getTransaction().commit();
+        } catch (HeadlessException | NumberFormatException e) {
+        }
+        return fecha;
+    }
+
+    private void transferirFecha(Date fecha) {
+        principalCuenta.getFormularioEditarMovimiento().getCalendario().setDatoFecha(fecha);
     }
 }

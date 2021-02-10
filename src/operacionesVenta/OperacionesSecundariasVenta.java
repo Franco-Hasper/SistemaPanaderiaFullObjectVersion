@@ -205,24 +205,24 @@ public class OperacionesSecundariasVenta {
         switch (tipoFormulario) {
             case 1:
                 try {
-                    Double total = 0.0;
+                    Double total = 0.00;
                     for (int i = 0; i < formularioRegistrarVenta.getTablaListarProductos().getRowCount(); i++) {
                         total = total + (Double.valueOf(formularioRegistrarVenta.getTablaListarProductos().getValueAt(i, 2).toString()));
                     }
-                    formularioRegistrarVenta.getLblPrecioTotal().setText(new OperacionesUtiles().formatoDouble(total));
+                    formularioRegistrarVenta.getLblPrecioTotal().setText(OperacionesUtiles.formatoDouble(total));
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    formularioRegistrarVenta.getLblPrecioTotal().setText("0.0");
+                    formularioRegistrarVenta.getLblPrecioTotal().setText("0.00");
                 }
                 break;
             case 2:
                 try {
-                    Double total = 0.0;
+                    Double total = 0.00;
                     for (int i = 0; i < formularioEditarVenta.getTablaListarProductos().getRowCount(); i++) {
                         total = total + (Double.valueOf(formularioEditarVenta.getTablaListarProductos().getValueAt(i, 2).toString()));
                     }
-                    formularioEditarVenta.getLblPrecioTotal().setText(new OperacionesUtiles().formatoDouble(total));
+                    formularioEditarVenta.getLblPrecioTotal().setText(OperacionesUtiles.formatoDouble(total));
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    formularioEditarVenta.getLblPrecioTotal().setText("0.0");
+                    formularioEditarVenta.getLblPrecioTotal().setText("0.00");
                 }
                 break;
         }
@@ -256,7 +256,7 @@ public class OperacionesSecundariasVenta {
         switch (tipoFormulario) {
             case 1:
                 try {
-                    if (formularioRegistrarVenta.getrSDateChooser().getDatoFecha().equals(null)
+                    if (formularioRegistrarVenta.getrSDateChooser().getDatoFecha() == null
                             || formularioRegistrarVenta.getrSDateChooser().getDatoFecha().equals(" ")) {
                         DesktopNotify.showDesktopMessage(" Informacion", " Debe seleccionar una fecha", DesktopNotify.INFORMATION, 7000);
                         return false;
@@ -269,7 +269,7 @@ public class OperacionesSecundariasVenta {
                 }
             case 2:
                 try {
-                    if (formularioEditarVenta.getrSDateChooser().getDatoFecha().equals(null)
+                    if (formularioEditarVenta.getrSDateChooser().getDatoFecha() == null
                             || formularioEditarVenta.getrSDateChooser().getDatoFecha().equals(" ")) {
                         DesktopNotify.showDesktopMessage(" Informacion", " Debe seleccionar una fecha", DesktopNotify.INFORMATION, 7000);
                         return false;

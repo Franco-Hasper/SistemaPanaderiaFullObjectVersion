@@ -120,6 +120,7 @@ public class FormularioReporteMovimientos extends javax.swing.JDialog {
             }
         });
 
+        lbl.setForeground(new java.awt.Color(0, 0, 0));
         lbl.setText("CLIENTE:");
 
         tablaGrafica.setModel(new javax.swing.table.DefaultTableModel(
@@ -140,11 +141,13 @@ public class FormularioReporteMovimientos extends javax.swing.JDialog {
         });
         jScrollPane2.setViewportView(tablaGrafica);
 
+        lblCliente.setForeground(new java.awt.Color(0, 0, 0));
         lblCliente.setText("AAA");
 
         fechaInicio.setForeground(new java.awt.Color(255, 255, 255));
-        fechaInicio.setColorBackground(new java.awt.Color(153, 0, 0));
-        fechaInicio.setColorButtonHover(new java.awt.Color(153, 0, 0));
+        fechaInicio.setColorBackground(new java.awt.Color(0, 0, 0));
+        fechaInicio.setColorButtonHover(new java.awt.Color(0, 0, 0));
+        fechaInicio.setColorDiaActual(new java.awt.Color(0, 0, 0));
         fechaInicio.setColorForeground(new java.awt.Color(0, 0, 0));
         fechaInicio.setPlaceholder("FECHA LIMITE INICIO");
 
@@ -187,17 +190,23 @@ public class FormularioReporteMovimientos extends javax.swing.JDialog {
         filler23.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         fechaFin.setForeground(new java.awt.Color(255, 255, 255));
-        fechaFin.setColorBackground(new java.awt.Color(153, 0, 0));
-        fechaFin.setColorButtonHover(new java.awt.Color(153, 0, 0));
+        fechaFin.setColorBackground(new java.awt.Color(0, 0, 0));
+        fechaFin.setColorButtonHover(new java.awt.Color(0, 0, 0));
+        fechaFin.setColorDiaActual(new java.awt.Color(0, 0, 0));
         fechaFin.setColorForeground(new java.awt.Color(0, 0, 0));
         fechaFin.setPlaceholder("FECHA LIMITE FIN");
 
+        lbl1.setForeground(new java.awt.Color(0, 0, 0));
         lbl1.setText("N° CUENTA:");
 
+        lblNroCuenta.setBackground(new java.awt.Color(0, 0, 0));
+        lblNroCuenta.setForeground(new java.awt.Color(0, 0, 0));
         lblNroCuenta.setText("000");
 
+        lbl2.setForeground(new java.awt.Color(0, 0, 0));
         lbl2.setText("BALANCE ACTUAL:");
 
+        lblBalance.setForeground(new java.awt.Color(0, 0, 0));
         lblBalance.setText("000");
 
         radBtnAbrirDocumento.setText("ABRIR AL FINALIZAR");

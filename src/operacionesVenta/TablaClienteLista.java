@@ -92,7 +92,7 @@ public class TablaClienteLista extends Tabla {
                 fila.add(c.getNombre() + " " + c.getApellido());
                 List<Direccion_Cliente> direcciones = c.getDireccionesclientes();
                 List<TelefonoCliente> telefonos = c.getTelefonos();
-                if (c.getDireccionesclientes().size() == 0) {
+                if (c.getDireccionesclientes().isEmpty()) {
                     fila.add("sin registros");
                 } else {
                     for (Direccion_Cliente drCl : direcciones) {
@@ -102,7 +102,7 @@ public class TablaClienteLista extends Tabla {
                         }
                     }
                 }
-                if (c.getTelefonos().size() == 0) {
+                if (c.getTelefonos().isEmpty()) {
                     fila.add("sin registros");
                 } else {
                     for (TelefonoCliente tlcl : telefonos) {

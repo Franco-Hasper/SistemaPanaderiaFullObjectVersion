@@ -37,7 +37,7 @@ public class ApiDolar {
 
             JSONObject myResponse = new JSONObject(response.substring(9, 141));
             principalAdministrador.getLblLibre().setText(myResponse.getString("compra"));
-
+            
             
             
              DesktopNotify.showDesktopMessage(" INFORMACION  ", " DOLAR OFICIAL:\n COMPRA: "+myResponse.getString("compra")+"\n VENTA: "+ myResponse.getString("venta")+"", DesktopNotify.INFORMATION, 10000);

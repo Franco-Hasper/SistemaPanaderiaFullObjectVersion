@@ -4,11 +4,12 @@ import calsesPadre.InterfazGraficaFormularioRegistrar;
 import clasesUtilidadGeneral.TextPrompt;
 import escritorios.PrincipalGastos;
 import formularios.FormularioRegistrarGasto;
+import java.util.Date;
 
 /**
  * @author Hasper Franco
  */
-public class InterfazGraficaFormularioRegistrarGasto extends InterfazGraficaFormularioRegistrar{
+public class InterfazGraficaFormularioRegistrarGasto extends InterfazGraficaFormularioRegistrar {
 
     public InterfazGraficaFormularioRegistrarGasto() {
         setEstadoConsulta(0);
@@ -24,18 +25,18 @@ public class InterfazGraficaFormularioRegistrarGasto extends InterfazGraficaForm
         this.principalGastos = principalGastos;
     }
 
-
-
     @Override
     public void nuevoFormularioRegistrar() {
-        FormularioRegistrarGasto formularioRegistrar = new FormularioRegistrarGasto(frame, true);
-        formularioRegistrar.setPrincipalGastos(principalGastos);
-        principalGastos.setRegistrarGasto(formularioRegistrar);
-        agregarBoxes();
-        rellenarBoxes();
-        infoTextPrompt();
-        colorTema();
+        if (principalGastos.getRegistrarGasto() == null) {
+            FormularioRegistrarGasto formularioRegistrar = new FormularioRegistrarGasto(frame, true);
+            formularioRegistrar.setPrincipalGastos(principalGastos);
+            principalGastos.setRegistrarGasto(formularioRegistrar);
+            infoTextPrompt();
+            colorTema();
+            fecha();
+        }
         principalGastos.getRegistrarGasto().setVisible(true);
+        principalGastos.setRegistrarGasto(null);
     }
 
     @Override
@@ -43,6 +44,10 @@ public class InterfazGraficaFormularioRegistrarGasto extends InterfazGraficaForm
         new TextPrompt("DESCRIPCION", principalGastos.getRegistrarGasto().getTxtDescripcion());
         new TextPrompt("TOTAL GASTADO", principalGastos.getRegistrarGasto().getTxtTotlaGasatado());
         principalGastos.getRegistrarGasto().getTxtDescripcion().grabFocus();
+    }
+
+    private void fecha() {
+        principalGastos.getRegistrarGasto().getrSDateChooser().setDatoFecha(new Date());
     }
 
     @Deprecated
@@ -59,10 +64,5 @@ public class InterfazGraficaFormularioRegistrarGasto extends InterfazGraficaForm
     public void colorTema() {
         principalGastos.getRegistrarGasto().getPanelPrincipalTop().setBackground(principalGastos.getPanelPrincipalTop().getBackground());
     }
-    
-    
-    
-    
-    
-    
+
 }

@@ -128,6 +128,15 @@ public class TablaProductosListados extends Tabla {
 
     }
 
+    public void vaciarTabla() {
+        DefaultTableModel tablaProductosListados = (DefaultTableModel) getTablaProductosListados().getModel();
+        operacionesUtilidad.removerFilas(tablaProductosListados);
+        try {
+            this.listaProductosListados.clear();
+        } catch (NullPointerException e) {
+        }
+    }
+
     public void agregarProducto() {
         DefaultTableModel tablaProductosListados = (DefaultTableModel) getTablaProductosListados().getModel();
         DefaultTableModel tablaProductosDisponibles = (DefaultTableModel) getTabla().getModel();
@@ -139,13 +148,13 @@ public class TablaProductosListados extends Tabla {
             case 1:
                 fila.add(principalVenta.getRegistrarVenta().getTxtCantidad().getText());
                 total = Double.valueOf(tablaProductosDisponibles.getValueAt(filaSeleccionada, 2).toString()) * Double.valueOf(principalVenta.getRegistrarVenta().getTxtCantidad().getText());
-                fila.add(total);
+                fila.add(OperacionesUtiles.formatoDouble(total));
                 tablaProductosListados.addRow(fila);
                 break;
             case 2:
                 fila.add(principalVenta.getEditarVenta().getTxtCantidad().getText());
                 total = Double.valueOf(tablaProductosDisponibles.getValueAt(filaSeleccionada, 2).toString()) * Double.valueOf(principalVenta.getEditarVenta().getTxtCantidad().getText());
-                fila.add(total);
+                fila.add(OperacionesUtiles.formatoDouble(total));
                 tablaProductosListados.addRow(fila);
                 break;
         }
@@ -286,7 +295,7 @@ public class TablaProductosListados extends Tabla {
                 this.listaProductosListados.add(0, p.getCodigoProducto().getIdProducto());
                 fila.add(p.getCodigoProducto().getNombre());
                 fila.add(p.getTotalUnidades());
-                fila.add(p.getPrecioTotal());
+                fila.add(OperacionesUtiles.formatoDouble(p.getPrecioTotal()));
                 tablaProducto.addRow(fila);
 
                 //SECCION DATOS SECUNDARIOS CAMBIAR DE LUGAR 
@@ -300,7 +309,7 @@ public class TablaProductosListados extends Tabla {
     }
 
     private void totalFecha(Double sumaTotal, Date fecha) {
-        formularioEditarVenta.getLblPrecioTotal().setText(sumaTotal.toString());
+        formularioEditarVenta.getLblPrecioTotal().setText(OperacionesUtiles.formatoDouble(sumaTotal));
         formularioEditarVenta.getrSDateChooser().setDatoFecha(fecha);
 
     }

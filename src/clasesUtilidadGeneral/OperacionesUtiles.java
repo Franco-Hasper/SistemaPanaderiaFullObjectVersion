@@ -87,13 +87,11 @@ public class OperacionesUtiles {
         for (Object o : listCamposTexto) {
             JTextField j = (JTextField) o;
             if (j.getText().length() == 0) {
-                showMessageDialog(null, "Todos los campos son requeridos");
-                break;
-            } else {
-                return true;
-            }
+                DesktopNotify.showDesktopMessage("   información   ", " Todos los campos son requeridos", DesktopNotify.INFORMATION, 5000);
+                return false;
+            } 
         }
-        return false;
+        return true;
     }
 
     /**
@@ -330,7 +328,7 @@ public class OperacionesUtiles {
      * @return
      */
     public static Object formatoFechaSinHoraYearFirst(Date fechaSinFormato) {
-        Date date = new Date();
+       
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(fechaSinFormato);
 
@@ -478,6 +476,7 @@ public class OperacionesUtiles {
      * Dar formato a un valor Double retorna String
      */
     public static String formatoDouble(Double valor) {
+        
         DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
         separadoresPersonalizados.setDecimalSeparator('.');
         DecimalFormat formato = new DecimalFormat("#.00", separadoresPersonalizados);
@@ -499,25 +498,24 @@ public class OperacionesUtiles {
     como parametro.
      */
     public static void abrirArchivo(String ruta) {
-        
+
         try {
-            ProcessBuilder ejecutar=new ProcessBuilder();
-            ejecutar.command("cmd.exe","/c",ruta);
+            ProcessBuilder ejecutar = new ProcessBuilder();
+            ejecutar.command("cmd.exe", "/c", ruta);
             ejecutar.start();
         } catch (IOException ex) {
             Logger.getLogger(OperacionesUtiles.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
-    
-        /**
+
+    /**
      * Muestra un dialog de confirmacion con string pasado como parametro.
      *
      * @return
      */
     public static boolean mensajeConfiramcion(String mensaje) {
-        if (JOptionPane.showConfirmDialog(null,mensaje, "",
+        if (JOptionPane.showConfirmDialog(null, mensaje, "",
                 JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
             return true;
         }

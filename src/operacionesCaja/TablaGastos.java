@@ -1,6 +1,7 @@
 package operacionesCaja;
 
 import calsesPadre.Tabla;
+import clasesUtilidadGeneral.OperacionesUtiles;
 import entidades.Gasto;
 import entidades.IngresoMateriaPrima;
 import formularios.FormularioRegistrarCorte;
@@ -60,7 +61,7 @@ public class TablaGastos extends Tabla {
             if ( operacionesUtilidad.compararFecha(i.getFecha())&&i.getCodigoEstado().getIdEstado().equals(1)) {
                 fila.add(i.getCodigoMateriaPrima().getNombre());
                 fila.add("Ingreso de materia prima");
-                fila.add(i.getPrecioTotal());
+                fila.add(OperacionesUtiles.formatoDouble(i.getPrecioTotal()));
                 tablaSalidas.addRow(fila);
             }
         }
@@ -81,7 +82,7 @@ public class TablaGastos extends Tabla {
             if (operacionesUtilidad.compararFecha(g.getFecha())&&g.getCodigoEstado().getIdEstado().equals(1)) {
                 fila.add("otros");
                 fila.add(g.getDescripcion());
-                fila.add(g.getPrecioTotal());
+                fila.add(OperacionesUtiles.formatoDouble(g.getPrecioTotal()));
 
                 tablaSalidas.addRow(fila);
             }

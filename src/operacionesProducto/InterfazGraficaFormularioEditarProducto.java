@@ -30,12 +30,15 @@ public class InterfazGraficaFormularioEditarProducto extends InterfazGraficaForm
 
     @Override
     public void nuevoFormularioEditar() {
-        FormularioEditarProducto formularioEditar = new FormularioEditarProducto(frame, true);
-        formularioEditar.setPrincipalProducto(principalProducto);
-        principalProducto.setEditarProducto(formularioEditar);
-        transferirDatos();
-        colorTema();
+        if (principalProducto.getEditarProducto() == null) {
+            FormularioEditarProducto formularioEditar = new FormularioEditarProducto(frame, true);
+            formularioEditar.setPrincipalProducto(principalProducto);
+            principalProducto.setEditarProducto(formularioEditar);
+            transferirDatos();
+            colorTema();
+        }
         principalProducto.getEditarProducto().setVisible(true);
+        principalProducto.setEditarProducto(null);
     }
 
     @Override

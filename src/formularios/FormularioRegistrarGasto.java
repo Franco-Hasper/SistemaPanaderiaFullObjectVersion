@@ -134,6 +134,11 @@ public class FormularioRegistrarGasto extends javax.swing.JDialog {
             }
         });
 
+        rSDateChooser.setColorBackground(new java.awt.Color(0, 0, 0));
+        rSDateChooser.setColorButtonHover(new java.awt.Color(0, 0, 0));
+        rSDateChooser.setColorDiaActual(new java.awt.Color(0, 0, 0));
+        rSDateChooser.setColorForeground(new java.awt.Color(0, 0, 0));
+
         txtTotlaGasatado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
         txtTotlaGasatado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

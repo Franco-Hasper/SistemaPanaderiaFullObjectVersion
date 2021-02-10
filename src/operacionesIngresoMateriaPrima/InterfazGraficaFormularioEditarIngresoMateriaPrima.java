@@ -1,8 +1,14 @@
 package operacionesIngresoMateriaPrima;
 
 import calsesPadre.InterfazGraficaFormularioEditar;
+import clasesUtilidadGeneral.TextPrompt;
+import conexion.ConexionHibernate;
+import entidades.IngresoMateriaPrima;
 import escritorios.PrincipalIngresoMatPrima;
 import formularios.FormularioEditarIngresoMateriaPrima;
+import java.awt.HeadlessException;
+import java.util.Date;
+import org.hibernate.Session;
 
 /**
  * @author Hasper Franco
@@ -30,17 +36,24 @@ public class InterfazGraficaFormularioEditarIngresoMateriaPrima extends Interfaz
 
     @Override
     public void nuevoFormularioEditar() {
-        FormularioEditarIngresoMateriaPrima formularioEditar = new FormularioEditarIngresoMateriaPrima(frame, true);
-        formularioEditar.setPrincipalIngresoMateriaPrima(principalIngresoMateriaPrima);
-        principalIngresoMateriaPrima.setEditarIngresoMateriaPrima(formularioEditar);
-        transferirDatos();
-        colorTema();
+        if (principalIngresoMateriaPrima.getEditarIngresoMateriaPrima() == null) {
+            FormularioEditarIngresoMateriaPrima formularioEditar = new FormularioEditarIngresoMateriaPrima(frame, true);
+            formularioEditar.setPrincipalIngresoMateriaPrima(principalIngresoMateriaPrima);
+            principalIngresoMateriaPrima.setEditarIngresoMateriaPrima(formularioEditar);
+            colorTema();
+            transferirDatos();
+            infoTextPrompt();
+        }
         principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().setVisible(true);
+        principalIngresoMateriaPrima.setEditarIngresoMateriaPrima(null);
     }
 
     @Override
     public void colorTema() {
         principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getPanelPrincipalTop().setBackground(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
+        principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getDateFecha().setColorBackground(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
+        principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getDateFecha().setColorDiaActual(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
+
     }
 
     @Override
@@ -51,6 +64,14 @@ public class InterfazGraficaFormularioEditarIngresoMateriaPrima extends Interfaz
         principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getTxttotalEnvases().setText(principalIngresoMateriaPrima.getTablaGrafica().getValueAt(fila, 1).toString());
         principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getTxtUdsPorEnvase().setText(principalIngresoMateriaPrima.getTablaGrafica().getValueAt(fila, 2).toString());
         principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getTxtPrecioTotal().setText(principalIngresoMateriaPrima.getTablaGrafica().getValueAt(fila, 4).toString());
+        fechaIngreso();
+    }
+
+    public void infoTextPrompt() {
+        new TextPrompt("TOTAL ENVASES", principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getTxttotalEnvases());
+        new TextPrompt("UDS POR ENVASES", principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getTxtUdsPorEnvase());
+        new TextPrompt("PRECIO TOTAL", principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getTxtPrecioTotal());
+        principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getTxttotalEnvases().grabFocus();
     }
 
     @Deprecated
@@ -61,6 +82,28 @@ public class InterfazGraficaFormularioEditarIngresoMateriaPrima extends Interfaz
     @Deprecated
     @Override
     public void rellenarBoxes() {
+    }
+
+    private void fechaIngreso() {
+        transferirFecha(obtenerDatos());
+    }
+
+    private Date obtenerDatos() {
+        Date fecha = new Date();
+        Integer id = principalIngresoMateriaPrima.getTablaIngresoMateriaPrima().obtenerIdFilaSeleccionada();
+        Session miSesion = ConexionHibernate.tomarConexion();
+        try {
+            miSesion.beginTransaction();
+            IngresoMateriaPrima i = (IngresoMateriaPrima) miSesion.get(IngresoMateriaPrima.class, id);
+            fecha = i.getFecha();
+            miSesion.getTransaction().commit();
+        } catch (HeadlessException | NumberFormatException e) {
+        }
+        return fecha;
+    }
+
+    private void transferirFecha(Date fecha) {
+        principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getDateFecha().setDatoFecha(fecha);
     }
 
 }

@@ -119,7 +119,7 @@ public class TablaCuenta extends Tabla {
             this.listaIds.add(0, c.getIdCuenta());
             Vector<Object> fila = new Vector<>();
             fila.add(c.getIdCuenta());
-            fila.add(c.getBalance());
+            fila.add(OperacionesUtiles.formatoDouble(c.getBalance()));
             tablaCuenta.addRow(fila);
 
         }
@@ -152,13 +152,13 @@ public class TablaCuenta extends Tabla {
             Double totalCompra = Double.valueOf(formularioEditarVenta.getLblPrecioTotal().getText());
             Double balance = Double.valueOf(formularioEditarVenta.getTablaGraficaDescontarCuenta().getValueAt(fila, 1).toString());
             Double nuevoBalance = balance - totalCompra;
-            formularioEditarVenta.getLblNuevoBalance().setText(nuevoBalance.toString());
+            formularioEditarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(nuevoBalance));
         } else {
             int fila = formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getSelectedRow();
             Double totalCompra = Double.valueOf(formularioRegistrarVenta.getLblPrecioTotal().getText());
             Double balance = Double.valueOf(formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getValueAt(fila, 1).toString());
             Double nuevoBalance = balance - totalCompra;
-            formularioRegistrarVenta.getLblNuevoBalance().setText(nuevoBalance.toString());
+            formularioRegistrarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(nuevoBalance));
         }
 
     }

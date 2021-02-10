@@ -1,10 +1,14 @@
 package operacionesGasto;
 
 import calsesPadre.InterfazGraficaFormularioEditar;
+import clasesUtilidadGeneral.TextPrompt;
+import conexion.ConexionHibernate;
+import entidades.Gasto;
 import escritorios.PrincipalGastos;
-import formularios.FormularioEditarCliente;
 import formularios.FormularioEditarGasto;
+import java.awt.HeadlessException;
 import java.util.Date;
+import org.hibernate.Session;
 
 /**
  * @author Hasper Franco
@@ -32,12 +36,16 @@ public class InterfazGraficaFormularioEditarGasto extends InterfazGraficaFormula
 
     @Override
     public void nuevoFormularioEditar() {
-        FormularioEditarGasto formularioEditar = new FormularioEditarGasto(frame, true);
-        formularioEditar.setPrincipalGastos(principalGastos);
-        principalGastos.setEditarGasto(formularioEditar);
-        transferirDatos();
-        colorTema();
+        if (principalGastos.getEditarGasto() == null) {
+            FormularioEditarGasto formularioEditar = new FormularioEditarGasto(frame, true);
+            formularioEditar.setPrincipalGastos(principalGastos);
+            principalGastos.setEditarGasto(formularioEditar);
+            colorTema();
+            transferirDatos();
+            infoTextPrompt();
+        }
         principalGastos.getEditarGasto().setVisible(true);
+        principalGastos.setEditarGasto(null);
     }
 
     @Override
@@ -47,22 +55,51 @@ public class InterfazGraficaFormularioEditarGasto extends InterfazGraficaFormula
 
     @Override
     public void transferirDatos() {
-      //  new TablaGastos().setPrincipalGastos(principalGastos);
+        //  new TablaGastos().setPrincipalGastos(principalGastos);
         int fila = principalGastos.getTablaGrafica().getSelectedRow();
         principalGastos.getEditarGasto().getTxtDescripcion().setText(principalGastos.getTablaGrafica().getValueAt(fila, 0).toString());
         principalGastos.getEditarGasto().getTxtTotalGastado().setText(principalGastos.getTablaGrafica().getValueAt(fila, 1).toString());
+        fechagasto();
     }
 
     @Deprecated
     @Override
     public void agregarBoxes() {
-       
+
     }
 
     @Deprecated
     @Override
     public void rellenarBoxes() {
-        
+
+    }
+
+    private void fechagasto() {
+        transferirFecha(obtenerDatos());
+    }
+
+    public void infoTextPrompt() {
+        new TextPrompt("DESCRIPCION", principalGastos.getEditarGasto().getTxtDescripcion());
+        new TextPrompt("TOTAL GASTADO", principalGastos.getEditarGasto().getTxtTotalGastado());
+        principalGastos.getEditarGasto().getTxtDescripcion().grabFocus();
+    }
+
+    private Date obtenerDatos() {
+        Date fecha = new Date();
+        Integer id = principalGastos.getTablaGasto().obtenerIdFilaSeleccionada();
+        Session miSesion = ConexionHibernate.tomarConexion();
+        try {
+            miSesion.beginTransaction();
+            Gasto g = (Gasto) miSesion.get(Gasto.class, id);
+            fecha = g.getFecha();
+            miSesion.getTransaction().commit();
+        } catch (HeadlessException | NumberFormatException e) {
+        }
+        return fecha;
+    }
+
+    private void transferirFecha(Date fecha) {
+        principalGastos.getEditarGasto().getrSDateChooser().setDatoFecha(fecha);
     }
 
 }

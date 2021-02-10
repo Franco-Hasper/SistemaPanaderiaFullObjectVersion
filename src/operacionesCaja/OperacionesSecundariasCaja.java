@@ -26,7 +26,7 @@ public class OperacionesSecundariasCaja {
      * @param f
      */
     public void calcularTotalVentas(FormularioRegistrarCorte formularioRegistrarCorte) {
-        Double suma = 0.0;
+        Double suma = 0.00;
         try {
             for (int i = 0; i < formularioRegistrarCorte.getTablaEntradas().getRowCount(); i++) {
                 suma = suma + (Double.valueOf(formularioRegistrarCorte.getTablaEntradas().getValueAt(i, 2).toString()));

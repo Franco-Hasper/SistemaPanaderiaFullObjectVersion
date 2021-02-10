@@ -9,9 +9,10 @@ import escritorios.PrincipalProducto;
 import formularios.FormularioRegistrarPrecioProducto;
 import formularios.FormularioRegistrarProducto;
 import java.util.List;
-import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import clasesUtilidadGeneral.OperacionesUtiles;
+import ds.desktop.notify.DesktopNotify;
+import java.awt.HeadlessException;
 import org.hibernate.Session;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
@@ -40,7 +41,7 @@ public class OperacionesSecundariasProducto {
             Iva i = (Iva) miSesion.createQuery("from Iva where codigoEstado= " + e.getIdEstado()).uniqueResult();
 
             if (f.getTxtPrecio().getText().length() == 0) {
-                showMessageDialog(null, "Debe insertar un valor en el campo 'PRECIO BRUTO'");
+                DesktopNotify.showDesktopMessage("   informacion   ", "  Debe insertar un valor en el campo Precio Bruto", DesktopNotify.INFORMATION, 7000);
                 f.getRadioIva().setSelected(false);
             } else {
                 precioBruto = Double.valueOf(f.getTxtPrecio().getText());
@@ -52,7 +53,7 @@ public class OperacionesSecundariasProducto {
 
             miSesion.getTransaction().commit();
 
-        } catch (Exception e) {
+        } catch (HeadlessException | NumberFormatException e) {
 
         }
 
@@ -70,7 +71,7 @@ public class OperacionesSecundariasProducto {
             Estado e = (Estado) miSesion.get(Estado.class, 1);
             Iva i = (Iva) miSesion.createQuery("from Iva where codigoEstado= " + e.getIdEstado()).uniqueResult();
             if (f.getTxtPrecio().getText().length() == 0) {
-                showMessageDialog(null, "Debe insertar un valor en el campo preciobBruto");
+                 DesktopNotify.showDesktopMessage("   informacion   ", "  Debe insertar un valor en el campo Precio Bruto", DesktopNotify.INFORMATION, 7000);
                 f.getRadioIva().setSelected(false);
             } else {
                 precioBruto = Double.valueOf(f.getTxtPrecio().getText());

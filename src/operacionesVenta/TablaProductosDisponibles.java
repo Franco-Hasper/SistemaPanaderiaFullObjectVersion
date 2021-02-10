@@ -92,7 +92,7 @@ public class TablaProductosDisponibles extends Tabla {
                 this.listaResutladosActuales.add(0, pr.getIdPrecio());
                 fila.add(pr.getCodigoProducto().getNombre());
                 fila.add(pr.getCodigoProducto().getDescripcion());
-                fila.add(pr.getPrecioTotal());
+                fila.add(OperacionesUtiles.formatoDouble(pr.getPrecioTotal()));
                 tablaProducto.addRow(fila);
             }
         }

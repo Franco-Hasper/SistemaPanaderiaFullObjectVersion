@@ -30,14 +30,18 @@ public class InterfazGraficaFormularioEditarMateriaPrima extends InterfazGrafica
 
     @Override
     public void nuevoFormularioEditar() {
-        FormularioEditarMateriaPrima formularioEditar = new FormularioEditarMateriaPrima(frame, true);
-        formularioEditar.setPrincipalMateriaPrima(principalMateriaPrima);
-        principalMateriaPrima.setEditarMateriaPrima(formularioEditar);
-        agregarBoxes();
-        rellenarBoxes();
-        transferirDatos();
-        colorTema();
+        if (principalMateriaPrima.getEditarMateriaPrima() == null) {
+            FormularioEditarMateriaPrima formularioEditar = new FormularioEditarMateriaPrima(frame, true);
+            formularioEditar.setPrincipalMateriaPrima(principalMateriaPrima);
+            principalMateriaPrima.setEditarMateriaPrima(formularioEditar);
+            agregarBoxes();
+            rellenarBoxes();
+            transferirDatos();
+            colorTema();
+        }
+
         principalMateriaPrima.getEditarMateriaPrima().setVisible(true);
+        principalMateriaPrima.setRegistrarMateriaPrima(null);
     }
 
     @Override
@@ -52,13 +56,12 @@ public class InterfazGraficaFormularioEditarMateriaPrima extends InterfazGrafica
         principalMateriaPrima.getEditarMateriaPrima().getTxtNombreMAteriaPrima().setText(principalMateriaPrima.getTablaGrafica().getValueAt(fila, 0).toString());
     }
 
-    
-     @Override
+    @Override
     public void agregarBoxes() {
         this.setBoxMarca(principalMateriaPrima.getEditarMateriaPrima().getBoxMarca());
         this.setBoxProveedor(principalMateriaPrima.getEditarMateriaPrima().getBoxProveedor());
         this.setBoxUnidadMedida(principalMateriaPrima.getEditarMateriaPrima().getBoxUdeMedida());
-        
+
     }
 
     @Override
@@ -67,7 +70,5 @@ public class InterfazGraficaFormularioEditarMateriaPrima extends InterfazGrafica
         this.consultaRellenarProveedor();
         this.consultaRellenarUnidadMedida();
     }
-    
-    
-    
+
 }

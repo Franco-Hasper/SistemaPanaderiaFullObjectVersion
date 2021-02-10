@@ -1,12 +1,10 @@
 package operacionesVenta;
 
 import calsesPadre.InterfazGraficaFormularioEditar;
-import clasesUtilidadGeneral.OperacionesUtiles;
+import clasesUtilidadGeneral.TextPrompt;
 import escritorios.PrincipalVenta;
 import formularios.FormularioEditarVenta;
-import java.util.Vector;
 import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableModel;
 import principal.PrincipalAdministrador;
 
 /**
@@ -53,62 +51,74 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
 
     @Override
     public void nuevoFormularioEditar() {
-        //seccion formulario
-        FormularioEditarVenta formularioEditar = new FormularioEditarVenta(frame, true);
-        formularioEditar.setPrincipalVenta(principalVenta);
-        formularioEditar.setPrincipalAdministrador(principalAdministrador);
-        principalVenta.setEditarVenta(formularioEditar);
-        transferirDatos();
-        colorTema();
+        if (principalVenta.getEditarVenta() == null) {
+            //seccion formulario
+            FormularioEditarVenta formularioEditar = new FormularioEditarVenta(frame, true);
+            formularioEditar.setPrincipalVenta(principalVenta);
+            formularioEditar.setPrincipalAdministrador(principalAdministrador);
+            principalVenta.setEditarVenta(formularioEditar);
+            colorTema();
+            transferirDatos();
+            infoTextPrompt();
 
-        //Seccion Tabla Productos Disponibles
-        TablaProductosDisponibles tablaProductosDisponibles = new TablaProductosDisponibles();
-        tablaProductosDisponibles.setTipoFormulario(2);
-        tablaProductosDisponibles.setPrincipalVenta(principalVenta);
-        tablaProductosDisponibles.ejecutarRellenarTabla();
-        principalVenta.getEditarVenta().setTablaProductosDisponibles(tablaProductosDisponibles);
+            //Seccion Tabla Productos Disponibles
+            TablaProductosDisponibles tablaProductosDisponibles = new TablaProductosDisponibles();
+            tablaProductosDisponibles.setTipoFormulario(2);
+            tablaProductosDisponibles.setPrincipalVenta(principalVenta);
+            tablaProductosDisponibles.ejecutarRellenarTabla();
+            principalVenta.getEditarVenta().setTablaProductosDisponibles(tablaProductosDisponibles);
 
-        //Seccion Tabla Productos Listados
-        TablaProductosListados tablaProductosListados = new TablaProductosListados();
-        tablaProductosListados.setTipoFormulario(2);
-        principalVenta.getEditarVenta().setTablaProductosListados(tablaProductosListados);
-        tablaProductosListados.setFormularioEditarVenta(formularioEditar);
-        tablaProductosListados.setIdVenta(idVenta);
-        tablaProductosListados.ejecutarRellenarTabla();
-        principalVenta.getEditarVenta().setListaProductosEliminar(tablaProductosListados.getListaProductosEliminar());
+            //Seccion Tabla Productos Listados
+            TablaProductosListados tablaProductosListados = new TablaProductosListados();
+            tablaProductosListados.setTipoFormulario(2);
+            tablaProductosListados.setFormularioEditarVenta(formularioEditar);
+            tablaProductosListados.setIdVenta(idVenta);
+            tablaProductosListados.ejecutarRellenarTabla();
+            principalVenta.getEditarVenta().setListaProductosEliminar(tablaProductosListados.getListaProductosEliminar());
+            principalVenta.getEditarVenta().setTablaProductosListados(tablaProductosListados);
 
-        configuracionTxtCantidadTxtTotal();
+            configuracionTxtCantidadTxtTotal();
 
-        //Seccion Operaciones Secundarias
-        //creo el objeto operaciones secundarias
-        OperacionesSecundariasVenta operacionesSecundariasVenta = new OperacionesSecundariasVenta();
-        //le pego el formulario con el que va a trabajar
-        operacionesSecundariasVenta.setFormularioEditarVenta(formularioEditar);
-        //le asigno el valor del tipo de formulario para los switchs(si es registrar 1 va a trabajar de una forma si es editar 2 va a trabajar de otra)
-        operacionesSecundariasVenta.setTipoFormulario(2);
-        //guardo el la instancia en el formulario grafico
-        principalVenta.getEditarVenta().setOperacionesSecundariasVenta(operacionesSecundariasVenta);
-        rellenarBoxes();
+            //Seccion Operaciones Secundarias
+            //creo el objeto operaciones secundarias
+            OperacionesSecundariasVenta operacionesSecundariasVenta = new OperacionesSecundariasVenta();
+            //le pego el formulario con el que va a trabajar
+            operacionesSecundariasVenta.setFormularioEditarVenta(formularioEditar);
+            //le asigno el valor del tipo de formulario para los switchs(si es registrar 1 va a trabajar de una forma si es editar 2 va a trabajar de otra)
+            operacionesSecundariasVenta.setTipoFormulario(2);
+            //guardo el la instancia en el formulario grafico
+            principalVenta.getEditarVenta().setOperacionesSecundariasVenta(operacionesSecundariasVenta);
+            rellenarBoxes();
 
-        //seccion tablaCliente
-        TablaClienteWhenEdit tablaCliente = new TablaClienteWhenEdit();
-        tablaCliente.setIdVenta(idVenta);
-        tablaCliente.setFormularioEditarVenta(formularioEditar);
-        tablaCliente.ejecutarRellenenarTabla();
-        Integer idCliente=tablaCliente.getIdCliente();
-        principalVenta.getEditarVenta().setIdCliente(idCliente);
+            //seccion tablaCliente
+            TablaClienteWhenEdit tablaCliente = new TablaClienteWhenEdit();
+            tablaCliente.setIdVenta(idVenta);
+            tablaCliente.setFormularioEditarVenta(formularioEditar);
+            tablaCliente.ejecutarRellenenarTabla();
+            Integer idCliente = tablaCliente.getIdCliente();
+            principalVenta.getEditarVenta().setIdCliente(idCliente);
 
-        TablaClienteLista tablaClienteLista = new TablaClienteLista();
-        tablaClienteLista.setFormularioEditarVenta(principalVenta.getEditarVenta());
-        tablaClienteLista.ejecutarRellenarTabla();
-        formularioEditar.setTablaClienteLista(tablaClienteLista);
-        
-        
-        TablaCuenta tablaCuenta=new TablaCuenta();
-        tablaCuenta.setFormularioEditarVenta(formularioEditar);
-        formularioEditar.setTablaCuenta(tablaCuenta);
+            TablaClienteLista tablaClienteLista = new TablaClienteLista();
+            tablaClienteLista.setFormularioEditarVenta(principalVenta.getEditarVenta());
+            tablaClienteLista.ejecutarRellenarTabla();
+            formularioEditar.setTablaClienteLista(tablaClienteLista);
+
+            TablaCuenta tablaCuenta = new TablaCuenta();
+            tablaCuenta.setFormularioEditarVenta(formularioEditar);
+            formularioEditar.setTablaCuenta(tablaCuenta);
+        }
 
         principalVenta.getEditarVenta().setVisible(true);
+        principalVenta.setEditarVenta(null);
+
+    }
+
+    public void infoTextPrompt() {
+        new TextPrompt("CANTIDAD", principalVenta.getEditarVenta().getTxtCantidad());
+        new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getEditarVenta().getTxtBuscar());
+        new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getEditarVenta().getTxtBuscarEnLista());
+        new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getEditarVenta().getTxtBuscarClientes());
+        principalVenta.getEditarVenta().getTxtBuscar().grabFocus();
     }
 
     @Override
@@ -116,24 +126,30 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
         principalVenta.getEditarVenta().getPanelPrincipalTop().setBackground(principalVenta.getPanelPrincipalTop().getBackground());
         principalVenta.getEditarVenta().getrSDateChooser().setColorBackground(principalVenta.getPanelPrincipalTop().getBackground());
 
-        principalVenta.getEditarVenta().getTablaGraficaCliente().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-        principalVenta.getEditarVenta().getTablaGraficaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getEditarVenta().getTablaGraficaListaCliente().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getEditarVenta().getTablaGraficaListaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
 
         principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
         principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
 
-        principalVenta.getEditarVenta().getTablaGraficaProductosListados().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-        principalVenta.getEditarVenta().getTablaGraficaProductosListados().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getEditarVenta().getTablaListarProductos().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getEditarVenta().getTablaListarProductos().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+
+        principalVenta.getEditarVenta().getTablaGraficaDescontarCuenta().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getEditarVenta().getTablaGraficaDescontarCuenta().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+
+        principalVenta.getEditarVenta().getTablaGraficaCliente().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getEditarVenta().getTablaGraficaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
     }
 
     @Override
     public void transferirDatos() {
-        //CAmBIAR TODA ESTA SECCION
+
     }
 
     @Override
     public void agregarBoxes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override

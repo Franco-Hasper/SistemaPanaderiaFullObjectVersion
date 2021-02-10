@@ -1,4 +1,3 @@
-
 package operacionesCliente;
 
 import calsesPadre.ABM;
@@ -22,11 +21,11 @@ import org.hibernate.Session;
  */
 public class ABMCliente extends ABM {
 
-   private  FormularioRegistrarCliente formularioRegistrarCliente;
-   private  FormularioEditarCliente formularioEditarCliente;
+    private FormularioRegistrarCliente formularioRegistrarCliente;
+    private FormularioEditarCliente formularioEditarCliente;
 
     //se utiliza solo para eliminar/Editar
-   private  PrincipalCliente principalCliente;
+    private PrincipalCliente principalCliente;
 
     public PrincipalCliente getPrincipalCliente() {
         return principalCliente;
@@ -73,14 +72,13 @@ public class ABMCliente extends ABM {
         c.setApellido(formularioRegistrarCliente.getTxtApellido().getText());
 
         if (formularioRegistrarCliente.getRadioButon().isSelected()) {
-
-            RazonSocial rs = (RazonSocial) miSesion.get(RazonSocial.class, 1);
-
-            c.setCodigoRazonSocial(rs);
-        } else {
             RazonSocial rs = new RazonSocial();
             rs.setNombre(formularioRegistrarCliente.getTxtRazonSocial().getText());
             miSesion.save(rs);
+            c.setCodigoRazonSocial(rs);
+
+        } else {
+            RazonSocial rs = (RazonSocial) miSesion.get(RazonSocial.class, 1);
             c.setCodigoRazonSocial(rs);
         }
 
@@ -132,8 +130,8 @@ public class ABMCliente extends ABM {
 
     @Override
     public void transaccionEditar(Session miSesion) {
-        
-        Integer id =principalCliente.getTablaCliente().obtenerIdFilaSeleccionada();
+
+        Integer id = principalCliente.getTablaCliente().obtenerIdFilaSeleccionada();
         Cliente c = (Cliente) miSesion.get(Cliente.class, id);
 
         c.setNombre(formularioEditarCliente.getTxtNombre().getText());
@@ -141,35 +139,27 @@ public class ABMCliente extends ABM {
         c.setApellido(formularioEditarCliente.getTxtApellido().getText());
 
         if (formularioEditarCliente.getRadioButon().isSelected()) {
+
+            RazonSocial rs = new RazonSocial();
+            rs.setNombre(formularioEditarCliente.getTxtRazonSocial().getText());
+            miSesion.save(rs);
+            c.setCodigoRazonSocial(rs);
+        } else {
+
             RazonSocial rs = (RazonSocial) miSesion.get(RazonSocial.class, 1);
             c.setCodigoRazonSocial(rs);
-
-        } else {
-            if (c.getCodigoRazonSocial().getIdRazonSocial().equals(1)) {
-                RazonSocial rs = new RazonSocial();
-                rs.setNombre(formularioEditarCliente.getTxtRazonSocial().getText());
-                miSesion.save(rs);
-                c.setCodigoRazonSocial(rs);
-            } else {
-                RazonSocial rs = (RazonSocial) miSesion.get(RazonSocial.class, (c.getCodigoRazonSocial().getIdRazonSocial()));
-                rs.setNombre(formularioEditarCliente.getTxtRazonSocial().getText());
-                miSesion.saveOrUpdate(rs);
-                c.setCodigoRazonSocial(rs);
-            }
 
         }
 
         miSesion.saveOrUpdate(c);
-        
-        
-          //Telefono
 
+        //Telefono
         List<TelefonoCliente> telefonos = c.getTelefonos();
         List<TipoTelefono> lista_tipotelefono
                 = (List<TipoTelefono>) miSesion.createQuery("from TipoTelefono").list();
         for (TelefonoCliente tc : telefonos) {
             tc.setNuemero(formularioEditarCliente.getTxtTelefono().getText());
-            
+
             for (TipoTelefono tt : lista_tipotelefono) {
                 if (tt.getNombre().equals(formularioEditarCliente.getBoxTipoTelefono().getSelectedItem())) {
                     tc.setCodigoTipoTelefono(tt);
@@ -177,20 +167,18 @@ public class ABMCliente extends ABM {
             }
             miSesion.saveOrUpdate(tc);
         }
-        
-        //Direccion
 
+        //Direccion
         List<Direccion_Cliente> direcciones = c.getDireccionesclientes();
         List<Localidad> lista_Lc
                 = (List<Localidad>) miSesion.createQuery("from Localidad").list();
         List<Provincia> lista_Pr
                 = (List<Provincia>) miSesion.createQuery("from Provincia").list();
-     
-        
+
         for (Direccion_Cliente d : direcciones) {
             d.setNombre(formularioEditarCliente.getTxtDireccion().getText());
             d.setNumero(Integer.valueOf(formularioEditarCliente.getTxtnuemroDireccion().getText()));
-            
+
             for (Localidad lc : lista_Lc) {
                 if (lc.getNombre().equals(formularioEditarCliente.getBoxLocalidad().getSelectedItem())) {
                     d.setCodigoLocalidad(lc);
@@ -203,8 +191,7 @@ public class ABMCliente extends ABM {
             }
             miSesion.saveOrUpdate(d);
         }
-                
-        
+
     }
 
     @Override

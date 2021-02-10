@@ -185,6 +185,9 @@ public class FormularioEditarProveedor extends javax.swing.JDialog {
             }
         });
         txtnuemeroDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtnuemeroDireccionKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtnuemeroDireccionKeyTyped(evt);
             }
@@ -196,6 +199,9 @@ public class FormularioEditarProveedor extends javax.swing.JDialog {
             }
         });
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTelefonoKeyTyped(evt);
             }
@@ -361,6 +367,18 @@ public class FormularioEditarProveedor extends javax.swing.JDialog {
     private void boxTipoTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boxTipoTelefonoActionPerformed
+
+    private void txtnuemeroDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnuemeroDireccionKeyReleased
+          if (new OperacionesUtiles().advertenciaNum(evt)) {
+            OperacionesUtiles.borrarCampo(txtnuemeroDireccion);
+        }
+    }//GEN-LAST:event_txtnuemeroDireccionKeyReleased
+
+    private void txtTelefonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyReleased
+         if (new OperacionesUtiles().advertenciaNum(evt)) {
+            OperacionesUtiles.borrarCampo(txtTelefono);
+        }
+    }//GEN-LAST:event_txtTelefonoKeyReleased
 
     /**
      * @param args the command line arguments

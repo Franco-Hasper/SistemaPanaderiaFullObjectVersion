@@ -35,13 +35,15 @@ public class FormularioEditarGasto extends javax.swing.JDialog {
         this.principalGastos = principalGastos;
     }
 
-    public RSDateChooser getrSDateChooser1() {
+    public RSDateChooser getrSDateChooser() {
         return rSDateChooser;
     }
 
-    public void setrSDateChooser1(RSDateChooser rSDateChooser1) {
-        this.rSDateChooser = rSDateChooser1;
+    public void setrSDateChooser(RSDateChooser rSDateChooser) {
+        this.rSDateChooser = rSDateChooser;
     }
+
+   
 
     public JEditorPane getTxtDescripcion() {
         return txtDescripcion;
@@ -176,6 +178,11 @@ public class FormularioEditarGasto extends javax.swing.JDialog {
         });
 
         filler10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        rSDateChooser.setColorBackground(new java.awt.Color(0, 0, 0));
+        rSDateChooser.setColorButtonHover(new java.awt.Color(0, 0, 0));
+        rSDateChooser.setColorDiaActual(new java.awt.Color(0, 0, 0));
+        rSDateChooser.setColorForeground(new java.awt.Color(0, 0, 0));
 
         filler9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 

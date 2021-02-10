@@ -75,7 +75,9 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
         List listCamposTexto = new ArrayList();
         listCamposTexto.add(this.getTxtNombre());
         listCamposTexto.add(this.getTxtApellido());
-        listCamposTexto.add(this.getTxtRazonSocial());
+        if(this.radioButon.isSelected()){
+            listCamposTexto.add(this.getTxtRazonSocial());
+        }
         return listCamposTexto;
     }
 
@@ -145,7 +147,7 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
 
         panelprincipalBody.setBackground(new java.awt.Color(255, 255, 255));
 
-        radioButon.setText("razon soscial (no posee)");
+        radioButon.setText("razón social");
         radioButon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioButonActionPerformed(evt);
@@ -281,11 +283,13 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void radioButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButonActionPerformed
-        // TODO add your handling code here:
+         // TODO add your handling code here:
         if (getRadioButon().isSelected()) {
-            getTxtRazonSocial().setEnabled(false);
-        } else {
             getTxtRazonSocial().setEnabled(true);
+            getTxtRazonSocial().setText("");
+        } else {
+            getTxtRazonSocial().setEnabled(false);
+            getTxtRazonSocial().setText("");
         }
 
     }//GEN-LAST:event_radioButonActionPerformed
