@@ -303,7 +303,7 @@ public class OperacionesUtiles {
      * @return
      */
     public static Object formatoFecha(Date fechaSinFormato) {
-        Date date = new Date();
+       
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy (HH:mm:ss)");
         return dateFormat.format(fechaSinFormato);
     }
@@ -315,7 +315,7 @@ public class OperacionesUtiles {
      * @return
      */
     public static Object formatoFechaSinHora(Date fechaSinFormato) {
-        Date date = new Date();
+      
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return dateFormat.format(fechaSinFormato);
 
