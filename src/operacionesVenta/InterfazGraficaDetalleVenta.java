@@ -27,6 +27,7 @@ public class InterfazGraficaDetalleVenta {
             formularioDetalleVenta.setPrincipalVenta(principalVenta);
             principalVenta.setDetalleVenta(formularioDetalleVenta);
             colorTema();
+            //TABIENRELLENA LOS LABELS LOS LABELS
             TablaDetalleVenta tablaDetalleVenta = new TablaDetalleVenta();
             tablaDetalleVenta.setPrincipalVenta(principalVenta);
             tablaDetalleVenta.ejecutarRellenarTabla();
@@ -39,32 +40,6 @@ public class InterfazGraficaDetalleVenta {
         principalVenta.getDetalleVenta().getPanelPrincipalTop().setBackground(principalVenta.getPanelPrincipalTop().getBackground());
     }
 
-    public void seleccionElminar(FormularioEstadoVenta f) {
-        f.getLblC().setVisible(false);
-        f.getLblE().setVisible(true);
-        f.getLblP().setVisible(false);
-        f.getLblR().setVisible(false);
-    }
 
-    public void seleccionCancelar(FormularioEstadoVenta f) {
-        f.getLblC().setVisible(true);
-        f.getLblE().setVisible(false);
-        f.getLblP().setVisible(false);
-        f.getLblR().setVisible(false);
-    }
-
-    public void seleccionPendiente(FormularioEstadoVenta f) {
-        f.getLblC().setVisible(false);
-        f.getLblE().setVisible(false);
-        f.getLblP().setVisible(true);
-        f.getLblR().setVisible(false);
-    }
-
-    public void seleccionRealizado(FormularioEstadoVenta f) {
-        f.getLblC().setVisible(false);
-        f.getLblE().setVisible(false);
-        f.getLblP().setVisible(false);
-        f.getLblR().setVisible(true);
-    }
 
 }

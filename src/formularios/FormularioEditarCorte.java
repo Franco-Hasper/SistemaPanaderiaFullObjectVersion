@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import operacionesCaja.ABMCaja;
+import operacionesCaja.OperacionesEditarCorte;
 
 import rojeru_san.componentes.RSDateChooser;
 
@@ -310,15 +311,26 @@ public class FormularioEditarCorte extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTotalIngresosActionPerformed
 
     private void txtTotalIngresosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalIngresosKeyReleased
+        if (new OperacionesUtiles().advertenciaNum(evt)) {
+              this.txtTotalIngresos.setText("0.00");
+              OperacionesEditarCorte.calcularBalance(this);
+        }else{
+            OperacionesEditarCorte.calcularBalance(this);
+        }
 
     }//GEN-LAST:event_txtTotalIngresosKeyReleased
 
     private void txtTotalEgresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalEgresosActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_txtTotalEgresosActionPerformed
 
     private void txtTotalEgresosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalEgresosKeyReleased
-
+        if (new OperacionesUtiles().advertenciaNum(evt)!=false) {
+            this.txtTotalEgresos.setText("0.00");
+            OperacionesEditarCorte.calcularBalance(this);
+        }else{
+            OperacionesEditarCorte.calcularBalance(this);
+        }
     }//GEN-LAST:event_txtTotalEgresosKeyReleased
 
     private void txtTotalIngresosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalIngresosKeyTyped

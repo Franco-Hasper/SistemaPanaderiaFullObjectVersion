@@ -24,8 +24,7 @@ public class TablaDetalleVenta extends Tabla {
     public void setIdVenta(Integer idVenta) {
         this.idVenta = idVenta;
     }
-    
-    
+
     //listaresultadosActuales es para evitar realizar consultas cada vez que se tipea 1 caracter, aca no se tipea nada por eso no se usa,
     //setEstado consulta 0 es para cuando se realiza una edicion, reg, o elimina entonces aca tampoco se usa.
     private PrincipalVenta principalVenta;
@@ -55,8 +54,6 @@ public class TablaDetalleVenta extends Tabla {
         obtenerListaConsulta();
         rellenarTabla("");
     }
-    
-
 
     @Override
     public void rellenarTabla(String valorBusqueda) {
@@ -81,6 +78,9 @@ public class TablaDetalleVenta extends Tabla {
             f.getLblFecha().setText(OperacionesUtiles.formatoFecha(pro.getCodigoVenta().getFechaHoraVenta()).toString());
             f.getLblTipoVenta().setText(pro.getCodigoVenta().getCodigoTipoVenta().getNombre());
             f.getLblImporteTotal().setText(pro.getCodigoVenta().getPrecioTotal().toString());
+            f.getLblPagado().setText(pro.getCodigoVenta().getPagado().toString());
+            f.getLblDescuento().setText(pro.getCodigoVenta().getDescuento().toString());
+            f.getLblVuelto().setText(pro.getCodigoVenta().getVuelto().toString());
         } catch (NullPointerException e) {
             System.out.println(e);
         }

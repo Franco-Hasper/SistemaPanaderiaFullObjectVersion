@@ -33,9 +33,9 @@ public class InterfazGraficaFormularioRegistrarCorte extends InterfazGraficaForm
             valoresIniciales();
             new TablaGastos().ejecutarRellenarTabla(formularioRegistrar);
             new TablaVentas().ejecutarRellenarTabla(formularioRegistrar);
-            new OperacionesSecundariasCaja().calcularTotalVentas(formularioRegistrar);
-            new OperacionesSecundariasCaja().calcularTotalGastos(formularioRegistrar);
-            new OperacionesSecundariasCaja().calcularBalance(formularioRegistrar);
+            new OperacionesRegistrarCorte().calcularTotalVentas(formularioRegistrar);
+            new OperacionesRegistrarCorte().calcularTotalGastos(formularioRegistrar);
+            new OperacionesRegistrarCorte().calcularBalance(formularioRegistrar);
         }
         principalCaja.getRegistrarCorte().setVisible(true);
 principalCaja.setRegistrarCorte(null);

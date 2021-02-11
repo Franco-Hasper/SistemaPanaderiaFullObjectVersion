@@ -10,6 +10,7 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import operacionesVenta.ABMVenta;
 import operacionesVenta.InterfazGraficaDetalleVenta;
+import operacionesVenta.InterfazGraficaFormularioEstadoVenta;
 //import static operacionesVenta.InterfacesGraficasVenta.i;
 import principal.MaterialButton;
 
@@ -322,22 +323,22 @@ public class FormularioEstadoVenta extends javax.swing.JDialog {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         setEstado(2);
-        new InterfazGraficaDetalleVenta().seleccionElminar(this);
+        new InterfazGraficaFormularioEstadoVenta().seleccionElminar(this);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCanceladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCanceladoActionPerformed
         setEstado(5);
-        new InterfazGraficaDetalleVenta().seleccionCancelar(this);
+        new InterfazGraficaFormularioEstadoVenta().seleccionCancelar(this);
     }//GEN-LAST:event_btnCanceladoActionPerformed
 
     private void btnPendienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPendienteActionPerformed
         setEstado(4);
-        new InterfazGraficaDetalleVenta().seleccionPendiente(this);
+        new InterfazGraficaFormularioEstadoVenta().seleccionPendiente(this);
     }//GEN-LAST:event_btnPendienteActionPerformed
 
     private void btnRealizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizadoActionPerformed
         setEstado(3);
-        new InterfazGraficaDetalleVenta().seleccionRealizado(this);
+        new InterfazGraficaFormularioEstadoVenta().seleccionRealizado(this);
     }//GEN-LAST:event_btnRealizadoActionPerformed
     int x, y;
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed

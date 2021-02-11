@@ -94,6 +94,8 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
         new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getRegistrarVenta().getTxtBuscar());
         new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getRegistrarVenta().getTxtBuscarEnLista());
         new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getRegistrarVenta().getTxtBuscarClientes());
+        new TextPrompt("MONTO PAGADO", principalVenta.getRegistrarVenta().getTxtPago());
+        new TextPrompt("DESCUENTO", principalVenta.getRegistrarVenta().getTxtDescuento());
         principalVenta.getRegistrarVenta().getTxtBuscar().grabFocus();
     }
     
@@ -133,7 +135,9 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
     private void configuracionTxtCantidadTxtTotal() {
         principalVenta.getRegistrarVenta().getTxtCantidad().setText("1");
         principalVenta.getRegistrarVenta().getTxtCantidad().setHorizontalAlignment(SwingConstants.CENTER);
-        principalVenta.getRegistrarVenta().getLblPrecioTotal().setText("0.0");
+        principalVenta.getRegistrarVenta().getLblPrecioTotal().setText("0.00");
+        principalVenta.getRegistrarVenta().getLblVuelto().setText("0.00");
+        principalVenta.getRegistrarVenta().getLblNuevoBalance().setText("0.00");
     }
     
     private void fechaActual() {

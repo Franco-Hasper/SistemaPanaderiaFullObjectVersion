@@ -297,6 +297,7 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
         });
 
         radButtonPendientes.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        radButtonPendientes.setForeground(new java.awt.Color(255, 255, 255));
         radButtonPendientes.setText("PENDIENTES");
         radButtonPendientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

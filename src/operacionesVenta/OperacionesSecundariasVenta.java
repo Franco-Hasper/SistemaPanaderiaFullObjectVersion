@@ -60,6 +60,28 @@ public class OperacionesSecundariasVenta {
 
     }
 
+    public void calcularVuelto() {
+        Double sumaTotal = 0.00;
+        Double pago = 0.00;
+        Double descuento = 0.00;
+        try {
+
+            sumaTotal = Double.valueOf(formularioRegistrarVenta.getLblPrecioTotal().getText());
+            pago = Double.valueOf(formularioRegistrarVenta.getTxtPago().getText());
+            descuento = Double.valueOf(formularioRegistrarVenta.getTxtDescuento().getText());
+            Double sumaConDescuento = sumaTotal - (descuento);
+            Double vuelto = pago - (sumaConDescuento);
+            formularioRegistrarVenta.getLblVuelto().setText(new OperacionesUtiles().formatoDouble(vuelto));
+
+        } catch (java.lang.NumberFormatException e) {
+           
+            Double sumaConDescuento = sumaTotal - (descuento);
+            Double vuelto = pago - (sumaConDescuento);
+            formularioRegistrarVenta.getLblVuelto().setText(new OperacionesUtiles().formatoDouble(vuelto));
+        }
+
+    }
+
     public void tipoVentaSeleccionada(String valor) {
         switch (tipoFormulario) {
             case 1:
@@ -343,7 +365,7 @@ public class OperacionesSecundariasVenta {
             formularioEditarVenta.getBtnDescontar().setEnabled(false);
         } else {
             formularioRegistrarVenta.getRadBtnDescontar().setEnabled(false);
-            formularioRegistrarVenta.getBtnDescontar().setEnabled(false);
+
         }
 
     }
@@ -354,7 +376,7 @@ public class OperacionesSecundariasVenta {
             formularioEditarVenta.getBtnDescontar().setEnabled(true);
         } else {
             formularioRegistrarVenta.getRadBtnDescontar().setEnabled(true);
-            formularioRegistrarVenta.getBtnDescontar().setEnabled(true);
+
         }
 
     }

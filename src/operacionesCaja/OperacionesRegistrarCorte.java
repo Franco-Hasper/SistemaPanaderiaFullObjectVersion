@@ -7,7 +7,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
 /**
  * @author Hasper Franco
  */
-public class OperacionesSecundariasCaja {
+public class OperacionesRegistrarCorte {
 
     public void calcularbalance(FormularioRegistrarCorte formularioRegistrarCorte) {
         try {

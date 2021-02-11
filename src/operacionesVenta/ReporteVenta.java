@@ -23,6 +23,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import clasesUtilidadGeneral.OperacionesUtiles;
+import formularios.FormularioDetalleDeVenta;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import operacionesIngresoMateriaPrima.ReporteIngresos;
 
 /**
  *
@@ -30,33 +36,27 @@ import clasesUtilidadGeneral.OperacionesUtiles;
  */
 public class ReporteVenta extends Consultas {
 
-    /*EJEMPLO VERSION 5*/
-//    private static final Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 26, Font.BOLDITALIC);
-//    private static final Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.NORMAL);
-//    private static final Font subcategoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
-//    private static final Font blueFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
-//    private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
-    private static final Font titulofuente = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.BOLD);
-    private static final Font datosfuente = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
+    private static final Font titulofuente = new Font(Font.FontFamily.UNDEFINED, 12, Font.BOLD);
+    private static final Font datosfuente = new Font(Font.FontFamily.UNDEFINED, 10, Font.BOLD);
 
     /*----------*/
-    public void ejecutarGenerarReporte(Integer id) throws FileNotFoundException, DocumentException {
+    public void ejecutarGenerarReporte(Integer id, FormularioDetalleDeVenta formularioDetalleDeVenta) throws FileNotFoundException, DocumentException {
         setConsultaObject("from Producto_Venta where codigo_venta=" + id);
         obtenerObjetoConsulta();
         setConsultaList("from Producto_Venta where codigo_venta=" + id);
         obtenerListaConsulta();
         //int valorParaPruebas = (int) Math.floor(Math.random() * 600 + 1);
         //V5        
-        generarReportePDF5(new File("reportes//"+nombreDocumento(id)+".pdf"));
+        generarReportePDF5(new File("reportes//Ventas//" + nombreDocumento(id) + ".pdf"), formularioDetalleDeVenta);
     }
 
     private String nombreDocumento(Integer id) {
         Object objeto = this.getObjetoResultado();
         Producto_Venta pro = (Producto_Venta) objeto;
-        return id.toString()+" "+pro.getCodigoVenta().getCodigoCliente().getNombre();
+        return id.toString() + " " + pro.getCodigoVenta().getCodigoCliente().getNombre();
     }
 
-    public void generarReportePDF5(File pdfNewFile) {
+    public void generarReportePDF5(File pdfNewFile, FormularioDetalleDeVenta formularioDetalleDeVenta) {
 
         try {
 
@@ -118,10 +118,30 @@ public class ReporteVenta extends Consultas {
             }
             texto.add(table);
             texto.add(new Paragraph("\n"));
-            texto.add("Importe Total: " + pro.getCodigoVenta().getPrecioTotal().toString());
+            texto.add("Importe Total:   " + pro.getCodigoVenta().getPrecioTotal().toString());
+            texto.add("\n");
+            texto.add("Descuento:        " + pro.getCodigoVenta().getDescuento().toString());
+            texto.add("\n");
+            texto.add("Pagado:             " + pro.getCodigoVenta().getPagado().toString());
+            texto.add("\n");
+            texto.add("Vuelto:               " + pro.getCodigoVenta().getVuelto().toString());
+
             document.add(texto);
             document.close();
+
             DesktopNotify.showDesktopMessage("exito ", "   RECIBO GENERADO\n   CON EXITO", DesktopNotify.SUCCESS, 7000);
+
+            if (formularioDetalleDeVenta.getRadBtnAbrirDocumento().isSelected()) {
+                OperacionesUtiles.abrirArchivo(pdfNewFile.toString());
+            }
+            if (formularioDetalleDeVenta.getRadBtnImprimir().isSelected()) {
+                try {
+                    Desktop.getDesktop().print(pdfNewFile);
+                } catch (IOException ex) {
+                    Logger.getLogger(ReporteIngresos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
         } catch (FileNotFoundException | DocumentException e) {
             DesktopNotify.showDesktopMessage("error ", "    NO SE PUDO GENERAR\n    EL RECIBO", DesktopNotify.ERROR, 7000);
         }

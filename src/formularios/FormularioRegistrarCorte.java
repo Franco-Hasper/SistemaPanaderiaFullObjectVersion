@@ -5,6 +5,7 @@
  */
 package formularios;
 
+import clasesUtilidadGeneral.OperacionesUtiles;
 import escritorios.PrincipalCaja;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -15,7 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import operacionesCaja.ABMCaja;
-import operacionesCaja.OperacionesSecundariasCaja;
+import operacionesCaja.OperacionesEditarCorte;
+import operacionesCaja.OperacionesRegistrarCorte;
 
 /**
  *
@@ -434,11 +436,23 @@ public class FormularioRegistrarCorte extends javax.swing.JDialog {
     }//GEN-LAST:event_btnGuardarCorteActionPerformed
 
     private void txtTotalGastosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalGastosKeyReleased
-        new OperacionesSecundariasCaja().calcularbalance(this);
+        if (new OperacionesUtiles().advertenciaNum(evt)!=false) {
+           new OperacionesRegistrarCorte().calcularTotalGastos(this);
+             new OperacionesRegistrarCorte().calcularbalance(this);
+        }else{
+             new OperacionesRegistrarCorte().calcularbalance(this);
+        }
+        
+       
     }//GEN-LAST:event_txtTotalGastosKeyReleased
 
     private void txtTotalVentasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalVentasKeyReleased
-        new OperacionesSecundariasCaja().calcularbalance(this);
+        if (new OperacionesUtiles().advertenciaNum(evt)!=false) {
+            new OperacionesRegistrarCorte().calcularTotalVentas(this);
+             new OperacionesRegistrarCorte().calcularbalance(this);
+        }else{
+             new OperacionesRegistrarCorte().calcularbalance(this);
+        }
     }//GEN-LAST:event_txtTotalVentasKeyReleased
     int x, y;
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
