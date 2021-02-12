@@ -56,8 +56,7 @@ public class TablaCuenta extends Tabla {
     public void setListaIds(List<Integer> listaIds) {
         this.listaIds = listaIds;
     }
-    
-    
+
     /**
      * Ejecuata los metodos necesarios para rellenar la tabla cuentas de la
      * ventana PrincipalCuenta.
@@ -147,18 +146,52 @@ public class TablaCuenta extends Tabla {
     }
 
     public void cacularNuevoBalance() {
+        Double descuento = 0.00;
+        Double pagado = 0.00;
+        Double balance=0.00;
         if (getFormularioRegistrarVenta() == null) {
             int fila = formularioEditarVenta.getTablaGraficaDescontarCuenta().getSelectedRow();
             Double totalCompra = Double.valueOf(formularioEditarVenta.getLblPrecioTotal().getText());
-            Double balance = Double.valueOf(formularioEditarVenta.getTablaGraficaDescontarCuenta().getValueAt(fila, 1).toString());
+             balance = Double.valueOf(formularioEditarVenta.getTablaGraficaDescontarCuenta().getValueAt(fila, 1).toString());
             Double nuevoBalance = balance - totalCompra;
             formularioEditarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(nuevoBalance));
         } else {
             int fila = formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getSelectedRow();
             Double totalCompra = Double.valueOf(formularioRegistrarVenta.getLblPrecioTotal().getText());
-            Double balance = Double.valueOf(formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getValueAt(fila, 1).toString());
-            Double nuevoBalance = balance - totalCompra;
-            formularioRegistrarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(nuevoBalance));
+            try {
+                 balance = Double.valueOf(formularioRegistrarVenta.getTablaGraficaDescontarCuenta().getValueAt(fila, 1).toString());
+            } catch (ArrayIndexOutOfBoundsException e) {
+                DesktopNotify.showDesktopMessage("   Informacion   ", "   Seleccione una cuenta o desactive el boton descontar cuenta", DesktopNotify.INFORMATION, 5000);
+                
+            }
+            
+            try {
+                descuento = Double.valueOf(OperacionesUtiles.formatoDouble(Double.valueOf(formularioRegistrarVenta.getTxtDescuento().getText())));
+            } catch (java.lang.NumberFormatException e) {
+            }
+
+            try {
+                pagado = Double.valueOf(OperacionesUtiles.formatoDouble(Double.valueOf(formularioRegistrarVenta.getTxtPago().getText())));
+
+            } catch (java.lang.NumberFormatException e) {
+
+            }
+
+            Double compraDescuento = totalCompra - (descuento);
+            Double pagadoDescuento = compraDescuento - (pagado);
+
+            Double nuevoBalance = balance - pagadoDescuento;
+            
+            if(nuevoBalance>=balance){
+                formularioRegistrarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(balance-totalCompra));
+                formularioRegistrarVenta.getTxtPago().setText("");
+                formularioRegistrarVenta.getTxtDescuento().setText("");
+                DesktopNotify.showDesktopMessage("   Informacion   ", "   El valor a descontar no puede ser positivo", DesktopNotify.INFORMATION, 5000);
+            }else{
+                formularioRegistrarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(nuevoBalance));
+            }
+            
+            
         }
 
     }

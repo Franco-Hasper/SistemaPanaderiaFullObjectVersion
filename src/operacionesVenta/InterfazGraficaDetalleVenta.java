@@ -22,24 +22,21 @@ public class InterfazGraficaDetalleVenta {
     }
 
     public void nuevoFormularioDetalleDeVenta() {
-        if (principalVenta.getDetalleVenta() == null) {
-            FormularioDetalleDeVenta formularioDetalleVenta = new FormularioDetalleDeVenta(new Frame(), true);
-            formularioDetalleVenta.setPrincipalVenta(principalVenta);
-            principalVenta.setDetalleVenta(formularioDetalleVenta);
-            colorTema();
-            //TABIENRELLENA LOS LABELS LOS LABELS
-            TablaDetalleVenta tablaDetalleVenta = new TablaDetalleVenta();
-            tablaDetalleVenta.setPrincipalVenta(principalVenta);
-            tablaDetalleVenta.ejecutarRellenarTabla();
-            principalVenta.getDetalleVenta().setIdVenta(tablaDetalleVenta.getIdVenta());
-        }
+
+        FormularioDetalleDeVenta formularioDetalleVenta = new FormularioDetalleDeVenta(new Frame(), true);
+        formularioDetalleVenta.setPrincipalVenta(principalVenta);
+        principalVenta.setDetalleVenta(formularioDetalleVenta);
+        colorTema();
+        //TABIENRELLENA LOS LABELS LOS LABELS
+        TablaDetalleVenta tablaDetalleVenta = new TablaDetalleVenta();
+        tablaDetalleVenta.setPrincipalVenta(principalVenta);
+        tablaDetalleVenta.ejecutarRellenarTabla();
+        principalVenta.getDetalleVenta().setIdVenta(tablaDetalleVenta.getIdVenta());
         principalVenta.getDetalleVenta().setVisible(true);
     }
 
     public void colorTema() {
         principalVenta.getDetalleVenta().getPanelPrincipalTop().setBackground(principalVenta.getPanelPrincipalTop().getBackground());
     }
-
-
 
 }

@@ -342,7 +342,7 @@ public class OperacionesSecundariasVenta {
         }
     }
 
-    public void cuentaDisable() {
+     public void cuentaDisable() {
         if (formularioRegistrarVenta == null) {
             formularioEditarVenta.getRadBtnDescontar().setSelected(false);
             DefaultTableModel tablaCuenta = (DefaultTableModel) formularioEditarVenta.getTablaGraficaDescontarCuenta().getModel();

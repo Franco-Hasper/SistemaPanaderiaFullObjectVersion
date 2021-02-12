@@ -131,6 +131,9 @@ public class ABMVenta extends ABM {
     public void transaccionRegistrar(Session miSesion) {
         Double totalunidades;
         Double precioTotal;
+        Double pagado;
+        Double descuento;
+        Double vuelto;
 
         Venta v = new Venta();
         if (formularioRegistrarVenta.getRadButonConsumidorFinal().isSelected()) {
@@ -155,6 +158,28 @@ public class ABMVenta extends ABM {
             Estado e = (Estado) miSesion.get(Estado.class, 4);
             v.setCodigoEstado(e);
         }
+
+        try {
+            pagado = Double.valueOf(OperacionesUtiles.formatoDouble(Double.valueOf(formularioRegistrarVenta.getTxtPago().getText())));
+            v.setPagado(pagado);
+        } catch (java.lang.NumberFormatException e) {
+            v.setPagado(0.00);
+        }
+
+        try {
+            descuento = Double.valueOf(OperacionesUtiles.formatoDouble(Double.valueOf(formularioRegistrarVenta.getTxtDescuento().getText())));
+            v.setDescuento(descuento);
+        } catch (java.lang.NumberFormatException e) {
+            v.setDescuento(0.00);
+        }
+
+        try {
+            vuelto = Double.valueOf(OperacionesUtiles.formatoDouble(Double.valueOf(formularioRegistrarVenta.getLblVuelto().getText())));
+            v.setVuelto(vuelto);
+        } catch (java.lang.NumberFormatException e) {
+            v.setVuelto(0.00);
+        }
+
         miSesion.save(v);
 
         for (int i = 0; i < listaProductosListados.size(); i++) {
@@ -169,34 +194,34 @@ public class ABMVenta extends ABM {
             pv.setPrecioTotal(Double.valueOf(OperacionesUtiles.formatoDouble(precioTotal)));
             miSesion.save(pv);
 
-            //seccion descontar cuenta
-            if (formularioRegistrarVenta.getRadBtnDescontar().isSelected()) {
-                Estado e = (Estado) miSesion.get(Estado.class, 1);
+        }
 
-                MovimientoCuenta mc = new MovimientoCuenta();
-                mc.setMonto(Double.valueOf("-" + formularioRegistrarVenta.getLblPrecioTotal().getText().toString()));
-                mc.setMotivo("compra de productos");
+        //seccion descontar cuenta
+        if (formularioRegistrarVenta.getRadBtnDescontar().isSelected()) {
+            Estado e = (Estado) miSesion.get(Estado.class, 1);
 
-                id = formularioRegistrarVenta.getIdCuenta();
-                Cuenta c = (Cuenta) miSesion.get(Cuenta.class, id);
-                mc.setBalance(c.getBalance() + (mc.getMonto()));
+            MovimientoCuenta mc = new MovimientoCuenta();
+            mc.setMonto(Double.valueOf("-" + formularioRegistrarVenta.getLblPrecioTotal().getText().toString()));
+            mc.setMotivo("compra de productos");
 
-                mc.setFecha(new Date());
-                mc.setCodigoEstado(e);
-                mc.setCodigoCuenta(c);
+            Integer id = formularioRegistrarVenta.getIdCuenta();
+            Cuenta c = (Cuenta) miSesion.get(Cuenta.class, id);
+            mc.setBalance(c.getBalance() + (mc.getMonto()));
 
-                miSesion.save(mc);
+            mc.setFecha(new Date());
+            mc.setCodigoEstado(e);
+            mc.setCodigoCuenta(c);
 
-                c.setBalance(mc.getBalance());
-                miSesion.saveOrUpdate(c);
+            miSesion.save(mc);
 
-                Venta_MovimientoCuenta vmc = new Venta_MovimientoCuenta();
-                vmc.setVentaId(v);
-                vmc.setMovimientoCuentaId(mc);
+            c.setBalance(mc.getBalance());
+            miSesion.saveOrUpdate(c);
 
-                miSesion.save(vmc);
+            Venta_MovimientoCuenta vmc = new Venta_MovimientoCuenta();
+            vmc.setVentaId(v);
+            vmc.setMovimientoCuentaId(mc);
 
-            }
+            miSesion.save(vmc);
 
         }
     }

@@ -251,7 +251,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         txtPago = new javax.swing.JTextField();
         lblInfoSuma2 = new javax.swing.JLabel();
         lblVuelto = new javax.swing.JLabel();
-        btnOtros = new principal.MaterialButton();
         panelPrincipalTop = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         boxTipoVenta = new javax.swing.JComboBox<>();
@@ -517,7 +516,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         tablaGraficaDescontarCuenta.setRowHeight(40);
         tablaGraficaDescontarCuenta.setSelectionBackground(new java.awt.Color(153, 0, 0));
         tablaGraficaDescontarCuenta.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tablaGraficaDescontarCuenta.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tablaGraficaDescontarCuenta.setShowHorizontalLines(false);
         tablaGraficaDescontarCuenta.setShowVerticalLines(false);
         tablaGraficaDescontarCuenta.getTableHeader().setReorderingAllowed(false);
@@ -625,17 +623,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         lblVuelto.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblVuelto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
-        btnOtros.setBackground(new java.awt.Color(0,0,0,60));
-        btnOtros.setForeground(new java.awt.Color(255, 255, 255));
-        btnOtros.setText("OTROS");
-        btnOtros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnOtros.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnOtros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOtrosActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -668,9 +655,8 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnQuitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCantidad)
-                            .addComponent(btnOtros, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(txtCantidad))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
@@ -728,9 +714,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                         .addGap(12, 12, 12)
                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(btnOtros, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -913,7 +897,8 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_formMouseDragged
 
     private void radBtnDescontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radBtnDescontarActionPerformed
-        if (this.radBtnDescontar.isSelected()) {
+
+        if (this.radBtnDescontar.isSelected()) {  
             tablaCuenta.setIdCliente(IdCliente);
             tablaCuenta.ejecutarRellenarTabla();
             tablaCuenta.setEstadoConsulta(0);
@@ -1070,8 +1055,15 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
             this.txtDescuento.setText("");
             operacionesSecundariasVenta.calcularVuelto();
         } else {
-            operacionesSecundariasVenta.calcularVuelto();
+            if (radBtnDescontar.isSelected()) {
+                tablaCuenta.cacularNuevoBalance();
+                operacionesSecundariasVenta.calcularVuelto();
+            } else {
+                operacionesSecundariasVenta.calcularVuelto();
+            }
+
         }
+
     }//GEN-LAST:event_txtDescuentoKeyReleased
 
     private void txtDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyTyped
@@ -1087,17 +1079,20 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
             this.txtPago.setText("");
             operacionesSecundariasVenta.calcularVuelto();
         } else {
-            operacionesSecundariasVenta.calcularVuelto();
+            if (radBtnDescontar.isSelected()) {
+                tablaCuenta.cacularNuevoBalance();
+                operacionesSecundariasVenta.calcularVuelto();
+            } else {
+                operacionesSecundariasVenta.calcularVuelto();
+            }
         }
+
+
     }//GEN-LAST:event_txtPagoKeyReleased
 
     private void txtPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPagoKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPagoKeyTyped
-
-    private void btnOtrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtrosActionPerformed
-        
-    }//GEN-LAST:event_btnOtrosActionPerformed
 
     public JPanel getPanelPrincipalTop() {
         return panelPrincipalTop;
@@ -1201,7 +1196,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private principal.MaterialButton btnAgregar;
     private principal.MaterialButton btnBuscarCliente;
     public static principal.MaterialButton btnCancelar;
-    private principal.MaterialButton btnOtros;
     private principal.MaterialButton btnQuitar;
     public static principal.MaterialButton btnRegistrar;
     private principal.MaterialButton btnVaciarTabla;
