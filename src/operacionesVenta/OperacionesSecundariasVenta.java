@@ -10,6 +10,7 @@ import formularios.FormularioEditarVenta;
 import formularios.FormularioRegistrarVenta;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Session;
@@ -74,7 +75,7 @@ public class OperacionesSecundariasVenta {
             formularioRegistrarVenta.getLblVuelto().setText(new OperacionesUtiles().formatoDouble(vuelto));
 
         } catch (java.lang.NumberFormatException e) {
-           
+
             Double sumaConDescuento = sumaTotal - (descuento);
             Double vuelto = pago - (sumaConDescuento);
             formularioRegistrarVenta.getLblVuelto().setText(new OperacionesUtiles().formatoDouble(vuelto));
@@ -86,8 +87,12 @@ public class OperacionesSecundariasVenta {
         switch (tipoFormulario) {
             case 1:
                 if (valor.equals("Pedido")) {
+                    if (formularioRegistrarVenta.getRadButonConsumidorFinal().isSelected()) {
+                        modeloTabla();
+                    }
                     formularioRegistrarVenta.getRadButonConsumidorFinal().setEnabled(false);
-                    modeloTabla();
+                    formularioRegistrarVenta.getRadButonConsumidorFinal().setSelected(false);
+
                 } else {
                     formularioRegistrarVenta.getRadButonConsumidorFinal().setEnabled(true);
                     modeloTabla();
@@ -95,8 +100,11 @@ public class OperacionesSecundariasVenta {
                 break;
             case 2:
                 if (valor.equals("Pedido")) {
+                    if (formularioEditarVenta.getRadButonConsumidorFinal().isSelected()) {
+                        modeloTabla();
+                    }
                     formularioEditarVenta.getRadButonConsumidorFinal().setEnabled(false);
-                    modeloTabla();
+                    formularioEditarVenta.getRadButonConsumidorFinal().setSelected(false);
                 } else {
                     formularioEditarVenta.getRadButonConsumidorFinal().setEnabled(true);
                     modeloTabla();
@@ -136,8 +144,8 @@ public class OperacionesSecundariasVenta {
     public void transferirDatos(JTable tablaOrigen, JTable tablaDestino) {
         int fila = tablaOrigen.getSelectedRow();
         String nombreApellido = tablaOrigen.getValueAt(fila, 0).toString();
-        String direccion = tablaOrigen.getValueAt(fila, 1).toString();
-        String telefono = tablaOrigen.getValueAt(fila, 2).toString();
+        String telefono = tablaOrigen.getValueAt(fila, 1).toString();
+        String direccion = tablaOrigen.getValueAt(fila, 2).toString();
 
         DefaultTableModel tablaCliente = (DefaultTableModel) tablaDestino.getModel();
         OperacionesUtiles.removerFilas(tablaCliente);
@@ -147,6 +155,11 @@ public class OperacionesSecundariasVenta {
         datosTabla.add(direccion);
         tablaCliente.addRow(datosTabla);
     }
+    
+   
+    
+    
+    
 
     public void rellenarTablaVentaCliente() {
         int fila = principalCliente.getTablaGrafica().getSelectedRow();
@@ -342,7 +355,7 @@ public class OperacionesSecundariasVenta {
         }
     }
 
-     public void cuentaDisable() {
+    public void cuentaDisable() {
         if (formularioRegistrarVenta == null) {
             formularioEditarVenta.getRadBtnDescontar().setSelected(false);
             DefaultTableModel tablaCuenta = (DefaultTableModel) formularioEditarVenta.getTablaGraficaDescontarCuenta().getModel();

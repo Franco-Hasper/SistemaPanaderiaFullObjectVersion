@@ -3,6 +3,7 @@ package operacionesVenta;
 import calsesPadre.InterfazGraficaEscritorio;
 import clasesUtilidadGeneral.TextPrompt;
 import escritorios.PrincipalVenta;
+import java.awt.Color;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -10,7 +11,7 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  * @author Hasper Franco
  */
 public class InterfazGraficaEscritorioVenta extends InterfazGraficaEscritorio {
-    
+
     @Override
     public void nuevaVentana() {
         if (principalAdministrador.getEscritorio().estacerrado(principalAdministrador.getVenta())) {
@@ -31,22 +32,21 @@ public class InterfazGraficaEscritorioVenta extends InterfazGraficaEscritorio {
             InterfazGraficaFormularioRegistrarVenta formularioRegistrar = new InterfazGraficaFormularioRegistrarVenta();
             InterfazGraficaFormularioEditarVenta formularioEditar = new InterfazGraficaFormularioEditarVenta();
             InterfazGraficaDetalleVenta formularioDetalleVenta = new InterfazGraficaDetalleVenta();
-            InterfazGraficaFormularioEstadoVenta interfazGraficaEstadoVenta =new InterfazGraficaFormularioEstadoVenta();
-            
+            InterfazGraficaFormularioEstadoVenta interfazGraficaEstadoVenta = new InterfazGraficaFormularioEstadoVenta();
+
             principalAdministrador.getVenta().setInterfazGraficaEstadoVenta(interfazGraficaEstadoVenta);
             principalAdministrador.getVenta().setFormularioRegistrar(formularioRegistrar);
             principalAdministrador.getVenta().setFormularioEditar(formularioEditar);
             principalAdministrador.getVenta().setFormularioDetalleVenta(formularioDetalleVenta);
             principalAdministrador.getVenta().setPrincipalAdministrador(principalAdministrador);
-            
+            radBrn();
             principalAdministrador.getVenta().show();
-            
         }
         colorInterfazEscritorio();
         principalAdministrador.getVenta().toFront();
     }
-    
-     @Override
+
+    @Override
     public void infoTextPrompt() {
         new TextPrompt("BUSCAR POR FECHA, FORMATO (AAAA-MM-DD)", principalAdministrador.getVenta().getTxtBuscar());
         principalAdministrador.getVenta().getTxtBuscar().grabFocus();
@@ -57,6 +57,11 @@ public class InterfazGraficaEscritorioVenta extends InterfazGraficaEscritorio {
         principalAdministrador.getVenta().getPanelPrincipalTop().setBackground(principalAdministrador.getPanelPrincipalTop().getBackground());
         principalAdministrador.getVenta().getTablaGrafica().setForeground(principalAdministrador.getPanelPrincipalTop().getBackground());
         principalAdministrador.getVenta().getTablaGrafica().setSelectionBackground(principalAdministrador.getPanelPrincipalTop().getBackground());
+    }
+
+    private void radBrn() {
+        principalAdministrador.getVenta().getRadButtonPendientes().setEnabled(false);
+        principalAdministrador.getVenta().getRadButtonPendientes().setForeground(new Color(102, 102, 102));
     }
 
 }

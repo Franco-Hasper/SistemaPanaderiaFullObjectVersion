@@ -24,39 +24,71 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import formularios.FormularioDetalleDeVenta;
+import formularios.FormularioRegistrarVenta;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JRadioButton;
 import operacionesIngresoMateriaPrima.ReporteIngresos;
 
 /**
  *
  * @author FRANCO
  */
-public class ReporteVenta extends Consultas {
+public class ComprobanteVenta extends Consultas {
 
     private static final Font titulofuente = new Font(Font.FontFamily.UNDEFINED, 12, Font.BOLD);
     private static final Font datosfuente = new Font(Font.FontFamily.UNDEFINED, 10, Font.BOLD);
+    
+    private Integer idVenta;
+    private JRadioButton radBtnImprimir;
+    private JRadioButton radBtnAbrirDocumento;
 
-    /*----------*/
-    public void ejecutarGenerarReporte(Integer id, FormularioDetalleDeVenta formularioDetalleDeVenta) throws FileNotFoundException, DocumentException {
-        setConsultaObject("from Producto_Venta where codigo_venta=" + id);
-        obtenerObjetoConsulta();
-        setConsultaList("from Producto_Venta where codigo_venta=" + id);
-        obtenerListaConsulta();
-        //int valorParaPruebas = (int) Math.floor(Math.random() * 600 + 1);
-        //V5        
-        generarReportePDF5(new File("reportes//Ventas//" + nombreDocumento(id) + ".pdf"), formularioDetalleDeVenta);
+    public Integer getIdVenta() {
+        return idVenta;
     }
 
-    private String nombreDocumento(Integer id) {
+    public void setIdVenta(Integer idVenta) {
+        this.idVenta = idVenta;
+    }
+
+    public JRadioButton getRadBtnImprimir() {
+        return radBtnImprimir;
+    }
+
+    public void setRadBtnImprimir(JRadioButton radBtnImprimir) {
+        this.radBtnImprimir = radBtnImprimir;
+    }
+
+    public JRadioButton getRadBtnAbrirDocumento() {
+        return radBtnAbrirDocumento;
+    }
+
+    public void setRadBtnAbrirDocumento(JRadioButton radBtnAbrirDocumento) {
+        this.radBtnAbrirDocumento = radBtnAbrirDocumento;
+    }
+    
+    
+    
+    
+    public void ejecutarGenerarReporte() throws FileNotFoundException, DocumentException {
+        setConsultaObject("from Producto_Venta where codigo_venta=" + idVenta);
+        obtenerObjetoConsulta();
+        setConsultaList("from Producto_Venta where codigo_venta=" + idVenta);
+        obtenerListaConsulta();        
+        generarReportePDF5(new File("reportes//Ventas//" + nombreDocumento() + ".pdf"));
+    }
+
+ 
+    
+    private String nombreDocumento() {
         Object objeto = this.getObjetoResultado();
         Producto_Venta pro = (Producto_Venta) objeto;
-        return id.toString() + " " + pro.getCodigoVenta().getCodigoCliente().getNombre();
+        return idVenta.toString() + " " + pro.getCodigoVenta().getCodigoCliente().getNombre();
     }
 
-    public void generarReportePDF5(File pdfNewFile, FormularioDetalleDeVenta formularioDetalleDeVenta) {
+    public void generarReportePDF5(File pdfNewFile) {
 
         try {
 
@@ -131,10 +163,10 @@ public class ReporteVenta extends Consultas {
 
             DesktopNotify.showDesktopMessage("exito ", "   RECIBO GENERADO\n   CON EXITO", DesktopNotify.SUCCESS, 7000);
 
-            if (formularioDetalleDeVenta.getRadBtnAbrirDocumento().isSelected()) {
+            if (radBtnAbrirDocumento.isSelected()) {
                 OperacionesUtiles.abrirArchivo(pdfNewFile.toString());
             }
-            if (formularioDetalleDeVenta.getRadBtnImprimir().isSelected()) {
+            if (radBtnImprimir.isSelected()) {
                 try {
                     Desktop.getDesktop().print(pdfNewFile);
                 } catch (IOException ex) {

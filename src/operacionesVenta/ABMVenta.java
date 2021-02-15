@@ -40,6 +40,8 @@ public class ABMVenta extends ABM {
     private PrincipalCliente principalCliente;
     //se borran todos los productos de listados y se vuelven a cargar desde cero
     private List<Producto_Venta> listaProductosEliminar;
+    
+    private Integer idVenta;
 
     public List<Producto_Venta> getListaProductosEliminar() {
         return listaProductosEliminar;
@@ -96,6 +98,18 @@ public class ABMVenta extends ABM {
     public void setPrincipalVenta(PrincipalVenta principalVenta) {
         this.principalVenta = principalVenta;
     }
+
+    public Integer getIdVenta() {
+        return idVenta;
+    }
+
+    public void setIdVenta(Integer idVenta) {
+        this.idVenta = idVenta;
+    }
+
+    
+    
+    
 
     @Override
     public boolean ejecutarRegistrar() {
@@ -181,6 +195,8 @@ public class ABMVenta extends ABM {
         }
 
         miSesion.save(v);
+        
+        this.setIdVenta(v.getIdVenta());
 
         for (int i = 0; i < listaProductosListados.size(); i++) {
             Producto_Venta pv = new Producto_Venta();
@@ -297,6 +313,7 @@ public class ABMVenta extends ABM {
             v.setCodigoEstado(e);
         }
         miSesion.saveOrUpdate(v);
+        this.setIdVenta(v.getIdVenta());
 
         for (int i = 0; i < listaProductosListados.size(); i++) {
             Producto_Venta pv = new Producto_Venta();

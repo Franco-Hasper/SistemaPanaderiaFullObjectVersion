@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
-import operacionesVenta.ReporteVenta;
+import operacionesVenta.ComprobanteVenta;
 
 /**
  *
@@ -26,9 +26,18 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
     }
 
     private Integer idVenta;
+        private PrincipalVenta principalVenta;
+    
+    private ComprobanteVenta comprobante;
 
-    private PrincipalVenta principalVenta;
+    public ComprobanteVenta getComprobante() {
+        return comprobante;
+    }
 
+    public void setComprobante(ComprobanteVenta comprobante) {
+        this.comprobante = comprobante;
+    }
+    
     public PrincipalVenta getPrincipalVenta() {
         return principalVenta;
     }
@@ -37,6 +46,8 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
         this.principalVenta = principalVenta;
     }
 
+
+    
     public Integer getIdVenta() {
         return idVenta;
     }
@@ -396,8 +407,10 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
     private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
 
         try {
-
-            new ReporteVenta().ejecutarGenerarReporte(getIdVenta(),this);
+            comprobante.setRadBtnAbrirDocumento(radBtnAbrirDocumento);
+            comprobante.setRadBtnImprimir(radBtnImprimir);
+            comprobante.setIdVenta(idVenta);
+            comprobante.ejecutarGenerarReporte();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FormularioDetalleDeVenta.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {

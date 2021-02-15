@@ -1,6 +1,7 @@
 package formularios;
 
 import clasesUtilidadGeneral.OperacionesUtiles;
+import com.itextpdf.text.DocumentException;
 import escritorios.PrincipalCliente;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -10,14 +11,19 @@ import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import escritorios.PrincipalVenta;
+import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import operacionesCaja.OperacionesEditarCorte;
 import operacionesCliente.InterfazGraficaEscritorioCliente;
 import operacionesVenta.ABMVenta;
+import operacionesVenta.ComprobanteVenta;
 import operacionesVenta.OperacionesSecundariasVenta;
 import operacionesVenta.TablaClienteLista;
 import operacionesVenta.TablaCuenta;
@@ -45,6 +51,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private OperacionesSecundariasVenta operacionesSecundariasVenta;
     private TablaClienteLista tablaClienteLista;
     private TablaCuenta tablaCuenta;
+    private ComprobanteVenta comprobante;
 
     private PrincipalAdministrador principalAdministrador;
     private PrincipalCliente principalCliente;
@@ -55,6 +62,10 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         return principalCliente;
     }
 
+    public void setPrincipalCliente(PrincipalCliente principalCliente) {
+        this.principalCliente = principalCliente;
+    }
+
     public TablaCuenta getTablaCuenta() {
         return tablaCuenta;
     }
@@ -63,8 +74,12 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         this.tablaCuenta = tablaCuenta;
     }
 
-    public void setPrincipalCliente(PrincipalCliente principalCliente) {
-        this.principalCliente = principalCliente;
+    public ComprobanteVenta getComprobante() {
+        return comprobante;
+    }
+
+    public void setComprobante(ComprobanteVenta comprobante) {
+        this.comprobante = comprobante;
     }
 
     public TablaClienteLista getTablaClienteLista() {
@@ -203,14 +218,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         this.principalVenta = principalVenta;
     }
 
-    public JTextField getTxtBuscarEnLista() {
-        return txtBuscarEnLista;
-    }
-
-    public void setTxtBuscarEnLista(JTextField txtBuscarEnLista) {
-        this.txtBuscarEnLista = txtBuscarEnLista;
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -237,7 +244,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         txtCantidad = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
-        txtBuscarEnLista = new javax.swing.JTextField();
         radBtnDescontar = new javax.swing.JRadioButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tablaGraficaDescontarCuenta = new javax.swing.JTable();
@@ -258,6 +264,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         rSDateChooser = new rojeru_san.componentes.RSDateChooser();
         radButonReporte = new javax.swing.JRadioButton();
         radButonImprimir = new javax.swing.JRadioButton();
+        radButonAbrirAlFinalizar = new javax.swing.JRadioButton();
 
         setUndecorated(true);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -478,8 +485,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
             }
         });
 
-        txtBuscarEnLista.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
-
         radBtnDescontar.setText("DESCONTAR DE CUENTA");
         radBtnDescontar.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -683,10 +688,8 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(jPanel5Layout.createSequentialGroup()
                                                 .addComponent(jLabel5)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btnVaciarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtBuscarEnLista, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(218, 218, 218)
+                                                .addComponent(btnVaciarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -704,7 +707,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtBuscarEnLista, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnVaciarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -749,7 +751,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblInfoSuma1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNuevoBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -811,6 +813,15 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
             }
         });
 
+        radButonAbrirAlFinalizar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        radButonAbrirAlFinalizar.setForeground(new java.awt.Color(255, 255, 255));
+        radButonAbrirAlFinalizar.setText("ARIR AL FINALIZAR");
+        radButonAbrirAlFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radButonAbrirAlFinalizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelPrincipalTopLayout = new javax.swing.GroupLayout(panelPrincipalTop);
         panelPrincipalTop.setLayout(panelPrincipalTopLayout);
         panelPrincipalTopLayout.setHorizontalGroup(
@@ -830,23 +841,32 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                         .addGap(88, 88, 88))
                     .addGroup(panelPrincipalTopLayout.createSequentialGroup()
                         .addComponent(radButonReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(66, 66, 66))))
+                        .addGap(66, 66, 66))
+                    .addGroup(panelPrincipalTopLayout.createSequentialGroup()
+                        .addComponent(radButonAbrirAlFinalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         panelPrincipalTopLayout.setVerticalGroup(
             panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalTopLayout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(panelPrincipalTopLayout.createSequentialGroup()
-                            .addComponent(radButonReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(radButonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(boxTipoVenta, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(rSDateChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(23, 23, 23))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalTopLayout.createSequentialGroup()
+                        .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelPrincipalTopLayout.createSequentialGroup()
+                                .addComponent(radButonReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radButonAbrirAlFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radButonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(11, 11, 11))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalTopLayout.createSequentialGroup()
+                        .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(boxTipoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rSDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24))))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -898,7 +918,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
 
     private void radBtnDescontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radBtnDescontarActionPerformed
 
-        if (this.radBtnDescontar.isSelected()) {  
+        if (this.radBtnDescontar.isSelected()) {
             tablaCuenta.setIdCliente(IdCliente);
             tablaCuenta.ejecutarRellenarTabla();
             tablaCuenta.setEstadoConsulta(0);
@@ -913,7 +933,8 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_radBtnDescontarItemStateChanged
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-
+        tablaProductosDisponibles.setPrincipalVenta(principalVenta);
+        tablaProductosDisponibles.ejecutarRellenarTabla();
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
@@ -952,7 +973,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         JOptionPane jop = new JOptionPane();
-        if (jop.showConfirmDialog(jop, "¿SEGURO QUE DESEA CANCELAR LA ACCION?", "",
+        if (jop.showConfirmDialog(jop, "¿SEGURO QUE DESEA SALIR DE REGISTRAR VENTAS?", "",
                 jop.OK_CANCEL_OPTION) == jop.OK_OPTION) {
             this.dispose();
         }
@@ -966,9 +987,29 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                     abm.setListaProductosListados(tablaProductosListados.getListaProductosListados());
                     abm.setPrincipalCliente(principalCliente);
                     if (abm.ejecutarRegistrar()) {
+                        //Seccion comprobante
+                        if (radButonReporte.isSelected()) {
+                            comprobante.setRadBtnAbrirDocumento(radButonAbrirAlFinalizar);
+                            comprobante.setRadBtnImprimir(radButonImprimir);
+                            comprobante.setIdVenta(abm.getIdVenta());
+
+                            try {
+                                comprobante.ejecutarGenerarReporte();
+                            } catch (FileNotFoundException | DocumentException ex) {
+                                Logger.getLogger(FormularioRegistrarVenta.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+
+                        }
+
                         principalVenta.getTablaVenta().setPrincipalVenta(principalVenta);
                         principalVenta.getTablaVenta().setEstadoConsulta(0);
                         principalVenta.getTablaVenta().ejecutarRellenarTabla();
+                        if (radBtnDescontar.isSelected()) {
+                            tablaCuenta.setIdCliente(IdCliente);
+                            tablaCuenta.ejecutarRellenarTabla();
+                            tablaCuenta.setEstadoConsulta(0);
+                        }
+
                     }
                 }
             }
@@ -977,8 +1018,9 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
 
     private void radButonConsumidorFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radButonConsumidorFinalActionPerformed
         operacionesSecundariasVenta.tipoConsumidorFinalEnabled();
-        this.radBtnDescontar.setSelected(false);
         operacionesSecundariasVenta.cuentaDisable();
+        this.radBtnDescontar.setEnabled(false);
+
 
     }//GEN-LAST:event_radButonConsumidorFinalActionPerformed
 
@@ -992,6 +1034,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                 operacionesSecundariasVenta.transferirDatos(this.tablaGraficaListaCliente, this.tablaGraficaCliente);
                 this.IdCliente = tablaClienteLista.obtenerIdFilaSeleccionada();
                 operacionesSecundariasVenta.cuentaDisable();
+                radBtnDescontar.setEnabled(true);
             }
         }
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
@@ -1023,18 +1066,36 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_txtBuscarClientesKeyReleased
 
     private void btnVaciarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaciarTablaActionPerformed
-        tablaProductosListados.setTablaProductosListados(tablaListarProductos);
-        tablaProductosListados.vaciarTabla();
-        operacionesSecundariasVenta.obtenerPrecioTotal();
-        operacionesSecundariasVenta.calcularVuelto();
-        if (radBtnDescontar.isSelected()) {
-            this.IdCuenta = tablaCuenta.obtenerIdFilaSeleccionada();
-            tablaCuenta.cacularNuevoBalance();
+        JOptionPane jop = new JOptionPane();
+        if (jop.showConfirmDialog(jop, "¿SEGURO QUE ELIMINAR TODOS LOS PRODUCTOS DE LA TABLA?", "",
+                jop.OK_CANCEL_OPTION) == jop.OK_OPTION) {
+            tablaProductosListados.setTablaProductosListados(tablaListarProductos);
+            tablaProductosListados.vaciarTabla();
+            operacionesSecundariasVenta.obtenerPrecioTotal();
+            operacionesSecundariasVenta.calcularVuelto();
+            if (radBtnDescontar.isSelected()) {
+                this.IdCuenta = tablaCuenta.obtenerIdFilaSeleccionada();
+                tablaCuenta.cacularNuevoBalance();
+            }
         }
+
+
     }//GEN-LAST:event_btnVaciarTablaActionPerformed
 
     private void radButonReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radButonReporteActionPerformed
-
+        if (radButonReporte.isSelected()) {
+            radButonAbrirAlFinalizar.setEnabled(true);
+            radButonImprimir.setEnabled(true);
+             radButonAbrirAlFinalizar.setForeground(new Color(255, 255, 255));
+            radButonImprimir.setForeground(new Color(255, 255, 255));
+        } else {
+            radButonAbrirAlFinalizar.setEnabled(false);
+            radButonImprimir.setEnabled(false);
+            radButonAbrirAlFinalizar.setSelected(false);
+            radButonImprimir.setSelected(false);
+             radButonAbrirAlFinalizar.setForeground(new Color(102, 102, 102));
+            radButonImprimir.setForeground(new Color(102, 102, 102));
+        }
     }//GEN-LAST:event_radButonReporteActionPerformed
 
     private void radButonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radButonImprimirActionPerformed
@@ -1093,6 +1154,10 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private void txtPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPagoKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPagoKeyTyped
+
+    private void radButonAbrirAlFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radButonAbrirAlFinalizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radButonAbrirAlFinalizarActionPerformed
 
     public JPanel getPanelPrincipalTop() {
         return panelPrincipalTop;
@@ -1190,6 +1255,30 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
         this.lblVuelto = lblVuelto;
     }
 
+    public JRadioButton getRadButonAbrirAlFinalizar() {
+        return radButonAbrirAlFinalizar;
+    }
+
+    public void setRadButonAbrirAlFinalizar(JRadioButton radButonAbrirAlFinalizar) {
+        this.radButonAbrirAlFinalizar = radButonAbrirAlFinalizar;
+    }
+
+    public JRadioButton getRadButonImprimir() {
+        return radButonImprimir;
+    }
+
+    public void setRadButonImprimir(JRadioButton radButonImprimir) {
+        this.radButonImprimir = radButonImprimir;
+    }
+
+    public JRadioButton getRadButonReporte() {
+        return radButonReporte;
+    }
+
+    public void setRadButonReporte(JRadioButton radButonReporte) {
+        this.radButonReporte = radButonReporte;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxTipoVenta;
@@ -1221,6 +1310,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private javax.swing.JPanel panelPrincipalTop;
     private rojeru_san.componentes.RSDateChooser rSDateChooser;
     private javax.swing.JRadioButton radBtnDescontar;
+    private javax.swing.JRadioButton radButonAbrirAlFinalizar;
     private javax.swing.JRadioButton radButonConsumidorFinal;
     private javax.swing.JRadioButton radButonImprimir;
     private javax.swing.JRadioButton radButonReporte;
@@ -1231,7 +1321,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private javax.swing.JTable tablaListarProductos;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtBuscarClientes;
-    private javax.swing.JTextField txtBuscarEnLista;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtDescuento;
     private javax.swing.JTextField txtPago;

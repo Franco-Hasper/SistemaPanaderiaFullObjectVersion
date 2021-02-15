@@ -32,6 +32,10 @@ public class InterfazGraficaDetalleVenta {
         tablaDetalleVenta.setPrincipalVenta(principalVenta);
         tablaDetalleVenta.ejecutarRellenarTabla();
         principalVenta.getDetalleVenta().setIdVenta(tablaDetalleVenta.getIdVenta());
+
+        ComprobanteVenta comprobante = new ComprobanteVenta();
+        formularioDetalleVenta.setComprobante(comprobante);
+
         principalVenta.getDetalleVenta().setVisible(true);
     }
 

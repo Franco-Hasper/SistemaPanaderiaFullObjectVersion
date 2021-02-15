@@ -4,6 +4,7 @@ import formularios.FormularioDetalleDeVenta;
 import formularios.FormularioEditarVenta;
 import formularios.FormularioEstadoVenta;
 import formularios.FormularioRegistrarVenta;
+import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
@@ -428,8 +429,11 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
     private void radButonSoloPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radButonSoloPedidosActionPerformed
         if (radButonSoloPedidos.isSelected()) {
             radButtonPendientes.setEnabled(true);
+            radButtonPendientes.setForeground(new Color(255, 255, 255));
         } else {
             radButtonPendientes.setEnabled(false);
+            radButtonPendientes.setSelected(false);
+            radButtonPendientes.setForeground(new Color(102, 102, 102));
         }
         tablaVenta.ejecutarRellenarTabla();
     }//GEN-LAST:event_radButonSoloPedidosActionPerformed

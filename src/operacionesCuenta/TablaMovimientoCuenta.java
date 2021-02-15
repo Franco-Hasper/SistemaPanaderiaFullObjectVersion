@@ -60,8 +60,8 @@ public class TablaMovimientoCuenta extends Tabla {
         setTabla(principalCuenta.getTablaGraficaMovimiento());
         setStringConsulta("from MovimientoCuenta where codigoCuenta=" + this.idCuenta);
         evaluarEstadoConsulta();
-        //setCampoTexto(principalCuenta.getTxtBuscar());
-        rellenarTabla("");
+        setCampoTexto(principalCuenta.getTxtBuscar());
+        rellenarTabla(getCampoTexto().getText());
     }
 
     @Override
@@ -91,12 +91,13 @@ public class TablaMovimientoCuenta extends Tabla {
 
         for (Object o : lista) {
             MovimientoCuenta mc = (MovimientoCuenta) o;
-            if (mc.getCodigoEstado().getIdEstado().equals(1)) {
+            boolean resultadoComparacion = OperacionesUtiles.convertirResultado(mc.getFecha().toString(), valorBusqueda);
+            if (resultadoComparacion && mc.getCodigoEstado().getIdEstado().equals(1)) {
                 this.listaResutladosActuales.add(0, mc.getIdMovimientoCuenta());
                 Vector<Object> fila = new Vector<>();
                 fila.add(mc.getMotivo());
-                fila.add(mc.getMonto());
-                fila.add(mc.getBalance());
+                fila.add(OperacionesUtiles.formatoDouble(mc.getMonto()));
+                fila.add(OperacionesUtiles.formatoDouble(mc.getBalance()));
                 fila.add(new OperacionesUtiles().formatoFechaSinHora(mc.getFecha()));
                 tablaMovimientoCuenta.addRow(fila);
             }

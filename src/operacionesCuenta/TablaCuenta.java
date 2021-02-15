@@ -109,7 +109,7 @@ public class TablaCuenta extends Tabla {
             principalCuenta.getTablaGraficaCuenta().getValueAt(fila, 0).toString();
             return true;
         } catch (Exception e) {
-            DesktopNotify.showDesktopMessage("Informacion", "Debe seleccionar una fila", DesktopNotify.INFORMATION, 7000);
+            DesktopNotify.showDesktopMessage("Informacion", "Debe seleccionar una Cuenta", DesktopNotify.INFORMATION, 7000);
             return false;
         }
     }

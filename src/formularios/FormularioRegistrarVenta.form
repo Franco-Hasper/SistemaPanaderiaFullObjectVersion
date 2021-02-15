@@ -149,14 +149,12 @@
                                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                               <Component id="radBtnDescontar" min="-2" pref="206" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Group type="102" alignment="1" attributes="0">
+                                                  <Group type="102" attributes="0">
                                                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="btnVaciarTabla" min="-2" pref="146" max="-2" attributes="0"/>
-                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="txtBuscarEnLista" min="-2" pref="227" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
+                                                      <Component id="btnVaciarTabla" min="-2" pref="185" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="jScrollPane5" alignment="1" min="-2" pref="617" max="-2" attributes="0"/>
+                                                  <Component id="jScrollPane5" min="-2" pref="617" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="jScrollPane4" alignment="0" min="-2" pref="617" max="-2" attributes="0"/>
                                           </Group>
@@ -183,7 +181,6 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtBuscarEnLista" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                   <Component id="btnVaciarTabla" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                                   <Component id="jLabel5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
@@ -241,7 +238,7 @@
                           <Component id="lblInfoSuma1" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="lblNuevoBalance" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -673,20 +670,6 @@
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBuscarKeyReleased"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtBuscarEnLista">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                    <BevelBorder>
-                      <Color PropertyName="highlightOuter" blue="80" green="80" id="gray" palette="1" red="80" type="palette"/>
-                      <Color PropertyName="highlightInner" blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
-                      <Color PropertyName="shadowOuter" blue="80" green="80" id="gray" palette="1" red="80" type="palette"/>
-                      <Color PropertyName="shadowInner" blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
-                    </BevelBorder>
-                  </Border>
-                </Property>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JRadioButton" name="radBtnDescontar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="DESCONTAR DE CUENTA"/>
@@ -975,28 +958,41 @@
                               <Component id="radButonReporte" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="radButonAbrirAlFinalizar" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel8" alignment="1" pref="90" max="32767" attributes="0"/>
+                  <Component id="jLabel8" alignment="1" pref="102" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel6" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="radButonReporte" min="-2" pref="16" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="radButonImprimir" min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel6" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="radButonReporte" min="-2" pref="16" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="radButonAbrirAlFinalizar" min="-2" pref="18" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="radButonImprimir" min="-2" pref="18" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <Component id="boxTipoVenta" alignment="1" max="32767" attributes="0"/>
-                              <Component id="rSDateChooser" alignment="1" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="boxTipoVenta" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="rSDateChooser" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1083,6 +1079,20 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radButonImprimirActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="radButonAbrirAlFinalizar">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="ARIR AL FINALIZAR"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radButonAbrirAlFinalizarActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

@@ -4,6 +4,7 @@ import calsesPadre.InterfazGraficaFormularioEditar;
 import clasesUtilidadGeneral.TextPrompt;
 import escritorios.PrincipalVenta;
 import formularios.FormularioEditarVenta;
+import java.awt.Color;
 import javax.swing.SwingConstants;
 import principal.PrincipalAdministrador;
 
@@ -106,6 +107,12 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             TablaCuenta tablaCuenta = new TablaCuenta();
             tablaCuenta.setFormularioEditarVenta(formularioEditar);
             formularioEditar.setTablaCuenta(tablaCuenta);
+            
+            radButons();
+
+            ComprobanteVenta comprobante = new ComprobanteVenta();
+            formularioEditar.setComprobante(comprobante);
+
         }
 
         principalVenta.getEditarVenta().setVisible(true);
@@ -116,7 +123,6 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
     public void infoTextPrompt() {
         new TextPrompt("CANTIDAD", principalVenta.getEditarVenta().getTxtCantidad());
         new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getEditarVenta().getTxtBuscar());
-        new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getEditarVenta().getTxtBuscarEnLista());
         new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getEditarVenta().getTxtBuscarClientes());
         principalVenta.getEditarVenta().getTxtBuscar().grabFocus();
     }
@@ -162,6 +168,15 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
         principalVenta.getEditarVenta().getTxtCantidad().setText("1");
         principalVenta.getEditarVenta().getTxtCantidad().setHorizontalAlignment(SwingConstants.CENTER);
         // principalVenta.getEditarVenta().getLblPrecioTotal().setText("0.0");
+    }
+
+    private void radButons() {
+        principalVenta.getEditarVenta().getRadButonAbrirAlFinalizar().setEnabled(false);
+        principalVenta.getEditarVenta().getRadButonImprimir().setEnabled(false);
+        
+        principalVenta.getEditarVenta().getRadButonAbrirAlFinalizar().setForeground(new Color(102,102,102));
+        principalVenta.getEditarVenta().getRadButonImprimir().setForeground(new Color(102,102,102));
+
     }
 
 }

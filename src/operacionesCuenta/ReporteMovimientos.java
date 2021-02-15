@@ -89,15 +89,17 @@ public class ReporteMovimientos extends Consultas {
 
         for (Object o : lista) {
             MovimientoCuenta m = (MovimientoCuenta) o;
-            Vector<Object> fila = new Vector<>();
-            fila.add(m.getMotivo());
-            fila.add(m.getMonto());
-            fila.add(m.getBalance());
-            fila.add(new OperacionesUtiles().formatoFechaSinHora(m.getFecha()));
-            this.cliente = m.getCodigoCuenta().getCodigoCliente().getNombre() + " " + m.getCodigoCuenta().getCodigoCliente().getApellido();
-            this.nroCuenta = m.getCodigoCuenta().getIdCuenta().toString();
-            this.balanceActual = m.getCodigoCuenta().getBalance().toString();
-            tablaIngresos.addRow(fila);
+            if (m.getCodigoEstado().getIdEstado().equals(1)) {
+                Vector<Object> fila = new Vector<>();
+                fila.add(m.getMotivo());
+                fila.add(OperacionesUtiles.formatoDouble(m.getMonto()));
+                fila.add(OperacionesUtiles.formatoDouble(m.getBalance()));
+                fila.add(new OperacionesUtiles().formatoFechaSinHora(m.getFecha()));
+                this.cliente = m.getCodigoCuenta().getCodigoCliente().getNombre() + " " + m.getCodigoCuenta().getCodigoCliente().getApellido();
+                this.nroCuenta = m.getCodigoCuenta().getIdCuenta().toString();
+                this.balanceActual = m.getCodigoCuenta().getBalance().toString();
+                tablaIngresos.addRow(fila);
+            }
 
         }
         formularioReporteMovimientos.getLblCliente().setText(cliente);
@@ -188,7 +190,7 @@ public class ReporteMovimientos extends Consultas {
                 }
             }
 
-        } catch (FileNotFoundException | DocumentException  | NullPointerException e) {
+        } catch (FileNotFoundException | DocumentException | NullPointerException e) {
             DesktopNotify.showDesktopMessage("error ", "    NO SE PUDO GENERAR\n    EL REPORTE", DesktopNotify.ERROR, 7000);
         }
     }
