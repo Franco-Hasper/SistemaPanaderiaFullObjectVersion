@@ -40,7 +40,7 @@ public class ABMVenta extends ABM {
     private PrincipalCliente principalCliente;
     //se borran todos los productos de listados y se vuelven a cargar desde cero
     private List<Producto_Venta> listaProductosEliminar;
-    
+
     private Integer idVenta;
 
     public List<Producto_Venta> getListaProductosEliminar() {
@@ -106,10 +106,6 @@ public class ABMVenta extends ABM {
     public void setIdVenta(Integer idVenta) {
         this.idVenta = idVenta;
     }
-
-    
-    
-    
 
     @Override
     public boolean ejecutarRegistrar() {
@@ -195,7 +191,7 @@ public class ABMVenta extends ABM {
         }
 
         miSesion.save(v);
-        
+
         this.setIdVenta(v.getIdVenta());
 
         for (int i = 0; i < listaProductosListados.size(); i++) {
@@ -274,13 +270,16 @@ public class ABMVenta extends ABM {
     public void transaccionEditar(Session miSesion) {
         Integer idCliente;
         Integer idVenta;
+        Double totalunidades;
+        Double precioTotal;
+        Double pagado;
+        Double descuento;
+        Double vuelto;
 
         idVenta = principalVenta.getTablaVenta().obtenerIdFilaSeleccionada();
 
         idCliente = formularioEditarVenta.getIdCliente();
 
-        Double totalunidades;
-        Double precioTotal;
         List lista = getListaProductosEliminar();
 
         for (Object o : lista) {
@@ -312,6 +311,27 @@ public class ABMVenta extends ABM {
             Estado e = (Estado) miSesion.get(Estado.class, 4);
             v.setCodigoEstado(e);
         }
+        try {
+            pagado = Double.valueOf(OperacionesUtiles.formatoDouble(Double.valueOf(formularioEditarVenta.getTxtPago().getText())));
+            v.setPagado(pagado);
+        } catch (java.lang.NumberFormatException e) {
+            v.setPagado(0.00);
+        }
+
+        try {
+            descuento = Double.valueOf(OperacionesUtiles.formatoDouble(Double.valueOf(formularioEditarVenta.getTxtDescuento().getText())));
+            v.setDescuento(descuento);
+        } catch (java.lang.NumberFormatException e) {
+            v.setDescuento(0.00);
+        }
+
+        try {
+            vuelto = Double.valueOf(OperacionesUtiles.formatoDouble(Double.valueOf(formularioEditarVenta.getLblVuelto().getText())));
+            v.setVuelto(vuelto);
+        } catch (java.lang.NumberFormatException e) {
+            v.setVuelto(0.00);
+        }
+
         miSesion.saveOrUpdate(v);
         this.setIdVenta(v.getIdVenta());
 

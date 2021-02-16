@@ -645,6 +645,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radButonConsumidorFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(jPanel5Layout.createSequentialGroup()
                                     .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -655,8 +656,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txtBuscar))
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(radButonConsumidorFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnQuitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -917,7 +917,6 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_formMouseDragged
 
     private void radBtnDescontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radBtnDescontarActionPerformed
-
         if (this.radBtnDescontar.isSelected()) {
             tablaCuenta.setIdCliente(IdCliente);
             tablaCuenta.ejecutarRellenarTabla();
@@ -966,6 +965,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
                 if (radBtnDescontar.isSelected()) {
                     this.IdCuenta = tablaCuenta.obtenerIdFilaSeleccionada();
                     tablaCuenta.cacularNuevoBalance();
+
                 }
             }
         }
@@ -1052,6 +1052,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
             if (radBtnDescontar.isSelected()) {
                 this.IdCuenta = tablaCuenta.obtenerIdFilaSeleccionada();
                 tablaCuenta.cacularNuevoBalance();
+
             }
         }
     }//GEN-LAST:event_btnQuitarActionPerformed
@@ -1076,6 +1077,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
             if (radBtnDescontar.isSelected()) {
                 this.IdCuenta = tablaCuenta.obtenerIdFilaSeleccionada();
                 tablaCuenta.cacularNuevoBalance();
+
             }
         }
 
@@ -1105,6 +1107,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private void tablaGraficaDescontarCuentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaGraficaDescontarCuentaMousePressed
         this.IdCuenta = tablaCuenta.obtenerIdFilaSeleccionada();
         tablaCuenta.cacularNuevoBalance();
+
     }//GEN-LAST:event_tablaGraficaDescontarCuentaMousePressed
 
     private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed

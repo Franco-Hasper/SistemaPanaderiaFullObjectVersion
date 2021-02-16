@@ -2,6 +2,7 @@ package operacionesVenta;
 
 import calsesPadre.Tabla;
 import clasesUtilidadGeneral.OperacionesUtiles;
+import ds.desktop.notify.DesktopNotify;
 import entidades.Cliente;
 import entidades.Direccion_Cliente;
 import entidades.PrecioProducto;
@@ -159,7 +160,7 @@ public class TablaVenta extends Tabla {
             principalVenta.getTablaGrafica().getValueAt(fila, 0).toString();
             return true;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            DesktopNotify.showDesktopMessage("Informacion", "Debe seleccionar una fila", DesktopNotify.INFORMATION, 5000);
             return false;
         }
     }

@@ -7,7 +7,6 @@ import entidades.Direccion_Cliente;
 import entidades.TelefonoCliente;
 import entidades.Venta;
 import formularios.FormularioEditarVenta;
-import java.util.List;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 

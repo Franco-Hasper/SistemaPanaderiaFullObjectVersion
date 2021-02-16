@@ -3,6 +3,7 @@ package operacionesCuenta;
 import escritorios.PrincipalCuenta;
 import formularios.FormularioReporteMovimientos;
 import java.awt.Frame;
+import java.util.Date;
 
 /**
  * @author Hasper Franco
@@ -26,7 +27,8 @@ public class InterfazGraficaReporteMovimientos {
         reporteMovimientos.setFormularioReporteMovimientos(formularioReporte);
         formularioReporte.setReporteMovimientos(reporteMovimientos);
         colorTema(formularioReporte);
-        transferirDaros(formularioReporte);
+        transferirDatos(formularioReporte);
+        autoSetFechas(formularioReporte);
         formularioReporte.setVisible(true);
 
     }
@@ -37,11 +39,16 @@ public class InterfazGraficaReporteMovimientos {
         formularioReporte.getPanelPrincipalTop().setBackground(principalCuenta.getPanelPrincipalTop().getBackground());
     }
 
-    private void transferirDaros(FormularioReporteMovimientos formularioReporte) {
+    private void transferirDatos(FormularioReporteMovimientos formularioReporte) {
         formularioReporte.getLblCliente().setText(principalCuenta.getLblNombre().getText());
         Integer filasSeleccionada = principalCuenta.getTablaGraficaCuenta().getSelectedRow();
         formularioReporte.getLblNroCuenta().setText(principalCuenta.getTablaGraficaCuenta().getValueAt(filasSeleccionada, 0).toString());
-        formularioReporte.getLblBalance().setText("$"+principalCuenta.getTablaGraficaCuenta().getValueAt(filasSeleccionada, 1).toString());
+        formularioReporte.getLblBalance().setText("$" + principalCuenta.getTablaGraficaCuenta().getValueAt(filasSeleccionada, 1).toString());
+    }
+
+    private void autoSetFechas(FormularioReporteMovimientos formularioReporte) {
+        formularioReporte.getFechaInicio().setDatoFecha(new Date());
+        formularioReporte.getFechaFin().setDatoFecha(new Date());
     }
 
 }

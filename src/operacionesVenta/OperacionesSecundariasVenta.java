@@ -62,6 +62,18 @@ public class OperacionesSecundariasVenta {
     }
 
     public void calcularVuelto() {
+
+        switch (tipoFormulario) {
+            case 1:
+                vueltoRegistrar();
+                break;
+            case 2:
+                vueltoEditar();
+                break;
+        }
+    }
+
+    private void vueltoRegistrar() {
         Double sumaTotal = 0.00;
         Double pago = 0.00;
         Double descuento = 0.00;
@@ -80,7 +92,27 @@ public class OperacionesSecundariasVenta {
             Double vuelto = pago - (sumaConDescuento);
             formularioRegistrarVenta.getLblVuelto().setText(new OperacionesUtiles().formatoDouble(vuelto));
         }
+    }
 
+    private void vueltoEditar() {
+        Double sumaTotal = 0.00;
+        Double pago = 0.00;
+        Double descuento = 0.00;
+        try {
+
+            sumaTotal = Double.valueOf(formularioEditarVenta.getLblPrecioTotal().getText());
+            pago = Double.valueOf(formularioEditarVenta.getTxtPago().getText());
+            descuento = Double.valueOf(formularioEditarVenta.getTxtDescuento().getText());
+            Double sumaConDescuento = sumaTotal - (descuento);
+            Double vuelto = pago - (sumaConDescuento);
+            formularioEditarVenta.getLblVuelto().setText(new OperacionesUtiles().formatoDouble(vuelto));
+
+        } catch (java.lang.NumberFormatException e) {
+
+            Double sumaConDescuento = sumaTotal - (descuento);
+            Double vuelto = pago - (sumaConDescuento);
+            formularioEditarVenta.getLblVuelto().setText(new OperacionesUtiles().formatoDouble(vuelto));
+        }
     }
 
     public void tipoVentaSeleccionada(String valor) {
@@ -155,11 +187,6 @@ public class OperacionesSecundariasVenta {
         datosTabla.add(direccion);
         tablaCliente.addRow(datosTabla);
     }
-    
-   
-    
-    
-    
 
     public void rellenarTablaVentaCliente() {
         int fila = principalCliente.getTablaGrafica().getSelectedRow();
@@ -375,7 +402,6 @@ public class OperacionesSecundariasVenta {
     public void deshabilitarBotonesCuenta() {
         if (formularioRegistrarVenta == null) {
             formularioEditarVenta.getRadBtnDescontar().setEnabled(false);
-            formularioEditarVenta.getBtnDescontar().setEnabled(false);
         } else {
             formularioRegistrarVenta.getRadBtnDescontar().setEnabled(false);
 
@@ -386,12 +412,13 @@ public class OperacionesSecundariasVenta {
     private void habilitarBotonesCuenta() {
         if (formularioRegistrarVenta == null) {
             formularioEditarVenta.getRadBtnDescontar().setEnabled(true);
-            formularioEditarVenta.getBtnDescontar().setEnabled(true);
         } else {
             formularioRegistrarVenta.getRadBtnDescontar().setEnabled(true);
 
         }
 
     }
+    
+    
 
 }

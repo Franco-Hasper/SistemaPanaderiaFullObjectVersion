@@ -13,6 +13,7 @@ import escritorios.PrincipalMateriaPrima;
 import escritorios.PrincipalProducto;
 import escritorios.PrincipalProveedor;
 import escritorios.PrincipalVenta;
+import formularios.PaginasWeb;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import operacionesCaja.InterfazGraficaEscritorioCaja;
@@ -45,6 +46,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         materiaPrima = null;
         ingresoMateriaPrima = null;
         cuenta = null;
+        webAFIP=null;
         setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -60,6 +62,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private PrincipalConfiguracion configuracion;
     private PrincipalIngresoMatPrima ingresoMateriaPrima;
     private PrincipalCuenta cuenta;
+    public PaginasWeb webAFIP;
 
     //se utiliza en los metodos de apertura de ventana-clases de control.
     private final InterfazGraficaEscritorioCliente interfazGraficaCliente = new InterfazGraficaEscritorioCliente();
@@ -69,6 +72,9 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private final InterfazGraficaEscritorioVenta interfazGraficaVenta = new InterfazGraficaEscritorioVenta();
     private final InterfazGraficaEscritorioCaja interfazGraficaCaja = new InterfazGraficaEscritorioCaja();
     private final InterfacesGraficasEscritorioConfiguracion interfazGraficaConfiguracion = new InterfacesGraficasEscritorioConfiguracion();
+    
+
+
 
     //metodos de control de ventana.
     private boolean minimiza = false;
@@ -169,6 +175,16 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public void setCuenta(PrincipalCuenta cuenta) {
         this.cuenta = cuenta;
     }
+
+    public PaginasWeb getWebAFIP() {
+        return webAFIP;
+    }
+
+    public void setWebAFIP(PaginasWeb webAFIP) {
+        this.webAFIP = webAFIP;
+    }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -534,4 +550,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel panelPrincipalBody;
     private javax.swing.JPanel panelPrincipalTop;
     // End of variables declaration//GEN-END:variables
+
+
 }

@@ -43,7 +43,7 @@ public class ReporteMovimientos extends Consultas {
 
     private String cliente = "";
     private String nroCuenta = "";
-    private String balanceActual = "";
+    private Double balanceActual = 0.00;
 
     private static final Font titulofuente = new Font(Font.FontFamily.UNDEFINED, 12, Font.BOLD);
     private static final Font datosfuente = new Font(Font.FontFamily.UNDEFINED, 10, Font.BOLD);
@@ -97,14 +97,14 @@ public class ReporteMovimientos extends Consultas {
                 fila.add(new OperacionesUtiles().formatoFechaSinHora(m.getFecha()));
                 this.cliente = m.getCodigoCuenta().getCodigoCliente().getNombre() + " " + m.getCodigoCuenta().getCodigoCliente().getApellido();
                 this.nroCuenta = m.getCodigoCuenta().getIdCuenta().toString();
-                this.balanceActual = m.getCodigoCuenta().getBalance().toString();
+                this.balanceActual = m.getCodigoCuenta().getBalance();
                 tablaIngresos.addRow(fila);
             }
 
         }
         formularioReporteMovimientos.getLblCliente().setText(cliente);
         formularioReporteMovimientos.getLblNroCuenta().setText(nroCuenta);
-        formularioReporteMovimientos.getLblBalance().setText(balanceActual);
+        formularioReporteMovimientos.getLblBalance().setText(OperacionesUtiles.formatoDouble(balanceActual));
 
     }
 
@@ -149,7 +149,6 @@ public class ReporteMovimientos extends Consultas {
 
             texto.add(new Paragraph("\n"));
 
-            Double resultado = 0.0;
 
             PdfPTable table = new PdfPTable(4);
             PdfPCell columnHeader;
@@ -169,8 +168,8 @@ public class ReporteMovimientos extends Consultas {
             for (Object o : lista) {
                 MovimientoCuenta m = (MovimientoCuenta) o;
                 table.addCell(m.getMotivo());
-                table.addCell("$ " + m.getMonto().toString());
-                table.addCell("$ " + m.getBalance().toString());
+                table.addCell("$ " + OperacionesUtiles.formatoDouble(m.getMonto()).toString());
+                table.addCell("$ " + OperacionesUtiles.formatoDouble(m.getBalance()).toString());
                 table.addCell((String) new OperacionesUtiles().formatoFechaSinHora(m.getFecha()));
             }
 

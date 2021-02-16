@@ -170,10 +170,10 @@ public class TablaCliente extends Tabla {
         if (obtenerIdFilaSeleccionada().equals(1)) {
             switch (botonSeleccionado) {
                 case 1:
-                    JOptionPane.showMessageDialog(null, "No se puede eliminar ni editar 'Consumidor Final' ", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                    DesktopNotify.showDesktopMessage("Informacion", "No se puede eliminar ni editar 'Consumidor Final'", DesktopNotify.INFORMATION, 5000);
                     return false;
                 case 2:
-                    JOptionPane.showMessageDialog(null, "El cliente 'Consumidor Final' no puede abrir una cuenta", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                    DesktopNotify.showDesktopMessage("Informacion", "El cliente 'Consumidor Final' no puede abrir una cuenta", DesktopNotify.INFORMATION, 5000);
                     return false;
             }
             return false;

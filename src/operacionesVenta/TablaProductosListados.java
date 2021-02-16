@@ -8,6 +8,7 @@ import entidades.Direccion_Cliente;
 import entidades.PrecioProducto;
 import entidades.Producto_Venta;
 import entidades.TelefonoCliente;
+import entidades.Venta;
 import escritorios.PrincipalVenta;
 import formularios.FormularioEditarVenta;
 import java.util.ArrayList;
@@ -260,13 +261,26 @@ public class TablaProductosListados extends Tabla {
         return 0;
     }
 
+    public void autoRellenarDatosSecundarios() {
+        setConsultaObject("from Venta where idVenta=" + this.idVenta.toString());
+        obtenerObjetoConsulta();
+        rellenarCampos();
+    }
+
+    private void rellenarCampos() {
+        Object objeto = this.getObjetoResultado();
+        Venta v = (Venta) objeto;
+        formularioEditarVenta.getTxtPago().setText(v.getPagado().toString());
+        formularioEditarVenta.getTxtDescuento().setText(v.getDescuento().toString());
+        formularioEditarVenta.getLblVuelto().setText(v.getVuelto().toString());
+    }
+
     @Override
     public void ejecutarRellenarTabla() {
         setTabla(formularioEditarVenta.getTablaGraficaProductosListados());
         setStringConsulta("from Producto_Venta where codigoVenta=" + this.idVenta.toString());
         evaluarEstadoConsulta();
         setCampoTexto(formularioEditarVenta.getTxtBuscar());
-
         rellenarTabla(getCampoTexto().getText());
     }
 

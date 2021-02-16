@@ -3,6 +3,8 @@ package formularios;
 import com.itextpdf.text.DocumentException;
 import escritorios.PrincipalCuenta;
 import escritorios.PrincipalIngresoMatPrima;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,16 +28,12 @@ public class FormularioReporteMovimientos extends javax.swing.JDialog {
     private ReporteMovimientos reporteMovimientos;
     private PrincipalCuenta principalCuenta;
 
-    
-
     public FormularioReporteMovimientos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
-
-    
     public ReporteMovimientos getReporteMovimientos() {
         return reporteMovimientos;
     }
@@ -83,6 +81,16 @@ public class FormularioReporteMovimientos extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 102, 102), java.awt.Color.gray, new java.awt.Color(102, 102, 102), java.awt.Color.gray));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
 
         panelPrincipalTop.setBackground(new java.awt.Color(153, 0, 0));
 
@@ -351,6 +359,18 @@ public class FormularioReporteMovimientos extends javax.swing.JDialog {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+    
+    int x, y;
+    
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
+    }//GEN-LAST:event_jPanel1MouseDragged
 
     /**
      * @param args the command line arguments
@@ -477,8 +497,6 @@ public class FormularioReporteMovimientos extends javax.swing.JDialog {
         this.radBtnImprimir = radBtnImprimir;
     }
 
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel PanelIngresoMateriaPrima;

@@ -3,6 +3,7 @@ package operacionesGasto;
 ;
 import calsesPadre.Tabla;
 import clasesUtilidadGeneral.OperacionesUtiles;
+import ds.desktop.notify.DesktopNotify;
 import entidades.Gasto;
 import escritorios.PrincipalGastos;
 import java.util.ArrayList;
@@ -83,7 +84,7 @@ public class TablaGastos extends Tabla {
                 this.listaResutladosActuales.add(0, g.getIdGasto());
                 Vector<Object> fila = new Vector<>();
                 fila.add(g.getDescripcion());
-                fila.add(g.getPrecioTotal());
+                fila.add(OperacionesUtiles.formatoDouble(g.getPrecioTotal()));
                 fila.add(OperacionesUtiles.formatoFechaSinHora(g.getFecha()));
                 tablaGastos.addRow(fila);
             }
@@ -99,7 +100,7 @@ public class TablaGastos extends Tabla {
             principalGastos.getTablaGrafica().getValueAt(fila, 0).toString();
             return true;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+             DesktopNotify.showDesktopMessage("Informacion", "Debe seleccionar una fila", DesktopNotify.INFORMATION, 5000);
             return false;
         }
     }

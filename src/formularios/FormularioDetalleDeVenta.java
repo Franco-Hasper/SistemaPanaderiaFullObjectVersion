@@ -26,8 +26,8 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
     }
 
     private Integer idVenta;
-        private PrincipalVenta principalVenta;
-    
+    private PrincipalVenta principalVenta;
+
     private ComprobanteVenta comprobante;
 
     public ComprobanteVenta getComprobante() {
@@ -37,7 +37,7 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
     public void setComprobante(ComprobanteVenta comprobante) {
         this.comprobante = comprobante;
     }
-    
+
     public PrincipalVenta getPrincipalVenta() {
         return principalVenta;
     }
@@ -46,8 +46,6 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
         this.principalVenta = principalVenta;
     }
 
-
-    
     public Integer getIdVenta() {
         return idVenta;
     }
@@ -122,8 +120,8 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
             .addGroup(panelPrincipalTopLayout.createSequentialGroup()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         panelPrincipalTopLayout.setVerticalGroup(
             panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,11 +365,10 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelPrincipalTop, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanelIngresoMateriaPrima, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(PanelIngresoMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(2, 2, 2))
+            .addComponent(panelPrincipalTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,7 +383,7 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,6 +408,7 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
             comprobante.setRadBtnImprimir(radBtnImprimir);
             comprobante.setIdVenta(idVenta);
             comprobante.ejecutarGenerarReporte();
+            this.dispose();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FormularioDetalleDeVenta.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
@@ -429,7 +427,7 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_formMouseDragged
 
     private void radBtnAbrirDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radBtnAbrirDocumentoActionPerformed
-         // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_radBtnAbrirDocumentoActionPerformed
 
     /**
@@ -570,8 +568,6 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
     public void setLblVuelto(JLabel lblVuelto) {
         this.lblVuelto = lblVuelto;
     }
-    
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

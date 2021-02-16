@@ -75,8 +75,11 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             tablaProductosListados.setFormularioEditarVenta(formularioEditar);
             tablaProductosListados.setIdVenta(idVenta);
             tablaProductosListados.ejecutarRellenarTabla();
+            //datos secundarios no tienen nada que ver con la tabla
+            tablaProductosListados.autoRellenarDatosSecundarios();
             principalVenta.getEditarVenta().setListaProductosEliminar(tablaProductosListados.getListaProductosEliminar());
             principalVenta.getEditarVenta().setTablaProductosListados(tablaProductosListados);
+            
 
             configuracionTxtCantidadTxtTotal();
 
@@ -89,6 +92,8 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             operacionesSecundariasVenta.setTipoFormulario(2);
             //guardo el la instancia en el formulario grafico
             principalVenta.getEditarVenta().setOperacionesSecundariasVenta(operacionesSecundariasVenta);
+            
+            
             rellenarBoxes();
 
             //seccion tablaCliente
@@ -98,6 +103,8 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             tablaCliente.ejecutarRellenenarTabla();
             Integer idCliente = tablaCliente.getIdCliente();
             principalVenta.getEditarVenta().setIdCliente(idCliente);
+            
+            estadoInicialRadBtnDescontar(idCliente);
 
             TablaClienteLista tablaClienteLista = new TablaClienteLista();
             tablaClienteLista.setFormularioEditarVenta(principalVenta.getEditarVenta());
@@ -124,6 +131,8 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
         new TextPrompt("CANTIDAD", principalVenta.getEditarVenta().getTxtCantidad());
         new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getEditarVenta().getTxtBuscar());
         new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getEditarVenta().getTxtBuscarClientes());
+        new TextPrompt("MONTO PAGADO", principalVenta.getEditarVenta().getTxtPago());
+        new TextPrompt("DESCUENTO", principalVenta.getEditarVenta().getTxtDescuento());
         principalVenta.getEditarVenta().getTxtBuscar().grabFocus();
     }
 
@@ -179,4 +188,10 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
 
     }
 
+    private void estadoInicialRadBtnDescontar(Integer idCliente){
+        if(idCliente==1){
+            principalVenta.getEditarVenta().getRadBtnDescontar().setEnabled(false);
+        }
+    }
+    
 }

@@ -14,6 +14,7 @@ import operacionesVenta.InterfazGraficaDetalleVenta;
 import operacionesVenta.InterfazGraficaFormularioEditarVenta;
 import operacionesVenta.InterfazGraficaFormularioEstadoVenta;
 import operacionesVenta.InterfazGraficaFormularioRegistrarVenta;
+import operacionesVenta.InterfazGraficaFormularioWebAFIP;
 import operacionesVenta.TablaDetalleVenta;
 import operacionesVenta.TablaVenta;
 import principal.PrincipalAdministrador;
@@ -44,6 +45,8 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
     private TablaVenta tablaVenta;
     private final ABMVenta abm = new ABMVenta();
     private PrincipalAdministrador principalAdministrador;
+    
+    private final InterfazGraficaFormularioWebAFIP interfazGraficaWeb = new InterfazGraficaFormularioWebAFIP();
 
     public PrincipalAdministrador getPrincipalAdministrador() {
         return principalAdministrador;
@@ -423,7 +426,8 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarVentaActionPerformed
 
     private void btnVentaWebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaWebActionPerformed
-
+        interfazGraficaWeb.setPrincipalAdministrador(principalAdministrador);
+        interfazGraficaWeb.nuevaVentana();
     }//GEN-LAST:event_btnVentaWebActionPerformed
 
     private void radButonSoloPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radButonSoloPedidosActionPerformed
