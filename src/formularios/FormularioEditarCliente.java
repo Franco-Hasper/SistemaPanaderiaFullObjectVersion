@@ -147,6 +147,24 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
 
         panelprincipalBody.setBackground(new java.awt.Color(255, 255, 255));
 
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyTyped(evt);
+            }
+        });
+
+        txtRazonSocial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtRazonSocialKeyPressed(evt);
+            }
+        });
+
         radioButon.setText("razón social");
         radioButon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +175,12 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
         boxProvincia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxProvinciaActionPerformed(evt);
+            }
+        });
+
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyTyped(evt);
             }
         });
 
@@ -324,18 +348,34 @@ public class FormularioEditarCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_boxProvinciaActionPerformed
 
     private void txtnuemroDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnuemroDireccionKeyTyped
-        // TODO add your handling code here:
+        new OperacionesUtiles().limitarCaracteres(evt, txtNombre,10);
         if (new OperacionesUtiles().advertenciaNum(evt)) {
             OperacionesUtiles.borrarCampo(txtnuemroDireccion);
         }
     }//GEN-LAST:event_txtnuemroDireccionKeyTyped
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        // TODO add your handling code here:
+        new OperacionesUtiles().limitarCaracteres(evt, txtNombre,15);
         if (new OperacionesUtiles().advertenciaNum(evt)) {
             OperacionesUtiles.borrarCampo(txtTelefono);
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        new OperacionesUtiles().limitarCaracteres(evt, txtNombre,20);
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+        new OperacionesUtiles().limitarCaracteres(evt, txtApellido,20);
+    }//GEN-LAST:event_txtApellidoKeyTyped
+
+    private void txtRazonSocialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonSocialKeyPressed
+       new OperacionesUtiles().limitarCaracteres(evt, txtRazonSocial,25);
+    }//GEN-LAST:event_txtRazonSocialKeyPressed
+
+    private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
+      new OperacionesUtiles().limitarCaracteres(evt, txtDireccion,20);
+    }//GEN-LAST:event_txtDireccionKeyTyped
 
     /**
      * @param args the command line arguments

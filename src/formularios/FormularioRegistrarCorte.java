@@ -223,6 +223,11 @@ public class FormularioRegistrarCorte extends javax.swing.JDialog {
         jLabel7.setText("BALANCE: $");
 
         txtBalance.setEditable(false);
+        txtBalance.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBalanceKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -249,11 +254,17 @@ public class FormularioRegistrarCorte extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTotalVentasKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTotalVentasKeyTyped(evt);
+            }
         });
 
         txtTotalGastos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTotalGastosKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTotalGastosKeyTyped(evt);
             }
         });
 
@@ -464,6 +475,18 @@ public class FormularioRegistrarCorte extends javax.swing.JDialog {
         Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_formMouseDragged
+
+    private void txtTotalGastosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalGastosKeyTyped
+      new OperacionesUtiles().limitarCaracteres(evt, txtTotalGastos,15);
+    }//GEN-LAST:event_txtTotalGastosKeyTyped
+
+    private void txtTotalVentasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalVentasKeyTyped
+         new OperacionesUtiles().limitarCaracteres(evt, txtTotalVentas,15);
+    }//GEN-LAST:event_txtTotalVentasKeyTyped
+
+    private void txtBalanceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBalanceKeyTyped
+        new OperacionesUtiles().limitarCaracteres(evt, txtBalance,15);
+    }//GEN-LAST:event_txtBalanceKeyTyped
 
     /**
      * @param args the command line arguments

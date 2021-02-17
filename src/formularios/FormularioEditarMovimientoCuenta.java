@@ -187,10 +187,18 @@ public class FormularioEditarMovimientoCuenta extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtMontoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMontoKeyTyped(evt);
+            }
         });
 
         filler8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        txtMotivo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMotivoKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtMotivo);
 
         filler7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -305,6 +313,14 @@ int x, y;
        Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_formMouseDragged
+
+    private void txtMontoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoKeyTyped
+     new OperacionesUtiles().limitarCaracteres(evt,txtMonto, 15);
+    }//GEN-LAST:event_txtMontoKeyTyped
+
+    private void txtMotivoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMotivoKeyTyped
+        new OperacionesUtiles().limitarCaracteresEditorPane(evt, txtMotivo, 30);
+    }//GEN-LAST:event_txtMotivoKeyTyped
 
     /**
      * @param args the command line arguments

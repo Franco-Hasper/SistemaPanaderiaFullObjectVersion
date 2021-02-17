@@ -196,10 +196,18 @@ public class FormularioEditarGasto extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTotalGastadoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTotalGastadoKeyTyped(evt);
+            }
         });
 
         filler8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtDescripcion);
 
         filler7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -312,6 +320,14 @@ public class FormularioEditarGasto extends javax.swing.JDialog {
         Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_formMouseDragged
+
+    private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
+       new OperacionesUtiles().limitarCaracteresEditorPane(evt, txtDescripcion,40);
+    }//GEN-LAST:event_txtDescripcionKeyTyped
+
+    private void txtTotalGastadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalGastadoKeyTyped
+        new OperacionesUtiles().limitarCaracteres(evt, txtTotalGastado,15);
+    }//GEN-LAST:event_txtTotalGastadoKeyTyped
 
     /**
      * @param args the command line arguments

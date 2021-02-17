@@ -354,9 +354,10 @@ public class FormularioRegistrarProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_radioIvaActionPerformed
 
     private void txtPrecioFinalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioFinalKeyTyped
-        if (new OperacionesUtiles().advertenciaNum(evt)) {
+         if (new OperacionesUtiles().advertenciaNum(evt)) {
             OperacionesUtiles.borrarCampo(txtPrecioFinal);
         }
+          new OperacionesUtiles().limitarCaracteres(evt, txtPrecioFinal,15);
     }//GEN-LAST:event_txtPrecioFinalKeyTyped
 
     private void txtPrecioFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioFinalActionPerformed
@@ -364,7 +365,7 @@ public class FormularioRegistrarProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_txtPrecioFinalActionPerformed
 
     private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
-        // TODO add your handling code here:
+         new OperacionesUtiles().limitarCaracteres(evt, txtDescripcion,25);
     }//GEN-LAST:event_txtDescripcionKeyTyped
 
     private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
@@ -372,9 +373,10 @@ public class FormularioRegistrarProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_txtDescripcionActionPerformed
 
     private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
-        if (new OperacionesUtiles().advertenciaNum(evt)) {
+         if (new OperacionesUtiles().advertenciaNum(evt)) {
             OperacionesUtiles.borrarCampo(txtPrecio);
         }
+          new OperacionesUtiles().limitarCaracteres(evt, txtPrecio,15);
     }//GEN-LAST:event_txtPrecioKeyTyped
 
     private void txtPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyReleased
@@ -387,7 +389,7 @@ public class FormularioRegistrarProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_txtPrecioActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        // TODO add your handling code here:
+        new OperacionesUtiles().limitarCaracteres(evt, txtNombre,20);
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed

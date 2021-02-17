@@ -1113,7 +1113,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_txtPagoKeyReleased
 
     private void txtPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPagoKeyTyped
-        // TODO add your handling code here:
+         new OperacionesUtiles().limitarCaracteres(evt,txtPago,15);
     }//GEN-LAST:event_txtPagoKeyTyped
 
     private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed
@@ -1136,7 +1136,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_txtDescuentoKeyReleased
 
     private void txtDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyTyped
-        // TODO add your handling code here:
+       new OperacionesUtiles().limitarCaracteres(evt,txtDescuento,15);
     }//GEN-LAST:event_txtDescuentoKeyTyped
 
     private void tablaGraficaDescontarCuentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaGraficaDescontarCuentaMousePressed

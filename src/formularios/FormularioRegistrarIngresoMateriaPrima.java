@@ -356,15 +356,17 @@ public class FormularioRegistrarIngresoMateriaPrima extends javax.swing.JDialog 
     }//GEN-LAST:event_formMouseDragged
 
     private void txttotalEnvasesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttotalEnvasesKeyTyped
-        if (new OperacionesUtiles().advertenciaNum(evt)) {
+         if (new OperacionesUtiles().advertenciaNum(evt)) {
             OperacionesUtiles.borrarCampo(txttotalEnvases);
         }
+          new OperacionesUtiles().limitarCaracteres(evt,txttotalEnvases,15);
     }//GEN-LAST:event_txttotalEnvasesKeyTyped
 
     private void txtUdsPorEnvaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUdsPorEnvaseKeyTyped
-        if (new OperacionesUtiles().advertenciaNum(evt)) {
+         if (new OperacionesUtiles().advertenciaNum(evt)) {
             OperacionesUtiles.borrarCampo(txtUdsPorEnvase);
         }
+         new OperacionesUtiles().limitarCaracteres(evt,txtUdsPorEnvase,15);
     }//GEN-LAST:event_txtUdsPorEnvaseKeyTyped
 
     private void txtPrecioTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioTotalActionPerformed
@@ -372,9 +374,10 @@ public class FormularioRegistrarIngresoMateriaPrima extends javax.swing.JDialog 
     }//GEN-LAST:event_txtPrecioTotalActionPerformed
 
     private void txtPrecioTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioTotalKeyTyped
-        if (new OperacionesUtiles().advertenciaNum(evt)) {
+         if (new OperacionesUtiles().advertenciaNum(evt)) {
             OperacionesUtiles.borrarCampo(txtPrecioTotal);
         }
+         new OperacionesUtiles().limitarCaracteres(evt,txtPrecioTotal,15);
     }//GEN-LAST:event_txtPrecioTotalKeyTyped
 
     private void txttotalEnvasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalEnvasesActionPerformed

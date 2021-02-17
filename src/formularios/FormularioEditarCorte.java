@@ -135,6 +135,9 @@ public class FormularioEditarCorte extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBalanceKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBalanceKeyTyped(evt);
+            }
         });
 
         txtTotalIngresos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
@@ -334,12 +337,12 @@ public class FormularioEditarCorte extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTotalEgresosKeyReleased
 
     private void txtTotalIngresosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalIngresosKeyTyped
-
+        new OperacionesUtiles().limitarCaracteres(evt, txtTotalIngresos,15);
     }//GEN-LAST:event_txtTotalIngresosKeyTyped
 
     private void txtTotalEgresosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalEgresosKeyTyped
 
-
+new OperacionesUtiles().limitarCaracteres(evt, txtTotalEgresos,15);
     }//GEN-LAST:event_txtTotalEgresosKeyTyped
 
     private void txtTotalIngresosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalIngresosKeyPressed
@@ -372,6 +375,10 @@ public class FormularioEditarCorte extends javax.swing.JDialog {
         x = evt.getX();
         y = evt.getY();
     }//GEN-LAST:event_formMousePressed
+
+    private void txtBalanceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBalanceKeyTyped
+         new OperacionesUtiles().limitarCaracteres(evt, txtBalance, 15);
+    }//GEN-LAST:event_txtBalanceKeyTyped
 
     /**
      * @param args the command line arguments

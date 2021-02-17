@@ -304,16 +304,16 @@ public class FormularioRegistrarProveedor extends javax.swing.JDialog {
                     .addGroup(panelPrincipalBodyLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addGroup(panelPrincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(filler24, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelPrincipalBodyLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addGroup(panelPrincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(panelPrincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(filler23, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(panelPrincipalBodyLayout.createSequentialGroup()
                                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(filler24, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         panelPrincipalBodyLayout.setVerticalGroup(
             panelPrincipalBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,7 +387,7 @@ public class FormularioRegistrarProveedor extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        // TODO add your handling code here:
+       new OperacionesUtiles().limitarCaracteres(evt,txtNombre,20);
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
@@ -409,9 +409,10 @@ public class FormularioRegistrarProveedor extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        if (new OperacionesUtiles().advertenciaNum(evt)) {
+         if (new OperacionesUtiles().advertenciaNum(evt)) {
             OperacionesUtiles.borrarCampo(txtTelefono);
         }
+          new OperacionesUtiles().limitarCaracteres(evt,txtTelefono,15);
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
@@ -419,7 +420,7 @@ public class FormularioRegistrarProveedor extends javax.swing.JDialog {
     }//GEN-LAST:event_txtDireccionActionPerformed
 
     private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
-        // TODO add your handling code here:
+      new OperacionesUtiles().limitarCaracteres(evt,txtDireccion,20);
     }//GEN-LAST:event_txtDireccionKeyTyped
 
     private void boxLocalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxLocalidadActionPerformed
@@ -431,9 +432,10 @@ public class FormularioRegistrarProveedor extends javax.swing.JDialog {
     }//GEN-LAST:event_txtnuemeroDireccionActionPerformed
 
     private void txtnuemeroDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnuemeroDireccionKeyTyped
-        if (new OperacionesUtiles().advertenciaNum(evt)) {
+         if (new OperacionesUtiles().advertenciaNum(evt)) {
             OperacionesUtiles.borrarCampo(txtnuemeroDireccion);
         }
+          new OperacionesUtiles().limitarCaracteres(evt,txtnuemeroDireccion,10);
     }//GEN-LAST:event_txtnuemeroDireccionKeyTyped
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed

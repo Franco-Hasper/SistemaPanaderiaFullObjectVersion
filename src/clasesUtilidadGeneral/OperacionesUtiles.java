@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -89,7 +90,7 @@ public class OperacionesUtiles {
             if (j.getText().length() == 0) {
                 DesktopNotify.showDesktopMessage("   información   ", " Todos los campos son requeridos", DesktopNotify.INFORMATION, 5000);
                 return false;
-            } 
+            }
         }
         return true;
     }
@@ -223,6 +224,40 @@ public class OperacionesUtiles {
     }
 
     /**
+     * Limita la cantidad de caracteres ingresadas en un JTextFielf.
+     *
+     * @param evt
+     * @param campoTexto
+     * @param longitud
+     */
+    public void limitarCaracteres(java.awt.event.KeyEvent evt, JTextField campoTexto, Integer longitud) {
+        if (campoTexto.getText().length() == longitud) {
+            evt.consume();
+        } else if (campoTexto.getText().length() > longitud) {
+            String subCadena = campoTexto.getText();
+            campoTexto.setText(subCadena.substring(0, longitud));
+            DesktopNotify.showDesktopMessage("   información   ", "   Solo se permiten ingresar " + longitud + " caracteres", DesktopNotify.INFORMATION, 5000);
+        }
+    }
+    
+        /**
+     * Limita la cantidad de caracteres ingresadas en un JEditorPane.
+     *
+     * @param evt
+     * @param campoTexto
+     * @param longitud
+     */
+    public void limitarCaracteresEditorPane(java.awt.event.KeyEvent evt, JEditorPane campoTexto, Integer longitud) {
+        if (campoTexto.getText().length() == longitud) {
+            evt.consume();
+        } else if (campoTexto.getText().length() > longitud) {
+            String subCadena = campoTexto.getText();
+            campoTexto.setText(subCadena.substring(0, longitud));
+            DesktopNotify.showDesktopMessage("   información   ", "   Solo se permiten ingresar " + longitud + " caracteres", DesktopNotify.INFORMATION, 5000);
+        }
+    }
+
+    /**
      * Despliega un mensaje indicando que solo deben ingresarse números.
      *
      * @param evt
@@ -303,7 +338,7 @@ public class OperacionesUtiles {
      * @return
      */
     public static Object formatoFecha(Date fechaSinFormato) {
-       
+
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy (HH:mm:ss)");
         return dateFormat.format(fechaSinFormato);
     }
@@ -315,7 +350,7 @@ public class OperacionesUtiles {
      * @return
      */
     public static Object formatoFechaSinHora(Date fechaSinFormato) {
-      
+
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return dateFormat.format(fechaSinFormato);
 
@@ -328,7 +363,7 @@ public class OperacionesUtiles {
      * @return
      */
     public static Object formatoFechaSinHoraYearFirst(Date fechaSinFormato) {
-       
+
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(fechaSinFormato);
 
@@ -476,7 +511,7 @@ public class OperacionesUtiles {
      * Dar formato a un valor Double retorna String
      */
     public static String formatoDouble(Double valor) {
-        
+
         DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
         separadoresPersonalizados.setDecimalSeparator('.');
         DecimalFormat formato = new DecimalFormat("#.00", separadoresPersonalizados);

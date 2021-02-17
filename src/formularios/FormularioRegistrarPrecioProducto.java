@@ -286,7 +286,7 @@ public class FormularioRegistrarPrecioProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_txtPrecioFinalActionPerformed
 
     private void txtPrecioFinalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioFinalKeyTyped
-        // TODO add your handling code here:
+        new OperacionesUtiles().limitarCaracteres(evt, txtPrecioFinal,15);
     }//GEN-LAST:event_txtPrecioFinalKeyTyped
 
     private void radioIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioIvaActionPerformed
@@ -308,7 +308,7 @@ public class FormularioRegistrarPrecioProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_txtPrecioKeyReleased
 
     private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
-        // TODO add your handling code here:
+        new OperacionesUtiles().limitarCaracteres(evt,txtPrecio,15);
     }//GEN-LAST:event_txtPrecioKeyTyped
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed

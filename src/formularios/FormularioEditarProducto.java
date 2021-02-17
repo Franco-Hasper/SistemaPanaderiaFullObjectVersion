@@ -253,7 +253,7 @@ public class FormularioEditarProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_txtDescripcionActionPerformed
 
     private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
-        // TODO add your handling code here:
+       new OperacionesUtiles().limitarCaracteres(evt,txtDescripcion,20);
     }//GEN-LAST:event_txtDescripcionKeyTyped
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
@@ -266,7 +266,7 @@ public class FormularioEditarProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNombreKeyReleased
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        // TODO add your handling code here:
+         new OperacionesUtiles().limitarCaracteres(evt,txtNombre,20);
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed

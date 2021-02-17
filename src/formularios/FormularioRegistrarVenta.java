@@ -1131,7 +1131,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_txtDescuentoKeyReleased
 
     private void txtDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyTyped
-        // TODO add your handling code here:
+       new OperacionesUtiles().limitarCaracteres(evt, txtDescuento,15);
     }//GEN-LAST:event_txtDescuentoKeyTyped
 
     private void txtPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPagoActionPerformed
@@ -1155,7 +1155,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_txtPagoKeyReleased
 
     private void txtPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPagoKeyTyped
-        // TODO add your handling code here:
+      new OperacionesUtiles().limitarCaracteres(evt,txtPago,15);
     }//GEN-LAST:event_txtPagoKeyTyped
 
     private void radButonAbrirAlFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radButonAbrirAlFinalizarActionPerformed

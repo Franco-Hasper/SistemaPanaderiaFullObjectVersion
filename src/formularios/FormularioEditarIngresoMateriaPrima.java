@@ -379,14 +379,14 @@ public class FormularioEditarIngresoMateriaPrima extends javax.swing.JDialog {
         if (new OperacionesUtiles().advertenciaNum(evt)) {
             OperacionesUtiles.borrarCampo(txttotalEnvases);
         }
-
+        new OperacionesUtiles().limitarCaracteres(evt, txttotalEnvases, 15);
     }//GEN-LAST:event_txttotalEnvasesKeyTyped
 
     private void txtUdsPorEnvaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUdsPorEnvaseKeyTyped
         if (new OperacionesUtiles().advertenciaNum(evt)) {
             OperacionesUtiles.borrarCampo(txtUdsPorEnvase);
         }
-
+        new OperacionesUtiles().limitarCaracteres(evt, txtUdsPorEnvase, 15);
 
     }//GEN-LAST:event_txtUdsPorEnvaseKeyTyped
 
@@ -407,6 +407,7 @@ public class FormularioEditarIngresoMateriaPrima extends javax.swing.JDialog {
         if (new OperacionesUtiles().advertenciaNum(evt)) {
             OperacionesUtiles.borrarCampo(txtPrecioTotal);
         }
+        new OperacionesUtiles().limitarCaracteres(evt, txtPrecioTotal, 15);
     }//GEN-LAST:event_txtPrecioTotalKeyTyped
 
     private void txttotalEnvasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalEnvasesActionPerformed

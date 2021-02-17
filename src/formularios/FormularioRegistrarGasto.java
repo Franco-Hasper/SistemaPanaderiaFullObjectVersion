@@ -154,6 +154,11 @@ public class FormularioRegistrarGasto extends javax.swing.JDialog {
             }
         });
 
+        txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtDescripcion);
 
         btnCancelar.setBackground(new java.awt.Color(0, 0, 0,60));
@@ -279,9 +284,10 @@ public class FormularioRegistrarGasto extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTotlaGasatadoKeyReleased
 
     private void txtTotlaGasatadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotlaGasatadoKeyTyped
-        if (new OperacionesUtiles().advertenciaNum(evt)) {
+         if (new OperacionesUtiles().advertenciaNum(evt)) {
             OperacionesUtiles.borrarCampo(txtTotlaGasatado);
-        }        // TODO add your handling code here:
+        }        
+          new OperacionesUtiles().limitarCaracteres(evt,txtTotlaGasatado,15);
     }//GEN-LAST:event_txtTotlaGasatadoKeyTyped
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -306,6 +312,10 @@ public class FormularioRegistrarGasto extends javax.swing.JDialog {
         x = evt.getX();
         y = evt.getY();
     }//GEN-LAST:event_formMousePressed
+
+    private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
+       new OperacionesUtiles().limitarCaracteresEditorPane(evt,txtDescripcion,30);
+    }//GEN-LAST:event_txtDescripcionKeyTyped
 
     /**
      * @param args the command line arguments

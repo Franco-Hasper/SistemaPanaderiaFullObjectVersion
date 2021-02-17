@@ -296,7 +296,7 @@ public class FormularioEditarProveedor extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        // TODO add your handling code here:
+       new OperacionesUtiles().limitarCaracteres(evt,txtNombre,20);
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
@@ -341,7 +341,7 @@ public class FormularioEditarProveedor extends javax.swing.JDialog {
     }//GEN-LAST:event_txtDireccionActionPerformed
 
     private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
-        // TODO add your handling code here:
+     new OperacionesUtiles().limitarCaracteres(evt,txtDireccion,20);
     }//GEN-LAST:event_txtDireccionKeyTyped
 
     private void txtnuemeroDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnuemeroDireccionActionPerformed
@@ -349,9 +349,10 @@ public class FormularioEditarProveedor extends javax.swing.JDialog {
     }//GEN-LAST:event_txtnuemeroDireccionActionPerformed
 
     private void txtnuemeroDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnuemeroDireccionKeyTyped
-        if (new OperacionesUtiles().advertenciaNum(evt)) {
+         if (new OperacionesUtiles().advertenciaNum(evt)) {
             OperacionesUtiles.borrarCampo(txtnuemeroDireccion);
         }
+         new OperacionesUtiles().limitarCaracteres(evt,txtnuemeroDireccion,10);
     }//GEN-LAST:event_txtnuemeroDireccionKeyTyped
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
@@ -359,9 +360,10 @@ public class FormularioEditarProveedor extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        if (new OperacionesUtiles().advertenciaNum(evt)) {
+         if (new OperacionesUtiles().advertenciaNum(evt)) {
             OperacionesUtiles.borrarCampo(txtTelefono);
         }
+         new OperacionesUtiles().limitarCaracteres(evt,txtTelefono,15);
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void boxTipoTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoTelefonoActionPerformed

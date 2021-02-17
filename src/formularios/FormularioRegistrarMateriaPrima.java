@@ -292,7 +292,7 @@ public class FormularioRegistrarMateriaPrima extends javax.swing.JDialog {
 
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        // TODO add your handling code here:
+        new OperacionesUtiles().limitarCaracteres(evt,txtNombre,20);
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void boxMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMarcaActionPerformed

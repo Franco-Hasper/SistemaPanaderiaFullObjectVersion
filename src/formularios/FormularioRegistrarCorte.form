@@ -369,17 +369,22 @@
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBalanceKeyTyped"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
                 <Component class="javax.swing.JTextField" name="txtTotalVentas">
                   <Events>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTotalVentasKeyReleased"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTotalVentasKeyTyped"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtTotalGastos">
                   <Events>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTotalGastosKeyReleased"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTotalGastosKeyTyped"/>
                   </Events>
                 </Component>
               </SubComponents>

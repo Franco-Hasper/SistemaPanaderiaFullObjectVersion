@@ -132,6 +132,11 @@ public class FormularioEditarMateriaPrima extends javax.swing.JDialog {
 
         txtNombreMAteriaPrima.setToolTipText("");
         txtNombreMAteriaPrima.setName(""); // NOI18N
+        txtNombreMAteriaPrima.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreMAteriaPrimaKeyTyped(evt);
+            }
+        });
 
         boxProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,6 +301,10 @@ public class FormularioEditarMateriaPrima extends javax.swing.JDialog {
         Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_formMouseDragged
+
+    private void txtNombreMAteriaPrimaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreMAteriaPrimaKeyTyped
+           new OperacionesUtiles().limitarCaracteres(evt, txtNombreMAteriaPrima, 20);
+    }//GEN-LAST:event_txtNombreMAteriaPrimaKeyTyped
 
     /**
      * @param args the command line arguments
