@@ -213,8 +213,16 @@ public class ABMVenta extends ABM {
             Estado e = (Estado) miSesion.get(Estado.class, 1);
 
             MovimientoCuenta mc = new MovimientoCuenta();
-            mc.setMonto(Double.valueOf("-" + formularioRegistrarVenta.getLblPrecioTotal().getText().toString()));
-            mc.setMotivo("compra de productos");
+
+            //verificar si la suma es positiva o negativa
+            String positivoNegativo = String.valueOf(formularioRegistrarVenta.getLblVuelto().getText().charAt(0));
+            if (positivoNegativo.equals("-")) {
+                mc.setMonto(Double.valueOf("-" + formularioRegistrarVenta.getLblVuelto().getText().toString()));
+                mc.setMotivo("compra de productos");
+            } else {
+                mc.setMonto(Double.valueOf(formularioRegistrarVenta.getLblVuelto().getText().toString()));
+                mc.setMotivo("restante de compra");
+            }
 
             Integer id = formularioRegistrarVenta.getIdCuenta();
             Cuenta c = (Cuenta) miSesion.get(Cuenta.class, id);
@@ -351,30 +359,64 @@ public class ABMVenta extends ABM {
 
         //seccion descontar cuenta
         if (formularioEditarVenta.getRadBtnDescontar().isSelected()) {
-            Estado e = (Estado) miSesion.get(Estado.class, 1);
+            if (formularioEditarVenta.getLblVuelto().getText() == ".00") {
+                //borrar movCuenta anterior
+                //Si no se registro un movimiento, el objeto es nullo y no hay nada que borrar, salta a la siguiente funcion
+                try {
+                    Venta_MovimientoCuenta vm = formularioEditarVenta.getTablaCuenta().obtenerVenta_MovimientoCuenta();
+                    MovimientoCuenta mc = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, vm.getMovimientoCuentaId().getIdMovimientoCuenta());
+                    Estado eDisable = (Estado) miSesion.get(Estado.class, 2);
+                    mc.setCodigoEstado(eDisable);
+                    miSesion.delete(vm);
+                    miSesion.saveOrUpdate(mc);
+                } catch (NullPointerException e) {
+                }
+            } else {
+                //borrar movCuenta anterior
+                //Si no se registro un movimiento, el objeto es nullo y no hay nada que borrar, salta a la siguiente funcion
+                try {
+                    Venta_MovimientoCuenta vm = formularioEditarVenta.getTablaCuenta().obtenerVenta_MovimientoCuenta();
+                    MovimientoCuenta mc = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, vm.getMovimientoCuentaId().getIdMovimientoCuenta());
+                    Estado eDisable = (Estado) miSesion.get(Estado.class, 2);
+                    mc.setCodigoEstado(eDisable);
+                    miSesion.delete(vm);
+                    miSesion.saveOrUpdate(mc);
+                } catch (NullPointerException e) {
+                }
 
-            MovimientoCuenta mc = new MovimientoCuenta();
-            mc.setMonto(Double.valueOf("-" + formularioEditarVenta.getLblPrecioTotal().getText().toString()));
-            mc.setMotivo("compra de productos");
+                //Crear nuevoMovimiento
+                Estado eEnable = (Estado) miSesion.get(Estado.class, 1);
 
-            Integer id = formularioEditarVenta.getIdCuenta();
-            Cuenta c = (Cuenta) miSesion.get(Cuenta.class, id);
-            mc.setBalance(c.getBalance() + (mc.getMonto()));
+                MovimientoCuenta newmc = new MovimientoCuenta();
+                //verificar si la suma es positiva o negativa
+                String positivoNegativo = String.valueOf(formularioEditarVenta.getLblVuelto().getText().charAt(0));
+                if (positivoNegativo.equals("-")) {
+                    newmc.setMonto(Double.valueOf("-" + formularioEditarVenta.getLblVuelto().getText().toString()));
+                    newmc.setMotivo("compra de productos");
+                } else {
+                    newmc.setMonto(Double.valueOf(formularioEditarVenta.getLblVuelto().getText().toString()));
+                    newmc.setMotivo("restante de compra");
+                }
 
-            mc.setFecha(new Date());
-            mc.setCodigoEstado(e);
-            mc.setCodigoCuenta(c);
+                Integer id = formularioEditarVenta.getIdCuenta();
+                Cuenta c = (Cuenta) miSesion.get(Cuenta.class, id);
+                newmc.setBalance(c.getBalance() + (newmc.getMonto()));
 
-            miSesion.save(mc);
+                newmc.setFecha(new Date());
+                newmc.setCodigoEstado(eEnable);
+                newmc.setCodigoCuenta(c);
 
-            c.setBalance(mc.getBalance());
-            miSesion.saveOrUpdate(c);
+                miSesion.save(newmc);
 
-            Venta_MovimientoCuenta vmc = new Venta_MovimientoCuenta();
-            vmc.setVentaId(v);
-            vmc.setMovimientoCuentaId(mc);
+                c.setBalance(newmc.getBalance());
+                miSesion.saveOrUpdate(c);
 
-            miSesion.save(vmc);
+                Venta_MovimientoCuenta vmc = new Venta_MovimientoCuenta();
+                vmc.setVentaId(v);
+                vmc.setMovimientoCuentaId(newmc);
+
+                miSesion.save(vmc);
+            }
 
         }
 

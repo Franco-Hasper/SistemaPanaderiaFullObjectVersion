@@ -8,6 +8,7 @@ import entidades.Cliente;
 import escritorios.PrincipalCliente;
 import formularios.FormularioEditarVenta;
 import formularios.FormularioRegistrarVenta;
+import java.awt.Color;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JRadioButton;
@@ -89,20 +90,38 @@ public class OperacionesSecundariasVenta {
         Double sumaTotal = 0.00;
         Double pago = 0.00;
         Double descuento = 0.00;
+        Double sumaConDescuento = 0.00;
+        Double vuelto = 0.00;
+
         try {
 
             sumaTotal = Double.valueOf(formularioRegistrarVenta.getLblPrecioTotal().getText());
             pago = Double.valueOf(formularioRegistrarVenta.getTxtPago().getText());
             descuento = Double.valueOf(formularioRegistrarVenta.getTxtDescuento().getText());
-            Double sumaConDescuento = sumaTotal - (descuento);
-            Double vuelto = pago - (sumaConDescuento);
+            sumaConDescuento = sumaTotal - (descuento);
+            vuelto = pago - (sumaConDescuento);
             formularioRegistrarVenta.getLblVuelto().setText(new OperacionesUtiles().formatoDouble(vuelto));
+            colorLblVuelto(vuelto);
 
         } catch (java.lang.NumberFormatException e) {
 
-            Double sumaConDescuento = sumaTotal - (descuento);
-            Double vuelto = pago - (sumaConDescuento);
+            sumaConDescuento = sumaTotal - (descuento);
+            vuelto = pago - (sumaConDescuento);
             formularioRegistrarVenta.getLblVuelto().setText(new OperacionesUtiles().formatoDouble(vuelto));
+            colorLblVuelto(vuelto);
+        }
+
+        
+
+    }
+
+    private void colorLblVuelto(Double vuelto) {
+        if (vuelto < 0.00) {
+            formularioRegistrarVenta.getLblVuelto().setForeground(Color.red);
+        } else if (vuelto > 0.00) {
+            formularioRegistrarVenta.getLblVuelto().setForeground(Color.green);
+        } else {
+            formularioRegistrarVenta.getLblVuelto().setForeground(Color.black);
         }
     }
 
@@ -110,21 +129,25 @@ public class OperacionesSecundariasVenta {
         Double sumaTotal = 0.00;
         Double pago = 0.00;
         Double descuento = 0.00;
+        Double sumaConDescuento = 0.00;
+        Double vuelto = 0.00;
         try {
 
             sumaTotal = Double.valueOf(formularioEditarVenta.getLblPrecioTotal().getText());
             pago = Double.valueOf(formularioEditarVenta.getTxtPago().getText());
             descuento = Double.valueOf(formularioEditarVenta.getTxtDescuento().getText());
-            Double sumaConDescuento = sumaTotal - (descuento);
-            Double vuelto = pago - (sumaConDescuento);
+            sumaConDescuento = sumaTotal - (descuento);
+            vuelto = pago - (sumaConDescuento);
             formularioEditarVenta.getLblVuelto().setText(new OperacionesUtiles().formatoDouble(vuelto));
-
+             colorLblVuelto(vuelto);
         } catch (java.lang.NumberFormatException e) {
 
-            Double sumaConDescuento = sumaTotal - (descuento);
-            Double vuelto = pago - (sumaConDescuento);
+            sumaConDescuento = sumaTotal - (descuento);
+            vuelto = pago - (sumaConDescuento);
             formularioEditarVenta.getLblVuelto().setText(new OperacionesUtiles().formatoDouble(vuelto));
+             colorLblVuelto(vuelto);
         }
+       
     }
 
     public void tipoVentaSeleccionada(String valor) {

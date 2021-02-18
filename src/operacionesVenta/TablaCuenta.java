@@ -141,7 +141,7 @@ public class TablaCuenta extends Tabla {
         }
 
         if (this.first) {
-            System.out.println("Ingrese a first");
+           
             for (Object o : lista) {
                 Cuenta c = (Cuenta) o;
                 this.listaIds.add(0, c.getIdCuenta());
@@ -241,16 +241,7 @@ public class TablaCuenta extends Tabla {
         Double pagadoDescuento = compraDescuento - (pagado);
 
         Double nuevoBalance = balance - pagadoDescuento;
-
-     if (nuevoBalance > balance) {
-            formularioRegistrarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(balance - totalCompra));
-       //     formularioEditarVenta.getTxtPago().setText("");
-         //   formularioEditarVenta.getTxtDescuento().setText("");
-            DesktopNotify.showDesktopMessage("   Informacion   ", " Se agregara "+formularioRegistrarVenta.getLblVuelto().getText()+" a la cuenta seleccionada", DesktopNotify.INFORMATION, 5000);
-        } else {
-            formularioRegistrarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(nuevoBalance));
-            DesktopNotify.showDesktopMessage("   Informacion   ", " Se descontara "+formularioRegistrarVenta.getLblVuelto().getText()+" de la cuenta seleccionada", DesktopNotify.INFORMATION, 5000);
-        }
+        formularioRegistrarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(nuevoBalance));
     }
 
     private void balanceEditar() {
@@ -282,17 +273,20 @@ public class TablaCuenta extends Tabla {
         Double pagadoDescuento = compraDescuento - (pagado);
 
         Double nuevoBalance = balance - pagadoDescuento;
-formularioEditarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(balance - totalCompra));
-
+        formularioEditarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(nuevoBalance));
 
     }
 
-    public void evaluarDescuentoPrevio() {
-
+    public Venta_MovimientoCuenta obtenerVenta_MovimientoCuenta() {
         setConsultaObject("from Venta_MovimientoCuenta where ventaId=" + this.idVenta);
         obtenerObjetoConsulta();
         Object ventaMovimiento = getObjetoResultado();
         Venta_MovimientoCuenta vm = (Venta_MovimientoCuenta) ventaMovimiento;
+        return vm;
+    }
+
+    public void evaluarDescuentoPrevio() {
+        Venta_MovimientoCuenta vm = obtenerVenta_MovimientoCuenta();
         if (vm != null) {
             transferirDatos(vm.getMovimientoCuentaId().getCodigoCuenta().getIdCuenta());
         }
