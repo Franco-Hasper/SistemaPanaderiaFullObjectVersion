@@ -1107,7 +1107,8 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
     private void tablaGraficaDescontarCuentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaGraficaDescontarCuentaMousePressed
         this.IdCuenta = tablaCuenta.obtenerIdFilaSeleccionada();
         tablaCuenta.cacularNuevoBalance();
-
+         operacionesSecundariasVenta.calcularVuelto();
+         operacionesSecundariasVenta.mensajeTipoMovimiento(Double.valueOf(lblVuelto.getText()));
     }//GEN-LAST:event_tablaGraficaDescontarCuentaMousePressed
 
     private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed

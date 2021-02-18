@@ -26,6 +26,7 @@ public class TablaClienteLista extends Tabla {
     private FormularioRegistrarVenta formularioRegistrarVenta;
     private FormularioEditarVenta formularioEditarVenta;
     private List<Integer> listaIds = new ArrayList<Integer>();
+    private Integer idClientePrevio;
 
     public FormularioRegistrarVenta getFormularioRegistrarVenta() {
         return formularioRegistrarVenta;
@@ -51,6 +52,15 @@ public class TablaClienteLista extends Tabla {
         this.listaIds = listaIds;
     }
 
+    public Integer getIdClientePrevio() {
+        return idClientePrevio;
+    }
+
+    public void setIdClientePrevio(Integer idClientePrevio) {
+        this.idClientePrevio = idClientePrevio;
+    }
+
+    
     @Override
     public void ejecutarRellenarTabla() {
         if (getFormularioRegistrarVenta() == null) {
@@ -86,7 +96,8 @@ public class TablaClienteLista extends Tabla {
             Cliente c = (Cliente) o;
             boolean resultadoComparacion = OperacionesUtiles.convertirResultado(c.getNombre(), valorBusqueda);
             //***********************
-            if (c.getCodigoEstado().getIdEstado().equals(1) && resultadoComparacion && c.getIdCliente() != 1) {
+            if (c.getCodigoEstado().getIdEstado().equals(1) && resultadoComparacion && c.getIdCliente() != 1
+                    && c.getIdCliente() != idClientePrevio) {
                 this.listaIds.add(0, c.getIdCliente());
                 Vector<Object> fila = new Vector<>();
                 fila.add(c.getNombre() + " " + c.getApellido());

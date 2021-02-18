@@ -980,8 +980,11 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void radButonConsumidorFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radButonConsumidorFinalActionPerformed
+
+        radBtnDescontar.setText("DESCONTAR DE CUENTA");
         operacionesSecundariasVenta.tipoConsumidorFinalEnabled();
-        setCambiarCliente(true);
+        operacionesSecundariasVenta.cuentaDisable();
+        this.radBtnDescontar.setEnabled(false);
     }//GEN-LAST:event_radButonConsumidorFinalActionPerformed
 
     private void radButonConsumidorFinalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radButonConsumidorFinalItemStateChanged
@@ -994,6 +997,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
                 operacionesSecundariasVenta.transferirDatos(this.tablaGraficaListaCliente, this.tablaGraficaCliente);
                 this.IdCliente = tablaClienteLista.obtenerIdFilaSeleccionada();
                 operacionesSecundariasVenta.cuentaDisable();
+                radBtnDescontar.setText("DESCONTAR DE CUENTA");
                 radBtnDescontar.setEnabled(true);
             }
         }
@@ -1041,8 +1045,10 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
 
     private void radBtnDescontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radBtnDescontarActionPerformed
         if (this.radBtnDescontar.isSelected()) {
+            tablaCuenta.setEstadoConsulta(0);
             tablaCuenta.setIdCliente(IdCliente);
             tablaCuenta.ejecutarRellenarTabla();
+            tablaGraficaDescontarCuenta.setEnabled(true);
             tablaCuenta.setEstadoConsulta(0);
         } else {
             operacionesSecundariasVenta.cuentaDisable();
@@ -1104,7 +1110,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
         } else {
             if (radBtnDescontar.isSelected()) {
                 tablaCuenta.cacularNuevoBalance();
- operacionesSecundariasVenta.calcularVuelto();
+                operacionesSecundariasVenta.calcularVuelto();
             } else {
                 operacionesSecundariasVenta.calcularVuelto();
             }
@@ -1113,7 +1119,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_txtPagoKeyReleased
 
     private void txtPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPagoKeyTyped
-         new OperacionesUtiles().limitarCaracteres(evt,txtPago,15);
+        new OperacionesUtiles().limitarCaracteres(evt, txtPago, 15);
     }//GEN-LAST:event_txtPagoKeyTyped
 
     private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed
@@ -1136,13 +1142,16 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_txtDescuentoKeyReleased
 
     private void txtDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyTyped
-       new OperacionesUtiles().limitarCaracteres(evt,txtDescuento,15);
+        new OperacionesUtiles().limitarCaracteres(evt, txtDescuento, 15);
     }//GEN-LAST:event_txtDescuentoKeyTyped
 
     private void tablaGraficaDescontarCuentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaGraficaDescontarCuentaMousePressed
-        this.IdCuenta = tablaCuenta.obtenerIdFilaSeleccionada();
-        tablaCuenta.cacularNuevoBalance();
-       
+        if (radBtnDescontar.isSelected()) {
+            this.IdCuenta = tablaCuenta.obtenerIdFilaSeleccionada();
+            tablaCuenta.cacularNuevoBalance();
+            operacionesSecundariasVenta.calcularVuelto();
+            operacionesSecundariasVenta.mensajeTipoMovimiento(Double.valueOf(lblVuelto.getText()));
+        }
     }//GEN-LAST:event_tablaGraficaDescontarCuentaMousePressed
 
     public JPanel getPanelPrincipalTop() {

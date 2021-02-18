@@ -73,6 +73,18 @@ public class OperacionesSecundariasVenta {
         }
     }
 
+    public void mensajeTipoMovimiento(Double vuelto) {
+        if (vuelto > 0) {
+
+            DesktopNotify.showDesktopMessage("   Informacion   ", " Se agregara " + vuelto + " a la cuenta seleccionada", DesktopNotify.INFORMATION, 5000);
+        } else if (vuelto < 0) {
+
+            DesktopNotify.showDesktopMessage("   Informacion   ", " Se descontara " + vuelto + " de la cuenta seleccionada", DesktopNotify.INFORMATION, 5000);
+        } else {
+            DesktopNotify.showDesktopMessage("   Informacion   ", " No se realizaran movimientos en la cuenta seleccionada", DesktopNotify.INFORMATION, 5000);
+        }
+    }
+
     private void vueltoRegistrar() {
         Double sumaTotal = 0.00;
         Double pago = 0.00;
@@ -418,7 +430,5 @@ public class OperacionesSecundariasVenta {
         }
 
     }
-    
-    
 
 }

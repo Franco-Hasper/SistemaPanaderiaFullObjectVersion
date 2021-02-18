@@ -4,6 +4,7 @@ import calsesPadre.Tabla;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import ds.desktop.notify.DesktopNotify;
 import entidades.Cuenta;
+import entidades.Venta_MovimientoCuenta;
 import formularios.FormularioEditarVenta;
 import formularios.FormularioRegistrarVenta;
 import java.util.ArrayList;
@@ -17,6 +18,9 @@ import javax.swing.table.DefaultTableModel;
 public class TablaCuenta extends Tabla {
 
     private Integer idCliente;
+    private Integer idVenta;
+    private Integer idCuentaPrevia;
+    private boolean first;
     private FormularioRegistrarVenta formularioRegistrarVenta;
     private FormularioEditarVenta formularioEditarVenta;
     private List<Integer> listaIds = new ArrayList<Integer>();
@@ -31,6 +35,30 @@ public class TablaCuenta extends Tabla {
 
     public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
+    }
+
+    public Integer getIdVenta() {
+        return idVenta;
+    }
+
+    public void setIdVenta(Integer idVenta) {
+        this.idVenta = idVenta;
+    }
+
+    public Integer getIdCuentaPrevia() {
+        return idCuentaPrevia;
+    }
+
+    public void setIdCuentaPrevia(Integer idCuentaPrevia) {
+        this.idCuentaPrevia = idCuentaPrevia;
+    }
+
+    public boolean isFirst() {
+        return first;
+    }
+
+    public void setFirst(boolean first) {
+        this.first = first;
     }
 
     public FormularioRegistrarVenta getFormularioRegistrarVenta() {
@@ -103,7 +131,6 @@ public class TablaCuenta extends Tabla {
 
     @Override
     public void rellenarTabla(String valorBusqueda) {
-
         DefaultTableModel tablaCuenta = (DefaultTableModel) getTabla().getModel();
         List lista = this.getListaResultados();
         operacionesUtilidad.removerFilas(tablaCuenta);
@@ -113,16 +140,46 @@ public class TablaCuenta extends Tabla {
         } catch (NullPointerException e) {
         }
 
-        for (Object o : lista) {
-            Cuenta c = (Cuenta) o;
-            this.listaIds.add(0, c.getIdCuenta());
-            Vector<Object> fila = new Vector<>();
-            fila.add(c.getIdCuenta());
-            fila.add(OperacionesUtiles.formatoDouble(c.getBalance()));
-            tablaCuenta.addRow(fila);
+        if (this.first) {
+            System.out.println("Ingrese a first");
+            for (Object o : lista) {
+                Cuenta c = (Cuenta) o;
+                this.listaIds.add(0, c.getIdCuenta());
+                Vector<Object> fila = new Vector<>();
+                fila.add(c.getIdCuenta());
+                fila.add(OperacionesUtiles.formatoDouble(c.getBalance()));
+                tablaCuenta.addRow(fila);
+            }
+            OperacionesUtiles.ordenarLista(listaIds);
+            this.setFirst(false);
+        } else {
+            if (this.idCuentaPrevia != null) {
+                for (Object o : lista) {
+                    Cuenta c = (Cuenta) o;
+                    if (c.getIdCuenta() != this.idCuentaPrevia) {
+                        this.listaIds.add(0, c.getIdCuenta());
+                        Vector<Object> fila = new Vector<>();
+                        fila.add(c.getIdCuenta());
+                        fila.add(OperacionesUtiles.formatoDouble(c.getBalance()));
+                        tablaCuenta.addRow(fila);
+                    }
+                }
+                OperacionesUtiles.ordenarLista(listaIds);
+
+            } else {
+                for (Object o : lista) {
+                    Cuenta c = (Cuenta) o;
+                    this.listaIds.add(0, c.getIdCuenta());
+                    Vector<Object> fila = new Vector<>();
+                    fila.add(c.getIdCuenta());
+                    fila.add(OperacionesUtiles.formatoDouble(c.getBalance()));
+                    tablaCuenta.addRow(fila);
+                }
+                OperacionesUtiles.ordenarLista(listaIds);
+            }
 
         }
-        OperacionesUtiles.ordenarLista(listaIds);
+
     }
 
     @Override
@@ -148,7 +205,7 @@ public class TablaCuenta extends Tabla {
     public void cacularNuevoBalance() {
 
         if (getFormularioRegistrarVenta() == null) {
-            balanceEditar();;
+            balanceEditar();
         } else {
             balanceRegistrar();
         }
@@ -185,13 +242,14 @@ public class TablaCuenta extends Tabla {
 
         Double nuevoBalance = balance - pagadoDescuento;
 
-        if (nuevoBalance >= balance) {
+     if (nuevoBalance > balance) {
             formularioRegistrarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(balance - totalCompra));
-            formularioRegistrarVenta.getTxtPago().setText("");
-            formularioRegistrarVenta.getTxtDescuento().setText("");
-            DesktopNotify.showDesktopMessage("   Informacion   ", "   El valor a descontar no puede ser positivo", DesktopNotify.INFORMATION, 5000);
+       //     formularioEditarVenta.getTxtPago().setText("");
+         //   formularioEditarVenta.getTxtDescuento().setText("");
+            DesktopNotify.showDesktopMessage("   Informacion   ", " Se agregara "+formularioRegistrarVenta.getLblVuelto().getText()+" a la cuenta seleccionada", DesktopNotify.INFORMATION, 5000);
         } else {
             formularioRegistrarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(nuevoBalance));
+            DesktopNotify.showDesktopMessage("   Informacion   ", " Se descontara "+formularioRegistrarVenta.getLblVuelto().getText()+" de la cuenta seleccionada", DesktopNotify.INFORMATION, 5000);
         }
     }
 
@@ -224,15 +282,31 @@ public class TablaCuenta extends Tabla {
         Double pagadoDescuento = compraDescuento - (pagado);
 
         Double nuevoBalance = balance - pagadoDescuento;
+formularioEditarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(balance - totalCompra));
 
-        if (nuevoBalance >= balance) {
-            formularioEditarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(balance - totalCompra));
-            formularioEditarVenta.getTxtPago().setText("");
-            formularioEditarVenta.getTxtDescuento().setText("");
-            DesktopNotify.showDesktopMessage("   Informacion   ", "   El valor a descontar no puede ser positivo", DesktopNotify.INFORMATION, 5000);
-        } else {
-            formularioEditarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(nuevoBalance));
+
+    }
+
+    public void evaluarDescuentoPrevio() {
+
+        setConsultaObject("from Venta_MovimientoCuenta where ventaId=" + this.idVenta);
+        obtenerObjetoConsulta();
+        Object ventaMovimiento = getObjetoResultado();
+        Venta_MovimientoCuenta vm = (Venta_MovimientoCuenta) ventaMovimiento;
+        if (vm != null) {
+            transferirDatos(vm.getMovimientoCuentaId().getCodigoCuenta().getIdCuenta());
         }
+    }
+
+    private void transferirDatos(Integer idCuenta) {
+        this.setIdCuentaPrevia(idCuenta);
+        this.setFirst(true);
+        formularioEditarVenta.getRadBtnDescontar().setText("CAMBIAR DE CUENTA");
+        setTabla(formularioEditarVenta.getTablaGraficaDescontarCuenta());
+        setStringConsulta("from Cuenta where idCuenta=" + idCuenta);
+        evaluarEstadoConsulta();
+        rellenarTabla("");
+        formularioEditarVenta.getTablaGraficaDescontarCuenta().setEnabled(false);
     }
 
 }

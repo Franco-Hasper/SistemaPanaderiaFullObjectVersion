@@ -79,7 +79,6 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             tablaProductosListados.autoRellenarDatosSecundarios();
             principalVenta.getEditarVenta().setListaProductosEliminar(tablaProductosListados.getListaProductosEliminar());
             principalVenta.getEditarVenta().setTablaProductosListados(tablaProductosListados);
-            
 
             configuracionTxtCantidadTxtTotal();
 
@@ -92,8 +91,7 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             operacionesSecundariasVenta.setTipoFormulario(2);
             //guardo el la instancia en el formulario grafico
             principalVenta.getEditarVenta().setOperacionesSecundariasVenta(operacionesSecundariasVenta);
-            
-            
+
             rellenarBoxes();
 
             //seccion tablaCliente
@@ -103,18 +101,22 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             tablaCliente.ejecutarRellenenarTabla();
             Integer idCliente = tablaCliente.getIdCliente();
             principalVenta.getEditarVenta().setIdCliente(idCliente);
-            
+
             estadoInicialRadBtnDescontar(idCliente);
 
             TablaClienteLista tablaClienteLista = new TablaClienteLista();
             tablaClienteLista.setFormularioEditarVenta(principalVenta.getEditarVenta());
+            tablaClienteLista.setIdClientePrevio(idCliente);
             tablaClienteLista.ejecutarRellenarTabla();
             formularioEditar.setTablaClienteLista(tablaClienteLista);
 
             TablaCuenta tablaCuenta = new TablaCuenta();
             tablaCuenta.setFormularioEditarVenta(formularioEditar);
+            tablaCuenta.setIdVenta(idVenta);
+            tablaCuenta.setIdCliente(idCliente);
+            tablaCuenta.evaluarDescuentoPrevio();
             formularioEditar.setTablaCuenta(tablaCuenta);
-            
+
             radButons();
 
             ComprobanteVenta comprobante = new ComprobanteVenta();
@@ -182,16 +184,16 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
     private void radButons() {
         principalVenta.getEditarVenta().getRadButonAbrirAlFinalizar().setEnabled(false);
         principalVenta.getEditarVenta().getRadButonImprimir().setEnabled(false);
-        
-        principalVenta.getEditarVenta().getRadButonAbrirAlFinalizar().setForeground(new Color(102,102,102));
-        principalVenta.getEditarVenta().getRadButonImprimir().setForeground(new Color(102,102,102));
+
+        principalVenta.getEditarVenta().getRadButonAbrirAlFinalizar().setForeground(new Color(102, 102, 102));
+        principalVenta.getEditarVenta().getRadButonImprimir().setForeground(new Color(102, 102, 102));
 
     }
 
-    private void estadoInicialRadBtnDescontar(Integer idCliente){
-        if(idCliente==1){
+    private void estadoInicialRadBtnDescontar(Integer idCliente) {
+        if (idCliente == 1) {
             principalVenta.getEditarVenta().getRadBtnDescontar().setEnabled(false);
         }
     }
-    
+
 }
