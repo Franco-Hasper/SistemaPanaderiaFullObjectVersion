@@ -4,6 +4,7 @@ import calsesPadre.Tabla;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import ds.desktop.notify.DesktopNotify;
 import entidades.Cuenta;
+import entidades.MovimientoCuenta;
 import entidades.Venta_MovimientoCuenta;
 import formularios.FormularioEditarVenta;
 import formularios.FormularioRegistrarVenta;
@@ -141,7 +142,7 @@ public class TablaCuenta extends Tabla {
         }
 
         if (this.first) {
-           
+
             for (Object o : lista) {
                 Cuenta c = (Cuenta) o;
                 this.listaIds.add(0, c.getIdCuenta());
@@ -283,6 +284,19 @@ public class TablaCuenta extends Tabla {
         Object ventaMovimiento = getObjetoResultado();
         Venta_MovimientoCuenta vm = (Venta_MovimientoCuenta) ventaMovimiento;
         return vm;
+    }
+
+    public Integer obtenerIdCuenta() {
+        try {
+            setConsultaObject("from Venta_MovimientoCuenta where ventaId=" + this.idVenta);
+            obtenerObjetoConsulta();
+            Object ventaMovimiento = getObjetoResultado();
+            Venta_MovimientoCuenta vm = (Venta_MovimientoCuenta) ventaMovimiento;
+            Integer idCuenta = vm.getMovimientoCuentaId().getCodigoCuenta().getIdCuenta();
+            return idCuenta;
+        } catch (NullPointerException e) {
+        }
+        return null;
     }
 
     public void evaluarDescuentoPrevio() {

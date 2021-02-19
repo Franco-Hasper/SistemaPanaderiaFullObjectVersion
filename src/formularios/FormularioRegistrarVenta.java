@@ -367,7 +367,7 @@ public class FormularioRegistrarVenta extends javax.swing.JDialog {
 
             },
             new String [] {
-
+                "NOMBRE", "TELÉFONO", "DIRECCION"
             }
         ));
         tablaGraficaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

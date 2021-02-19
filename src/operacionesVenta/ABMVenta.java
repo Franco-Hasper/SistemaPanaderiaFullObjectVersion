@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JTextField;
+import operacionesCuenta.ABMMovimientoCuenta;
 import org.hibernate.Session;
 
 /**
@@ -40,7 +41,7 @@ public class ABMVenta extends ABM {
     private PrincipalCliente principalCliente;
     //se borran todos los productos de listados y se vuelven a cargar desde cero
     private List<Producto_Venta> listaProductosEliminar;
-
+    private Integer idCuenta;
     private Integer idVenta;
 
     public List<Producto_Venta> getListaProductosEliminar() {
@@ -105,6 +106,14 @@ public class ABMVenta extends ABM {
 
     public void setIdVenta(Integer idVenta) {
         this.idVenta = idVenta;
+    }
+
+    public Integer getIdCuenta() {
+        return idCuenta;
+    }
+
+    public void setIdCuenta(Integer idCuenta) {
+        this.idCuenta = idCuenta;
     }
 
     @Override
@@ -217,7 +226,7 @@ public class ABMVenta extends ABM {
             //verificar si la suma es positiva o negativa
             String positivoNegativo = String.valueOf(formularioRegistrarVenta.getLblVuelto().getText().charAt(0));
             if (positivoNegativo.equals("-")) {
-                mc.setMonto(Double.valueOf("-" + formularioRegistrarVenta.getLblVuelto().getText().toString()));
+                mc.setMonto(Double.valueOf(formularioRegistrarVenta.getLblVuelto().getText().toString()));
                 mc.setMotivo("compra de productos");
             } else {
                 mc.setMonto(Double.valueOf(formularioRegistrarVenta.getLblVuelto().getText().toString()));
@@ -259,6 +268,7 @@ public class ABMVenta extends ABM {
         switch (formularioEstadoVenta.getEstado()) {
             case 2:
                 v.setCodigoEstado(eE);
+                obtenerMovimientoCuenta(miSesion, id);
                 break;
             case 3:
                 v.setCodigoEstado(eR);
@@ -271,6 +281,32 @@ public class ABMVenta extends ABM {
                 break;
         }
         miSesion.saveOrUpdate(v);
+
+    }
+
+    private void obtenerMovimientoCuenta(Session miSesion, Integer id) {
+        try {
+            setConsultaObject("from Venta_MovimientoCuenta where ventaId=" + id);
+            obtenerObjetoConsulta();
+            Object ventaMovimiento = getObjetoResultado();
+            Venta_MovimientoCuenta vm = (Venta_MovimientoCuenta) ventaMovimiento;
+            eliminarMovimientoCuenta(miSesion, vm);
+        } catch (NullPointerException e) {
+        }
+
+    }
+
+    private void eliminarMovimientoCuenta(Session miSesion, Venta_MovimientoCuenta vm) {
+        try {
+            MovimientoCuenta mc = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, vm.getMovimientoCuentaId().getIdMovimientoCuenta());
+            Estado eDisable = (Estado) miSesion.get(Estado.class, 2);
+            mc.setCodigoEstado(eDisable);
+            Integer idCuenta = vm.getMovimientoCuentaId().getCodigoCuenta().getIdCuenta();
+            miSesion.delete(vm);
+            miSesion.saveOrUpdate(mc);
+            new ABMMovimientoCuenta().actualizarMovimientoCuentaFromVenta(idCuenta);
+        } catch (NullPointerException e) {
+        }
 
     }
 
@@ -369,6 +405,9 @@ public class ABMVenta extends ABM {
                     mc.setCodigoEstado(eDisable);
                     miSesion.delete(vm);
                     miSesion.saveOrUpdate(mc);
+                    Integer idCuenta = vm.getMovimientoCuentaId().getCodigoCuenta().getIdCuenta();
+                    new ABMMovimientoCuenta().actualizarMovimientoCuentaFromVenta(idCuenta);
+
                 } catch (NullPointerException e) {
                 }
             } else {
@@ -381,6 +420,8 @@ public class ABMVenta extends ABM {
                     mc.setCodigoEstado(eDisable);
                     miSesion.delete(vm);
                     miSesion.saveOrUpdate(mc);
+                    Integer idCuenta = vm.getMovimientoCuentaId().getCodigoCuenta().getIdCuenta();
+                    new ABMMovimientoCuenta().actualizarMovimientoCuentaFromVenta(idCuenta);
                 } catch (NullPointerException e) {
                 }
 
@@ -391,7 +432,7 @@ public class ABMVenta extends ABM {
                 //verificar si la suma es positiva o negativa
                 String positivoNegativo = String.valueOf(formularioEditarVenta.getLblVuelto().getText().charAt(0));
                 if (positivoNegativo.equals("-")) {
-                    newmc.setMonto(Double.valueOf("-" + formularioEditarVenta.getLblVuelto().getText().toString()));
+                    newmc.setMonto(Double.valueOf(formularioEditarVenta.getLblVuelto().getText().toString()));
                     newmc.setMotivo("compra de productos");
                 } else {
                     newmc.setMonto(Double.valueOf(formularioEditarVenta.getLblVuelto().getText().toString()));
@@ -416,8 +457,45 @@ public class ABMVenta extends ABM {
                 vmc.setMovimientoCuentaId(newmc);
 
                 miSesion.save(vmc);
+
+                Integer idCuenta = vmc.getMovimientoCuentaId().getCodigoCuenta().getIdCuenta();
+                new ABMMovimientoCuenta().actualizarMovimientoCuentaFromVenta(idCuenta);
+
             }
 
+        } else {
+
+            //QUE PASA SI TENGO UNA CUENTA Y AGREGO PRODUCTOS, SE REEMPLAZA LA SUMA EN MOV CUENTA Y 
+            //SEACTUALIzA LA TABLA, VER A CONTINUACION
+            
+            String monto=formularioEditarVenta.getLblVuelto().getText();
+            
+            
+            Venta_MovimientoCuenta vm = formularioEditarVenta.getTablaCuenta().obtenerVenta_MovimientoCuenta();
+            
+           Integer idMc=vm.getMovimientoCuentaId().getIdMovimientoCuenta();
+            
+            MovimientoCuenta mc = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, idMc);
+   
+       
+            //verificar si la suma es positiva o negativa
+            String positivoNegativo = String.valueOf(formularioEditarVenta.getLblVuelto().getText().charAt(0));
+            if (positivoNegativo.equals("-")) {
+                mc.setMonto(Double.valueOf(monto));
+                mc.setMotivo("compra de productos");
+            } else {
+                mc.setMonto(Double.valueOf(formularioEditarVenta.getLblVuelto().getText().toString()));
+                mc.setMotivo("restante de compra");
+            }
+            
+           // mc.setBalance(balance+(monto));
+            Integer id = formularioEditarVenta.getIdCuenta();
+           
+            //LE PONGO FECHA?
+            //mc.setFecha(new Date());
+            miSesion.saveOrUpdate(mc);
+
+          
         }
 
     }

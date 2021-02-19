@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import operacionesCliente.InterfazGraficaEscritorioCliente;
+import operacionesCuenta.ABMMovimientoCuenta;
 import operacionesVenta.ABMVenta;
 import operacionesVenta.ComprobanteVenta;
 import operacionesVenta.OperacionesSecundariasVenta;
@@ -930,7 +931,11 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
                 if (radBtnDescontar.isSelected()) {
                     this.IdCuenta = tablaCuenta.obtenerIdFilaSeleccionada();
                     tablaCuenta.cacularNuevoBalance();
-
+                } else {
+                    if (radBtnDescontar.getText().equals("CAMBIAR DE CUENTA")) {
+                        operacionesSecundariasVenta.calcularVuelto();
+                        operacionesSecundariasVenta.calcularBalancePrevio();
+                    }
                 }
             }
         }
@@ -972,6 +977,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
                                 principalVenta.getTablaVenta().setPrincipalVenta(principalVenta);
                                 principalVenta.getTablaVenta().setEstadoConsulta(0);
                                 principalVenta.getTablaVenta().ejecutarRellenarTabla();
+                                new ABMMovimientoCuenta().actualizarMovimientoCuentaFromVenta(IdCuenta);
                             }
                         }
 
@@ -997,6 +1003,7 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
                             principalVenta.getTablaVenta().setPrincipalVenta(principalVenta);
                             principalVenta.getTablaVenta().setEstadoConsulta(0);
                             principalVenta.getTablaVenta().ejecutarRellenarTabla();
+                            new ABMMovimientoCuenta().actualizarMovimientoCuentaFromVenta(IdCuenta);
                         }
                     }
 
@@ -1049,6 +1056,11 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
                 this.IdCuenta = tablaCuenta.obtenerIdFilaSeleccionada();
                 tablaCuenta.cacularNuevoBalance();
 
+            } else {
+                if (radBtnDescontar.getText().equals("CAMBIAR DE CUENTA")) {
+                    operacionesSecundariasVenta.calcularVuelto();
+                    operacionesSecundariasVenta.calcularBalancePrevio();
+                }
             }
         }
     }//GEN-LAST:event_btnQuitarActionPerformed
@@ -1147,7 +1159,12 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
                 tablaCuenta.cacularNuevoBalance();
                 operacionesSecundariasVenta.calcularVuelto();
             } else {
-                operacionesSecundariasVenta.calcularVuelto();
+                if (radBtnDescontar.getText().equals("CAMBIAR DE CUENTA")) {
+                    operacionesSecundariasVenta.calcularVuelto();
+                    operacionesSecundariasVenta.calcularBalancePrevio();
+                } else {
+                    operacionesSecundariasVenta.calcularVuelto();
+                }
             }
         }
 
@@ -1170,7 +1187,12 @@ public class FormularioEditarVenta extends javax.swing.JDialog {
                 tablaCuenta.cacularNuevoBalance();
                 operacionesSecundariasVenta.calcularVuelto();
             } else {
-                operacionesSecundariasVenta.calcularVuelto();
+                if (radBtnDescontar.getText().equals("CAMBIAR DE CUENTA")) {
+                    operacionesSecundariasVenta.calcularVuelto();
+                    operacionesSecundariasVenta.calcularBalancePrevio();
+                } else {
+                    operacionesSecundariasVenta.calcularVuelto();
+                }
             }
 
         }

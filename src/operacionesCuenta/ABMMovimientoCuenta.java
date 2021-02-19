@@ -96,13 +96,19 @@ public class ABMMovimientoCuenta extends ABM {
 
     public void ejecutarActualizarMovimientoCuenta() {
         Integer id = principalCuenta.getTablaCuenta().obtenerIdFilaSeleccionada();
-        setConsultaList("FROM MovimientoCuenta WHERE codigoCuenta=" + id +" AND codigoEstado=1");
+        setConsultaList("FROM MovimientoCuenta WHERE codigoCuenta=" + id + " AND codigoEstado=1");
+        obtenerListaConsulta();
+        actualizarMovimeintoCuenta();
+    }
+
+    public void actualizarMovimientoCuentaFromVenta(Integer idCuenta) {
+        setConsultaList("FROM MovimientoCuenta WHERE codigoCuenta=" + idCuenta + " AND codigoEstado=1");
         obtenerListaConsulta();
         actualizarMovimeintoCuenta();
     }
 
     private void actualizarMovimeintoCuenta() {
-
+        
         Integer idMovCuenta;
         Double monto;
         Double balance;
@@ -131,7 +137,8 @@ public class ABMMovimientoCuenta extends ABM {
                 actualizarMC.setBalance(nuevoBalance);
                 cnt.setBalance(nuevoBalance);
             }
-
+       
+            
             miSesion.saveOrUpdate(actualizarMC);
             miSesion.saveOrUpdate(cnt);
             miSesion.getTransaction().commit();

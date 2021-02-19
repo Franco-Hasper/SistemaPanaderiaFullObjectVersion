@@ -5,12 +5,15 @@ import clasesUtilidadGeneral.OperacionesUtiles;
 import conexion.ConexionHibernate;
 import ds.desktop.notify.DesktopNotify;
 import entidades.Cliente;
+import entidades.MovimientoCuenta;
+import entidades.Venta_MovimientoCuenta;
 import escritorios.PrincipalCliente;
 import formularios.FormularioEditarVenta;
 import formularios.FormularioRegistrarVenta;
 import java.awt.Color;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +22,7 @@ import org.hibernate.Session;
 /**
  * @author Hasper Franco
  */
-public class OperacionesSecundariasVenta {
+public class OperacionesSecundariasVenta extends Consultas {
 
     private int tipoFormulario;
     private FormularioRegistrarVenta formularioRegistrarVenta;
@@ -101,27 +104,25 @@ public class OperacionesSecundariasVenta {
             sumaConDescuento = sumaTotal - (descuento);
             vuelto = pago - (sumaConDescuento);
             formularioRegistrarVenta.getLblVuelto().setText(new OperacionesUtiles().formatoDouble(vuelto));
-            colorLblVuelto(vuelto);
+            colorLblVuelto(formularioRegistrarVenta.getLblVuelto(), vuelto);
 
         } catch (java.lang.NumberFormatException e) {
 
             sumaConDescuento = sumaTotal - (descuento);
             vuelto = pago - (sumaConDescuento);
             formularioRegistrarVenta.getLblVuelto().setText(new OperacionesUtiles().formatoDouble(vuelto));
-            colorLblVuelto(vuelto);
+            colorLblVuelto(formularioRegistrarVenta.getLblVuelto(), vuelto);
         }
-
-        
 
     }
 
-    private void colorLblVuelto(Double vuelto) {
+    public void colorLblVuelto(JLabel label, Double vuelto) {
         if (vuelto < 0.00) {
-            formularioRegistrarVenta.getLblVuelto().setForeground(Color.red);
+            label.setForeground(Color.red);
         } else if (vuelto > 0.00) {
-            formularioRegistrarVenta.getLblVuelto().setForeground(Color.green);
+            label.setForeground(Color.green);
         } else {
-            formularioRegistrarVenta.getLblVuelto().setForeground(Color.black);
+            label.setForeground(Color.black);
         }
     }
 
@@ -139,15 +140,15 @@ public class OperacionesSecundariasVenta {
             sumaConDescuento = sumaTotal - (descuento);
             vuelto = pago - (sumaConDescuento);
             formularioEditarVenta.getLblVuelto().setText(new OperacionesUtiles().formatoDouble(vuelto));
-             colorLblVuelto(vuelto);
+            colorLblVuelto(formularioEditarVenta.getLblVuelto(), vuelto);
         } catch (java.lang.NumberFormatException e) {
 
             sumaConDescuento = sumaTotal - (descuento);
             vuelto = pago - (sumaConDescuento);
             formularioEditarVenta.getLblVuelto().setText(new OperacionesUtiles().formatoDouble(vuelto));
-             colorLblVuelto(vuelto);
+            colorLblVuelto(formularioEditarVenta.getLblVuelto(), vuelto);
         }
-       
+
     }
 
     public void tipoVentaSeleccionada(String valor) {
@@ -155,26 +156,28 @@ public class OperacionesSecundariasVenta {
             case 1:
                 if (valor.equals("Pedido")) {
                     if (formularioRegistrarVenta.getRadButonConsumidorFinal().isSelected()) {
-                        modeloTabla();
+                        removerFilar();
                     }
                     formularioRegistrarVenta.getRadButonConsumidorFinal().setEnabled(false);
                     formularioRegistrarVenta.getRadButonConsumidorFinal().setSelected(false);
+                    formularioRegistrarVenta.getBtnBuscarCliente().setEnabled(true);
 
                 } else {
                     formularioRegistrarVenta.getRadButonConsumidorFinal().setEnabled(true);
-                    modeloTabla();
+                    // modeloTabla();
                 }
                 break;
             case 2:
                 if (valor.equals("Pedido")) {
                     if (formularioEditarVenta.getRadButonConsumidorFinal().isSelected()) {
-                        modeloTabla();
+                         removerFilar();
                     }
                     formularioEditarVenta.getRadButonConsumidorFinal().setEnabled(false);
                     formularioEditarVenta.getRadButonConsumidorFinal().setSelected(false);
+                    formularioEditarVenta.getBtnBuscarCliente().setEnabled(true);
                 } else {
                     formularioEditarVenta.getRadButonConsumidorFinal().setEnabled(true);
-                    modeloTabla();
+                    //modeloTabla();
                 }
                 break;
         }
@@ -185,27 +188,42 @@ public class OperacionesSecundariasVenta {
             case 1:
                 if (formularioRegistrarVenta.getRadButonConsumidorFinal().isSelected()) {
                     formularioRegistrarVenta.getBtnBuscarCliente().setEnabled(false);
-                    modeloTabla();
+                    // modeloTabla();
                     datosventaSimpleConsumidorFinal();
                     deshabilitarBotonesCuenta();
                 } else {
                     formularioRegistrarVenta.getBtnBuscarCliente().setEnabled(true);
-                    modeloTabla();
+                    //modeloTabla();
                     habilitarBotonesCuenta();
+                    removerFilar();
                 }
                 break;
             case 2:
                 if (formularioEditarVenta.getRadButonConsumidorFinal().isSelected()) {
                     formularioEditarVenta.getBtnBuscarCliente().setEnabled(false);
-                    modeloTabla();
+                    // modeloTabla();
                     datosventaSimpleConsumidorFinal();
                 } else {
                     formularioEditarVenta.getBtnBuscarCliente().setEnabled(true);
-                    modeloTabla();
+                    removerFilar();
+                    //   modeloTabla();
                 }
                 break;
         }
 
+    }
+
+    private void removerFilar() {
+        switch (tipoFormulario) {
+            case 1:
+                DefaultTableModel tablaVentaCliente = (DefaultTableModel) formularioRegistrarVenta.getTablaCliente().getModel();
+                OperacionesUtiles.removerFilas(tablaVentaCliente);
+                break;
+            case 2:
+                DefaultTableModel tablaVentaClienteE = (DefaultTableModel) formularioEditarVenta.getTablaGraficaCliente().getModel();
+                OperacionesUtiles.removerFilas(tablaVentaClienteE);
+                break;
+        }
     }
 
     public void transferirDatos(JTable tablaOrigen, JTable tablaDestino) {
@@ -274,6 +292,7 @@ public class OperacionesSecundariasVenta {
         }
     }
 
+    @Deprecated
     private void modeloTabla() {
         switch (tipoFormulario) {
 
@@ -451,6 +470,62 @@ public class OperacionesSecundariasVenta {
             formularioRegistrarVenta.getRadBtnDescontar().setEnabled(true);
 
         }
+
+    }
+
+    /**
+     * Se utiliza para calcular el balance a partir de una cuenta que ya se
+     * utilizo previamente y no esta seleccionada en el formulario pero se
+     * siguen agregando o quitando productos en la lista
+     */
+    public void ejecutarCalcularBalanceCuentaPrevio() {
+        consultaMovimientoCuenta();
+    }
+
+    private void consultaMovimientoCuenta() {
+        try {
+            Venta_MovimientoCuenta vm = formularioEditarVenta.getTablaCuenta().obtenerVenta_MovimientoCuenta();
+            Integer idMc = vm.getMovimientoCuentaId().getIdMovimientoCuenta();
+            setConsultaObject("from MovimientoCuenta where idMovimientoCuenta=" + idMc);
+            obtenerObjetoConsulta();
+            calcularBalancePrevio();
+        } catch (NullPointerException e) {
+        }
+    }
+
+    public void calcularBalancePrevio() {
+        Object movimientoCuenta = getObjetoResultado();
+        MovimientoCuenta mc = (MovimientoCuenta) movimientoCuenta;
+
+        Double descuento = 0.00;
+        Double pagado = 0.00;
+        Double balance = 0.00;
+        Double totalCompra = 0.00;
+
+        balance = mc.getBalance() - (mc.getMonto());
+
+        try {
+            totalCompra = Double.valueOf(formularioEditarVenta.getLblPrecioTotal().getText());
+        } catch (java.lang.NumberFormatException e) {
+        }
+
+        try {
+            descuento = Double.valueOf(OperacionesUtiles.formatoDouble(Double.valueOf(formularioEditarVenta.getTxtDescuento().getText())));
+        } catch (java.lang.NumberFormatException e) {
+        }
+
+        try {
+            pagado = Double.valueOf(OperacionesUtiles.formatoDouble(Double.valueOf(formularioEditarVenta.getTxtPago().getText())));
+
+        } catch (java.lang.NumberFormatException e) {
+
+        }
+
+        Double compraDescuento = totalCompra - (descuento);
+        Double pagadoDescuento = compraDescuento - (pagado);
+
+        Double nuevoBalance = balance - pagadoDescuento;
+        formularioEditarVenta.getLblNuevoBalance().setText(OperacionesUtiles.formatoDouble(nuevoBalance));
 
     }
 

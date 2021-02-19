@@ -80,19 +80,10 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             principalVenta.getEditarVenta().setListaProductosEliminar(tablaProductosListados.getListaProductosEliminar());
             principalVenta.getEditarVenta().setTablaProductosListados(tablaProductosListados);
 
+           
+     
+            
             configuracionTxtCantidadTxtTotal();
-
-            //Seccion Operaciones Secundarias
-            //creo el objeto operaciones secundarias
-            OperacionesSecundariasVenta operacionesSecundariasVenta = new OperacionesSecundariasVenta();
-            //le pego el formulario con el que va a trabajar
-            operacionesSecundariasVenta.setFormularioEditarVenta(formularioEditar);
-            //le asigno el valor del tipo de formulario para los switchs(si es registrar 1 va a trabajar de una forma si es editar 2 va a trabajar de otra)
-            operacionesSecundariasVenta.setTipoFormulario(2);
-            //guardo el la instancia en el formulario grafico
-            principalVenta.getEditarVenta().setOperacionesSecundariasVenta(operacionesSecundariasVenta);
-
-            rellenarBoxes();
 
             //seccion tablaCliente
             TablaClienteWhenEdit tablaCliente = new TablaClienteWhenEdit();
@@ -115,7 +106,24 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             tablaCuenta.setIdVenta(idVenta);
             tablaCuenta.setIdCliente(idCliente);
             tablaCuenta.evaluarDescuentoPrevio();
+            formularioEditar.setIdCuenta(tablaCuenta.obtenerIdCuenta());
             formularioEditar.setTablaCuenta(tablaCuenta);
+
+             //Seccion Operaciones Secundarias
+            //creo el objeto operaciones secundarias
+            OperacionesSecundariasVenta operacionesSecundariasVenta = new OperacionesSecundariasVenta();
+            //le pego el formulario con el que va a trabajar
+            operacionesSecundariasVenta.setFormularioEditarVenta(formularioEditar);
+            //le asigno el valor del tipo de formulario para los switchs(si es registrar 1 va a trabajar de una forma si es editar 2 va a trabajar de otra)
+            operacionesSecundariasVenta.setTipoFormulario(2);
+            //guardo el la instancia en el formulario grafico
+            principalVenta.getEditarVenta().setOperacionesSecundariasVenta(operacionesSecundariasVenta);
+            //Solo cuando es una venta con movimiento precio realizado
+             operacionesSecundariasVenta.ejecutarCalcularBalanceCuentaPrevio();
+             
+             operacionesSecundariasVenta.colorLblVuelto(formularioEditar.getLblVuelto(), Double.valueOf(formularioEditar.getLblVuelto().getText()));
+
+            rellenarBoxes();
 
             radButons();
 
