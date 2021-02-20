@@ -465,37 +465,33 @@ public class ABMVenta extends ABM {
 
         } else {
 
-            //QUE PASA SI TENGO UNA CUENTA Y AGREGO PRODUCTOS, SE REEMPLAZA LA SUMA EN MOV CUENTA Y 
-            //SEACTUALIzA LA TABLA, VER A CONTINUACION
-            
-            String monto=formularioEditarVenta.getLblVuelto().getText();
-            
-            
-            Venta_MovimientoCuenta vm = formularioEditarVenta.getTablaCuenta().obtenerVenta_MovimientoCuenta();
-            
-           Integer idMc=vm.getMovimientoCuentaId().getIdMovimientoCuenta();
-            
-            MovimientoCuenta mc = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, idMc);
-   
-       
-            //verificar si la suma es positiva o negativa
-            String positivoNegativo = String.valueOf(formularioEditarVenta.getLblVuelto().getText().charAt(0));
-            if (positivoNegativo.equals("-")) {
-                mc.setMonto(Double.valueOf(monto));
-                mc.setMotivo("compra de productos");
-            } else {
-                mc.setMonto(Double.valueOf(formularioEditarVenta.getLblVuelto().getText().toString()));
-                mc.setMotivo("restante de compra");
-            }
-            
-           // mc.setBalance(balance+(monto));
-            Integer id = formularioEditarVenta.getIdCuenta();
-           
-            //LE PONGO FECHA?
-            //mc.setFecha(new Date());
-            miSesion.saveOrUpdate(mc);
+            String monto = formularioEditarVenta.getLblVuelto().getText();
 
-          
+            Venta_MovimientoCuenta vm = formularioEditarVenta.getTablaCuenta().obtenerVenta_MovimientoCuenta();
+            try {
+                Integer idMc = vm.getMovimientoCuentaId().getIdMovimientoCuenta();
+
+                MovimientoCuenta mc = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, idMc);
+
+                //verificar si la suma es positiva o negativa
+                String positivoNegativo = String.valueOf(formularioEditarVenta.getLblVuelto().getText().charAt(0));
+                if (positivoNegativo.equals("-")) {
+                    mc.setMonto(Double.valueOf(monto));
+                    mc.setMotivo("compra de productos");
+                } else {
+                    mc.setMonto(Double.valueOf(formularioEditarVenta.getLblVuelto().getText().toString()));
+                    mc.setMotivo("restante de compra");
+                }
+
+                // mc.setBalance(balance+(monto));
+                // Integer id = formularioEditarVenta.getIdCuenta();
+                //LE PONGO FECHA?
+                //mc.setFecha(new Date());
+                miSesion.saveOrUpdate(mc);
+                
+            } catch (NullPointerException e) {
+            }
+
         }
 
     }

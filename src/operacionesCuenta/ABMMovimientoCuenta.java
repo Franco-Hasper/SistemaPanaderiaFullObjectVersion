@@ -98,17 +98,24 @@ public class ABMMovimientoCuenta extends ABM {
         Integer id = principalCuenta.getTablaCuenta().obtenerIdFilaSeleccionada();
         setConsultaList("FROM MovimientoCuenta WHERE codigoCuenta=" + id + " AND codigoEstado=1");
         obtenerListaConsulta();
-        actualizarMovimeintoCuenta();
+        conexionMovimientoCuenta();
     }
 
     public void actualizarMovimientoCuentaFromVenta(Integer idCuenta) {
         setConsultaList("FROM MovimientoCuenta WHERE codigoCuenta=" + idCuenta + " AND codigoEstado=1");
         obtenerListaConsulta();
-        actualizarMovimeintoCuenta();
+        conexionMovimientoCuenta();
     }
 
-    private void actualizarMovimeintoCuenta() {
-        
+    public void conexionMovimientoCuenta() {
+        Session miSesion = ConexionHibernate.tomarConexion();
+        miSesion.beginTransaction();
+        actualizarMovimeintoCuenta(miSesion);
+        miSesion.getTransaction().commit();;
+    }
+
+    private void actualizarMovimeintoCuenta(Session miSesion) {
+
         Integer idMovCuenta;
         Double monto;
         Double balance;
@@ -121,8 +128,8 @@ public class ABMMovimientoCuenta extends ABM {
             monto = resultsMC.getMonto();
             balance = resultsMC.getBalance();
 
-            Session miSesion = ConexionHibernate.tomarConexion();
-            miSesion.beginTransaction();
+            //  Session miSesion = ConexionHibernate.tomarConexion();
+            // miSesion.beginTransaction();
             MovimientoCuenta actualizarMC = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, idMovCuenta);
 
             Cuenta cnt = (Cuenta) miSesion.get(Cuenta.class, resultsMC.getCodigoCuenta().getIdCuenta());
@@ -137,11 +144,10 @@ public class ABMMovimientoCuenta extends ABM {
                 actualizarMC.setBalance(nuevoBalance);
                 cnt.setBalance(nuevoBalance);
             }
-       
-            
-            miSesion.saveOrUpdate(actualizarMC);
-            miSesion.saveOrUpdate(cnt);
-            miSesion.getTransaction().commit();
+
+             miSesion.saveOrUpdate(actualizarMC);
+             miSesion.saveOrUpdate(cnt);
+            // miSesion.getTransaction().commit();
         }
 
     }

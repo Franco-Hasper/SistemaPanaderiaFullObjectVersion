@@ -60,7 +60,6 @@ public class TablaClienteLista extends Tabla {
         this.idClientePrevio = idClientePrevio;
     }
 
-    
     @Override
     public void ejecutarRellenarTabla() {
         if (getFormularioRegistrarVenta() == null) {
@@ -103,7 +102,9 @@ public class TablaClienteLista extends Tabla {
                 fila.add(c.getNombre() + " " + c.getApellido());
                 List<Direccion_Cliente> direcciones = c.getDireccionesclientes();
                 List<TelefonoCliente> telefonos = c.getTelefonos();
-                             if (c.getTelefonos().isEmpty()) {
+                //if (c.getTelefonos().isEmpty()) {
+
+                if (c.getTelefonos().isEmpty()) {
                     fila.add("sin registros");
                 } else {
                     for (TelefonoCliente tlcl : telefonos) {
@@ -123,7 +124,7 @@ public class TablaClienteLista extends Tabla {
                         }
                     }
                 }
-   
+
                 vueltaDir = 0;
                 vueltaTel = 0;
                 tablaCliente.addRow(fila);
