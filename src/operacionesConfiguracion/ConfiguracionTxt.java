@@ -3,14 +3,17 @@ package operacionesConfiguracion;
 import java.awt.Color;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.LinkedList;
 import java.util.Scanner;
+import javax.swing.JPanel;
 import principal.PrincipalAdministrador;
 
 public class ConfiguracionTxt {
 
-    private final ColorTema color = new ColorTema();
+    private ColorTema color = new ColorTema();
+    private String saldoCuenta;
     private PrincipalAdministrador principalAdministrador;
 
     public PrincipalAdministrador getPrincipalAdministrador() {
@@ -20,6 +23,23 @@ public class ConfiguracionTxt {
     public void setPrincipalAdministrador(PrincipalAdministrador principalAdministrador) {
         this.principalAdministrador = principalAdministrador;
     }
+
+    public String getSaldoCuenta() {
+        return saldoCuenta;
+    }
+
+    public void setSaldoCuenta(String saldoCuenta) {
+        this.saldoCuenta = saldoCuenta;
+    }
+
+    public ColorTema getColor() {
+        return color;
+    }
+
+    public void setColor(ColorTema color) {
+        this.color = color;
+    }
+    
     
     
 
@@ -50,7 +70,7 @@ public class ConfiguracionTxt {
      * botones de la ventana principal y el color secundario en los paneles
      * secundarios.
      */
-    public void setTema() {
+    public void setTemaPrincipalAdministrador() {
         principalAdministrador.getPanelPrincipalTop().setBackground(color.getColorPrimario());
         principalAdministrador.getPanelPrincipalBody().setBackground(color.getColorSecundario());
         principalAdministrador.getBtnConfiguracion().setBackground(color.getColorPrimario());
@@ -62,6 +82,11 @@ public class ConfiguracionTxt {
         principalAdministrador.getBtnGestionProveedor().setBackground(color.getColorPrimario());
         principalAdministrador.getBtnGestionGastos().setBackground(color.getColorPrimario());
     }
+    
+    
+    public void setColorPanel(JPanel panel){
+        panel.setBackground(color.getColorPrimario());
+    }
 
     /**
      * recupera los valores almacenados en el archivo ConfiguracionColor.txt
@@ -70,7 +95,7 @@ public class ConfiguracionTxt {
     public void leerArchivoConfig() {
         try {
             LinkedList valores = new LinkedList();
-            Scanner input = new Scanner(new File("ConfiguracionColor.txt"));
+            Scanner input = new Scanner(new File("Configuracion.txt"));
 
             while (input.hasNextLine()) {
                 valores.add(input.nextLine());
@@ -83,9 +108,9 @@ public class ConfiguracionTxt {
             color.setSecundarioBlue(Integer.valueOf(valores.get(5).toString()));
             color.setColorPrimario(new Color(color.getPrincipalRed(), color.getPrincipalGreen(), color.getPrincipalBlue()));
             color.setColorSecundario(new Color(color.getSecundarioRed(), color.getSecundarioGreen(), color.getSecundarioBlue()));
+            setSaldoCuenta(valores.get(6).toString());
             input.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (FileNotFoundException | NumberFormatException ex) {
         }
     }
 
@@ -93,9 +118,9 @@ public class ConfiguracionTxt {
      * Abre el archivo ConfiguracionColor.txt e inserta en el los valores
      * devueltos en el metodo contenidoConfig.
      */
-    public void guardarColor() {
+    public void guardarConfiguaracion() {
         try {
-            String ruta = "ConfiguracionColor.txt";
+            String ruta = "Configuracion.txt";
             String contenido = contenidoConfig();
             File file = new File(ruta);
             if (!file.exists()) {
@@ -121,7 +146,8 @@ public class ConfiguracionTxt {
                 + color.getPrincipalBlue() + "\n"
                 + color.getSecundarioRed() + "\n"
                 + color.getSecundarioGreen() + "\n"
-                + color.getSecundarioBlue();
+                + color.getSecundarioBlue()+ "\n"
+                +saldoCuenta;
     }
 
 }

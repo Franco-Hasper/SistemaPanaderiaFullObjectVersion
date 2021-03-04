@@ -2,13 +2,15 @@ package lanzarAplicacion;
 
 import clasesUtilidadGeneral.ApiDolar;
 import operacionesConfiguracion.ConfiguracionTxt;
+import operacionesCuenta.SaldoCuentaBajo;
+import operacionesLogin.InterfazGraficaLogin;
 import principal.PrincipalAdministrador;
 
 /**
  *
  * @author TELCOM MPC
  */
-public class IniciarPantallaPrincipal {
+public class Iniciar {
 
     public static void main(String[] args) {
         new InicarAplicacion().run();
@@ -18,27 +20,12 @@ public class IniciarPantallaPrincipal {
 
         @Override
         public void run() {
-
             exceptionNativa();
-            PrincipalAdministrador principalAdministrador = new PrincipalAdministrador();
-
-            principalAdministrador.setVisible(true);
-
-            ConfiguracionTxt configuracion = new ConfiguracionTxt();
-            configuracion.leerArchivoConfig();
-            configuracion.setPrincipalAdministrador(principalAdministrador);
-            configuracion.setTema();
-
-            try {
-                new ApiDolar().precioDolarOficial(principalAdministrador);
-                try {
-                    Thread.sleep(3);
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            
+            InterfazGraficaLogin login=new InterfazGraficaLogin();
+            
+            login.ejecutar();
+            
         }
 
         private void exceptionNativa() {

@@ -11,6 +11,7 @@ import entidades.MateriaPrima;
 import entidades.IngresoMateriaPrima;
 import entidades.Iva;
 import entidades.Localidad;
+import entidades.Login;
 import entidades.Marca;
 import entidades.MateriaPrima_Marca;
 import entidades.MateriaPrima_Marca_Proveedor;
@@ -80,6 +81,7 @@ public class ConexionHibernate {
                 .addAnnotatedClass(Cuenta.class)
                 .addAnnotatedClass(Gasto.class)
                 .addAnnotatedClass(CorteCaja.class)
+                .addAnnotatedClass(Login.class)
                 .buildSessionFactory();
         return sf.getCurrentSession();
     }

@@ -65,6 +65,8 @@ public class Estado {
     @OneToMany(mappedBy = "codigoEstado")
     private List<Cuenta> cuentas;
     
+    @OneToMany(mappedBy = "codigoEstado")
+    private List<Login> logins;
     
 
     public Estado() {
@@ -188,6 +190,14 @@ public class Estado {
 
     public void setCuentas(List<Cuenta> cuentas) {
         this.cuentas = cuentas;
+    }
+
+    public List<Login> getLogins() {
+        return logins;
+    }
+
+    public void setLogins(List<Login> logins) {
+        this.logins = logins;
     }
     
     
