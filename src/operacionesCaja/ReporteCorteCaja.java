@@ -1,5 +1,6 @@
-package operacionesGasto;
+package operacionesCaja;
 
+import operacionesGasto.*;
 import calsesPadre.Consultas;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import com.itextpdf.text.Document;
@@ -13,7 +14,9 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 import ds.desktop.notify.DesktopNotify;
+import entidades.CorteCaja;
 import entidades.Gasto;
+import formularios.FormularioReporteCorteCaja;
 import formularios.FormularioReporteGastos;
 import java.awt.Desktop;
 import java.io.File;
@@ -31,22 +34,24 @@ import operacionesIngresoMateriaPrima.ReporteIngresos;
 /**
  * @author Hasper Franco
  */
-public class ReporteGastos extends Consultas {
+public class ReporteCorteCaja extends Consultas {
 
-    private FormularioReporteGastos formularioReporteGastos;
+    private FormularioReporteCorteCaja formularioReporteCorteCaja;
     private String fechaIicio;
     private String fechaFin;
     private List lista;
-    private static final Font titulofuente = new Font(Font.FontFamily.UNDEFINED, 12, Font.BOLD);
-    private static final Font datosfuente = new Font(Font.FontFamily.UNDEFINED, 10, Font.BOLD);
+    private Font titulofuente = new Font(Font.FontFamily.UNDEFINED, 12, Font.BOLD);
+    private Font datosfuente = new Font(Font.FontFamily.UNDEFINED, 10, Font.BOLD);
 
-    public FormularioReporteGastos getFormularioReporteGastos() {
-        return formularioReporteGastos;
+    public FormularioReporteCorteCaja getFormularioReporteCorteCaja() {
+        return formularioReporteCorteCaja;
     }
 
-    public void setFormularioReporteGastos(FormularioReporteGastos formularioReporteGastos) {
-        this.formularioReporteGastos = formularioReporteGastos;
+    public void setFormularioReporteCorteCaja(FormularioReporteCorteCaja formularioReporteCorteCaja) {
+        this.formularioReporteCorteCaja = formularioReporteCorteCaja;
     }
+
+
 
     public void ejecutarBusqueda() {
         obtenerFechas();
@@ -56,8 +61,8 @@ public class ReporteGastos extends Consultas {
 
     private void obtenerFechas() {
         try {
-            fechaIicio = (String) new OperacionesUtiles().formatoFechaSinHoraYearFirst(formularioReporteGastos.getFechaInicio().getDatoFecha());
-            fechaFin = (String) new OperacionesUtiles().formatoFechaSinHoraYearFirst(formularioReporteGastos.getFechaFin().getDatoFecha());
+            fechaIicio = (String) new OperacionesUtiles().formatoFechaSinHoraYearFirst(formularioReporteCorteCaja.getFechaInicio().getDatoFecha());
+            fechaFin = (String) new OperacionesUtiles().formatoFechaSinHoraYearFirst(formularioReporteCorteCaja.getFechaFin().getDatoFecha());
         } catch (NullPointerException e) {
             DesktopNotify.showDesktopMessage("informacion ", "   Debe ingresar una fecha limite  inicio y una fecha limite fin", DesktopNotify.INFORMATION, 5000);
         }
@@ -65,32 +70,34 @@ public class ReporteGastos extends Consultas {
     }
 
     private void consultaIngresos() {
-        setConsultaList("from Gasto where fecha BETWEEN '" + fechaIicio + "' AND '" + fechaFin + "'");
+        setConsultaList("from CorteCaja where fecha BETWEEN '" + fechaIicio + "' AND '" + fechaFin + "'");
         obtenerListaConsulta();
     }
 
     private void rellenarTabla() {
         Double resultado = 0.0;
-        DefaultTableModel tablaIngresos = (DefaultTableModel) formularioReporteGastos.getTablaGrafica().getModel();
+        DefaultTableModel tablaIngresos = (DefaultTableModel) formularioReporteCorteCaja.getTablaGrafica().getModel();
         lista = this.getListaResultados();
         new OperacionesUtiles().removerFilas(tablaIngresos);
 
         for (Object o : lista) {
-            Gasto g = (Gasto) o;
-            if (g.getCodigoEstado().getIdEstado().equals(1)) {
+            CorteCaja c = (CorteCaja) o;
+            if (c.getCodigoEstado().getIdEstado().equals(1)) {
                 Vector<Object> fila = new Vector<>();
-                fila.add(g.getDescripcion());
-                fila.add(g.getPrecioTotal());
-                fila.add(new OperacionesUtiles().formatoFechaSinHora(g.getFecha()));
-                resultado += g.getPrecioTotal();
+                fila.add(c.getTotalIngresos());
+                fila.add(c.getTotalEgresos());
+                fila.add(c.getBalance());
+                fila.add(new OperacionesUtiles().formatoFechaSinHora(c.getFecha()));
+                resultado += c.getBalance();
                 tablaIngresos.addRow(fila);
             }
         }
-        formularioReporteGastos.getLblImporteTotal().setText(resultado.toString());
+        formularioReporteCorteCaja.getLblImporteTotal().setText(resultado.toString());
     }
 
+
     public void ejecutarGenerarReportes() throws FileNotFoundException, DocumentException {
-        generarReportePDF5(new File("reportes//Gastos//Gastos " + fechaIicio + " " + fechaFin + ".pdf"));
+        generarReportePDF5(new File("reportes//CorteCaja//CorteCaja " + fechaIicio + " " + fechaFin + ".pdf"));
     }
 
     public void generarReportePDF5(File pdfNewFile) {
@@ -104,7 +111,7 @@ public class ReporteGastos extends Consultas {
             // Chapter chapterOne = new Chapter(0);
             Paragraph texto = new Paragraph();
             texto.setFont(titulofuente);
-            texto.add("Reporte Gastos");
+            texto.add("Reporte Cortes de Caja");
 
             DottedLineSeparator dottedline = new DottedLineSeparator();
             dottedline.setOffset(-2);
@@ -112,10 +119,10 @@ public class ReporteGastos extends Consultas {
             texto.add(dottedline);
             texto.setFont(datosfuente);
             texto.add("\n");
-            texto.add("Fecha en la que se genero este reporte: " + OperacionesUtiles.formatoFechaSinHora(new Date()));
+           texto.add("Fecha en la que se genero este reporte: " + OperacionesUtiles.formatoFechaSinHora(new Date()));
             texto.add("\n");
-            String fechaIicioPdf = (String) new OperacionesUtiles().formatoFechaSinHora(formularioReporteGastos.getFechaInicio().getDatoFecha());
-            String fechaFinPdf = (String) new OperacionesUtiles().formatoFechaSinHora(formularioReporteGastos.getFechaFin().getDatoFecha());
+            String fechaIicioPdf = (String) new OperacionesUtiles().formatoFechaSinHora(formularioReporteCorteCaja.getFechaInicio().getDatoFecha());
+            String fechaFinPdf = (String) new OperacionesUtiles().formatoFechaSinHora(formularioReporteCorteCaja.getFechaFin().getDatoFecha());
 
             texto.add(new Paragraph("Desde: " + fechaIicioPdf + " Hasta: " + fechaFinPdf));
 
@@ -123,12 +130,14 @@ public class ReporteGastos extends Consultas {
 
             Double resultado = 0.0;
 
-            PdfPTable table = new PdfPTable(3);
+            PdfPTable table = new PdfPTable(4);
             PdfPCell columnHeader;
 
-            columnHeader = new PdfPCell(new Phrase("Descripción"));
+            columnHeader = new PdfPCell(new Phrase("Toatal Ventas"));
             table.addCell(columnHeader);
-            columnHeader = new PdfPCell(new Phrase("Total gastado"));
+            columnHeader = new PdfPCell(new Phrase("Total Gastos"));
+            table.addCell(columnHeader);
+            columnHeader = new PdfPCell(new Phrase("Balance"));
             table.addCell(columnHeader);
             columnHeader = new PdfPCell(new Phrase("Fecha"));
             table.addCell(columnHeader);
@@ -137,26 +146,27 @@ public class ReporteGastos extends Consultas {
             table.setHeaderRows(1);
 
             for (Object o : lista) {
-                Gasto g = (Gasto) o;
-                if (g.getCodigoEstado().getIdEstado().equals(1)) {
-                    table.addCell(g.getDescripcion());
-                    table.addCell("$ " + g.getPrecioTotal().toString());
-                    resultado += g.getPrecioTotal();
-                    table.addCell((String) new OperacionesUtiles().formatoFechaSinHora(g.getFecha()));
+                CorteCaja c = (CorteCaja) o;
+                if (c.getCodigoEstado().getIdEstado().equals(1)) {
+                    table.addCell("$ " +c.getTotalIngresos().toString());
+                    table.addCell("$ " + c.getTotalEgresos());
+                    table.addCell("$ " + c.getBalance());
+                    resultado += c.getBalance();
+                    table.addCell((String) new OperacionesUtiles().formatoFechaSinHora(c.getFecha()));
                 }
             }
 
             texto.add(table);
             texto.add(new Paragraph("\n"));
-            texto.add("Importe Total: " + resultado);
+            texto.add("Balance final: " + resultado);
             document.add(texto);
             document.close();
             DesktopNotify.showDesktopMessage("exito ", "   REPORTE GENERADO\n   CON EXITO", DesktopNotify.SUCCESS, 7000);
 
-            if (this.formularioReporteGastos.getRadBtnAbrirDocumento().isSelected()) {
+            if (this.formularioReporteCorteCaja.getRadBtnAbrirDocumento().isSelected()) {
                 OperacionesUtiles.abrirArchivo(pdfNewFile.toString());
             }
-            if (this.formularioReporteGastos.getRadBtnImprimir().isSelected()) {
+            if (this.formularioReporteCorteCaja.getRadBtnImprimir().isSelected()) {
                 try {
                     Desktop.getDesktop().print(pdfNewFile);
                 } catch (IOException ex) {

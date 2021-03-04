@@ -2,7 +2,9 @@ package operacionesGasto;
 
 import escritorios.PrincipalGastos;
 import formularios.FormularioReporteGastos;
+import formularios.FormularioReporteIngresoMateriaPrima;
 import java.awt.Frame;
+import java.util.Date;
 
 /**
  * @author Hasper Franco
@@ -25,6 +27,7 @@ public class InterfazGraficaReporteGastos {
         reporteGastos.setFormularioReporteGastos(formularioReporteGastos);
         formularioReporteGastos.setReporteGastos(reporteGastos);
         colorTema(formularioReporteGastos);
+        fechas(formularioReporteGastos);
         formularioReporteGastos.setVisible(true);
     }
 
@@ -32,6 +35,11 @@ public class InterfazGraficaReporteGastos {
         formularioReporte.getPanelPrincipalTop().setBackground(principalGastos.getPanelPrincipalTop().getBackground());
         formularioReporte.getFechaInicio().setColorBackground(principalGastos.getPanelPrincipalTop().getBackground());
         formularioReporte.getFechaFin().setColorBackground(principalGastos.getPanelPrincipalTop().getBackground());
+    }
+    
+        private void fechas(FormularioReporteGastos formularioReporte) {
+        formularioReporte.getFechaInicio().setDatoFecha(new Date());
+        formularioReporte.getFechaFin().setDatoFecha(new Date());
     }
 
 }
