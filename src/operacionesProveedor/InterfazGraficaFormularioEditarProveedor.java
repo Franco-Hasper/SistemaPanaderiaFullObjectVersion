@@ -36,10 +36,10 @@ public class InterfazGraficaFormularioEditarProveedor extends InterfazGraficaFor
 
     @Override
     public void nuevoFormularioEditar() {
-        if (principalProveedor.getEditarProveedor() == null) {
+        if (principalProveedor.getFormularioEditarProveedor() == null) {
             FormularioEditarProveedor formularioEditar = new FormularioEditarProveedor(frame, true);
             formularioEditar.setPrincipalProveedor(principalProveedor);
-            principalProveedor.setEditarProveedor(formularioEditar);
+            principalProveedor.setFormularioEditarProveedor(formularioEditar);
             colorTema();
             agregarBoxes();
             rellenarBoxes();
@@ -47,13 +47,13 @@ public class InterfazGraficaFormularioEditarProveedor extends InterfazGraficaFor
             transferirDatos();
         }
 
-        principalProveedor.getEditarProveedor().setVisible(true);
-        principalProveedor.setEditarProveedor(null);
+        principalProveedor.getFormularioEditarProveedor().setVisible(true);
+        principalProveedor.setFormularioEditarProveedor(null);
     }
 
     @Override
     public void colorTema() {
-        principalProveedor.getEditarProveedor().getPanelPrincipalTop().setBackground(principalProveedor.getPanelPrincipalTop().getBackground());
+        principalProveedor.getFormularioEditarProveedor().getPanelPrincipalTop().setBackground(principalProveedor.getPanelPrincipalTop().getBackground());
     }
 
     @Override
@@ -62,10 +62,10 @@ public class InterfazGraficaFormularioEditarProveedor extends InterfazGraficaFor
         tablaProveedor.setPrincipalProveedor(principalProveedor);
         int fila = principalProveedor.getTablaGrafica().getSelectedRow();
 
-        principalProveedor.getEditarProveedor().getTxtNombre().setText(principalProveedor.getTablaGrafica().getValueAt(fila, 0).toString());
-        principalProveedor.getEditarProveedor().getTxtDireccion().setText(principalProveedor.getTablaGrafica().getValueAt(fila, 1).toString());
-        principalProveedor.getEditarProveedor().getTxtnuemeroDireccion().setText(principalProveedor.getTablaGrafica().getValueAt(fila, 2).toString());
-        principalProveedor.getEditarProveedor().getTxtTelefono().setText(principalProveedor.getTablaGrafica().getValueAt(fila, 5).toString());
+        principalProveedor.getFormularioEditarProveedor().getTxtNombre().setText(principalProveedor.getTablaGrafica().getValueAt(fila, 0).toString());
+        principalProveedor.getFormularioEditarProveedor().getTxtDireccion().setText(principalProveedor.getTablaGrafica().getValueAt(fila, 1).toString());
+        principalProveedor.getFormularioEditarProveedor().getTxtnuemeroDireccion().setText(principalProveedor.getTablaGrafica().getValueAt(fila, 2).toString());
+        principalProveedor.getFormularioEditarProveedor().getTxtTelefono().setText(principalProveedor.getTablaGrafica().getValueAt(fila, 5).toString());
 
         String provincia = principalProveedor.getTablaGrafica().getValueAt(fila, 4).toString();
         String localidad = principalProveedor.getTablaGrafica().getValueAt(fila, 3).toString();
@@ -75,24 +75,24 @@ public class InterfazGraficaFormularioEditarProveedor extends InterfazGraficaFor
     }
 
     private void autoSelectBox(String provincia, String localidad, String tipotelefono) {
-        principalProveedor.getEditarProveedor().getBoxProvincia().setSelectedItem(provincia);
-        principalProveedor.getEditarProveedor().getBoxLocalidad().setSelectedItem(localidad);
-        principalProveedor.getEditarProveedor().getBoxTipoTelefono().setSelectedItem(tipotelefono);
+        principalProveedor.getFormularioEditarProveedor().getBoxProvincia().setSelectedItem(provincia);
+        principalProveedor.getFormularioEditarProveedor().getBoxLocalidad().setSelectedItem(localidad);
+        principalProveedor.getFormularioEditarProveedor().getBoxTipoTelefono().setSelectedItem(tipotelefono);
     }
 
     protected void infoTextPrompt() {
-        new TextPrompt("NOMBRE", principalProveedor.getEditarProveedor().getTxtNombre());
-        new TextPrompt("DIRECCION", principalProveedor.getEditarProveedor().getTxtDireccion());
-        new TextPrompt("N° DIREICCION", principalProveedor.getEditarProveedor().getTxtnuemeroDireccion());
-        new TextPrompt("N° TELEFONO", principalProveedor.getEditarProveedor().getTxtTelefono());
-        principalProveedor.getEditarProveedor().getTxtNombre().grabFocus();
+        new TextPrompt("NOMBRE", principalProveedor.getFormularioEditarProveedor().getTxtNombre());
+        new TextPrompt("DIRECCION", principalProveedor.getFormularioEditarProveedor().getTxtDireccion());
+        new TextPrompt("N° DIREICCION", principalProveedor.getFormularioEditarProveedor().getTxtnuemeroDireccion());
+        new TextPrompt("N° TELEFONO", principalProveedor.getFormularioEditarProveedor().getTxtTelefono());
+        principalProveedor.getFormularioEditarProveedor().getTxtNombre().grabFocus();
     }
 
     @Override
     public void agregarBoxes() {
-        this.setBoxLocalidad(principalProveedor.getEditarProveedor().getBoxLocalidad());
-        this.setBoxProvincia(principalProveedor.getEditarProveedor().getBoxProvincia());
-        this.setBoxTipoTelefono(principalProveedor.getEditarProveedor().getBoxTipoTelefono());
+        this.setBoxLocalidad(principalProveedor.getFormularioEditarProveedor().getBoxLocalidad());
+        this.setBoxProvincia(principalProveedor.getFormularioEditarProveedor().getBoxProvincia());
+        this.setBoxTipoTelefono(principalProveedor.getFormularioEditarProveedor().getBoxTipoTelefono());
     }
 
     @Override

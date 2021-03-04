@@ -7,7 +7,6 @@ import operacionesConfiguracion.ConfiguracionTxt;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import operacionesConfiguracion.InterfacesGraficasEscritorioConfiguracion;
 import principal.MaterialButton;
-import principal.PrincipalAdministrador;
 
 /**
  *
@@ -50,8 +49,8 @@ public class PrincipalConfiguracion extends javax.swing.JInternalFrame {
 
         panelPrincipalTop = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblIcono = new javax.swing.JLabel();
+        lblNombreventana = new javax.swing.JLabel();
         lblSalir = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnColorMarron = new principal.MaterialButton();
@@ -65,11 +64,11 @@ public class PrincipalConfiguracion extends javax.swing.JInternalFrame {
 
         panelPrincipalTop.setBackground(new java.awt.Color(204, 0, 0));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/services_80px.png"))); // NOI18N
+        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/services_80px.png"))); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("CONFIGURACION");
+        lblNombreventana.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblNombreventana.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreventana.setText("CONFIGURACION");
 
         lblSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel_60px.png"))); // NOI18N
         lblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -84,11 +83,11 @@ public class PrincipalConfiguracion extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblNombreventana, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 1042, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -96,11 +95,11 @@ public class PrincipalConfiguracion extends javax.swing.JInternalFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblIcono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblNombreventana, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         btnColorMarron.setBackground(new java.awt.Color(142, 131, 54,90));
@@ -356,12 +355,12 @@ public class PrincipalConfiguracion extends javax.swing.JInternalFrame {
     private principal.MaterialButton btnGuardar;
     private principal.MaterialButton btnPaleta;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblIcono;
+    private javax.swing.JLabel lblNombreventana;
     private javax.swing.JLabel lblSalir;
     private javax.swing.JPanel panelPrincipalTop;
     // End of variables declaration//GEN-END:variables

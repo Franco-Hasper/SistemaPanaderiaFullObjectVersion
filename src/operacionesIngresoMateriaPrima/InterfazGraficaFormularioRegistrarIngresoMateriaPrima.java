@@ -37,36 +37,36 @@ public class InterfazGraficaFormularioRegistrarIngresoMateriaPrima extends Inter
 
     @Override
     public void nuevoFormularioRegistrar() {
-        if (principalMateriaPrima.getRegistrarIngresoMateriaPrima() == null) {
+        if (principalMateriaPrima.getFormularioRegistrarIngresoMateriaPrima() == null) {
             FormularioRegistrarIngresoMateriaPrima formularioRegistrar = new FormularioRegistrarIngresoMateriaPrima(frame, true);
             formularioRegistrar.setPrincipalMateriaPrima(principalMateriaPrima);
             formularioRegistrar.setPrincipalIngresoMateriaPrima(getPrincipalIngresoMateriaPrima());
-            principalMateriaPrima.setRegistrarIngresoMateriaPrima(formularioRegistrar);
+            principalMateriaPrima.setFormularioRegistrarIngresoMateriaPrima(formularioRegistrar);
             colorTema();
             transferirDatos();
             infoTextPrompt();
         }
-        principalMateriaPrima.getRegistrarIngresoMateriaPrima().setVisible(true);
-        principalMateriaPrima.setRegistrarIngresoMateriaPrima(null);
+        principalMateriaPrima.getFormularioRegistrarIngresoMateriaPrima().setVisible(true);
+        principalMateriaPrima.setFormularioRegistrarIngresoMateriaPrima(null);
     }
 
     @Override
     public void infoTextPrompt() {
-        new TextPrompt("TOTAL ENVASES", principalMateriaPrima.getRegistrarIngresoMateriaPrima().getTxttotalEnvases());
-        new TextPrompt("UDS POR ENVASES", principalMateriaPrima.getRegistrarIngresoMateriaPrima().getTxtUdsPorEnvase());
-        new TextPrompt("PRECIO TOTAL", principalMateriaPrima.getRegistrarIngresoMateriaPrima().getTxtPrecioTotal());
-        principalMateriaPrima.getRegistrarIngresoMateriaPrima().getTxttotalEnvases().grabFocus();
+        new TextPrompt("TOTAL ENVASES", principalMateriaPrima.getFormularioRegistrarIngresoMateriaPrima().getTxttotalEnvases());
+        new TextPrompt("UDS POR ENVASES", principalMateriaPrima.getFormularioRegistrarIngresoMateriaPrima().getTxtUdsPorEnvase());
+        new TextPrompt("PRECIO TOTAL", principalMateriaPrima.getFormularioRegistrarIngresoMateriaPrima().getTxtPrecioTotal());
+        principalMateriaPrima.getFormularioRegistrarIngresoMateriaPrima().getTxttotalEnvases().grabFocus();
     }
 
     public void transferirDatos() {
         new TablaMateriaPrima().setPrincipalMateriaPrima(principalMateriaPrima);
         int fila = principalMateriaPrima.getTablaGrafica().getSelectedRow();
-        principalMateriaPrima.getRegistrarIngresoMateriaPrima().getTxtMatPr().setText(principalMateriaPrima.getTablaGrafica().getValueAt(fila, 0).toString());
+        principalMateriaPrima.getFormularioRegistrarIngresoMateriaPrima().getTxtMatPr().setText(principalMateriaPrima.getTablaGrafica().getValueAt(fila, 0).toString());
     }
 
     @Override
     public void colorTema() {
-        principalMateriaPrima.getRegistrarIngresoMateriaPrima().getPanelPrincipalTop().setBackground(principalMateriaPrima.getPanelPrincipalTop().getBackground());
+        principalMateriaPrima.getFormularioRegistrarIngresoMateriaPrima().getPanelPrincipalTop().setBackground(principalMateriaPrima.getPanelPrincipalTop().getBackground());
     }
 
     @Deprecated

@@ -53,8 +53,9 @@ public class InterfazGraficaEscritorioCuenta extends InterfazGraficaEscritorio {
             insertarNombreCliente();
             principalAdministrador.getCuenta().setTablaCuenta(tablaCuenta);
             principalAdministrador.getCuenta().setTablaMovimientoCuenta(tablaMovimientoCuenta);
-            InterfazGraficaEditarMovimiento formularioEditarMovimiento = new InterfazGraficaEditarMovimiento();  
-            principalAdministrador.getCuenta().setInterfazEditarMovimiento(formularioEditarMovimiento);
+            InterfazGraficaEditarMovimiento interfazGraficaEditarMovimiento = new InterfazGraficaEditarMovimiento();  
+            principalAdministrador.getCuenta().setInterfazGraficaEditarMovimiento(interfazGraficaEditarMovimiento);
+            estadoInicialVentanaCuenta();
             principalAdministrador.getCuenta().show();
         }
         colorInterfazEscritorio();
@@ -78,6 +79,16 @@ public class InterfazGraficaEscritorioCuenta extends InterfazGraficaEscritorio {
 
         principalAdministrador.getCuenta().getTablaGraficaMovimiento().setForeground(principalAdministrador.getPanelPrincipalTop().getBackground());
         principalAdministrador.getCuenta().getTablaGraficaMovimiento().setSelectionBackground(principalAdministrador.getPanelPrincipalTop().getBackground());
+    }
+    
+        /**
+     * Establece el estado inicial de los elementos de la pestaña Cuenta.
+     */
+    private void estadoInicialVentanaCuenta() {
+        principalAdministrador.getCuenta().getBtnGuardarCuenta().setEnabled(false);
+        principalAdministrador.getCuenta().getEditPaneMotivo().setEnabled(false);
+        principalAdministrador.getCuenta().getTxtMontoInicial().setEnabled(false);
+        principalAdministrador.getCuenta().getBtnGuardarMovimiento().setEnabled(false);
     }
 
     private void insertarNombreCliente() {
@@ -109,5 +120,8 @@ public class InterfazGraficaEscritorioCuenta extends InterfazGraficaEscritorio {
         p.getBtnGuardarCuenta().setEnabled(false);
         p.getTxtMontoInicial().setText("");
     }
+    
+    
+    
 
 }

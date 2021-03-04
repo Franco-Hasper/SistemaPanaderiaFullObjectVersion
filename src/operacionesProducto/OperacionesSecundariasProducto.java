@@ -9,12 +9,10 @@ import escritorios.PrincipalProducto;
 import formularios.FormularioRegistrarPrecioProducto;
 import formularios.FormularioRegistrarProducto;
 import java.util.List;
-import static javax.swing.JOptionPane.showMessageDialog;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import ds.desktop.notify.DesktopNotify;
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.HeadlessException;
 import org.hibernate.Session;
 import org.jfree.chart.ChartFactory;
@@ -26,8 +24,6 @@ import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.ui.HorizontalAlignment;
-import org.jfree.ui.RectangleEdge;
 
 /**
  *

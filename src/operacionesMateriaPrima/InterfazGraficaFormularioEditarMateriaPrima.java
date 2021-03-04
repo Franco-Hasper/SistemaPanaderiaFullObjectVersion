@@ -30,37 +30,37 @@ public class InterfazGraficaFormularioEditarMateriaPrima extends InterfazGrafica
 
     @Override
     public void nuevoFormularioEditar() {
-        if (principalMateriaPrima.getEditarMateriaPrima() == null) {
+        if (principalMateriaPrima.getFormularioEditarMateriaPrima() == null) {
             FormularioEditarMateriaPrima formularioEditar = new FormularioEditarMateriaPrima(frame, true);
             formularioEditar.setPrincipalMateriaPrima(principalMateriaPrima);
-            principalMateriaPrima.setEditarMateriaPrima(formularioEditar);
+            principalMateriaPrima.setFormularioEditarMateriaPrima(formularioEditar);
             agregarBoxes();
             rellenarBoxes();
             transferirDatos();
             colorTema();
         }
 
-        principalMateriaPrima.getEditarMateriaPrima().setVisible(true);
-        principalMateriaPrima.setRegistrarMateriaPrima(null);
+        principalMateriaPrima.getFormularioEditarMateriaPrima().setVisible(true);
+        principalMateriaPrima.setFormularioEditarMateriaPrima(null);
     }
 
     @Override
     public void colorTema() {
-        principalMateriaPrima.getEditarMateriaPrima().getPanelPrincipalTop().setBackground(principalMateriaPrima.getPanelPrincipalTop().getBackground());
+        principalMateriaPrima.getFormularioEditarMateriaPrima().getPanelPrincipalTop().setBackground(principalMateriaPrima.getPanelPrincipalTop().getBackground());
     }
 
     @Override
     public void transferirDatos() {
         new TablaMateriaPrima().setPrincipalMateriaPrima(principalMateriaPrima);
         int fila = principalMateriaPrima.getTablaGrafica().getSelectedRow();
-        principalMateriaPrima.getEditarMateriaPrima().getTxtNombreMAteriaPrima().setText(principalMateriaPrima.getTablaGrafica().getValueAt(fila, 0).toString());
+        principalMateriaPrima.getFormularioEditarMateriaPrima().getTxtNombreMAteriaPrima().setText(principalMateriaPrima.getTablaGrafica().getValueAt(fila, 0).toString());
     }
 
     @Override
     public void agregarBoxes() {
-        this.setBoxMarca(principalMateriaPrima.getEditarMateriaPrima().getBoxMarca());
-        this.setBoxProveedor(principalMateriaPrima.getEditarMateriaPrima().getBoxProveedor());
-        this.setBoxUnidadMedida(principalMateriaPrima.getEditarMateriaPrima().getBoxUdeMedida());
+        this.setBoxMarca(principalMateriaPrima.getFormularioEditarMateriaPrima().getBoxMarca());
+        this.setBoxProveedor(principalMateriaPrima.getFormularioEditarMateriaPrima().getBoxProveedor());
+        this.setBoxUnidadMedida(principalMateriaPrima.getFormularioEditarMateriaPrima().getBoxUdeMedida());
 
     }
 

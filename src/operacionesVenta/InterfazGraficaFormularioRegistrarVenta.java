@@ -40,12 +40,12 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
 
     @Override
     public void nuevoFormularioRegistrar() {
-        if (principalVenta.getRegistrarVenta() == null) {
+        if (principalVenta.getFromularioRegistrarVenta() == null) {
             //seccion formulario
             FormularioRegistrarVenta formularioRegistrar = new FormularioRegistrarVenta(frame, true);
             formularioRegistrar.setPrincipalVenta(principalVenta);
             formularioRegistrar.setPrincipalAdministrador(principalAdministrador);
-            principalVenta.setRegistrarVenta(formularioRegistrar);
+            principalVenta.setFromularioRegistrarVenta(formularioRegistrar);
             infoTextPrompt();
             colorTema();
 
@@ -54,12 +54,12 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
             tablaProductosDisponibles.setTipoFormulario(1);
             tablaProductosDisponibles.setPrincipalVenta(principalVenta);
             tablaProductosDisponibles.ejecutarRellenarTabla();
-            principalVenta.getRegistrarVenta().setTablaProductosDisponibles(tablaProductosDisponibles);
+            principalVenta.getFromularioRegistrarVenta().setTablaProductosDisponibles(tablaProductosDisponibles);
 
             //Seccion Tabla Productos Listados
             TablaProductosListados tablaProductosListados = new TablaProductosListados();
             tablaProductosListados.setTipoFormulario(1);
-            principalVenta.getRegistrarVenta().setTablaProductosListados(tablaProductosListados);
+            principalVenta.getFromularioRegistrarVenta().setTablaProductosListados(tablaProductosListados);
             configuracionTxtCantidadTxtTotal();
 
             //Seccion Operaciones Secundarias
@@ -70,10 +70,10 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
             //le asigno el valor del tipo de formulario para los switchs(si es registrar 1 va a trabajar de una forma si es editar 2 va a trabajar de otra)
             operacionesSecundariasVenta.setTipoFormulario(1);
             //guardo el la instancia en el formulario grafico
-            principalVenta.getRegistrarVenta().setOperacionesSecundariasVenta(operacionesSecundariasVenta);
+            principalVenta.getFromularioRegistrarVenta().setOperacionesSecundariasVenta(operacionesSecundariasVenta);
 
             TablaClienteLista tablaClienteLista = new TablaClienteLista();
-            tablaClienteLista.setFormularioRegistrarVenta(principalVenta.getRegistrarVenta());
+            tablaClienteLista.setFormularioRegistrarVenta(principalVenta.getFromularioRegistrarVenta());
             tablaClienteLista.ejecutarRellenarTabla();
             formularioRegistrar.setTablaClienteLista(tablaClienteLista);
 
@@ -82,7 +82,7 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
             formularioRegistrar.setTablaCuenta(tablaCuenta);
 
             //deshabilitar boton descontar cuenta
-            principalVenta.getRegistrarVenta().getRadBtnDescontar().setEnabled(false);
+            principalVenta.getFromularioRegistrarVenta().getRadBtnDescontar().setEnabled(false);
 
             ComprobanteVenta comprobante = new ComprobanteVenta();
             formularioRegistrar.setComprobante(comprobante);
@@ -91,18 +91,18 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
             fechaActual();
         }
 
-        principalVenta.getRegistrarVenta().setVisible(true);
-        principalVenta.setRegistrarVenta(null);
+        principalVenta.getFromularioRegistrarVenta().setVisible(true);
+        principalVenta.setFromularioRegistrarVenta(null);
     }
 
     @Override
     public void infoTextPrompt() {
-        new TextPrompt("CANTIDAD", principalVenta.getRegistrarVenta().getTxtCantidad());
-        new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getRegistrarVenta().getTxtBuscar());
-        new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getRegistrarVenta().getTxtBuscarClientes());
-        new TextPrompt("MONTO PAGADO", principalVenta.getRegistrarVenta().getTxtPago());
-        new TextPrompt("DESCUENTO", principalVenta.getRegistrarVenta().getTxtDescuento());
-        principalVenta.getRegistrarVenta().getTxtBuscar().grabFocus();
+        new TextPrompt("CANTIDAD", principalVenta.getFromularioRegistrarVenta().getTxtCantidad());
+        new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getFromularioRegistrarVenta().getTxtBuscar());
+        new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getFromularioRegistrarVenta().getTxtBuscarClientes());
+        new TextPrompt("MONTO PAGADO", principalVenta.getFromularioRegistrarVenta().getTxtPago());
+        new TextPrompt("DESCUENTO", principalVenta.getFromularioRegistrarVenta().getTxtDescuento());
+        principalVenta.getFromularioRegistrarVenta().getTxtBuscar().grabFocus();
     }
 
     @Deprecated
@@ -112,50 +112,50 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
 
     @Override
     public void rellenarBoxes() {
-        principalVenta.getRegistrarVenta().getBoxTipoVenta().addItem("Venta Simple");
-        principalVenta.getRegistrarVenta().getBoxTipoVenta().addItem("Pedido");
+        principalVenta.getFromularioRegistrarVenta().getBoxTipoVenta().addItem("Venta Simple");
+        principalVenta.getFromularioRegistrarVenta().getBoxTipoVenta().addItem("Pedido");
     }
 
     @Override
     public void colorTema() {
-        principalVenta.getRegistrarVenta().getPanelPrincipalTop().setBackground(principalVenta.getPanelPrincipalTop().getBackground());
-        principalVenta.getRegistrarVenta().getrSDateChooser().setColorBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFromularioRegistrarVenta().getPanelPrincipalTop().setBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFromularioRegistrarVenta().getrSDateChooser().setColorBackground(principalVenta.getPanelPrincipalTop().getBackground());
 
-        principalVenta.getRegistrarVenta().getTablaGraficaListaCliente().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-        principalVenta.getRegistrarVenta().getTablaGraficaListaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFromularioRegistrarVenta().getTablaGraficaListaCliente().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFromularioRegistrarVenta().getTablaGraficaListaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
 
-        principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-        principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFromularioRegistrarVenta().getTablaGraficaProductosDisponibles().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFromularioRegistrarVenta().getTablaGraficaProductosDisponibles().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
 
-        principalVenta.getRegistrarVenta().getTablaListarProductos().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-        principalVenta.getRegistrarVenta().getTablaListarProductos().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFromularioRegistrarVenta().getTablaListarProductos().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFromularioRegistrarVenta().getTablaListarProductos().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
 
-        principalVenta.getRegistrarVenta().getTablaGraficaDescontarCuenta().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-        principalVenta.getRegistrarVenta().getTablaGraficaDescontarCuenta().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFromularioRegistrarVenta().getTablaGraficaDescontarCuenta().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFromularioRegistrarVenta().getTablaGraficaDescontarCuenta().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
 
-        principalVenta.getRegistrarVenta().getTablaCliente().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-        principalVenta.getRegistrarVenta().getTablaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFromularioRegistrarVenta().getTablaCliente().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFromularioRegistrarVenta().getTablaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
 
     }
 
     private void configuracionTxtCantidadTxtTotal() {
-        principalVenta.getRegistrarVenta().getTxtCantidad().setText("1");
-        principalVenta.getRegistrarVenta().getTxtCantidad().setHorizontalAlignment(SwingConstants.CENTER);
-        principalVenta.getRegistrarVenta().getLblPrecioTotal().setText("0.00");
-        principalVenta.getRegistrarVenta().getLblVuelto().setText("0.00");
-        principalVenta.getRegistrarVenta().getLblNuevoBalance().setText("0.00");
+        principalVenta.getFromularioRegistrarVenta().getTxtCantidad().setText("1");
+        principalVenta.getFromularioRegistrarVenta().getTxtCantidad().setHorizontalAlignment(SwingConstants.CENTER);
+        principalVenta.getFromularioRegistrarVenta().getLblPrecioTotal().setText("0.00");
+        principalVenta.getFromularioRegistrarVenta().getLblVuelto().setText("0.00");
+        principalVenta.getFromularioRegistrarVenta().getLblNuevoBalance().setText("0.00");
     }
 
     private void fechaActual() {
         Date fechaActual = new Date();
-        principalVenta.getRegistrarVenta().getrSDateChooser().setDatoFecha(fechaActual);
+        principalVenta.getFromularioRegistrarVenta().getrSDateChooser().setDatoFecha(fechaActual);
     }
 
     private void radButons() {
-        principalVenta.getRegistrarVenta().getRadButonAbrirAlFinalizar().setEnabled(false);
-        principalVenta.getRegistrarVenta().getRadButonImprimir().setEnabled(false);
-        principalVenta.getRegistrarVenta().getRadButonAbrirAlFinalizar().setForeground(new Color(102, 102, 102));
-        principalVenta.getRegistrarVenta().getRadButonImprimir().setForeground(new Color(102, 102, 102));
+        principalVenta.getFromularioRegistrarVenta().getRadButonAbrirAlFinalizar().setEnabled(false);
+        principalVenta.getFromularioRegistrarVenta().getRadButonImprimir().setEnabled(false);
+        principalVenta.getFromularioRegistrarVenta().getRadButonAbrirAlFinalizar().setForeground(new Color(102, 102, 102));
+        principalVenta.getFromularioRegistrarVenta().getRadButonImprimir().setForeground(new Color(102, 102, 102));
     }
 
 }

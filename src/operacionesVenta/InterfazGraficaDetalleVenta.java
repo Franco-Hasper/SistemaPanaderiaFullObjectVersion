@@ -25,22 +25,22 @@ public class InterfazGraficaDetalleVenta {
 
         FormularioDetalleDeVenta formularioDetalleVenta = new FormularioDetalleDeVenta(new Frame(), true);
         formularioDetalleVenta.setPrincipalVenta(principalVenta);
-        principalVenta.setDetalleVenta(formularioDetalleVenta);
+        principalVenta.setFormularioDetalleVenta(formularioDetalleVenta);
         colorTema();
         //TABIENRELLENA LOS LABELS LOS LABELS
         TablaDetalleVenta tablaDetalleVenta = new TablaDetalleVenta();
         tablaDetalleVenta.setPrincipalVenta(principalVenta);
         tablaDetalleVenta.ejecutarRellenarTabla();
-        principalVenta.getDetalleVenta().setIdVenta(tablaDetalleVenta.getIdVenta());
+        principalVenta.getFormularioDetalleVenta().setIdVenta(tablaDetalleVenta.getIdVenta());
 
         ComprobanteVenta comprobante = new ComprobanteVenta();
         formularioDetalleVenta.setComprobante(comprobante);
 
-        principalVenta.getDetalleVenta().setVisible(true);
+        principalVenta.getFormularioDetalleVenta().setVisible(true);
     }
 
     public void colorTema() {
-        principalVenta.getDetalleVenta().getPanelPrincipalTop().setBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFormularioDetalleVenta().getPanelPrincipalTop().setBackground(principalVenta.getPanelPrincipalTop().getBackground());
     }
 
 }

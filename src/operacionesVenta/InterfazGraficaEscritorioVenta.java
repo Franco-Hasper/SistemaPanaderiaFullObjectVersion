@@ -29,15 +29,15 @@ public class InterfazGraficaEscritorioVenta extends InterfazGraficaEscritorio {
             tablaVenta.ejecutarRellenarTabla();
             principalAdministrador.getVenta().setTablaVenta(tablaVenta);
             //REVISAR FORMULARIO EDITAR (se crea aca y en escritorioGasto, en gastoe s necesario pero aca?)
-            InterfazGraficaFormularioRegistrarVenta formularioRegistrar = new InterfazGraficaFormularioRegistrarVenta();
-            InterfazGraficaFormularioEditarVenta formularioEditar = new InterfazGraficaFormularioEditarVenta();
-            InterfazGraficaDetalleVenta formularioDetalleVenta = new InterfazGraficaDetalleVenta();
-            InterfazGraficaFormularioEstadoVenta interfazGraficaEstadoVenta = new InterfazGraficaFormularioEstadoVenta();
+            InterfazGraficaFormularioRegistrarVenta interfazGraficaFormularioRegistrarVenta = new InterfazGraficaFormularioRegistrarVenta();
+            InterfazGraficaFormularioEditarVenta interfazGraficaFormularioEditarVenta = new InterfazGraficaFormularioEditarVenta();
+            InterfazGraficaDetalleVenta interfazGraficaDetalleVenta = new InterfazGraficaDetalleVenta();
+            InterfazGraficaFormularioEstadoVenta interfazGraficaFormularioEstadoVenta = new InterfazGraficaFormularioEstadoVenta();
 
-            principalAdministrador.getVenta().setInterfazGraficaEstadoVenta(interfazGraficaEstadoVenta);
-            principalAdministrador.getVenta().setFormularioRegistrar(formularioRegistrar);
-            principalAdministrador.getVenta().setFormularioEditar(formularioEditar);
-            principalAdministrador.getVenta().setFormularioDetalleVenta(formularioDetalleVenta);
+            principalAdministrador.getVenta().setInterfazGraficaEstadoVenta(interfazGraficaFormularioEstadoVenta);
+            principalAdministrador.getVenta().setInterfazGraficaRegistrar(interfazGraficaFormularioRegistrarVenta);
+            principalAdministrador.getVenta().setInterfazGraficaEditar(interfazGraficaFormularioEditarVenta);
+            principalAdministrador.getVenta().setInterfazGraficaDetalleVenta(interfazGraficaDetalleVenta);
             principalAdministrador.getVenta().setPrincipalAdministrador(principalAdministrador);
             radBrn();
             principalAdministrador.getVenta().show();

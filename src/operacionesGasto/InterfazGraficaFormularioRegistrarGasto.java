@@ -27,27 +27,27 @@ public class InterfazGraficaFormularioRegistrarGasto extends InterfazGraficaForm
 
     @Override
     public void nuevoFormularioRegistrar() {
-        if (principalGastos.getRegistrarGasto() == null) {
+        if (principalGastos.getFormularioRegistrarGasto() == null) {
             FormularioRegistrarGasto formularioRegistrar = new FormularioRegistrarGasto(frame, true);
             formularioRegistrar.setPrincipalGastos(principalGastos);
-            principalGastos.setRegistrarGasto(formularioRegistrar);
+            principalGastos.setFormularioRegistrarGasto(formularioRegistrar);
             infoTextPrompt();
             colorTema();
             fecha();
         }
-        principalGastos.getRegistrarGasto().setVisible(true);
-        principalGastos.setRegistrarGasto(null);
+        principalGastos.getFormularioRegistrarGasto().setVisible(true);
+        principalGastos.setFormularioRegistrarGasto(null);
     }
 
     @Override
     public void infoTextPrompt() {
-        new TextPrompt("DESCRIPCION", principalGastos.getRegistrarGasto().getTxtDescripcion());
-        new TextPrompt("TOTAL GASTADO", principalGastos.getRegistrarGasto().getTxtTotlaGasatado());
-        principalGastos.getRegistrarGasto().getTxtDescripcion().grabFocus();
+        new TextPrompt("DESCRIPCION", principalGastos.getFormularioRegistrarGasto().getTxtDescripcion());
+        new TextPrompt("TOTAL GASTADO", principalGastos.getFormularioRegistrarGasto().getTxtTotlaGasatado());
+        principalGastos.getFormularioRegistrarGasto().getTxtDescripcion().grabFocus();
     }
 
     private void fecha() {
-        principalGastos.getRegistrarGasto().getrSDateChooser().setDatoFecha(new Date());
+        principalGastos.getFormularioRegistrarGasto().getrSDateChooser().setDatoFecha(new Date());
     }
 
     @Deprecated
@@ -62,7 +62,7 @@ public class InterfazGraficaFormularioRegistrarGasto extends InterfazGraficaForm
 
     @Override
     public void colorTema() {
-        principalGastos.getRegistrarGasto().getPanelPrincipalTop().setBackground(principalGastos.getPanelPrincipalTop().getBackground());
+        principalGastos.getFormularioRegistrarGasto().getPanelPrincipalTop().setBackground(principalGastos.getPanelPrincipalTop().getBackground());
     }
 
 }

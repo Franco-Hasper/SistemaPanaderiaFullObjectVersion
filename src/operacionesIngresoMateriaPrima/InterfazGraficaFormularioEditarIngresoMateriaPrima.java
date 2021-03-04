@@ -36,23 +36,23 @@ public class InterfazGraficaFormularioEditarIngresoMateriaPrima extends Interfaz
 
     @Override
     public void nuevoFormularioEditar() {
-        if (principalIngresoMateriaPrima.getEditarIngresoMateriaPrima() == null) {
+        if (principalIngresoMateriaPrima.getFormularioEditarIngresoMateriaPrima() == null) {
             FormularioEditarIngresoMateriaPrima formularioEditar = new FormularioEditarIngresoMateriaPrima(frame, true);
             formularioEditar.setPrincipalIngresoMateriaPrima(principalIngresoMateriaPrima);
-            principalIngresoMateriaPrima.setEditarIngresoMateriaPrima(formularioEditar);
+            principalIngresoMateriaPrima.setFormularioEditarIngresoMateriaPrima(formularioEditar);
             colorTema();
             transferirDatos();
             infoTextPrompt();
         }
-        principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().setVisible(true);
-        principalIngresoMateriaPrima.setEditarIngresoMateriaPrima(null);
+        principalIngresoMateriaPrima.getFormularioEditarIngresoMateriaPrima().setVisible(true);
+        principalIngresoMateriaPrima.setFormularioEditarIngresoMateriaPrima(null);
     }
 
     @Override
     public void colorTema() {
-        principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getPanelPrincipalTop().setBackground(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
-        principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getDateFecha().setColorBackground(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
-        principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getDateFecha().setColorDiaActual(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
+        principalIngresoMateriaPrima.getFormularioEditarIngresoMateriaPrima().getPanelPrincipalTop().setBackground(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
+        principalIngresoMateriaPrima.getFormularioEditarIngresoMateriaPrima().getDateFecha().setColorBackground(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
+        principalIngresoMateriaPrima.getFormularioEditarIngresoMateriaPrima().getDateFecha().setColorDiaActual(principalIngresoMateriaPrima.getPanelPrincipalTop().getBackground());
 
     }
 
@@ -60,18 +60,18 @@ public class InterfazGraficaFormularioEditarIngresoMateriaPrima extends Interfaz
     public void transferirDatos() {
         new TablaIngresoMateriaPrima().setPrincipalIngresoMateriaPrima(principalIngresoMateriaPrima);
         int fila = principalIngresoMateriaPrima.getTablaGrafica().getSelectedRow();
-        principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getTxtMatPr().setText(principalIngresoMateriaPrima.getTablaGrafica().getValueAt(fila, 0).toString());
-        principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getTxttotalEnvases().setText(principalIngresoMateriaPrima.getTablaGrafica().getValueAt(fila, 1).toString());
-        principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getTxtUdsPorEnvase().setText(principalIngresoMateriaPrima.getTablaGrafica().getValueAt(fila, 2).toString());
-        principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getTxtPrecioTotal().setText(principalIngresoMateriaPrima.getTablaGrafica().getValueAt(fila, 4).toString());
+        principalIngresoMateriaPrima.getFormularioEditarIngresoMateriaPrima().getTxtMatPr().setText(principalIngresoMateriaPrima.getTablaGrafica().getValueAt(fila, 0).toString());
+        principalIngresoMateriaPrima.getFormularioEditarIngresoMateriaPrima().getTxttotalEnvases().setText(principalIngresoMateriaPrima.getTablaGrafica().getValueAt(fila, 1).toString());
+        principalIngresoMateriaPrima.getFormularioEditarIngresoMateriaPrima().getTxtUdsPorEnvase().setText(principalIngresoMateriaPrima.getTablaGrafica().getValueAt(fila, 2).toString());
+        principalIngresoMateriaPrima.getFormularioEditarIngresoMateriaPrima().getTxtPrecioTotal().setText(principalIngresoMateriaPrima.getTablaGrafica().getValueAt(fila, 4).toString());
         fechaIngreso();
     }
 
     public void infoTextPrompt() {
-        new TextPrompt("TOTAL ENVASES", principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getTxttotalEnvases());
-        new TextPrompt("UDS POR ENVASES", principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getTxtUdsPorEnvase());
-        new TextPrompt("PRECIO TOTAL", principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getTxtPrecioTotal());
-        principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getTxttotalEnvases().grabFocus();
+        new TextPrompt("TOTAL ENVASES", principalIngresoMateriaPrima.getFormularioEditarIngresoMateriaPrima().getTxttotalEnvases());
+        new TextPrompt("UDS POR ENVASES", principalIngresoMateriaPrima.getFormularioEditarIngresoMateriaPrima().getTxtUdsPorEnvase());
+        new TextPrompt("PRECIO TOTAL", principalIngresoMateriaPrima.getFormularioEditarIngresoMateriaPrima().getTxtPrecioTotal());
+        principalIngresoMateriaPrima.getFormularioEditarIngresoMateriaPrima().getTxttotalEnvases().grabFocus();
     }
 
     @Deprecated
@@ -103,7 +103,7 @@ public class InterfazGraficaFormularioEditarIngresoMateriaPrima extends Interfaz
     }
 
     private void transferirFecha(Date fecha) {
-        principalIngresoMateriaPrima.getEditarIngresoMateriaPrima().getDateFecha().setDatoFecha(fecha);
+        principalIngresoMateriaPrima.getFormularioEditarIngresoMateriaPrima().getDateFecha().setDatoFecha(fecha);
     }
 
 }

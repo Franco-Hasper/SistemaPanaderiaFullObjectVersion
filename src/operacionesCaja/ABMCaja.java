@@ -1,14 +1,10 @@
 package operacionesCaja;
 
 import calsesPadre.ABM;
-import conexion.ConexionHibernate;
 import entidades.CorteCaja;
 import entidades.Estado;
 import formularios.FormularioEditarCorte;
-import clasesUtilidadGeneral.OperacionesUtiles;
-import entidades.Cliente;
 import escritorios.PrincipalCaja;
-import escritorios.PrincipalCliente;
 import formularios.FormularioRegistrarCorte;
 import java.util.List;
 import org.hibernate.Session;
@@ -40,8 +36,6 @@ public class ABMCaja extends ABM {
         this.formularioRegistrarCorte = formularioRegistrarCorte;
     }
 
-
-
     public FormularioEditarCorte getFormularioEditarCorte() {
         return formularioEditarCorte;
     }
@@ -50,10 +44,9 @@ public class ABMCaja extends ABM {
         this.formularioEditarCorte = formularioEditarCorte;
     }
 
-    
     @Override
     public void obtenerFormularioRegistrar() {
-  setFormularioRegistrar(this.getFormularioRegistrarCorte());
+        setFormularioRegistrar(this.getFormularioRegistrarCorte());
         setListaCampos(this.getFormularioRegistrarCorte().getListaCampos());
     }
 
@@ -111,5 +104,4 @@ public class ABMCaja extends ABM {
 
     }
 
- 
 }

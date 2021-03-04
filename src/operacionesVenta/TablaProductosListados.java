@@ -114,14 +114,14 @@ public class TablaProductosListados extends Tabla {
     public void ejecutarAgregarProducto() {
         switch (tipoFormulario) {
             case 1:
-                setTabla(principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles());
-                setTablaProductosListados(principalVenta.getRegistrarVenta().getTablaListarProductos());
+                setTabla(principalVenta.getFromularioRegistrarVenta().getTablaGraficaProductosDisponibles());
+                setTablaProductosListados(principalVenta.getFromularioRegistrarVenta().getTablaListarProductos());
                 agregarProducto();
                 break;
 
             case 2:
-                setTabla(principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles());
-                setTablaProductosListados(principalVenta.getEditarVenta().getTablaListarProductos());
+                setTabla(principalVenta.getFormularioEditarVenta().getTablaGraficaProductosDisponibles());
+                setTablaProductosListados(principalVenta.getFormularioEditarVenta().getTablaListarProductos());
                 agregarProducto();
                 break;
 
@@ -147,14 +147,14 @@ public class TablaProductosListados extends Tabla {
         Double total;
         switch (tipoFormulario) {
             case 1:
-                fila.add(principalVenta.getRegistrarVenta().getTxtCantidad().getText());
-                total = Double.valueOf(tablaProductosDisponibles.getValueAt(filaSeleccionada, 2).toString()) * Double.valueOf(principalVenta.getRegistrarVenta().getTxtCantidad().getText());
+                fila.add(principalVenta.getFromularioRegistrarVenta().getTxtCantidad().getText());
+                total = Double.valueOf(tablaProductosDisponibles.getValueAt(filaSeleccionada, 2).toString()) * Double.valueOf(principalVenta.getFromularioRegistrarVenta().getTxtCantidad().getText());
                 fila.add(OperacionesUtiles.formatoDouble(total));
                 tablaProductosListados.addRow(fila);
                 break;
             case 2:
-                fila.add(principalVenta.getEditarVenta().getTxtCantidad().getText());
-                total = Double.valueOf(tablaProductosDisponibles.getValueAt(filaSeleccionada, 2).toString()) * Double.valueOf(principalVenta.getEditarVenta().getTxtCantidad().getText());
+                fila.add(principalVenta.getFormularioEditarVenta().getTxtCantidad().getText());
+                total = Double.valueOf(tablaProductosDisponibles.getValueAt(filaSeleccionada, 2).toString()) * Double.valueOf(principalVenta.getFormularioEditarVenta().getTxtCantidad().getText());
                 fila.add(OperacionesUtiles.formatoDouble(total));
                 tablaProductosListados.addRow(fila);
                 break;
@@ -213,8 +213,8 @@ public class TablaProductosListados extends Tabla {
         switch (tipoFormulario) {
             case 1:
                 try {
-                    int fila = principalVenta.getRegistrarVenta().getTablaListarProductos().getSelectedRow();
-                    principalVenta.getRegistrarVenta().getTablaListarProductos().getValueAt(fila, 0).toString();
+                    int fila = principalVenta.getFromularioRegistrarVenta().getTablaListarProductos().getSelectedRow();
+                    principalVenta.getFromularioRegistrarVenta().getTablaListarProductos().getValueAt(fila, 0).toString();
                     return true;
                 } catch (Exception e) {
                     DesktopNotify.showDesktopMessage("  Iinformación   ", " Debe seleccionar una fila ", DesktopNotify.INFORMATION, 5000);
@@ -223,8 +223,8 @@ public class TablaProductosListados extends Tabla {
 
             case 2:
                 try {
-                    int fila = principalVenta.getEditarVenta().getTablaListarProductos().getSelectedRow();
-                    principalVenta.getEditarVenta().getTablaListarProductos().getValueAt(fila, 0).toString();
+                    int fila = principalVenta.getFormularioEditarVenta().getTablaListarProductos().getSelectedRow();
+                    principalVenta.getFormularioEditarVenta().getTablaListarProductos().getValueAt(fila, 0).toString();
                     return true;
                 } catch (Exception e) {
                     DesktopNotify.showDesktopMessage("  Iinformación   ", " Debe seleccionar una fila ", DesktopNotify.INFORMATION, 5000);
@@ -238,14 +238,14 @@ public class TablaProductosListados extends Tabla {
     public boolean verificarValor() {
         switch (tipoFormulario) {
             case 1:
-                if (principalVenta.getRegistrarVenta().getTxtCantidad().getText().equals("")) {
+                if (principalVenta.getFromularioRegistrarVenta().getTxtCantidad().getText().equals("")) {
                     DesktopNotify.showDesktopMessage("  Iinformación   ", " El campo (cantidad) debe contener un valor ", DesktopNotify.INFORMATION, 5000);
                     return false;
                 } else {
                     return true;
                 }
             case 2:
-                if (principalVenta.getEditarVenta().getTxtCantidad().getText().equals("")) {
+                if (principalVenta.getFormularioEditarVenta().getTxtCantidad().getText().equals("")) {
                     DesktopNotify.showDesktopMessage("  Iinformación   ", " El campo (cantidad) debe contener un valor ", DesktopNotify.INFORMATION, 5000);
                     return false;
                 } else {

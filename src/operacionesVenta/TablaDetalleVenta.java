@@ -47,9 +47,9 @@ public class TablaDetalleVenta extends Tabla {
         setIdVenta(id);
         setConsultaObject("from Producto_Venta where codigo_venta=" + id);
         obtenerObjetoConsulta();
-        rellenarLabelsDetalleDeVenta(principalVenta.getDetalleVenta());
+        rellenarLabelsDetalleDeVenta(principalVenta.getFormularioDetalleVenta());
 
-        setTabla(principalVenta.getDetalleVenta().getTablaListaProductos());
+        setTabla(principalVenta.getFormularioDetalleVenta().getTablaListaProductos());
         setConsultaList("from Producto_Venta where codigo_venta=" + id);
         obtenerListaConsulta();
         rellenarTabla("");

@@ -1,6 +1,5 @@
 package principal;
 
-import clasesUtilidadGeneral.OperacionesUtiles;
 import complementos.Cargar;
 import complementos.OptionPaneMateriaPrima;
 import escritorios.PrincipalCaja;
@@ -20,12 +19,9 @@ import operacionesCaja.InterfazGraficaEscritorioCaja;
 import operacionesCliente.InterfazGraficaEscritorioCliente;
 import operacionesConfiguracion.InterfacesGraficasEscritorioConfiguracion;
 import operacionesGasto.InterfazGraficaEscritorioGasto;
-import operacionesIngresoMateriaPrima.InterfazGraficaEscritorioIngresoMateriaPrima;
-import operacionesMateriaPrima.InterfazGraficaEscritorioMateriaPrima;
 import operacionesProducto.InterfazGraficaEscritorioProducto;
 import operacionesProveedor.InterfazGraficaEscritorioProveedor;
 import operacionesVenta.InterfazGraficaEscritorioVenta;
-import principal.MaterialButtomRectangle;
 
 /**
  *

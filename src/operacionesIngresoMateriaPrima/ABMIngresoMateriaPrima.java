@@ -1,8 +1,6 @@
 package operacionesIngresoMateriaPrima;
 
 import calsesPadre.ABM;
-import clasesUtilidadGeneral.OperacionesUtiles;
-import conexion.ConexionHibernate;
 import entidades.Estado;
 import entidades.IngresoMateriaPrima;
 import entidades.MateriaPrima;
@@ -12,7 +10,6 @@ import formularios.FormularioEditarIngresoMateriaPrima;
 import formularios.FormularioRegistrarIngresoMateriaPrima;
 import java.util.Date;
 import java.util.List;
-import operacionesMateriaPrima.TablaMateriaPrima;
 import org.hibernate.Session;
 
 /**

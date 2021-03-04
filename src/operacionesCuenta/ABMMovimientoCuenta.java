@@ -2,7 +2,6 @@ package operacionesCuenta;
 
 import calsesPadre.ABM;
 import conexion.ConexionHibernate;
-import ds.desktop.notify.DesktopNotify;
 import entidades.Cuenta;
 import entidades.Estado;
 import entidades.MovimientoCuenta;
@@ -107,7 +106,7 @@ public class ABMMovimientoCuenta extends ABM {
         conexionMovimientoCuenta();
     }
 
-    public void conexionMovimientoCuenta() {
+    private void conexionMovimientoCuenta() {
         Session miSesion = ConexionHibernate.tomarConexion();
         miSesion.beginTransaction();
         actualizarMovimeintoCuenta(miSesion);

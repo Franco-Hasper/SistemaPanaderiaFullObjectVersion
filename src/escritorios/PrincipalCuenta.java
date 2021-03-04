@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -19,7 +18,6 @@ import operacionesCuenta.InterfazGraficaEscritorioCuenta;
 import operacionesCuenta.InterfazGraficaReporteMovimientos;
 import operacionesCuenta.TablaCuenta;
 import operacionesCuenta.TablaMovimientoCuenta;
-import operacionesIngresoMateriaPrima.InterfazGraficaReporteIngresos;
 import principal.MaterialButton;
 
 /**
@@ -30,7 +28,6 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
 
     public PrincipalCuenta() {
         initComponents();
-        estadoInicialVentanaCuenta();
         formularioEditarMovimiento = null;
         formularioEditarMovimiento = null;
     }
@@ -41,20 +38,11 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     private final ABMCuenta abm = new ABMCuenta();
     private final ABMMovimientoCuenta abmMovimiento = new ABMMovimientoCuenta();
     private FormularioEditarMovimientoCuenta formularioEditarMovimiento;
-    private InterfazGraficaEditarMovimiento InterfazEditarMovimiento;
+    private InterfazGraficaEditarMovimiento InterfazGraficaEditarMovimiento;
     private Integer cuantaFilaSeleccionada;
 
 
-    /**
-     * Establece el estado inicial de los elementos de la pestaña Cuenta.
-     */
-    public void estadoInicialVentanaCuenta() {
-        txtMontoInicial.setEnabled(false);
-        btnGuardarCuenta.setEnabled(false);
-        editPaneMotivo.setEnabled(false);
-        txtMonto.setEnabled(false);
-        btnGuardarMovimiento.setEnabled(false);
-    }
+
 
 
     
@@ -78,13 +66,14 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         return tablaGraficaCuenta;
     }
 
-    public InterfazGraficaEditarMovimiento getInterfazEditarMovimiento() {
-        return InterfazEditarMovimiento;
+    public InterfazGraficaEditarMovimiento getInterfazGraficaEditarMovimiento() {
+        return InterfazGraficaEditarMovimiento;
     }
 
-    public void setInterfazEditarMovimiento(InterfazGraficaEditarMovimiento InterfazEditarMovimiento) {
-        this.InterfazEditarMovimiento = InterfazEditarMovimiento;
+    public void setInterfazGraficaEditarMovimiento(InterfazGraficaEditarMovimiento InterfazGraficaEditarMovimiento) {
+        this.InterfazGraficaEditarMovimiento = InterfazGraficaEditarMovimiento;
     }
+
 
     public void setTablaGraficaCuenta(JTable tablaGraficaCuenta) {
         this.tablaGraficaCuenta = tablaGraficaCuenta;
@@ -174,8 +163,8 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         btnNuevaCuenta3 = new principal.MaterialButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaGraficaCuenta = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblNombreVentana = new javax.swing.JPanel();
+        lblIcono = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         lblSalir = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
@@ -475,7 +464,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
                 .addGap(123, 123, 123))
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/accounting_80px.png"))); // NOI18N
+        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/accounting_80px.png"))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -489,33 +478,29 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout lblNombreVentanaLayout = new javax.swing.GroupLayout(lblNombreVentana);
+        lblNombreVentana.setLayout(lblNombreVentanaLayout);
+        lblNombreVentanaLayout.setHorizontalGroup(
+            lblNombreVentanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lblNombreVentanaLayout.createSequentialGroup()
+                .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(107, 107, 107)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(736, Short.MAX_VALUE)))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        lblNombreVentanaLayout.setVerticalGroup(
+            lblNombreVentanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lblNombreVentanaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(lblIcono, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
+            .addGroup(lblNombreVentanaLayout.createSequentialGroup()
                 .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(34, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(16, 16, 16)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lblNombreVentanaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         lblNombre.setBackground(new java.awt.Color(255, 255, 255));
@@ -531,7 +516,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         panelPrincipalTop.setLayout(panelPrincipalTopLayout);
         panelPrincipalTopLayout.setHorizontalGroup(
             panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblNombreVentana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalTopLayout.createSequentialGroup()
                 .addContainerGap()
@@ -543,7 +528,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
         panelPrincipalTopLayout.setVerticalGroup(
             panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalTopLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNombreVentana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -552,7 +537,7 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 734, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0, 60));
+        lblNombreVentana.setBackground(new java.awt.Color(0, 0, 0, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -631,8 +616,8 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
             this.setCuantaFilaSeleccionada(tablaCuenta.filaSeleccionada());
             tablaMovimientoCuenta.setPrincipalCuenta(this);
             if (tablaMovimientoCuenta.verificarFilaSeleccionada()) {
-                InterfazEditarMovimiento.setPrincipalCuenta(this);
-                InterfazEditarMovimiento.nuevoFormularioEditar();
+                InterfazGraficaEditarMovimiento.setPrincipalCuenta(this);
+                InterfazGraficaEditarMovimiento.nuevoFormularioEditar();
             }
         }
     }//GEN-LAST:event_btnnEditarMovActionPerformed
@@ -820,16 +805,16 @@ public class PrincipalCuenta extends javax.swing.JInternalFrame {
     private principal.MaterialButton btnReporteMovimientos;
     private principal.MaterialButton btnnEditarMov;
     private javax.swing.JEditorPane editPaneMotivo;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblCliente;
+    private javax.swing.JLabel lblIcono;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JPanel lblNombreVentana;
     private javax.swing.JLabel lblSalir;
     private javax.swing.JPanel panelPrincipalTop;
     private javax.swing.JTable tablaGraficaCuenta;

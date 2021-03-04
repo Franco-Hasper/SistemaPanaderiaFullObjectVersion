@@ -11,7 +11,6 @@ import escritorios.PrincipalCliente;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import ds.desktop.notify.DesktopNotify;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  * <h1>Clase TablaMatetiaPrima</h1>

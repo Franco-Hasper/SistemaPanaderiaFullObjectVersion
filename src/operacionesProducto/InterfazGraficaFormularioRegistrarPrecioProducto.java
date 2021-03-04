@@ -25,28 +25,28 @@ public class InterfazGraficaFormularioRegistrarPrecioProducto extends InterfazGr
     }
 
     public void nuevoFormularioRegistrarPrecio() {
-        if (principalProducto.getRegistrarPrecioProducto() == null) {
+        if (principalProducto.getFormularioRegistrarPrecioProducto() == null) {
             FormularioRegistrarPrecioProducto formularioRegistrar = new FormularioRegistrarPrecioProducto(frame, true);
             formularioRegistrar.setPrincipalProducto(principalProducto);
-            principalProducto.setRegistrarPrecioProducto(formularioRegistrar);
+            principalProducto.setFormularioRegistrarPrecioProducto(formularioRegistrar);
             infoTextPrompt();
             colorTema();
         }
 
-        principalProducto.getRegistrarPrecioProducto().setVisible(true);
-        principalProducto.setRegistrarPrecioProducto(null);
+        principalProducto.getFormularioRegistrarPrecioProducto().setVisible(true);
+        principalProducto.setFormularioRegistrarPrecioProducto(null);
     }
 
     @Override
     protected void infoTextPrompt() {
-        new TextPrompt("PRECIO BRUTO", principalProducto.getRegistrarPrecioProducto().getTxtPrecio());
-        new TextPrompt("PRECIO FINAL", principalProducto.getRegistrarPrecioProducto().getTxtPrecioFinal());
-        principalProducto.getRegistrarPrecioProducto().getTxtPrecio().grabFocus();
+        new TextPrompt("PRECIO BRUTO", principalProducto.getFormularioRegistrarPrecioProducto().getTxtPrecio());
+        new TextPrompt("PRECIO FINAL", principalProducto.getFormularioRegistrarPrecioProducto().getTxtPrecioFinal());
+        principalProducto.getFormularioRegistrarPrecioProducto().getTxtPrecio().grabFocus();
     }
 
     @Override
     public void colorTema() {
-        principalProducto.getRegistrarPrecioProducto().getPanelPrincipalTop().setBackground(principalProducto.getPanelPrincipalTop().getBackground());
+        principalProducto.getFormularioRegistrarPrecioProducto().getPanelPrincipalTop().setBackground(principalProducto.getPanelPrincipalTop().getBackground());
     }
 
     @Deprecated

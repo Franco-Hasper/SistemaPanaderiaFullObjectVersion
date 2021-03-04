@@ -26,7 +26,6 @@ public class InterfazGraficaReporteGastos {
         formularioReporteGastos.setReporteGastos(reporteGastos);
         colorTema(formularioReporteGastos);
         formularioReporteGastos.setVisible(true);
-
     }
 
     private void colorTema(FormularioReporteGastos formularioReporte) {

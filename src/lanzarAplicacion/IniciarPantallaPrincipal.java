@@ -8,7 +8,7 @@ import principal.PrincipalAdministrador;
  *
  * @author TELCOM MPC
  */
-public class InterfazGraficaPrincipal {
+public class IniciarPantallaPrincipal {
 
     public static void main(String[] args) {
         new InicarAplicacion().run();

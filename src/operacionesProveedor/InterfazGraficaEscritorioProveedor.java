@@ -27,10 +27,14 @@ public class InterfazGraficaEscritorioProveedor extends InterfazGraficaEscritori
             tablaProveedor.setPrincipalProveedor(principalAdministrador.getProveedor());
             tablaProveedor.ejecutarRellenarTabla();
             principalAdministrador.getProveedor().setTablaProveedor(tablaProveedor);
-            InterfazGraficaFormularioRegistrarProveedor formularioRegistrar = new InterfazGraficaFormularioRegistrarProveedor();
-            InterfazGraficaFormularioEditarProveedor formularioEditar = new InterfazGraficaFormularioEditarProveedor();
-            principalAdministrador.getProveedor().setFormularioRegistrar(formularioRegistrar);
-            principalAdministrador.getProveedor().setFormularioEditar(formularioEditar);
+            InterfazGraficaFormularioRegistrarProveedor interfazGraficaFormularioRegistrarProveedor = new InterfazGraficaFormularioRegistrarProveedor();
+            InterfazGraficaFormularioEditarProveedor interfazGraficaFormularioEditarProveedor = new InterfazGraficaFormularioEditarProveedor();
+            ABMProveedor abm=new ABMProveedor();
+            
+            principalAdministrador.getProveedor().setInterfazGraficaRegistrar(interfazGraficaFormularioRegistrarProveedor);
+            principalAdministrador.getProveedor().setInterfazGraficaEditar(interfazGraficaFormularioEditarProveedor);
+            principalAdministrador.getProveedor().setAbm(abm);
+            
             principalAdministrador.getProveedor().show();
         }
         colorInterfazEscritorio();

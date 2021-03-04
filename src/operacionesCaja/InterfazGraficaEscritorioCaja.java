@@ -27,10 +27,10 @@ public class InterfazGraficaEscritorioCaja extends InterfazGraficaEscritorio{
             tablaCaja.setPrincipalCaja(principalAdministrador.getCaja());
             tablaCaja.ejecutarRellenarTabla();
             principalAdministrador.getCaja().setTablaCaja(tablaCaja);
-            InterfazGraficaFormularioRegistrarCorte formularioRegistrar = new InterfazGraficaFormularioRegistrarCorte();
-            InterfazGraficaFormularioEditarCorte formularioEditar = new InterfazGraficaFormularioEditarCorte();
-            principalAdministrador.getCaja().setFormularioRegistrar(formularioRegistrar);
-            principalAdministrador.getCaja().setFormularioEditar(formularioEditar);
+            InterfazGraficaFormularioRegistrarCorte interfazGraficaRegistrar = new InterfazGraficaFormularioRegistrarCorte();
+            InterfazGraficaFormularioEditarCorte interfazGraficaEditar = new InterfazGraficaFormularioEditarCorte();
+            principalAdministrador.getCaja().setInterfazGraficaRegistrar(interfazGraficaRegistrar);
+            principalAdministrador.getCaja().setInterfazGraficaEditar(interfazGraficaEditar);
             principalAdministrador.getCaja().show();
         }
         colorInterfazEscritorio();

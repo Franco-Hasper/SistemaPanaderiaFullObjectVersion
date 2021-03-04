@@ -52,12 +52,12 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
 
     @Override
     public void nuevoFormularioEditar() {
-        if (principalVenta.getEditarVenta() == null) {
+        if (principalVenta.getFormularioEditarVenta() == null) {
             //seccion formulario
             FormularioEditarVenta formularioEditar = new FormularioEditarVenta(frame, true);
             formularioEditar.setPrincipalVenta(principalVenta);
             formularioEditar.setPrincipalAdministrador(principalAdministrador);
-            principalVenta.setEditarVenta(formularioEditar);
+            principalVenta.setFormularioEditarVenta(formularioEditar);
             colorTema();
             transferirDatos();
             infoTextPrompt();
@@ -67,7 +67,7 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             tablaProductosDisponibles.setTipoFormulario(2);
             tablaProductosDisponibles.setPrincipalVenta(principalVenta);
             tablaProductosDisponibles.ejecutarRellenarTabla();
-            principalVenta.getEditarVenta().setTablaProductosDisponibles(tablaProductosDisponibles);
+            principalVenta.getFormularioEditarVenta().setTablaProductosDisponibles(tablaProductosDisponibles);
 
             //Seccion Tabla Productos Listados
             TablaProductosListados tablaProductosListados = new TablaProductosListados();
@@ -77,8 +77,8 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             tablaProductosListados.ejecutarRellenarTabla();
             //datos secundarios no tienen nada que ver con la tabla
             tablaProductosListados.autoRellenarDatosSecundarios();
-            principalVenta.getEditarVenta().setListaProductosEliminar(tablaProductosListados.getListaProductosEliminar());
-            principalVenta.getEditarVenta().setTablaProductosListados(tablaProductosListados);
+            principalVenta.getFormularioEditarVenta().setListaProductosEliminar(tablaProductosListados.getListaProductosEliminar());
+            principalVenta.getFormularioEditarVenta().setTablaProductosListados(tablaProductosListados);
 
            
      
@@ -91,12 +91,12 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             tablaCliente.setFormularioEditarVenta(formularioEditar);
             tablaCliente.ejecutarRellenenarTabla();
             Integer idCliente = tablaCliente.getIdCliente();
-            principalVenta.getEditarVenta().setIdCliente(idCliente);
+            principalVenta.getFormularioEditarVenta().setIdCliente(idCliente);
 
             estadoInicialRadBtnDescontar(idCliente);
 
             TablaClienteLista tablaClienteLista = new TablaClienteLista();
-            tablaClienteLista.setFormularioEditarVenta(principalVenta.getEditarVenta());
+            tablaClienteLista.setFormularioEditarVenta(principalVenta.getFormularioEditarVenta());
             tablaClienteLista.setIdClientePrevio(idCliente);
             tablaClienteLista.ejecutarRellenarTabla();
             formularioEditar.setTablaClienteLista(tablaClienteLista);
@@ -117,7 +117,7 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             //le asigno el valor del tipo de formulario para los switchs(si es registrar 1 va a trabajar de una forma si es editar 2 va a trabajar de otra)
             operacionesSecundariasVenta.setTipoFormulario(2);
             //guardo el la instancia en el formulario grafico
-            principalVenta.getEditarVenta().setOperacionesSecundariasVenta(operacionesSecundariasVenta);
+            principalVenta.getFormularioEditarVenta().setOperacionesSecundariasVenta(operacionesSecundariasVenta);
             //Solo cuando es una venta con movimiento precio realizado
              operacionesSecundariasVenta.ejecutarCalcularBalanceCuentaPrevio();
              
@@ -132,39 +132,39 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
 
         }
 
-        principalVenta.getEditarVenta().setVisible(true);
-        principalVenta.setEditarVenta(null);
+        principalVenta.getFormularioEditarVenta().setVisible(true);
+        principalVenta.setFormularioEditarVenta(null);
 
     }
 
     public void infoTextPrompt() {
-        new TextPrompt("CANTIDAD", principalVenta.getEditarVenta().getTxtCantidad());
-        new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getEditarVenta().getTxtBuscar());
-        new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getEditarVenta().getTxtBuscarClientes());
-        new TextPrompt("MONTO PAGADO", principalVenta.getEditarVenta().getTxtPago());
-        new TextPrompt("DESCUENTO", principalVenta.getEditarVenta().getTxtDescuento());
-        principalVenta.getEditarVenta().getTxtBuscar().grabFocus();
+        new TextPrompt("CANTIDAD", principalVenta.getFormularioEditarVenta().getTxtCantidad());
+        new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getFormularioEditarVenta().getTxtBuscar());
+        new TextPrompt("BUSCAR POR NOMBRE", principalVenta.getFormularioEditarVenta().getTxtBuscarClientes());
+        new TextPrompt("MONTO PAGADO", principalVenta.getFormularioEditarVenta().getTxtPago());
+        new TextPrompt("DESCUENTO", principalVenta.getFormularioEditarVenta().getTxtDescuento());
+        principalVenta.getFormularioEditarVenta().getTxtBuscar().grabFocus();
     }
 
     @Override
     public void colorTema() {
-        principalVenta.getEditarVenta().getPanelPrincipalTop().setBackground(principalVenta.getPanelPrincipalTop().getBackground());
-        principalVenta.getEditarVenta().getrSDateChooser().setColorBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFormularioEditarVenta().getPanelPrincipalTop().setBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFormularioEditarVenta().getrSDateChooser().setColorBackground(principalVenta.getPanelPrincipalTop().getBackground());
 
-        principalVenta.getEditarVenta().getTablaGraficaListaCliente().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-        principalVenta.getEditarVenta().getTablaGraficaListaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFormularioEditarVenta().getTablaGraficaListaCliente().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFormularioEditarVenta().getTablaGraficaListaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
 
-        principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-        principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFormularioEditarVenta().getTablaGraficaProductosDisponibles().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFormularioEditarVenta().getTablaGraficaProductosDisponibles().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
 
-        principalVenta.getEditarVenta().getTablaListarProductos().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-        principalVenta.getEditarVenta().getTablaListarProductos().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFormularioEditarVenta().getTablaListarProductos().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFormularioEditarVenta().getTablaListarProductos().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
 
-        principalVenta.getEditarVenta().getTablaGraficaDescontarCuenta().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-        principalVenta.getEditarVenta().getTablaGraficaDescontarCuenta().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFormularioEditarVenta().getTablaGraficaDescontarCuenta().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFormularioEditarVenta().getTablaGraficaDescontarCuenta().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
 
-        principalVenta.getEditarVenta().getTablaGraficaCliente().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
-        principalVenta.getEditarVenta().getTablaGraficaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFormularioEditarVenta().getTablaGraficaCliente().setSelectionBackground(principalVenta.getPanelPrincipalTop().getBackground());
+        principalVenta.getFormularioEditarVenta().getTablaGraficaCliente().setForeground(principalVenta.getPanelPrincipalTop().getBackground());
     }
 
     @Override
@@ -179,28 +179,28 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
 
     @Override
     public void rellenarBoxes() {
-        principalVenta.getEditarVenta().getBoxTipoVenta().addItem("Venta Simple");
-        principalVenta.getEditarVenta().getBoxTipoVenta().addItem("Pedido");
+        principalVenta.getFormularioEditarVenta().getBoxTipoVenta().addItem("Venta Simple");
+        principalVenta.getFormularioEditarVenta().getBoxTipoVenta().addItem("Pedido");
     }
 
     private void configuracionTxtCantidadTxtTotal() {
-        principalVenta.getEditarVenta().getTxtCantidad().setText("1");
-        principalVenta.getEditarVenta().getTxtCantidad().setHorizontalAlignment(SwingConstants.CENTER);
+        principalVenta.getFormularioEditarVenta().getTxtCantidad().setText("1");
+        principalVenta.getFormularioEditarVenta().getTxtCantidad().setHorizontalAlignment(SwingConstants.CENTER);
         // principalVenta.getEditarVenta().getLblPrecioTotal().setText("0.0");
     }
 
     private void radButons() {
-        principalVenta.getEditarVenta().getRadButonAbrirAlFinalizar().setEnabled(false);
-        principalVenta.getEditarVenta().getRadButonImprimir().setEnabled(false);
+        principalVenta.getFormularioEditarVenta().getRadButonAbrirAlFinalizar().setEnabled(false);
+        principalVenta.getFormularioEditarVenta().getRadButonImprimir().setEnabled(false);
 
-        principalVenta.getEditarVenta().getRadButonAbrirAlFinalizar().setForeground(new Color(102, 102, 102));
-        principalVenta.getEditarVenta().getRadButonImprimir().setForeground(new Color(102, 102, 102));
+        principalVenta.getFormularioEditarVenta().getRadButonAbrirAlFinalizar().setForeground(new Color(102, 102, 102));
+        principalVenta.getFormularioEditarVenta().getRadButonImprimir().setForeground(new Color(102, 102, 102));
 
     }
 
     private void estadoInicialRadBtnDescontar(Integer idCliente) {
         if (idCliente == 1) {
-            principalVenta.getEditarVenta().getRadBtnDescontar().setEnabled(false);
+            principalVenta.getFormularioEditarVenta().getRadBtnDescontar().setEnabled(false);
         }
     }
 

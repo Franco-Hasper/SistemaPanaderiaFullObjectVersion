@@ -3,13 +3,11 @@ package operacionesCuenta;
 import calsesPadre.Tabla;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import ds.desktop.notify.DesktopNotify;
-import entidades.Cuenta;
 import entidades.MovimientoCuenta;
 import escritorios.PrincipalCuenta;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**

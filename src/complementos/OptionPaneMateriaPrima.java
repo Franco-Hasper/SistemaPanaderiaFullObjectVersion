@@ -43,7 +43,7 @@ public class OptionPaneMateriaPrima extends javax.swing.JDialog {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        panelTop = new javax.swing.JPanel();
+        panelPrincipalTop = new javax.swing.JPanel();
         lblSalir = new javax.swing.JLabel();
         btnIngresoMateriaPrima = new principal.MaterialButton();
         btnMateriaPrima = new principal.MaterialButton();
@@ -69,17 +69,17 @@ public class OptionPaneMateriaPrima extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout panelTopLayout = new javax.swing.GroupLayout(panelTop);
-        panelTop.setLayout(panelTopLayout);
-        panelTopLayout.setHorizontalGroup(
-            panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTopLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelPrincipalTopLayout = new javax.swing.GroupLayout(panelPrincipalTop);
+        panelPrincipalTop.setLayout(panelPrincipalTopLayout);
+        panelPrincipalTopLayout.setHorizontalGroup(
+            panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalTopLayout.createSequentialGroup()
                 .addGap(0, 358, Short.MAX_VALUE)
                 .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        panelTopLayout.setVerticalGroup(
-            panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTopLayout.createSequentialGroup()
+        panelPrincipalTopLayout.setVerticalGroup(
+            panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalTopLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -114,7 +114,7 @@ public class OptionPaneMateriaPrima extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelTop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPrincipalTop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(93, 93, 93)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -125,7 +125,7 @@ public class OptionPaneMateriaPrima extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(panelTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelPrincipalTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(btnMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
@@ -218,11 +218,11 @@ public class OptionPaneMateriaPrima extends javax.swing.JDialog {
     }
 
     public JPanel getPanelTop() {
-        return panelTop;
+        return panelPrincipalTop;
     }
 
     public void setPanelTop(JPanel panelTop) {
-        this.panelTop = panelTop;
+        this.panelPrincipalTop = panelTop;
     }
 
     public MaterialButton getBtnIngresoMateriaPrima() {
@@ -250,6 +250,6 @@ public class OptionPaneMateriaPrima extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblSalir;
-    private javax.swing.JPanel panelTop;
+    private javax.swing.JPanel panelPrincipalTop;
     // End of variables declaration//GEN-END:variables
 }

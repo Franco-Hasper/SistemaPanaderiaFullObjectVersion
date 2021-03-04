@@ -5,9 +5,6 @@ import escritorios.PrincipalCliente;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import clasesUtilidadGeneral.TextPrompt;
-import formularios.FormularioEditarVenta;
-import formularios.FormularioRegistrarVenta;
-import principal.PrincipalAdministrador;
 
 /**
  *
@@ -32,10 +29,10 @@ public class InterfazGraficaEscritorioCliente extends InterfazGraficaEscritorio 
             tablaCliente.setPrincipalCliente(principalAdministrador.getCliente());
             tablaCliente.ejecutarRellenarTabla();
             principalAdministrador.getCliente().setTablaCliente(tablaCliente);
-            InterfazGraficaFormularioRegistrarCliente formularioRegistrar = new InterfazGraficaFormularioRegistrarCliente();
-            InterfazGraficaFormularioEditarCliente formularioEditar = new InterfazGraficaFormularioEditarCliente();
-            principalAdministrador.getCliente().setFormularioRegistrar(formularioRegistrar);
-            principalAdministrador.getCliente().setFormularioEditar(formularioEditar);
+            InterfazGraficaFormularioRegistrarCliente interfazGraficaRegistrar = new InterfazGraficaFormularioRegistrarCliente();
+            InterfazGraficaFormularioEditarCliente interfazGraficaEditar = new InterfazGraficaFormularioEditarCliente();
+            principalAdministrador.getCliente().setInterfazGraficaRegistrar(interfazGraficaRegistrar);
+            principalAdministrador.getCliente().setInterfazGraficaEditar(interfazGraficaEditar);
             //solo para pasar admin al EscritorioCuenta
             principalAdministrador.getCliente().setPrincipalAdministrador(principalAdministrador);
             principalAdministrador.getCliente().show();

@@ -50,11 +50,11 @@
               <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="btnCrearC" min="-2" pref="210" max="-2" attributes="0"/>
+                  <Component id="btnNuevo" min="-2" pref="210" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="btnnEditarC" min="-2" pref="210" max="-2" attributes="0"/>
+                  <Component id="btnnEditar" min="-2" pref="210" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="btnEliminarC" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnEliminar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="txtBuscar" min="-2" pref="300" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -67,10 +67,10 @@
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnCrearC" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="btnNuevo" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="txtBuscar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="btnnEditarC" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="btnEliminarC" alignment="3" max="-2" attributes="0"/>
+                      <Component id="btnnEditar" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="btnEliminar" alignment="3" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                   <Component id="jPanel3" max="32767" attributes="0"/>
@@ -204,9 +204,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="85" max="-2" attributes="0"/>
+                      <Component id="lblIcono" min="-2" pref="85" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" pref="226" max="-2" attributes="0"/>
+                      <Component id="lblNombreVentana" min="-2" pref="226" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="lblSalir" min="-2" pref="60" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -215,11 +215,11 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel5" max="32767" attributes="0"/>
+                  <Component id="lblNombreVentana" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" pref="82" max="32767" attributes="0"/>
+                          <Component id="lblIcono" pref="82" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="lblSalir" min="-2" pref="53" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -230,14 +230,14 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="lblIcono">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagenes/cash_register_80px.png"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
+            <Component class="javax.swing.JLabel" name="lblNombreVentana">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -263,7 +263,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="principal.MaterialButton" name="btnCrearC">
+        <Component class="principal.MaterialButton" name="btnNuevo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new java.awt.Color(0, 0, 0,60)" type="code"/>
@@ -289,7 +289,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearCActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtBuscar">
@@ -317,7 +317,7 @@
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBuscarKeyTyped"/>
           </Events>
         </Component>
-        <Component class="principal.MaterialButton" name="btnnEditarC">
+        <Component class="principal.MaterialButton" name="btnnEditar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new java.awt.Color(0, 0, 0,60)" type="code"/>
@@ -343,10 +343,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnnEditarCActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnnEditarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="principal.MaterialButton" name="btnEliminarC">
+        <Component class="principal.MaterialButton" name="btnEliminar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new java.awt.Color(0, 0, 0,60)" type="code"/>
@@ -377,7 +377,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarCActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

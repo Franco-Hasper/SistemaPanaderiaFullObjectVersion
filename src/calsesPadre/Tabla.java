@@ -3,7 +3,6 @@ package calsesPadre;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import clasesUtilidadGeneral.OperacionesUtiles;
-import org.hibernate.Session;
 
 /**
  *

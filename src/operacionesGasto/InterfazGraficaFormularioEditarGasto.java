@@ -36,29 +36,29 @@ public class InterfazGraficaFormularioEditarGasto extends InterfazGraficaFormula
 
     @Override
     public void nuevoFormularioEditar() {
-        if (principalGastos.getEditarGasto() == null) {
+        if (principalGastos.getFormularioEditarGasto() == null) {
             FormularioEditarGasto formularioEditar = new FormularioEditarGasto(frame, true);
             formularioEditar.setPrincipalGastos(principalGastos);
-            principalGastos.setEditarGasto(formularioEditar);
+            principalGastos.setFormularioEditarGasto(formularioEditar);
             colorTema();
             transferirDatos();
             infoTextPrompt();
         }
-        principalGastos.getEditarGasto().setVisible(true);
-        principalGastos.setEditarGasto(null);
+        principalGastos.getFormularioEditarGasto().setVisible(true);
+        principalGastos.setFormularioEditarGasto(null);
     }
 
     @Override
     public void colorTema() {
-        principalGastos.getEditarGasto().getPanelPrincipalTop().setBackground(principalGastos.getPanelPrincipalTop().getBackground());
+        principalGastos.getFormularioEditarGasto().getPanelPrincipalTop().setBackground(principalGastos.getPanelPrincipalTop().getBackground());
     }
 
     @Override
     public void transferirDatos() {
         //  new TablaGastos().setPrincipalGastos(principalGastos);
         int fila = principalGastos.getTablaGrafica().getSelectedRow();
-        principalGastos.getEditarGasto().getTxtDescripcion().setText(principalGastos.getTablaGrafica().getValueAt(fila, 0).toString());
-        principalGastos.getEditarGasto().getTxtTotalGastado().setText(principalGastos.getTablaGrafica().getValueAt(fila, 1).toString());
+        principalGastos.getFormularioEditarGasto().getTxtDescripcion().setText(principalGastos.getTablaGrafica().getValueAt(fila, 0).toString());
+        principalGastos.getFormularioEditarGasto().getTxtTotalGastado().setText(principalGastos.getTablaGrafica().getValueAt(fila, 1).toString());
         fechagasto();
     }
 
@@ -79,9 +79,9 @@ public class InterfazGraficaFormularioEditarGasto extends InterfazGraficaFormula
     }
 
     public void infoTextPrompt() {
-        new TextPrompt("DESCRIPCION", principalGastos.getEditarGasto().getTxtDescripcion());
-        new TextPrompt("TOTAL GASTADO", principalGastos.getEditarGasto().getTxtTotalGastado());
-        principalGastos.getEditarGasto().getTxtDescripcion().grabFocus();
+        new TextPrompt("DESCRIPCION", principalGastos.getFormularioEditarGasto().getTxtDescripcion());
+        new TextPrompt("TOTAL GASTADO", principalGastos.getFormularioEditarGasto().getTxtTotalGastado());
+        principalGastos.getFormularioEditarGasto().getTxtDescripcion().grabFocus();
     }
 
     private Date obtenerDatos() {
@@ -99,7 +99,7 @@ public class InterfazGraficaFormularioEditarGasto extends InterfazGraficaFormula
     }
 
     private void transferirFecha(Date fecha) {
-        principalGastos.getEditarGasto().getrSDateChooser().setDatoFecha(fecha);
+        principalGastos.getFormularioEditarGasto().getrSDateChooser().setDatoFecha(fecha);
     }
 
 }

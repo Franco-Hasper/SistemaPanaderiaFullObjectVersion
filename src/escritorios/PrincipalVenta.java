@@ -15,7 +15,6 @@ import operacionesVenta.InterfazGraficaFormularioEditarVenta;
 import operacionesVenta.InterfazGraficaFormularioEstadoVenta;
 import operacionesVenta.InterfazGraficaFormularioRegistrarVenta;
 import operacionesVenta.InterfazGraficaFormularioWebAFIP;
-import operacionesVenta.TablaDetalleVenta;
 import operacionesVenta.TablaVenta;
 import principal.PrincipalAdministrador;
 
@@ -27,23 +26,23 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
 
     public PrincipalVenta() {
         initComponents();
-        registrarVenta = null;
-        editarVenta = null;
-        detalleVenta = null;
+        fromularioRegistrarVenta = null;
+        formularioEditarVenta = null;
+        formularioDetalleVenta = null;
         formularioEstadoVenta=null;
         radButtonPendientes.setEnabled(false);
     }
 
-    private InterfazGraficaFormularioRegistrarVenta formularioRegistrar;
-    private InterfazGraficaFormularioEditarVenta formularioEditar;
-    private InterfazGraficaDetalleVenta formularioDetalleVenta;
+    private InterfazGraficaFormularioRegistrarVenta interfazGraficaRegistrar;
+    private InterfazGraficaFormularioEditarVenta interfazGraficaEditar;
+    private InterfazGraficaDetalleVenta interfazGraficaDetalleVenta;
     private InterfazGraficaFormularioEstadoVenta interfazGraficaEstadoVenta;
-    private FormularioRegistrarVenta registrarVenta;
-    private FormularioEditarVenta editarVenta;
-    private FormularioDetalleDeVenta detalleVenta;
+    
+    private FormularioRegistrarVenta fromularioRegistrarVenta;
+    private FormularioEditarVenta formularioEditarVenta;
+    private FormularioDetalleDeVenta formularioDetalleVenta;
     private FormularioEstadoVenta formularioEstadoVenta;
     private TablaVenta tablaVenta;
-    private final ABMVenta abm = new ABMVenta();
     private PrincipalAdministrador principalAdministrador;
     
     private final InterfazGraficaFormularioWebAFIP interfazGraficaWeb = new InterfazGraficaFormularioWebAFIP();
@@ -56,21 +55,33 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
         this.principalAdministrador = principalAdministrador;
     }
 
-    public InterfazGraficaFormularioRegistrarVenta getFormularioRegistrar() {
-        return formularioRegistrar;
+    public InterfazGraficaFormularioRegistrarVenta getInterfazGraficaRegistrar() {
+        return interfazGraficaRegistrar;
     }
 
-    public void setFormularioRegistrar(InterfazGraficaFormularioRegistrarVenta formularioRegistrar) {
-        this.formularioRegistrar = formularioRegistrar;
+    public void setInterfazGraficaRegistrar(InterfazGraficaFormularioRegistrarVenta interfazGraficaRegistrar) {
+        this.interfazGraficaRegistrar = interfazGraficaRegistrar;
     }
 
-    public InterfazGraficaFormularioEditarVenta getFormularioEditar() {
-        return formularioEditar;
+    public InterfazGraficaFormularioEditarVenta getInterfazGraficaEditar() {
+        return interfazGraficaEditar;
     }
 
-    public void setFormularioEditar(InterfazGraficaFormularioEditarVenta formularioEditar) {
-        this.formularioEditar = formularioEditar;
+    public void setInterfazGraficaEditar(InterfazGraficaFormularioEditarVenta interfazGraficaEditar) {
+        this.interfazGraficaEditar = interfazGraficaEditar;
     }
+
+    public InterfazGraficaDetalleVenta getInterfazGraficaDetalleVenta() {
+        return interfazGraficaDetalleVenta;
+    }
+
+    public void setInterfazGraficaDetalleVenta(InterfazGraficaDetalleVenta interfazGraficaDetalleVenta) {
+        this.interfazGraficaDetalleVenta = interfazGraficaDetalleVenta;
+    }
+
+   
+
+   
 
     public FormularioEstadoVenta getFormularioEstadoVenta() {
         return formularioEstadoVenta;
@@ -87,41 +98,33 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
     public void setInterfazGraficaEstadoVenta(InterfazGraficaFormularioEstadoVenta interfazGraficaEstadoVenta) {
         this.interfazGraficaEstadoVenta = interfazGraficaEstadoVenta;
     }
-    
-    
-    
 
-    public FormularioRegistrarVenta getRegistrarVenta() {
-        return registrarVenta;
+    public FormularioRegistrarVenta getFromularioRegistrarVenta() {
+        return fromularioRegistrarVenta;
     }
 
-    public void setRegistrarVenta(FormularioRegistrarVenta registrarVenta) {
-        this.registrarVenta = registrarVenta;
+    public void setFromularioRegistrarVenta(FormularioRegistrarVenta fromularioRegistrarVenta) {
+        this.fromularioRegistrarVenta = fromularioRegistrarVenta;
     }
 
-    public InterfazGraficaDetalleVenta getFormularioDetalleVenta() {
+    public FormularioEditarVenta getFormularioEditarVenta() {
+        return formularioEditarVenta;
+    }
+
+    public void setFormularioEditarVenta(FormularioEditarVenta formularioEditarVenta) {
+        this.formularioEditarVenta = formularioEditarVenta;
+    }
+
+    public FormularioDetalleDeVenta getFormularioDetalleVenta() {
         return formularioDetalleVenta;
     }
 
-    public void setFormularioDetalleVenta(InterfazGraficaDetalleVenta formularioDetalleVenta) {
+    public void setFormularioDetalleVenta(FormularioDetalleDeVenta formularioDetalleVenta) {
         this.formularioDetalleVenta = formularioDetalleVenta;
     }
+    
+    
 
-    public FormularioEditarVenta getEditarVenta() {
-        return editarVenta;
-    }
-
-    public void setEditarVenta(FormularioEditarVenta editarVenta) {
-        this.editarVenta = editarVenta;
-    }
-
-    public FormularioDetalleDeVenta getDetalleVenta() {
-        return detalleVenta;
-    }
-
-    public void setDetalleVenta(FormularioDetalleDeVenta detalleVenta) {
-        this.detalleVenta = detalleVenta;
-    }
 
     public TablaVenta getTablaVenta() {
         return tablaVenta;
@@ -140,16 +143,16 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaGrafica = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        lbltrigo = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblIcono = new javax.swing.JLabel();
+        lblNombreVentana = new javax.swing.JLabel();
         lblSalir = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         btnEditarVenta = new principal.MaterialButton();
-        btnVentaWeb = new principal.MaterialButton();
-        nuevo = new principal.MaterialButton();
+        btnWeb = new principal.MaterialButton();
+        btnNuevo = new principal.MaterialButton();
         radButonSoloPedidos = new javax.swing.JRadioButton();
         radButtonPendientes = new javax.swing.JRadioButton();
-        bntCambiarEstado = new principal.MaterialButton();
+        bntEstado = new principal.MaterialButton();
         btnDetallesVenta = new principal.MaterialButton();
 
         panelPrincipalTop.setBackground(new java.awt.Color(204, 0, 0));
@@ -201,11 +204,11 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
         jPanel4.setBackground(new java.awt.Color(0, 0, 0, 60));
         jPanel4.setForeground(new java.awt.Color(0, 0, 0));
 
-        lbltrigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/low_price_80px.png"))); // NOI18N
+        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/low_price_80px.png"))); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("VENTAS Y PEDIDOS");
+        lblNombreVentana.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblNombreVentana.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreVentana.setText("VENTAS Y PEDIDOS");
 
         lblSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel_60px.png"))); // NOI18N
         lblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -221,9 +224,9 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbltrigo)
+                .addComponent(lblIcono)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNombreVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -235,8 +238,8 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbltrigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblNombreVentana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblIcono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -265,29 +268,29 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
             }
         });
 
-        btnVentaWeb.setBackground(new java.awt.Color(0,0,0,60));
-        btnVentaWeb.setForeground(new java.awt.Color(255, 255, 255));
-        btnVentaWeb.setText("WEB AFIP");
-        btnVentaWeb.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnVentaWeb.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnVentaWeb.setMinimumSize(new java.awt.Dimension(0, 0));
-        btnVentaWeb.setPreferredSize(new java.awt.Dimension(230, 35));
-        btnVentaWeb.addActionListener(new java.awt.event.ActionListener() {
+        btnWeb.setBackground(new java.awt.Color(0,0,0,60));
+        btnWeb.setForeground(new java.awt.Color(255, 255, 255));
+        btnWeb.setText("WEB AFIP");
+        btnWeb.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnWeb.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnWeb.setMinimumSize(new java.awt.Dimension(0, 0));
+        btnWeb.setPreferredSize(new java.awt.Dimension(230, 35));
+        btnWeb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVentaWebActionPerformed(evt);
+                btnWebActionPerformed(evt);
             }
         });
 
-        nuevo.setBackground(new java.awt.Color(0,0,0,60));
-        nuevo.setForeground(new java.awt.Color(255, 255, 255));
-        nuevo.setText("NUEVO VENTA");
-        nuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        nuevo.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        nuevo.setMinimumSize(new java.awt.Dimension(0, 0));
-        nuevo.setPreferredSize(new java.awt.Dimension(230, 35));
-        nuevo.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.setBackground(new java.awt.Color(0,0,0,60));
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevo.setText("NUEVO VENTA");
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevo.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnNuevo.setMinimumSize(new java.awt.Dimension(0, 0));
+        btnNuevo.setPreferredSize(new java.awt.Dimension(230, 35));
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevoActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
 
@@ -309,16 +312,16 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
             }
         });
 
-        bntCambiarEstado.setBackground(new java.awt.Color(0,0,0,60));
-        bntCambiarEstado.setForeground(new java.awt.Color(255, 255, 255));
-        bntCambiarEstado.setText("ELIMINAR/CAMBIAR ESTADO");
-        bntCambiarEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bntCambiarEstado.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        bntCambiarEstado.setMinimumSize(new java.awt.Dimension(0, 0));
-        bntCambiarEstado.setPreferredSize(new java.awt.Dimension(230, 35));
-        bntCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
+        bntEstado.setBackground(new java.awt.Color(0,0,0,60));
+        bntEstado.setForeground(new java.awt.Color(255, 255, 255));
+        bntEstado.setText("ELIMINAR/CAMBIAR ESTADO");
+        bntEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bntEstado.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        bntEstado.setMinimumSize(new java.awt.Dimension(0, 0));
+        bntEstado.setPreferredSize(new java.awt.Dimension(230, 35));
+        bntEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntCambiarEstadoActionPerformed(evt);
+                bntEstadoActionPerformed(evt);
             }
         });
 
@@ -343,13 +346,13 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelPrincipalTopLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addComponent(btnVentaWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(btnEditarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bntCambiarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bntEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDetallesVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -370,9 +373,9 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
                         .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnEditarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVentaWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bntCambiarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bntEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnDetallesVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelPrincipalTopLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -398,12 +401,12 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
-        formularioRegistrar.setPrincipalVenta(this);
-        formularioRegistrar.setPrincipalAdministrador(principalAdministrador);
-        formularioRegistrar.nuevoFormularioRegistrar();
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        interfazGraficaRegistrar.setPrincipalVenta(this);
+        interfazGraficaRegistrar.setPrincipalAdministrador(principalAdministrador);
+        interfazGraficaRegistrar.nuevoFormularioRegistrar();
 
-    }//GEN-LAST:event_nuevoActionPerformed
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
@@ -418,17 +421,17 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
     private void btnEditarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarVentaActionPerformed
         tablaVenta.setPrincipalVenta(this);
         if (tablaVenta.verificarFilaSeleccionada()) {
-            formularioEditar.setPrincipalVenta(this);
-            formularioEditar.setPrincipalAdministrador(principalAdministrador);
-            formularioEditar.setIdVenta(tablaVenta.obtenerIdFilaSeleccionada());
-            formularioEditar.nuevoFormularioEditar();
+            interfazGraficaEditar.setPrincipalVenta(this);
+            interfazGraficaEditar.setPrincipalAdministrador(principalAdministrador);
+            interfazGraficaEditar.setIdVenta(tablaVenta.obtenerIdFilaSeleccionada());
+            interfazGraficaEditar.nuevoFormularioEditar();
         }
     }//GEN-LAST:event_btnEditarVentaActionPerformed
 
-    private void btnVentaWebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaWebActionPerformed
+    private void btnWebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWebActionPerformed
         interfazGraficaWeb.setPrincipalAdministrador(principalAdministrador);
         interfazGraficaWeb.nuevaVentana();
-    }//GEN-LAST:event_btnVentaWebActionPerformed
+    }//GEN-LAST:event_btnWebActionPerformed
 
     private void radButonSoloPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radButonSoloPedidosActionPerformed
         if (radButonSoloPedidos.isSelected()) {
@@ -446,19 +449,19 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
         tablaVenta.ejecutarRellenarTabla();
     }//GEN-LAST:event_radButtonPendientesActionPerformed
 
-    private void bntCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCambiarEstadoActionPerformed
+    private void bntEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntEstadoActionPerformed
  if (tablaVenta.verificarFilaSeleccionada()) {
      interfazGraficaEstadoVenta.setPrincipalVenta(this);
     interfazGraficaEstadoVenta.nuevoFormularioEstadoVenta();
  }
 
-    }//GEN-LAST:event_bntCambiarEstadoActionPerformed
+    }//GEN-LAST:event_bntEstadoActionPerformed
 
     private void btnDetallesVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesVentaActionPerformed
         tablaVenta.setPrincipalVenta(this);
         if (tablaVenta.verificarFilaSeleccionada()) {
-            formularioDetalleVenta.setPrincipalVenta(this);
-            formularioDetalleVenta.nuevoFormularioDetalleDeVenta();
+            interfazGraficaDetalleVenta.setPrincipalVenta(this);
+            interfazGraficaDetalleVenta.nuevoFormularioDetalleDeVenta();
         }
     }//GEN-LAST:event_btnDetallesVentaActionPerformed
 
@@ -508,17 +511,17 @@ public class PrincipalVenta extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private principal.MaterialButton bntCambiarEstado;
+    private principal.MaterialButton bntEstado;
     private principal.MaterialButton btnDetallesVenta;
     private principal.MaterialButton btnEditarVenta;
-    private principal.MaterialButton btnVentaWeb;
-    private javax.swing.JLabel jLabel4;
+    private principal.MaterialButton btnNuevo;
+    private principal.MaterialButton btnWeb;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JLabel lblIcono;
+    private javax.swing.JLabel lblNombreVentana;
     private javax.swing.JLabel lblSalir;
-    public static javax.swing.JLabel lbltrigo;
-    private principal.MaterialButton nuevo;
     private javax.swing.JPanel panelPrincipalTop;
     private javax.swing.JRadioButton radButonSoloPedidos;
     private javax.swing.JRadioButton radButtonPendientes;

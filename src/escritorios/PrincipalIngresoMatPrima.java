@@ -2,15 +2,12 @@ package escritorios;
 
 import clasesUtilidadGeneral.OperacionesUtiles;
 import formularios.FormularioEditarIngresoMateriaPrima;
-import formularios.FormularioRegistrarIngresoMateriaPrima;
 import formularios.FormularioReporteIngresoMateriaPrima;
-import java.awt.Frame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import operacionesIngresoMateriaPrima.ABMIngresoMateriaPrima;
 import operacionesIngresoMateriaPrima.InterfazGraficaFormularioEditarIngresoMateriaPrima;
-import operacionesIngresoMateriaPrima.InterfazGraficaFormularioRegistrarIngresoMateriaPrima;
 import operacionesIngresoMateriaPrima.InterfazGraficaReporteIngresos;
 import operacionesIngresoMateriaPrima.TablaIngresoMateriaPrima;
 
@@ -24,49 +21,65 @@ public class PrincipalIngresoMatPrima extends javax.swing.JInternalFrame {
 
     public PrincipalIngresoMatPrima() {
         initComponents();
-        registrarIngresoMateriaPrima = null;
-        editarIngresoMateriaPrima = null;
+        formularioEditarIngresoMateriaPrima = null;
+        formularioReporteIngresoMateriaPrima=null;
         popMenu.add(menu);
     }
 
-    private InterfazGraficaFormularioRegistrarIngresoMateriaPrima formularioRegistrar;
-    private InterfazGraficaFormularioEditarIngresoMateriaPrima formularioEditar;
-    private FormularioRegistrarIngresoMateriaPrima registrarIngresoMateriaPrima;
-    private FormularioEditarIngresoMateriaPrima editarIngresoMateriaPrima;
+
+    private InterfazGraficaFormularioEditarIngresoMateriaPrima InterfazGraficaEditar;
+    private InterfazGraficaReporteIngresos interfazGraficaReporteIngresos;
+    private FormularioEditarIngresoMateriaPrima formularioEditarIngresoMateriaPrima;
+    private FormularioReporteIngresoMateriaPrima formularioReporteIngresoMateriaPrima;
     private TablaIngresoMateriaPrima tablaIngresoMateriaPrima;
-    private final ABMIngresoMateriaPrima abm = new ABMIngresoMateriaPrima();
+    private ABMIngresoMateriaPrima abm ;
 
-    public InterfazGraficaFormularioRegistrarIngresoMateriaPrima getFormularioRegistrar() {
-        return formularioRegistrar;
+
+
+    public InterfazGraficaFormularioEditarIngresoMateriaPrima getInterfazGraficaEditar() {
+        return InterfazGraficaEditar;
     }
 
-    public void setFormularioRegistrar(InterfazGraficaFormularioRegistrarIngresoMateriaPrima formularioRegistrar) {
-        this.formularioRegistrar = formularioRegistrar;
+    public void setInterfazGraficaEditar(InterfazGraficaFormularioEditarIngresoMateriaPrima InterfazGraficaEditar) {
+        this.InterfazGraficaEditar = InterfazGraficaEditar;
     }
 
-    public InterfazGraficaFormularioEditarIngresoMateriaPrima getFormularioEditar() {
-        return formularioEditar;
+    public FormularioEditarIngresoMateriaPrima getFormularioEditarIngresoMateriaPrima() {
+        return formularioEditarIngresoMateriaPrima;
     }
 
-    public void setFormularioEditar(InterfazGraficaFormularioEditarIngresoMateriaPrima formularioEditar) {
-        this.formularioEditar = formularioEditar;
+    public void setFormularioEditarIngresoMateriaPrima(FormularioEditarIngresoMateriaPrima formularioEditarIngresoMateriaPrima) {
+        this.formularioEditarIngresoMateriaPrima = formularioEditarIngresoMateriaPrima;
     }
 
-    public FormularioRegistrarIngresoMateriaPrima getRegistrarIngresoMateriaPrima() {
-        return registrarIngresoMateriaPrima;
+    public InterfazGraficaReporteIngresos getInterfazGraficaReporteIngresos() {
+        return interfazGraficaReporteIngresos;
     }
 
-    public void setRegistrarIngresoMateriaPrima(FormularioRegistrarIngresoMateriaPrima registrarIngresoMateriaPrima) {
-        this.registrarIngresoMateriaPrima = registrarIngresoMateriaPrima;
+    public void setInterfazGraficaReporteIngresos(InterfazGraficaReporteIngresos interfazGraficaReporteIngresos) {
+        this.interfazGraficaReporteIngresos = interfazGraficaReporteIngresos;
     }
 
-    public FormularioEditarIngresoMateriaPrima getEditarIngresoMateriaPrima() {
-        return editarIngresoMateriaPrima;
+    public FormularioReporteIngresoMateriaPrima getFormularioReporteIngresoMateriaPrima() {
+        return formularioReporteIngresoMateriaPrima;
     }
 
-    public void setEditarIngresoMateriaPrima(FormularioEditarIngresoMateriaPrima editarIngresoMateriaPrima) {
-        this.editarIngresoMateriaPrima = editarIngresoMateriaPrima;
+    public void setFormularioReporteIngresoMateriaPrima(FormularioReporteIngresoMateriaPrima formularioReporteIngresoMateriaPrima) {
+        this.formularioReporteIngresoMateriaPrima = formularioReporteIngresoMateriaPrima;
     }
+
+
+ 
+
+    public ABMIngresoMateriaPrima getAbm() {
+        return abm;
+    }
+
+    public void setAbm(ABMIngresoMateriaPrima abm) {
+        this.abm = abm;
+    }
+    
+
 
     public TablaIngresoMateriaPrima getTablaIngresoMateriaPrima() {
         return tablaIngresoMateriaPrima;
@@ -112,8 +125,8 @@ public class PrincipalIngresoMatPrima extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaGrafica = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblIcono = new javax.swing.JLabel();
+        lblNombreVentana = new javax.swing.JLabel();
         lblSalir = new javax.swing.JLabel();
         btnReporte = new principal.MaterialButton();
         btnEditar = new principal.MaterialButton();
@@ -199,11 +212,11 @@ public class PrincipalIngresoMatPrima extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Flour of Rye_80px.png"))); // NOI18N
+        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Flour of Rye_80px.png"))); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("INGRESO MATERIA PRIMA");
+        lblNombreVentana.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblNombreVentana.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreVentana.setText("INGRESO MATERIA PRIMA");
 
         lblSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel_60px.png"))); // NOI18N
         lblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -219,29 +232,25 @@ public class PrincipalIngresoMatPrima extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblNombreVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(107, 107, 107)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(565, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
+                .addComponent(lblIcono, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(34, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(16, 16, 16)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblNombreVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         btnReporte.setBackground(new java.awt.Color(0,0,0,60));
@@ -343,16 +352,16 @@ public class PrincipalIngresoMatPrima extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarKeyTyped
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
-        InterfazGraficaReporteIngresos i = new InterfazGraficaReporteIngresos();
-        i.setPrincipalIngresoMateriaPrima(this);
-        i.nuevoFormularioReporte();
+       
+        interfazGraficaReporteIngresos.setPrincipalIngresoMateriaPrima(this);
+        interfazGraficaReporteIngresos.nuevoFormularioReporte();
     }//GEN-LAST:event_btnReporteActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         tablaIngresoMateriaPrima.setPrincipalIngresoMateriaPrima(this);
         if (tablaIngresoMateriaPrima.verificarFilaSeleccionada()) {
-            formularioEditar.setPrincipalIngresoMateriaPrima(this);
-            formularioEditar.nuevoFormularioEditar();
+            InterfazGraficaEditar.setPrincipalIngresoMateriaPrima(this);
+            InterfazGraficaEditar.nuevoFormularioEditar();
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -404,11 +413,11 @@ public class PrincipalIngresoMatPrima extends javax.swing.JInternalFrame {
     private principal.MaterialButton btnEditar;
     private principal.MaterialButton btnEliminar;
     private principal.MaterialButton btnReporte;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblIcono;
+    private javax.swing.JLabel lblNombreVentana;
     private javax.swing.JLabel lblSalir;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel panelPrincipalTop;

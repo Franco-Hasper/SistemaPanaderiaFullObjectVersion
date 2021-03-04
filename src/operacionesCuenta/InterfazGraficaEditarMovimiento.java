@@ -2,7 +2,6 @@ package operacionesCuenta;
 
 import calsesPadre.InterfazGraficaFormularioEditar;
 import conexion.ConexionHibernate;
-import entidades.IngresoMateriaPrima;
 import entidades.MovimientoCuenta;
 import escritorios.PrincipalCuenta;
 import formularios.FormularioEditarMovimientoCuenta;

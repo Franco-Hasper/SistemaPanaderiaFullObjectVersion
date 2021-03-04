@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import rojeru_san.componentes.RSDateChooser;
 
@@ -392,8 +391,8 @@ public class OperacionesUtiles {
      * @param x
      * @param y
      */
-    public static void reposicionarDialog(JFrame cuadroFrame, int x, int y) {
-        cuadroFrame.setLocation(x, y);
+    public static void reposicionarFrame(JFrame frame, int x, int y) {
+        frame.setLocation(x, y);
     }
 
     /**
@@ -403,7 +402,7 @@ public class OperacionesUtiles {
      * @param x
      * @param y
      */
-    public static void redimensionarDialog(JFrame cuadroFrame, int x, int y) {
+    public static void redimensionarFrame(JFrame cuadroFrame, int x, int y) {
         cuadroFrame.setSize(x, y);
     }
 
@@ -445,7 +444,7 @@ public class OperacionesUtiles {
      * @param j
      * @return
      */
-    public static int seleccionarFila(JTable j) {
+    public static int indiceFila(JTable j) {
         return j.getSelectedRow();
     }
 
@@ -478,9 +477,9 @@ public class OperacionesUtiles {
      *
      * @param listaResutladosActuales
      */
-    public static void ordenarLista(List<Integer> listaResutladosActuales) {
-        Collections.sort(listaResutladosActuales, Integer::compareTo);
-        for (Integer in : listaResutladosActuales) {
+    public static void ordenarLista(List<Integer> listaIds) {
+        Collections.sort(listaIds, Integer::compareTo);
+        for (Integer in : listaIds) {
         }
     }
 
@@ -497,11 +496,11 @@ public class OperacionesUtiles {
      * @param filaSeleccionada
      * @return
      */
-    public static Integer obtenerId(List<Integer> listaResutladosActuales, Integer totalFilas, Integer filaSeleccionada) {
+    public static Integer obtenerId(List<Integer> listaIds, Integer totalFilas, Integer filaSeleccionada) {
         Integer id = null;
         for (int i = 0; i < totalFilas; i++) {
             if (filaSeleccionada.equals(i)) {
-                id = listaResutladosActuales.get(i);
+                id = listaIds.get(i);
             }
         }
         return id;

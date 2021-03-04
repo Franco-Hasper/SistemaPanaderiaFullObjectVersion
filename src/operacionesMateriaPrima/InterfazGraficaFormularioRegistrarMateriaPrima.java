@@ -26,30 +26,30 @@ public class InterfazGraficaFormularioRegistrarMateriaPrima extends InterfazGraf
 
     @Override
     public void nuevoFormularioRegistrar() {
-        if (principalMateriaPrima.getRegistrarMateriaPrima() == null) {
+        if (principalMateriaPrima.getFormularioRegistrarMateriaPrima() == null) {
             FormularioRegistrarMateriaPrima formularioRegistrar = new FormularioRegistrarMateriaPrima(frame, true);
             formularioRegistrar.setPrincipalMateriaPrima(principalMateriaPrima);
-            principalMateriaPrima.setRegistrarMateriaPrima(formularioRegistrar);
+            principalMateriaPrima.setFormularioRegistrarMateriaPrima(formularioRegistrar);
             agregarBoxes();
             rellenarBoxes();
             infoTextPrompt();
             colorTema();
         }
-        principalMateriaPrima.getRegistrarMateriaPrima().setVisible(true);
-        principalMateriaPrima.setRegistrarMateriaPrima(null);
+        principalMateriaPrima.getFormularioRegistrarMateriaPrima().setVisible(true);
+        principalMateriaPrima.setFormularioRegistrarMateriaPrima(null);
     }
 
     @Override
     public void infoTextPrompt() {
-        new TextPrompt("NOMBRE", principalMateriaPrima.getRegistrarMateriaPrima().getTxtNombre());
-        principalMateriaPrima.getRegistrarMateriaPrima().getTxtNombre().grabFocus();
+        new TextPrompt("NOMBRE", principalMateriaPrima.getFormularioRegistrarMateriaPrima().getTxtNombre());
+        principalMateriaPrima.getFormularioRegistrarMateriaPrima().getTxtNombre().grabFocus();
     }
 
     @Override
     public void agregarBoxes() {
-        this.setBoxMarca(principalMateriaPrima.getRegistrarMateriaPrima().getBoxMarca());
-        this.setBoxProveedor(principalMateriaPrima.getRegistrarMateriaPrima().getBoxProveedor());
-        this.setBoxUnidadMedida(principalMateriaPrima.getRegistrarMateriaPrima().getBoxUdeMedida());
+        this.setBoxMarca(principalMateriaPrima.getFormularioRegistrarMateriaPrima().getBoxMarca());
+        this.setBoxProveedor(principalMateriaPrima.getFormularioRegistrarMateriaPrima().getBoxProveedor());
+        this.setBoxUnidadMedida(principalMateriaPrima.getFormularioRegistrarMateriaPrima().getBoxUdeMedida());
 
     }
 
@@ -62,7 +62,7 @@ public class InterfazGraficaFormularioRegistrarMateriaPrima extends InterfazGraf
 
     @Override
     public void colorTema() {
-        principalMateriaPrima.getRegistrarMateriaPrima().getPanelPrincipalTop().setBackground(principalMateriaPrima.getPanelPrincipalTop().getBackground());
+        principalMateriaPrima.getFormularioRegistrarMateriaPrima().getPanelPrincipalTop().setBackground(principalMateriaPrima.getPanelPrincipalTop().getBackground());
     }
 
 }

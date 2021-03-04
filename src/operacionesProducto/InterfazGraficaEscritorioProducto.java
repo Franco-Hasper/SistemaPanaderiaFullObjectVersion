@@ -28,14 +28,18 @@ public class InterfazGraficaEscritorioProducto extends InterfazGraficaEscritorio
             tablaProducto.ejecutarRellenarTabla();
             principalAdministrador.getProducto().setTablaProducto(tablaProducto);
 
-            InterfazGraficaFormularioRegistrarProducto formularioRegistrar = new InterfazGraficaFormularioRegistrarProducto();
-            InterfazGraficaFormularioEditarProducto formularioEditar = new InterfazGraficaFormularioEditarProducto();
-            InterfazGraficaFormularioRegistrarPrecioProducto formularioPrecio = new InterfazGraficaFormularioRegistrarPrecioProducto();
-
-            principalAdministrador.getProducto().setFormularioRegistrar(formularioRegistrar);
-            principalAdministrador.getProducto().setFormularioEditar(formularioEditar);
-            principalAdministrador.getProducto().setFormularioPrecio(formularioPrecio);
-
+            InterfazGraficaFormularioRegistrarProducto interfazGraficaRegistrar = new InterfazGraficaFormularioRegistrarProducto();
+            InterfazGraficaFormularioEditarProducto interfazGraficaEditar = new InterfazGraficaFormularioEditarProducto();
+            InterfazGraficaFormularioRegistrarPrecioProducto interfazGraficaPrecio = new InterfazGraficaFormularioRegistrarPrecioProducto();
+            ABMProducto abm=new ABMProducto();
+            OperacionesSecundariasProducto operacionesSecundariasProducto=new OperacionesSecundariasProducto();
+            
+            principalAdministrador.getProducto().setInterfazGraficaRegistrar(interfazGraficaRegistrar);
+            principalAdministrador.getProducto().setInterfazGraficaEditar(interfazGraficaEditar);
+            principalAdministrador.getProducto().setInterfazGraficaPrecio(interfazGraficaPrecio);
+            principalAdministrador.getProducto().setAbm(abm);
+            principalAdministrador.getProducto().setOperacionesSecundariasProducto(operacionesSecundariasProducto);
+            
             principalAdministrador.getProducto().show();
         }
         colorInterfazEscritorio();

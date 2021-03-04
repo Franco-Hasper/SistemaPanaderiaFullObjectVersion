@@ -13,9 +13,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 import ds.desktop.notify.DesktopNotify;
-import entidades.IngresoMateriaPrima;
 import entidades.MovimientoCuenta;
-import formularios.FormularioReporteIngresoMateriaPrima;
 import formularios.FormularioReporteMovimientos;
 import java.awt.Desktop;
 import java.io.File;
@@ -112,7 +110,7 @@ public class ReporteMovimientos extends Consultas {
         generarReportePDF5(new File("reportes//MovimientosCuenta//Movimientos " + fechaIicio + " hasta " + fechaFin + ".pdf"));
     }
 
-    public void generarReportePDF5(File pdfNewFile) {
+    private void generarReportePDF5(File pdfNewFile) {
         try {
 
             //al añadir un new Chapter se cambia a otra pagina

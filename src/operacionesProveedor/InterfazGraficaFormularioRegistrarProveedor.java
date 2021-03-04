@@ -26,10 +26,10 @@ public class InterfazGraficaFormularioRegistrarProveedor extends InterfazGrafica
 
     @Override
     public void nuevoFormularioRegistrar() {
-        if (principalProveedor.getRegistrarProveedor() == null) {
+        if (principalProveedor.getFormularioRegistrarProveedor() == null) {
             FormularioRegistrarProveedor formularioRegistrar = new FormularioRegistrarProveedor(frame, true);
             formularioRegistrar.setPrincipalProveedor(principalProveedor);
-            principalProveedor.setRegistrarProveedor(formularioRegistrar);
+            principalProveedor.setFormularioRegistrarProveedor(formularioRegistrar);
             colorTema();
             agregarBoxes();
             rellenarBoxes();
@@ -37,38 +37,38 @@ public class InterfazGraficaFormularioRegistrarProveedor extends InterfazGrafica
             autoseccionarBoxes();
         }
 
-        principalProveedor.getRegistrarProveedor().setVisible(true);
-        principalProveedor.setRegistrarProveedor(null);
+        principalProveedor.getFormularioRegistrarProveedor().setVisible(true);
+        principalProveedor.setFormularioRegistrarProveedor(null);
     }
 
     private void autoseccionarBoxes() {
         String localidad = "Oberá";
         String provincia = "Misiones";
         String tipotelefono = "movil";
-        principalProveedor.getRegistrarProveedor().getBoxProvincia().setSelectedItem(provincia);
-        principalProveedor.getRegistrarProveedor().getBoxLocalidad().setSelectedItem(localidad);
-        principalProveedor.getRegistrarProveedor().getBoxTipoTelefono().setSelectedItem(tipotelefono);
+        principalProveedor.getFormularioRegistrarProveedor().getBoxProvincia().setSelectedItem(provincia);
+        principalProveedor.getFormularioRegistrarProveedor().getBoxLocalidad().setSelectedItem(localidad);
+        principalProveedor.getFormularioRegistrarProveedor().getBoxTipoTelefono().setSelectedItem(tipotelefono);
     }
 
     @Override
     protected void infoTextPrompt() {
-        new TextPrompt("NOMBRE", principalProveedor.getRegistrarProveedor().getTxtNombre());
-        new TextPrompt("DIRECCION", principalProveedor.getRegistrarProveedor().getTxtDireccion());
-        new TextPrompt("N° DIREICCION", principalProveedor.getRegistrarProveedor().getTxtnuemroDireccion());
-        new TextPrompt("N° TELEFONO", principalProveedor.getRegistrarProveedor().getTxtTelefono());
-        principalProveedor.getRegistrarProveedor().getTxtNombre().grabFocus();
+        new TextPrompt("NOMBRE", principalProveedor.getFormularioRegistrarProveedor().getTxtNombre());
+        new TextPrompt("DIRECCION", principalProveedor.getFormularioRegistrarProveedor().getTxtDireccion());
+        new TextPrompt("N° DIREICCION", principalProveedor.getFormularioRegistrarProveedor().getTxtnuemroDireccion());
+        new TextPrompt("N° TELEFONO", principalProveedor.getFormularioRegistrarProveedor().getTxtTelefono());
+        principalProveedor.getFormularioRegistrarProveedor().getTxtNombre().grabFocus();
     }
 
     @Override
     public void colorTema() {
-        principalProveedor.getRegistrarProveedor().getPanelPrincipalTop().setBackground(principalProveedor.getPanelPrincipalTop().getBackground());
+        principalProveedor.getFormularioRegistrarProveedor().getPanelPrincipalTop().setBackground(principalProveedor.getPanelPrincipalTop().getBackground());
     }
 
     @Override
     public void agregarBoxes() {
-        this.setBoxLocalidad(principalProveedor.getRegistrarProveedor().getBoxLocalidad());
-        this.setBoxProvincia(principalProveedor.getRegistrarProveedor().getBoxProvincia());
-        this.setBoxTipoTelefono(principalProveedor.getRegistrarProveedor().getBoxTipoTelefono());
+        this.setBoxLocalidad(principalProveedor.getFormularioRegistrarProveedor().getBoxLocalidad());
+        this.setBoxProvincia(principalProveedor.getFormularioRegistrarProveedor().getBoxProvincia());
+        this.setBoxTipoTelefono(principalProveedor.getFormularioRegistrarProveedor().getBoxTipoTelefono());
     }
 
     @Override

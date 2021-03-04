@@ -3,8 +3,6 @@ package calsesPadre;
 import clasesUtilidadGeneral.OperacionesUtiles;
 import conexion.ConexionHibernate;
 import ds.desktop.notify.DesktopNotify;
-import formularios.FormularioRegistrarVenta;
-import java.awt.Frame;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;

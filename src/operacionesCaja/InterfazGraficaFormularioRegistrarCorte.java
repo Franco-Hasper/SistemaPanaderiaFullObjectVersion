@@ -25,10 +25,10 @@ public class InterfazGraficaFormularioRegistrarCorte extends InterfazGraficaForm
 
     @Override
     public void nuevoFormularioRegistrar() {
-        if (principalCaja.getRegistrarCorte() == null) {
+        if (principalCaja.getFormularioRegistrarCorte() == null) {
             FormularioRegistrarCorte formularioRegistrar = new FormularioRegistrarCorte(frame, true);
             formularioRegistrar.setPrincipalCaja(principalCaja);
-            principalCaja.setRegistrarCorte(formularioRegistrar);
+            principalCaja.setFormularioRegistrarCorte(formularioRegistrar);
             colorTema();
             valoresIniciales();
             new TablaGastos().ejecutarRellenarTabla(formularioRegistrar);
@@ -37,24 +37,24 @@ public class InterfazGraficaFormularioRegistrarCorte extends InterfazGraficaForm
             new OperacionesRegistrarCorte().calcularTotalGastos(formularioRegistrar);
             new OperacionesRegistrarCorte().calcularBalance(formularioRegistrar);
         }
-        principalCaja.getRegistrarCorte().setVisible(true);
-principalCaja.setRegistrarCorte(null);
+        principalCaja.getFormularioRegistrarCorte().setVisible(true);
+        principalCaja.setFormularioRegistrarCorte(null);
     }
 
     @Override
     public void colorTema() {
-        principalCaja.getRegistrarCorte().getPanelPrincipalTop().setBackground(principalCaja.getPanelPrincipalTop().getBackground());
-        principalCaja.getRegistrarCorte().getTablaEntradas().setSelectionBackground(principalCaja.getPanelPrincipalTop().getBackground());
-        principalCaja.getRegistrarCorte().getTablaEntradas().setForeground(principalCaja.getPanelPrincipalTop().getBackground());
-        principalCaja.getRegistrarCorte().getTablaSlidas().setSelectionBackground(principalCaja.getPanelPrincipalTop().getBackground());
-        principalCaja.getRegistrarCorte().getTablaSlidas().setForeground(principalCaja.getPanelPrincipalTop().getBackground());
+        principalCaja.getFormularioRegistrarCorte().getPanelPrincipalTop().setBackground(principalCaja.getPanelPrincipalTop().getBackground());
+        principalCaja.getFormularioRegistrarCorte().getTablaEntradas().setSelectionBackground(principalCaja.getPanelPrincipalTop().getBackground());
+        principalCaja.getFormularioRegistrarCorte().getTablaEntradas().setForeground(principalCaja.getPanelPrincipalTop().getBackground());
+        principalCaja.getFormularioRegistrarCorte().getTablaSlidas().setSelectionBackground(principalCaja.getPanelPrincipalTop().getBackground());
+        principalCaja.getFormularioRegistrarCorte().getTablaSlidas().setForeground(principalCaja.getPanelPrincipalTop().getBackground());
 
     }
 
     private void valoresIniciales() {
-        principalCaja.getRegistrarCorte().getTxtTotalVentas().setText("0");
-        principalCaja.getRegistrarCorte().getTxtTotalGastos().setText("0");
-        principalCaja.getRegistrarCorte().getTxtBalance().setText("0");
+        principalCaja.getFormularioRegistrarCorte().getTxtTotalVentas().setText("0.00");
+        principalCaja.getFormularioRegistrarCorte().getTxtTotalGastos().setText("0.00");
+        principalCaja.getFormularioRegistrarCorte().getTxtBalance().setText("0.00");
     }
 
     @Deprecated

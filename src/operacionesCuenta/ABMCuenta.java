@@ -4,10 +4,8 @@ import calsesPadre.ABM;
 import entidades.Cliente;
 import entidades.Cuenta;
 import entidades.Estado;
-import entidades.Gasto;
 import entidades.MovimientoCuenta;
 import escritorios.PrincipalCuenta;
-import java.util.List;
 import org.hibernate.Session;
 
 /**
@@ -42,7 +40,7 @@ public class ABMCuenta extends ABM {
 
     @Override
     public void transaccionRegistrar(Session miSesion) {
-          Estado e = (Estado) miSesion.get(Estado.class, 1);
+        Estado e = (Estado) miSesion.get(Estado.class, 1);
         Cliente cl = (Cliente) miSesion.get(Cliente.class, principalCuenta.getIdCliente());
         Cuenta cu = new Cuenta();
         cu.setBalance(Double.valueOf(principalCuenta.getTxtMontoInicial().getText()));

@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import operacionesGasto.ABMGasto;
 import operacionesGasto.TablaGastos;
 import formularios.FormularioRegistrarGasto;
+import formularios.FormularioReporteGastos;
 import javax.swing.JTable;
 import operacionesGasto.InterfazGraficaFormularioEditarGasto;
 import operacionesGasto.InterfazGraficaFormularioRegistrarGasto;
@@ -19,48 +20,76 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
 
     public PrincipalGastos() {
         initComponents();
-        registrarGasto = null;
-        editarGasto = null;
+        formularioRegistrarGasto = null;
+        formularioEditarGasto = null;
+        formularioReporteGasto=null;
         popMenu.add(menu);
     }
-    private InterfazGraficaFormularioRegistrarGasto formularioRegistrar;
-    private InterfazGraficaFormularioEditarGasto formularioEditar;
-    private FormularioRegistrarGasto registrarGasto;
-    private FormularioEditarGasto editarGasto;
+    private InterfazGraficaFormularioRegistrarGasto interfazGraficaRegistrar;
+    private InterfazGraficaFormularioEditarGasto interfazGraficaEditar;
+    private InterfazGraficaReporteGastos interfazGraficaReporteGastos;
+    private FormularioRegistrarGasto formularioRegistrarGasto;
+    private FormularioEditarGasto formularioEditarGasto;
+    private FormularioReporteGastos formularioReporteGasto;
     private TablaGastos tablaGasto;
-    private final ABMGasto abm = new ABMGasto();
+    private ABMGasto abm;
 
-    public InterfazGraficaFormularioRegistrarGasto getFormularioRegistrar() {
-        return formularioRegistrar;
+    public InterfazGraficaFormularioRegistrarGasto getInterfazGraficaRegistrar() {
+        return interfazGraficaRegistrar;
     }
 
-    public void setFormularioRegistrar(InterfazGraficaFormularioRegistrarGasto formularioRegistrar) {
-        this.formularioRegistrar = formularioRegistrar;
+    public void setInterfazGraficaRegistrar(InterfazGraficaFormularioRegistrarGasto interfazGraficaRegistrar) {
+        this.interfazGraficaRegistrar = interfazGraficaRegistrar;
     }
 
-    public InterfazGraficaFormularioEditarGasto getFormularioEditar() {
-        return formularioEditar;
+    public InterfazGraficaFormularioEditarGasto getInterfazGraficaEditar() {
+        return interfazGraficaEditar;
     }
 
-    public void setFormularioEditar(InterfazGraficaFormularioEditarGasto formularioEditar) {
-        this.formularioEditar = formularioEditar;
+    public void setInterfazGraficaEditar(InterfazGraficaFormularioEditarGasto interfazGraficaEditar) {
+        this.interfazGraficaEditar = interfazGraficaEditar;
     }
 
-    public FormularioRegistrarGasto getRegistrarGasto() {
-        return registrarGasto;
+    public InterfazGraficaReporteGastos getInterfazGraficaReporteGastos() {
+        return interfazGraficaReporteGastos;
     }
 
-    public void setRegistrarGasto(FormularioRegistrarGasto registrarGasto) {
-        this.registrarGasto = registrarGasto;
+    public void setInterfazGraficaReporteGastos(InterfazGraficaReporteGastos interfazGraficaReporteGastos) {
+        this.interfazGraficaReporteGastos = interfazGraficaReporteGastos;
     }
 
-    public FormularioEditarGasto getEditarGasto() {
-        return editarGasto;
+    public ABMGasto getAbm() {
+        return abm;
     }
 
-    public void setEditarGasto(FormularioEditarGasto editarGasto) {
-        this.editarGasto = editarGasto;
+    public void setAbm(ABMGasto abm) {
+        this.abm = abm;
     }
+
+    public FormularioRegistrarGasto getFormularioRegistrarGasto() {
+        return formularioRegistrarGasto;
+    }
+
+    public void setFormularioRegistrarGasto(FormularioRegistrarGasto formularioRegistrarGasto) {
+        this.formularioRegistrarGasto = formularioRegistrarGasto;
+    }
+
+    public FormularioEditarGasto getFormularioEditarGasto() {
+        return formularioEditarGasto;
+    }
+
+    public void setFormularioEditarGasto(FormularioEditarGasto formularioEditarGasto) {
+        this.formularioEditarGasto = formularioEditarGasto;
+    }
+
+    public FormularioReporteGastos getFormularioReporteGasto() {
+        return formularioReporteGasto;
+    }
+
+    public void setFormularioReporteGasto(FormularioReporteGastos formularioReporteGasto) {
+        this.formularioReporteGasto = formularioReporteGasto;
+    }
+
 
     public TablaGastos getTablaGasto() {
         return tablaGasto;
@@ -77,18 +106,18 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
         menu = new javax.swing.JPanel();
         popMenu = new javax.swing.JPopupMenu();
         panelPrincipalTop = new javax.swing.JPanel();
-        btnNuevoGasto = new principal.MaterialButton();
+        btnNuevo = new principal.MaterialButton();
         txtBuscar = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaGrafica = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblNombreVentana = new javax.swing.JLabel();
+        lblIcono = new javax.swing.JLabel();
         lblSalir = new javax.swing.JLabel();
         btnEditar = new principal.MaterialButton();
-        btnEliminar2 = new principal.MaterialButton();
-        btnEliminar1 = new principal.MaterialButton();
+        btnReporte = new principal.MaterialButton();
+        btnEliminar = new principal.MaterialButton();
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
@@ -103,17 +132,17 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
 
         panelPrincipalTop.setBackground(new java.awt.Color(204, 0, 0));
 
-        btnNuevoGasto.setBackground(new java.awt.Color(0, 0, 0,60));
-        btnNuevoGasto.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevoGasto.setText("NUEVO GASTO");
-        btnNuevoGasto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNuevoGasto.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnNuevoGasto.setMaximumSize(new java.awt.Dimension(130, 35));
-        btnNuevoGasto.setMinimumSize(new java.awt.Dimension(130, 35));
-        btnNuevoGasto.setPreferredSize(new java.awt.Dimension(130, 35));
-        btnNuevoGasto.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.setBackground(new java.awt.Color(0, 0, 0,60));
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevo.setText("NUEVO GASTO");
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevo.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnNuevo.setMaximumSize(new java.awt.Dimension(130, 35));
+        btnNuevo.setMinimumSize(new java.awt.Dimension(130, 35));
+        btnNuevo.setPreferredSize(new java.awt.Dimension(130, 35));
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoGastoActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
 
@@ -182,12 +211,12 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
         );
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("GASTOS");
+        lblNombreVentana.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblNombreVentana.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreVentana.setText("GASTOS");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/expensiv32e_80px.png"))); // NOI18N
-        jLabel1.setToolTipText("");
+        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/expensiv32e_80px.png"))); // NOI18N
+        lblIcono.setToolTipText("");
 
         lblSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel_60px.png"))); // NOI18N
         lblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -203,9 +232,9 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNombreVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -214,12 +243,12 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNombreVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                    .addComponent(lblIcono, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -239,31 +268,31 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
             }
         });
 
-        btnEliminar2.setBackground(new java.awt.Color(0, 0, 0,60));
-        btnEliminar2.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminar2.setText("REPORTE DE GASTOS");
-        btnEliminar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEliminar2.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnEliminar2.setMaximumSize(new java.awt.Dimension(130, 35));
-        btnEliminar2.setMinimumSize(new java.awt.Dimension(130, 35));
-        btnEliminar2.setPreferredSize(new java.awt.Dimension(130, 35));
-        btnEliminar2.addActionListener(new java.awt.event.ActionListener() {
+        btnReporte.setBackground(new java.awt.Color(0, 0, 0,60));
+        btnReporte.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporte.setText("REPORTE DE GASTOS");
+        btnReporte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReporte.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnReporte.setMaximumSize(new java.awt.Dimension(130, 35));
+        btnReporte.setMinimumSize(new java.awt.Dimension(130, 35));
+        btnReporte.setPreferredSize(new java.awt.Dimension(130, 35));
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminar2ActionPerformed(evt);
+                btnReporteActionPerformed(evt);
             }
         });
 
-        btnEliminar1.setBackground(new java.awt.Color(0, 0, 0,60));
-        btnEliminar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminar1.setText("ELIMINAR GASTO");
-        btnEliminar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEliminar1.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnEliminar1.setMaximumSize(new java.awt.Dimension(130, 35));
-        btnEliminar1.setMinimumSize(new java.awt.Dimension(130, 35));
-        btnEliminar1.setPreferredSize(new java.awt.Dimension(130, 35));
-        btnEliminar1.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(0, 0, 0,60));
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("ELIMINAR GASTO");
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnEliminar.setMaximumSize(new java.awt.Dimension(130, 35));
+        btnEliminar.setMinimumSize(new java.awt.Dimension(130, 35));
+        btnEliminar.setPreferredSize(new java.awt.Dimension(130, 35));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminar1ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -273,13 +302,13 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
             panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalTopLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnNuevoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEliminar2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -292,11 +321,11 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -330,10 +359,10 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tablaGraficaComponentHidden
 
-    private void btnNuevoGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoGastoActionPerformed
-        formularioRegistrar.setPrincipalGastos(this);
-        formularioRegistrar.nuevoFormularioRegistrar();
-    }//GEN-LAST:event_btnNuevoGastoActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        interfazGraficaRegistrar.setPrincipalGastos(this);
+        interfazGraficaRegistrar.nuevoFormularioRegistrar();
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
 
     private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
@@ -343,13 +372,13 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         tablaGasto.setPrincipalGastos(this);
         if (tablaGasto.verificarFilaSeleccionada()) {
-            formularioEditar.setPrincipalGastos(this);
-            formularioEditar.nuevoFormularioEditar();
+            interfazGraficaEditar.setPrincipalGastos(this);
+            interfazGraficaEditar.nuevoFormularioEditar();
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar1ActionPerformed
-         abm.setPrincipalGasto(this);
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        abm.setPrincipalGasto(this);
         tablaGasto.setPrincipalGastos(this);
         if (tablaGasto.verificarFilaSeleccionada()) {
             if (OperacionesUtiles.mensajeEliminarRegistro()) {
@@ -360,17 +389,16 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
             }
 
         }
-    }//GEN-LAST:event_btnEliminar1ActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked
         this.dispose();
     }//GEN-LAST:event_lblSalirMouseClicked
 
-    private void btnEliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar2ActionPerformed
-          InterfazGraficaReporteGastos i = new InterfazGraficaReporteGastos();
-        i.setPrincipalGastos(this);
-        i.nuevoFormularioReporte();
-    }//GEN-LAST:event_btnEliminar2ActionPerformed
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        interfazGraficaReporteGastos.setPrincipalGastos(this);
+        interfazGraficaReporteGastos.nuevoFormularioReporte();
+    }//GEN-LAST:event_btnReporteActionPerformed
 
     public JPanel getPanelPrincipalTop() {
         return panelPrincipalTop;
@@ -415,14 +443,14 @@ public class PrincipalGastos extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButton btnEditar;
-    private principal.MaterialButton btnEliminar1;
-    private principal.MaterialButton btnEliminar2;
-    private principal.MaterialButton btnNuevoGasto;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
+    private principal.MaterialButton btnEliminar;
+    private principal.MaterialButton btnNuevo;
+    private principal.MaterialButton btnReporte;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblIcono;
+    private javax.swing.JLabel lblNombreVentana;
     private javax.swing.JLabel lblSalir;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel panelPrincipalTop;

@@ -17,68 +17,89 @@ import operacionesProducto.TablaProducto;
 public class PrincipalProducto extends javax.swing.JInternalFrame {
 
     public PrincipalProducto() {
-        registrarProducto = null;
-        editarProducto = null;
-        registrarPrecioProducto = null;
+        formularioRegistrarProducto = null;
+        formularioEditarProducto = null;
+        formularioRegistrarPrecioProducto = null;
         initComponents();
     }
 
-    private InterfazGraficaFormularioRegistrarProducto formularioRegistrar;
-    private InterfazGraficaFormularioEditarProducto formularioEditar;
-    private InterfazGraficaFormularioRegistrarPrecioProducto formularioPrecio;
-    private FormularioRegistrarProducto registrarProducto;
-    private FormularioEditarProducto editarProducto;
-    private FormularioRegistrarPrecioProducto registrarPrecioProducto;
+    private InterfazGraficaFormularioRegistrarProducto interfazGraficaRegistrar;
+    private InterfazGraficaFormularioEditarProducto interfazGraficaEditar;
+    private InterfazGraficaFormularioRegistrarPrecioProducto interfazGraficaPrecio;
+    private FormularioRegistrarProducto formularioRegistrarProducto;
+    private FormularioEditarProducto formularioEditarProducto;
+    private FormularioRegistrarPrecioProducto formularioRegistrarPrecioProducto;
+    private OperacionesSecundariasProducto operacionesSecundariasProducto;
     private TablaProducto tablaProducto;
-    private final ABMProducto abm = new ABMProducto();
+    private ABMProducto abm;
 
-    public InterfazGraficaFormularioRegistrarProducto getFormularioRegistrar() {
-        return formularioRegistrar;
+    public ABMProducto getAbm() {
+        return abm;
     }
 
-    public void setFormularioRegistrar(InterfazGraficaFormularioRegistrarProducto formularioRegistrar) {
-        this.formularioRegistrar = formularioRegistrar;
+    public void setAbm(ABMProducto abm) {
+        this.abm = abm;
     }
 
-    public InterfazGraficaFormularioEditarProducto getFormularioEditar() {
-        return formularioEditar;
+    public InterfazGraficaFormularioRegistrarProducto getInterfazGraficaRegistrar() {
+        return interfazGraficaRegistrar;
     }
 
-    public void setFormularioEditar(InterfazGraficaFormularioEditarProducto formularioEditar) {
-        this.formularioEditar = formularioEditar;
+    public void setInterfazGraficaRegistrar(InterfazGraficaFormularioRegistrarProducto interfazGraficaRegistrar) {
+        this.interfazGraficaRegistrar = interfazGraficaRegistrar;
     }
 
-    public FormularioRegistrarProducto getRegistrarProducto() {
-        return registrarProducto;
+    public InterfazGraficaFormularioEditarProducto getInterfazGraficaEditar() {
+        return interfazGraficaEditar;
     }
 
-    public void setRegistrarProducto(FormularioRegistrarProducto registrarProducto) {
-        this.registrarProducto = registrarProducto;
+    public void setInterfazGraficaEditar(InterfazGraficaFormularioEditarProducto interfazGraficaEditar) {
+        this.interfazGraficaEditar = interfazGraficaEditar;
     }
 
-    public FormularioEditarProducto getEditarProducto() {
-        return editarProducto;
+    public OperacionesSecundariasProducto getOperacionesSecundariasProducto() {
+        return operacionesSecundariasProducto;
     }
 
-    public void setEditarProducto(FormularioEditarProducto editarProducto) {
-        this.editarProducto = editarProducto;
+    public void setOperacionesSecundariasProducto(OperacionesSecundariasProducto operacionesSecundariasProducto) {
+        this.operacionesSecundariasProducto = operacionesSecundariasProducto;
     }
 
-    public InterfazGraficaFormularioRegistrarPrecioProducto getFormularioPrecio() {
-        return formularioPrecio;
+
+
+    public InterfazGraficaFormularioRegistrarPrecioProducto getInterfazGraficaPrecio() {
+        return interfazGraficaPrecio;
     }
 
-    public void setFormularioPrecio(InterfazGraficaFormularioRegistrarPrecioProducto formularioPrecio) {
-        this.formularioPrecio = formularioPrecio;
+    public void setInterfazGraficaPrecio(InterfazGraficaFormularioRegistrarPrecioProducto interfazGraficaPrecio) {
+        this.interfazGraficaPrecio = interfazGraficaPrecio;
     }
 
-    public FormularioRegistrarPrecioProducto getRegistrarPrecioProducto() {
-        return registrarPrecioProducto;
+    public FormularioRegistrarProducto getFormularioRegistrarProducto() {
+        return formularioRegistrarProducto;
     }
 
-    public void setRegistrarPrecioProducto(FormularioRegistrarPrecioProducto registrarPrecioProducto) {
-        this.registrarPrecioProducto = registrarPrecioProducto;
+    public void setFormularioRegistrarProducto(FormularioRegistrarProducto formularioRegistrarProducto) {
+        this.formularioRegistrarProducto = formularioRegistrarProducto;
     }
+
+    public FormularioEditarProducto getFormularioEditarProducto() {
+        return formularioEditarProducto;
+    }
+
+    public void setFormularioEditarProducto(FormularioEditarProducto formularioEditarProducto) {
+        this.formularioEditarProducto = formularioEditarProducto;
+    }
+
+    public FormularioRegistrarPrecioProducto getFormularioRegistrarPrecioProducto() {
+        return formularioRegistrarPrecioProducto;
+    }
+
+    public void setFormularioRegistrarPrecioProducto(FormularioRegistrarPrecioProducto formularioRegistrarPrecioProducto) {
+        this.formularioRegistrarPrecioProducto = formularioRegistrarPrecioProducto;
+    }
+
+
 
     public TablaProducto getTablaProducto() {
         return tablaProducto;
@@ -118,7 +139,7 @@ public class PrincipalProducto extends javax.swing.JInternalFrame {
         lblSalir = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         btnNuevo = new principal.MaterialButton();
-        btnGraficarHistorialPrecios = new principal.MaterialButton();
+        btnHistorialPrecios = new principal.MaterialButton();
         btnEliminar = new principal.MaterialButton();
         btnEditar = new principal.MaterialButton();
         btnNuevoPrecio = new principal.MaterialButton();
@@ -235,14 +256,14 @@ public class PrincipalProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        btnGraficarHistorialPrecios.setBackground(new java.awt.Color(0,0,0,60));
-        btnGraficarHistorialPrecios.setForeground(new java.awt.Color(255, 255, 255));
-        btnGraficarHistorialPrecios.setText("HISTORIAL DE PRECIOS ");
-        btnGraficarHistorialPrecios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnGraficarHistorialPrecios.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnGraficarHistorialPrecios.addActionListener(new java.awt.event.ActionListener() {
+        btnHistorialPrecios.setBackground(new java.awt.Color(0,0,0,60));
+        btnHistorialPrecios.setForeground(new java.awt.Color(255, 255, 255));
+        btnHistorialPrecios.setText("HISTORIAL DE PRECIOS ");
+        btnHistorialPrecios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHistorialPrecios.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnHistorialPrecios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGraficarHistorialPreciosActionPerformed(evt);
+                btnHistorialPreciosActionPerformed(evt);
             }
         });
 
@@ -295,7 +316,7 @@ public class PrincipalProducto extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNuevoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGraficarHistorialPrecios, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHistorialPrecios, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -308,7 +329,7 @@ public class PrincipalProducto extends javax.swing.JInternalFrame {
                 .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGraficarHistorialPrecios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHistorialPrecios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNuevoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -341,16 +362,15 @@ public class PrincipalProducto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        formularioRegistrar.setPrincipalProducto(this);
-        formularioRegistrar.nuevoFormularioRegistrar();
+        interfazGraficaRegistrar.setPrincipalProducto(this);
+        interfazGraficaRegistrar.nuevoFormularioRegistrar();
     }//GEN-LAST:event_btnNuevoActionPerformed
 
-    private void btnGraficarHistorialPreciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarHistorialPreciosActionPerformed
+    private void btnHistorialPreciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialPreciosActionPerformed
         if (tablaProducto.verificarFilaSeleccionada()) {
-            new OperacionesSecundariasProducto().graficarHistorialPrecios(this);
+           operacionesSecundariasProducto.graficarHistorialPrecios(this);
         }
-
-    }//GEN-LAST:event_btnGraficarHistorialPreciosActionPerformed
+    }//GEN-LAST:event_btnHistorialPreciosActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         abm.setPrincipalProducto(this);
@@ -368,8 +388,8 @@ public class PrincipalProducto extends javax.swing.JInternalFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         tablaProducto.setPrincipalProducto(this);
         if (tablaProducto.verificarFilaSeleccionada()) {
-            formularioEditar.setPrincipalProducto(this);
-            formularioEditar.nuevoFormularioEditar();
+            interfazGraficaEditar.setPrincipalProducto(this);
+            interfazGraficaEditar.nuevoFormularioEditar();
 
         }
     }//GEN-LAST:event_btnEditarActionPerformed
@@ -377,8 +397,8 @@ public class PrincipalProducto extends javax.swing.JInternalFrame {
     private void btnNuevoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPrecioActionPerformed
         tablaProducto.setPrincipalProducto(this);
         if (tablaProducto.verificarFilaSeleccionada()) {
-            formularioPrecio.setPrincipalProducto(this);
-            formularioPrecio.nuevoFormularioRegistrarPrecio();
+            interfazGraficaPrecio.setPrincipalProducto(this);
+            interfazGraficaPrecio.nuevoFormularioRegistrarPrecio();
         }
     }//GEN-LAST:event_btnNuevoPrecioActionPerformed
 
@@ -398,7 +418,7 @@ public class PrincipalProducto extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButton btnEditar;
     private principal.MaterialButton btnEliminar;
-    private principal.MaterialButton btnGraficarHistorialPrecios;
+    private principal.MaterialButton btnHistorialPrecios;
     private principal.MaterialButton btnNuevo;
     private principal.MaterialButton btnNuevoPrecio;
     private javax.swing.JLabel jLabel4;

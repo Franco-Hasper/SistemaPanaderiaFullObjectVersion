@@ -22,30 +22,30 @@ public class InterfazGraficaFormularioRegistrarProducto extends InterfazGraficaF
 
     @Override
     public void nuevoFormularioRegistrar() {
-        if (principalProducto.getRegistrarProducto() == null) {
+        if (principalProducto.getFormularioRegistrarProducto() == null) {
             FormularioRegistrarProducto formularioRegistrar = new FormularioRegistrarProducto(frame, true);
             formularioRegistrar.setPrincipalProducto(principalProducto);
-            principalProducto.setRegistrarProducto(formularioRegistrar);
+            principalProducto.setFormularioRegistrarProducto(formularioRegistrar);
             infoTextPrompt();
             colorTema();
         }
 
-        principalProducto.getRegistrarProducto().setVisible(true);
-        principalProducto.setRegistrarProducto(null);
+        principalProducto.getFormularioRegistrarProducto().setVisible(true);
+        principalProducto.setFormularioRegistrarProducto(null);
     }
 
     @Override
     protected void infoTextPrompt() {
-        new TextPrompt("NOMBRE", principalProducto.getRegistrarProducto().getTxtNombre());
-        new TextPrompt("DESCRIPCION", principalProducto.getRegistrarProducto().getTxtDescripcion());
-        new TextPrompt("PRECIO BRUTO", principalProducto.getRegistrarProducto().getTxtPrecio());
-        new TextPrompt("PRECIO FINAL", principalProducto.getRegistrarProducto().getTxtPrecioFinal());
-        principalProducto.getRegistrarProducto().getTxtNombre().grabFocus();
+        new TextPrompt("NOMBRE", principalProducto.getFormularioRegistrarProducto().getTxtNombre());
+        new TextPrompt("DESCRIPCION", principalProducto.getFormularioRegistrarProducto().getTxtDescripcion());
+        new TextPrompt("PRECIO BRUTO", principalProducto.getFormularioRegistrarProducto().getTxtPrecio());
+        new TextPrompt("PRECIO FINAL", principalProducto.getFormularioRegistrarProducto().getTxtPrecioFinal());
+        principalProducto.getFormularioRegistrarProducto().getTxtNombre().grabFocus();
     }
 
     @Override
     public void colorTema() {
-        principalProducto.getRegistrarProducto().getPanelPrincipalTop().setBackground(principalProducto.getPanelPrincipalTop().getBackground());
+        principalProducto.getFormularioRegistrarProducto().getPanelPrincipalTop().setBackground(principalProducto.getPanelPrincipalTop().getBackground());
     }
 
     @Deprecated

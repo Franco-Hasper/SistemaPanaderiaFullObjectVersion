@@ -22,50 +22,53 @@ public class PrincipalCaja extends javax.swing.JInternalFrame {
      */
     public PrincipalCaja() {
         initComponents();
-        registrarCorte = null;
-        editarCorte = null;
+        formularioRegistrarCorte = null;
+        formularioEditarCorte = null;
     }
 
-    private InterfazGraficaFormularioRegistrarCorte formularioRegistrar;
-    private InterfazGraficaFormularioEditarCorte formularioEditar;
-    private FormularioRegistrarCorte registrarCorte;
-    private FormularioEditarCorte editarCorte;
+    private InterfazGraficaFormularioRegistrarCorte interfazGraficaRegistrar;
+    private InterfazGraficaFormularioEditarCorte interfazGraficaEditar;
+    private FormularioRegistrarCorte formularioRegistrarCorte;
+    private FormularioEditarCorte formularioEditarCorte;
     private TablaCaja tablaCaja;
     private final ABMCaja abm = new ABMCaja();
 
-    public InterfazGraficaFormularioRegistrarCorte getFormularioRegistrar() {
-        return formularioRegistrar;
+    public InterfazGraficaFormularioRegistrarCorte getInterfazGraficaRegistrar() {
+        return interfazGraficaRegistrar;
     }
 
-    public void setFormularioRegistrar(InterfazGraficaFormularioRegistrarCorte formularioRegistrar) {
-        this.formularioRegistrar = formularioRegistrar;
+    public void setInterfazGraficaRegistrar(InterfazGraficaFormularioRegistrarCorte interfazGraficaRegistrar) {
+        this.interfazGraficaRegistrar = interfazGraficaRegistrar;
     }
 
-    public InterfazGraficaFormularioEditarCorte getFormularioEditar() {
-        return formularioEditar;
+    public InterfazGraficaFormularioEditarCorte getInterfazGraficaEditar() {
+        return interfazGraficaEditar;
     }
 
-    public void setFormularioEditar(InterfazGraficaFormularioEditarCorte formularioEditar) {
-        this.formularioEditar = formularioEditar;
+    public void setInterfazGraficaEditar(InterfazGraficaFormularioEditarCorte interfazGraficaEditar) {
+        this.interfazGraficaEditar = interfazGraficaEditar;
     }
 
-    public FormularioRegistrarCorte getRegistrarCorte() {
-        return registrarCorte;
+ 
+
+    public FormularioRegistrarCorte getFormularioRegistrarCorte() {
+        return formularioRegistrarCorte;
     }
 
-    public void setRegistrarCorte(FormularioRegistrarCorte registrarCorte) {
-        this.registrarCorte = registrarCorte;
+    public void setFormularioRegistrarCorte(FormularioRegistrarCorte formularioRegistrarCorte) {
+        this.formularioRegistrarCorte = formularioRegistrarCorte;
     }
 
-
-
-    public FormularioEditarCorte getEditarCorte() {
-        return editarCorte;
+    public FormularioEditarCorte getFormularioEditarCorte() {
+        return formularioEditarCorte;
     }
 
-    public void setEditarCorte(FormularioEditarCorte editarCorte) {
-        this.editarCorte = editarCorte;
+    public void setFormularioEditarCorte(FormularioEditarCorte formularioEditarCorte) {
+        this.formularioEditarCorte = formularioEditarCorte;
     }
+    
+    
+
 
     public TablaCaja getTablaCaja() {
         return tablaCaja;
@@ -102,13 +105,13 @@ public class PrincipalCaja extends javax.swing.JInternalFrame {
         tablaGrafica = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblIcono = new javax.swing.JLabel();
+        lblNombreVentana = new javax.swing.JLabel();
         lblSalir = new javax.swing.JLabel();
-        btnCrearC = new principal.MaterialButton();
+        btnNuevo = new principal.MaterialButton();
         txtBuscar = new javax.swing.JTextField();
-        btnnEditarC = new principal.MaterialButton();
-        btnEliminarC = new principal.MaterialButton();
+        btnnEditar = new principal.MaterialButton();
+        btnEliminar = new principal.MaterialButton();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -171,11 +174,11 @@ public class PrincipalCaja extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cash_register_80px.png"))); // NOI18N
+        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cash_register_80px.png"))); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("CAJA");
+        lblNombreVentana.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblNombreVentana.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreVentana.setText("CAJA");
 
         lblSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel_60px.png"))); // NOI18N
         lblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -191,36 +194,36 @@ public class PrincipalCaja extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNombreVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblNombreVentana, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                    .addComponent(lblIcono, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
-        btnCrearC.setBackground(new java.awt.Color(0, 0, 0,60));
-        btnCrearC.setForeground(new java.awt.Color(255, 255, 255));
-        btnCrearC.setText("NUEVO CORTE");
-        btnCrearC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCrearC.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnCrearC.setMaximumSize(new java.awt.Dimension(240, 50));
-        btnCrearC.setMinimumSize(new java.awt.Dimension(100, 50));
-        btnCrearC.setPreferredSize(new java.awt.Dimension(240, 50));
-        btnCrearC.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.setBackground(new java.awt.Color(0, 0, 0,60));
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevo.setText("NUEVO CORTE");
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevo.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnNuevo.setMaximumSize(new java.awt.Dimension(240, 50));
+        btnNuevo.setMinimumSize(new java.awt.Dimension(100, 50));
+        btnNuevo.setPreferredSize(new java.awt.Dimension(240, 50));
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearCActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
 
@@ -241,32 +244,32 @@ public class PrincipalCaja extends javax.swing.JInternalFrame {
             }
         });
 
-        btnnEditarC.setBackground(new java.awt.Color(0, 0, 0,60));
-        btnnEditarC.setForeground(new java.awt.Color(255, 255, 255));
-        btnnEditarC.setText("EDITAR CORTE");
-        btnnEditarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnnEditarC.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnnEditarC.setMaximumSize(new java.awt.Dimension(240, 50));
-        btnnEditarC.setMinimumSize(new java.awt.Dimension(100, 50));
-        btnnEditarC.setPreferredSize(new java.awt.Dimension(130, 35));
-        btnnEditarC.addActionListener(new java.awt.event.ActionListener() {
+        btnnEditar.setBackground(new java.awt.Color(0, 0, 0,60));
+        btnnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        btnnEditar.setText("EDITAR CORTE");
+        btnnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnnEditar.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnnEditar.setMaximumSize(new java.awt.Dimension(240, 50));
+        btnnEditar.setMinimumSize(new java.awt.Dimension(100, 50));
+        btnnEditar.setPreferredSize(new java.awt.Dimension(130, 35));
+        btnnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnnEditarCActionPerformed(evt);
+                btnnEditarActionPerformed(evt);
             }
         });
 
-        btnEliminarC.setBackground(new java.awt.Color(0, 0, 0,60));
-        btnEliminarC.setBorder(new javax.swing.border.MatteBorder(null));
-        btnEliminarC.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminarC.setText("ELIMINAR CORTE");
-        btnEliminarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEliminarC.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnEliminarC.setMaximumSize(new java.awt.Dimension(240,50));
-        btnEliminarC.setMinimumSize(new java.awt.Dimension(100, 50));
-        btnEliminarC.setPreferredSize(new java.awt.Dimension(210, 50));
-        btnEliminarC.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(0, 0, 0,60));
+        btnEliminar.setBorder(new javax.swing.border.MatteBorder(null));
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("ELIMINAR CORTE");
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnEliminar.setMaximumSize(new java.awt.Dimension(240,50));
+        btnEliminar.setMinimumSize(new java.awt.Dimension(100, 50));
+        btnEliminar.setPreferredSize(new java.awt.Dimension(210, 50));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarCActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -278,11 +281,11 @@ public class PrincipalCaja extends javax.swing.JInternalFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalTopLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnCrearC, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnnEditarC, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEliminarC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -293,10 +296,10 @@ public class PrincipalCaja extends javax.swing.JInternalFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCrearC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnnEditarC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -317,10 +320,10 @@ public class PrincipalCaja extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCrearCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCActionPerformed
-        formularioRegistrar.setPrincipalCaja(this);
-        formularioRegistrar.nuevoFormularioRegistrar();
-    }//GEN-LAST:event_btnCrearCActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        interfazGraficaRegistrar.setPrincipalCaja(this);
+        interfazGraficaRegistrar.nuevoFormularioRegistrar();
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
 
@@ -339,7 +342,7 @@ public class PrincipalCaja extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_tablaGraficaComponentHidden
 
-    private void btnnEditarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnEditarCActionPerformed
+    private void btnnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnEditarActionPerformed
         tablaCaja.setPrincipalCaja(this);
         if (tablaCaja.verificarFilaSeleccionada()) {
 
@@ -349,9 +352,9 @@ public class PrincipalCaja extends javax.swing.JInternalFrame {
 
         }
 
-    }//GEN-LAST:event_btnnEditarCActionPerformed
+    }//GEN-LAST:event_btnnEditarActionPerformed
 
-    private void btnEliminarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         abm.setPrincipalCaja(this);
         tablaCaja.setPrincipalCaja(this);
         if (tablaCaja.verificarFilaSeleccionada()) {
@@ -364,7 +367,7 @@ public class PrincipalCaja extends javax.swing.JInternalFrame {
 
         }
 
-    }//GEN-LAST:event_btnEliminarCActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked
         this.dispose();
@@ -380,16 +383,16 @@ public class PrincipalCaja extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private principal.MaterialButton btnCrearC;
-    private principal.MaterialButton btnEliminarC;
-    private principal.MaterialButton btnnEditarC;
-    private javax.swing.JLabel jLabel1;
+    private principal.MaterialButton btnEliminar;
+    private principal.MaterialButton btnNuevo;
+    private principal.MaterialButton btnnEditar;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblIcono;
+    private javax.swing.JLabel lblNombreVentana;
     private javax.swing.JLabel lblSalir;
     private javax.swing.JPanel panelPrincipalTop;
     private javax.swing.JTable tablaGrafica;

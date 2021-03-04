@@ -1,11 +1,7 @@
 package calsesPadre;
 
 import conexion.ConexionHibernate;
-import java.sql.Connection;
 import java.util.List;
-import javax.activation.DataSource;
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import org.hibernate.HibernateException;
 import org.hibernate.NonUniqueResultException;
 import org.hibernate.Query;
@@ -115,7 +111,7 @@ public abstract class Consultas {
         } catch (HibernateException ex) {
 
         }
-        miSesion.getTransaction().commit();
+       // miSesion.getTransaction().commit();
     }
 
     /**
@@ -124,13 +120,10 @@ public abstract class Consultas {
      */
     public void obtenerObjetoConsulta() {
         Session miSesion = ConexionHibernate.tomarConexion();
-        //seccion de testeo
+        //saber cuando una sesion es abierta
         StackTraceElement[] st = Thread.currentThread().getStackTrace();
         System.out.println("create connection called from " + st[2]);
 
-      
-        
-        
         try {
             miSesion.beginTransaction();
             Query query = miSesion.createQuery(getConsultaObject());
@@ -140,7 +133,7 @@ public abstract class Consultas {
         } catch (NonUniqueResultException ex) {
         }
         //quitar esto si da problemas
-        miSesion.getTransaction().commit();
+       // miSesion.getTransaction().commit();
 
     }
 

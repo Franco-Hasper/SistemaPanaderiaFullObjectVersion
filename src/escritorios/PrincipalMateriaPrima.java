@@ -19,69 +19,90 @@ import sun.applet.Main;
 public class PrincipalMateriaPrima extends javax.swing.JInternalFrame {
 
     public PrincipalMateriaPrima() {
-        registrarMateriaPrima = null;
-        editarMateriaPrima = null;
+        formularioRegistrarMateriaPrima = null;
+        formularioEditarMateriaPrima = null;
+        formularioRegistrarIngresoMateriaPrima=null;
         initComponents();
     }
 
-    private InterfazGraficaFormularioRegistrarMateriaPrima formularioRegistrar;
-    private InterfazGraficaFormularioEditarMateriaPrima formularioEditar;
-    private FormularioRegistrarMateriaPrima registrarMateriaPrima;
-    private FormularioEditarMateriaPrima editarMateriaPrima;
+    private InterfazGraficaFormularioRegistrarMateriaPrima InterfazGraficaRegistrar;
+    private InterfazGraficaFormularioEditarMateriaPrima InterfazGraficaEditar;
+    private FormularioRegistrarMateriaPrima formularioRegistrarMateriaPrima;
+    private FormularioEditarMateriaPrima formularioEditarMateriaPrima;
     private TablaMateriaPrima tablaMateriaPrima;
-    private final ABMMateriaPrima abm = new ABMMateriaPrima();
+    private  ABMMateriaPrima abm;
 
-    private InterfazGraficaFormularioRegistrarIngresoMateriaPrima formularioRegistrarIngreso;
-    private FormularioRegistrarIngresoMateriaPrima registrarIngresoMateriaPrima;
-    private final ABMIngresoMateriaPrima abmI = new ABMIngresoMateriaPrima();
+    private InterfazGraficaFormularioRegistrarIngresoMateriaPrima InterfazGraficaRegistrarIngreso;
+    private FormularioRegistrarIngresoMateriaPrima formularioRegistrarIngresoMateriaPrima;
+    private  ABMIngresoMateriaPrima abmIngreso;
 
-    public InterfazGraficaFormularioRegistrarMateriaPrima getFormularioRegistrar() {
-        return formularioRegistrar;
+    
+    public InterfazGraficaFormularioRegistrarMateriaPrima getInterfazGraficaRegistrar() {
+        return InterfazGraficaRegistrar;
     }
 
-    public void setFormularioRegistrar(InterfazGraficaFormularioRegistrarMateriaPrima formularioRegistrar) {
-        this.formularioRegistrar = formularioRegistrar;
+    public void setInterfazGraficaRegistrar(InterfazGraficaFormularioRegistrarMateriaPrima InterfazGraficaRegistrar) {
+        this.InterfazGraficaRegistrar = InterfazGraficaRegistrar;
     }
 
-    public InterfazGraficaFormularioEditarMateriaPrima getFormularioEditar() {
-        return formularioEditar;
+    public InterfazGraficaFormularioEditarMateriaPrima getInterfazGraficaEditar() {
+        return InterfazGraficaEditar;
     }
 
-    public void setFormularioEditar(InterfazGraficaFormularioEditarMateriaPrima formularioEditar) {
-        this.formularioEditar = formularioEditar;
+    public void setInterfazGraficaEditar(InterfazGraficaFormularioEditarMateriaPrima InterfazGraficaEditar) {
+        this.InterfazGraficaEditar = InterfazGraficaEditar;
     }
 
-    public FormularioRegistrarMateriaPrima getRegistrarMateriaPrima() {
-        return registrarMateriaPrima;
+    public InterfazGraficaFormularioRegistrarIngresoMateriaPrima getInterfazGraficaRegistrarIngreso() {
+        return InterfazGraficaRegistrarIngreso;
     }
 
-    public void setRegistrarMateriaPrima(FormularioRegistrarMateriaPrima registrarMateriaPrima) {
-        this.registrarMateriaPrima = registrarMateriaPrima;
+    public void setInterfazGraficaRegistrarIngreso(InterfazGraficaFormularioRegistrarIngresoMateriaPrima InterfazGraficaRegistrarIngreso) {
+        this.InterfazGraficaRegistrarIngreso = InterfazGraficaRegistrarIngreso;
     }
 
-    public FormularioEditarMateriaPrima getEditarMateriaPrima() {
-        return editarMateriaPrima;
+    public ABMMateriaPrima getAbm() {
+        return abm;
     }
 
-    public void setEditarMateriaPrima(FormularioEditarMateriaPrima editarMateriaPrima) {
-        this.editarMateriaPrima = editarMateriaPrima;
+    public void setAbm(ABMMateriaPrima abm) {
+        this.abm = abm;
     }
 
-    public InterfazGraficaFormularioRegistrarIngresoMateriaPrima getFormularioRegistrarIngreso() {
-        return formularioRegistrarIngreso;
+    public ABMIngresoMateriaPrima getAbmIngreso() {
+        return abmIngreso;
     }
 
-    public void setFormularioRegistrarIngreso(InterfazGraficaFormularioRegistrarIngresoMateriaPrima formularioRegistrarIngreso) {
-        this.formularioRegistrarIngreso = formularioRegistrarIngreso;
+    public void setAbmIngreso(ABMIngresoMateriaPrima abmIngreso) {
+        this.abmIngreso = abmIngreso;
     }
 
-    public FormularioRegistrarIngresoMateriaPrima getRegistrarIngresoMateriaPrima() {
-        return registrarIngresoMateriaPrima;
+    public FormularioRegistrarMateriaPrima getFormularioRegistrarMateriaPrima() {
+        return formularioRegistrarMateriaPrima;
     }
 
-    public void setRegistrarIngresoMateriaPrima(FormularioRegistrarIngresoMateriaPrima registrarIngresoMateriaPrima) {
-        this.registrarIngresoMateriaPrima = registrarIngresoMateriaPrima;
+    public void setFormularioRegistrarMateriaPrima(FormularioRegistrarMateriaPrima formularioRegistrarMateriaPrima) {
+        this.formularioRegistrarMateriaPrima = formularioRegistrarMateriaPrima;
     }
+
+    public FormularioEditarMateriaPrima getFormularioEditarMateriaPrima() {
+        return formularioEditarMateriaPrima;
+    }
+
+    public void setFormularioEditarMateriaPrima(FormularioEditarMateriaPrima formularioEditarMateriaPrima) {
+        this.formularioEditarMateriaPrima = formularioEditarMateriaPrima;
+    }
+
+    public FormularioRegistrarIngresoMateriaPrima getFormularioRegistrarIngresoMateriaPrima() {
+        return formularioRegistrarIngresoMateriaPrima;
+    }
+
+    public void setFormularioRegistrarIngresoMateriaPrima(FormularioRegistrarIngresoMateriaPrima formularioRegistrarIngresoMateriaPrima) {
+        this.formularioRegistrarIngresoMateriaPrima = formularioRegistrarIngresoMateriaPrima;
+    }
+
+
+
 
     public TablaMateriaPrima getTablaMateriaPrima() {
         return tablaMateriaPrima;
@@ -109,8 +130,8 @@ public class PrincipalMateriaPrima extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaGrafica = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        lbltrigo = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblIcono = new javax.swing.JLabel();
+        lblNombreVentana = new javax.swing.JLabel();
         lblSalir = new javax.swing.JLabel();
         btnNuevo = new principal.MaterialButton();
         txtBuscar = new javax.swing.JTextField();
@@ -180,11 +201,11 @@ public class PrincipalMateriaPrima extends javax.swing.JInternalFrame {
         jPanel4.setBackground(new java.awt.Color(0, 0, 0, 60));
         jPanel4.setForeground(new java.awt.Color(0, 0, 0));
 
-        lbltrigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/trigo.png"))); // NOI18N
+        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/trigo.png"))); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("GESTIÓN DE MATERIA PRIMA");
+        lblNombreVentana.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblNombreVentana.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreVentana.setText("GESTIÓN DE MATERIA PRIMA");
 
         lblSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel_60px.png"))); // NOI18N
         lblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -200,9 +221,9 @@ public class PrincipalMateriaPrima extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbltrigo)
+                .addComponent(lblIcono)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNombreVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -214,9 +235,9 @@ public class PrincipalMateriaPrima extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lbltrigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblIcono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNombreVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addContainerGap()))))
         );
 
@@ -511,8 +532,8 @@ public class PrincipalMateriaPrima extends javax.swing.JInternalFrame {
 
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        formularioRegistrar.setPrincipalMateriaPrima(this);
-        formularioRegistrar.nuevoFormularioRegistrar();
+        InterfazGraficaRegistrar.setPrincipalMateriaPrima(this);
+        InterfazGraficaRegistrar.nuevoFormularioRegistrar();
     }//GEN-LAST:event_btnNuevoActionPerformed
 
 
@@ -563,15 +584,15 @@ public class PrincipalMateriaPrima extends javax.swing.JInternalFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         tablaMateriaPrima.setPrincipalMateriaPrima(this);
         if (tablaMateriaPrima.verificarFilaSeleccionada()) {
-            formularioEditar.setPrincipalMateriaPrima(this);
-            formularioEditar.nuevoFormularioEditar();
+            InterfazGraficaEditar.setPrincipalMateriaPrima(this);
+            InterfazGraficaEditar.nuevoFormularioEditar();
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnNuevoIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoIngresoActionPerformed
         if (tablaMateriaPrima.verificarFilaSeleccionada()) {
-            formularioRegistrarIngreso.setPrincipalMateriaPrima(this);
-            formularioRegistrarIngreso.nuevoFormularioRegistrar();
+            InterfazGraficaRegistrarIngreso.setPrincipalMateriaPrima(this);
+            InterfazGraficaRegistrarIngreso.nuevoFormularioRegistrar();
         }
 
     }//GEN-LAST:event_btnNuevoIngresoActionPerformed
@@ -637,7 +658,6 @@ public class PrincipalMateriaPrima extends javax.swing.JInternalFrame {
     private principal.MaterialButton btnNuevoIngreso;
     private javax.swing.JButton buttonSalir1;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -646,8 +666,9 @@ public class PrincipalMateriaPrima extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    public static javax.swing.JLabel lblIcono;
+    private javax.swing.JLabel lblNombreVentana;
     private javax.swing.JLabel lblSalir;
-    public static javax.swing.JLabel lbltrigo;
     public static javax.swing.JLabel lbltrigo1;
     private principal.MaterialButton nuevo1;
     private javax.swing.JPanel panelPrincipalTop;

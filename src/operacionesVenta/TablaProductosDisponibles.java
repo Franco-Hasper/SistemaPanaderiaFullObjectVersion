@@ -54,18 +54,18 @@ public class TablaProductosDisponibles extends Tabla {
 
         switch (tipoFormulario) {
             case 1:
-                setTabla(principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles());
+                setTabla(principalVenta.getFromularioRegistrarVenta().getTablaGraficaProductosDisponibles());
                 setStringConsulta("from PrecioProducto");
                 evaluarEstadoConsulta();
-                setCampoTexto(principalVenta.getRegistrarVenta().getTxtBuscar());
+                setCampoTexto(principalVenta.getFromularioRegistrarVenta().getTxtBuscar());
                 rellenarTabla(getCampoTexto().getText());
 
                 break;
             case 2:
-                setTabla(principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles());
+                setTabla(principalVenta.getFormularioEditarVenta().getTablaGraficaProductosDisponibles());
                 setStringConsulta("from PrecioProducto");
                 evaluarEstadoConsulta();
-                setCampoTexto(principalVenta.getEditarVenta().getTxtBuscar());
+                setCampoTexto(principalVenta.getFormularioEditarVenta().getTxtBuscar());
                 rellenarTabla(getCampoTexto().getText());
                 break;
 
@@ -103,9 +103,9 @@ public class TablaProductosDisponibles extends Tabla {
     @Override
     public Integer obtenerIdFilaSeleccionada() {
         try {
-            Integer totalFilas = principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getRowCount();
-            Integer filasSeleccionada = principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getSelectedRow();
-            List<Integer> listaResutadosActualesThis = principalVenta.getRegistrarVenta().getTablaProductosDisponibles().getListaResutladosActuales();
+            Integer totalFilas = principalVenta.getFromularioRegistrarVenta().getTablaGraficaProductosDisponibles().getRowCount();
+            Integer filasSeleccionada = principalVenta.getFromularioRegistrarVenta().getTablaGraficaProductosDisponibles().getSelectedRow();
+            List<Integer> listaResutadosActualesThis = principalVenta.getFromularioRegistrarVenta().getTablaProductosDisponibles().getListaResutladosActuales();
             Integer id = operacionesUtilidad.obtenerId(listaResutadosActualesThis, totalFilas, filasSeleccionada);
             this.setIdTabla(id);
         } catch (Exception e) {
@@ -119,8 +119,8 @@ public class TablaProductosDisponibles extends Tabla {
         switch (tipoFormulario) {
             case 1:
                 try {
-                    int fila = principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getSelectedRow();
-                    principalVenta.getRegistrarVenta().getTablaGraficaProductosDisponibles().getValueAt(fila, 0).toString();
+                    int fila = principalVenta.getFromularioRegistrarVenta().getTablaGraficaProductosDisponibles().getSelectedRow();
+                    principalVenta.getFromularioRegistrarVenta().getTablaGraficaProductosDisponibles().getValueAt(fila, 0).toString();
                     return true;
                 } catch (Exception e) {
                     DesktopNotify.showDesktopMessage("  Iinformación   ", " Debe seleccionar una fila", DesktopNotify.INFORMATION, 5000);
@@ -128,8 +128,8 @@ public class TablaProductosDisponibles extends Tabla {
                 }
             case 2:
                 try {
-                    int fila = principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles().getSelectedRow();
-                    principalVenta.getEditarVenta().getTablaGraficaProductosDisponibles().getValueAt(fila, 0).toString();
+                    int fila = principalVenta.getFormularioEditarVenta().getTablaGraficaProductosDisponibles().getSelectedRow();
+                    principalVenta.getFormularioEditarVenta().getTablaGraficaProductosDisponibles().getValueAt(fila, 0).toString();
                     return true;
                 } catch (Exception e) {
                     DesktopNotify.showDesktopMessage("  Iinformación   ", " Debe seleccionar una fila", DesktopNotify.INFORMATION, 5000);

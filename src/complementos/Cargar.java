@@ -1,6 +1,5 @@
 package complementos;
 
-import com.sun.awt.AWTUtilities;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
@@ -46,27 +45,27 @@ public class Cargar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblGifCargando = new javax.swing.JLabel();
+        lblCargando = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setForeground(java.awt.Color.white);
         setUndecorated(true);
 
-        lblGifCargando.setBackground(new java.awt.Color(0, 39, 66));
-        lblGifCargando.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconoCargando.gif"))); // NOI18N
+        lblCargando.setBackground(new java.awt.Color(0, 39, 66));
+        lblCargando.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconoCargando.gif"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblGifCargando, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblCargando, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblGifCargando, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblCargando, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        lblGifCargando.setBackground(new java.awt.Color(0, 0, 0, 60));
+        lblCargando.setBackground(new java.awt.Color(0, 0, 0, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -121,7 +120,7 @@ public class Cargar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lblGifCargando;
+    private javax.swing.JLabel lblCargando;
     // End of variables declaration//GEN-END:variables
 
 }

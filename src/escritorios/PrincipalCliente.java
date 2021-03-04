@@ -25,29 +25,37 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
 
     public PrincipalCliente() {
         initComponents();
-        registrarCliente = null;
-        editarCliente = null;
+        formularioRegistrarCliente = null;
+        formularioEditarCliente = null;
     }
 
-    private InterfazGraficaFormularioRegistrarCliente formularioRegistrar;
-    private InterfazGraficaFormularioEditarCliente formularioEditar;
-    private FormularioRegistrarCliente registrarCliente;
-    private FormularioEditarCliente editarCliente;
+    private InterfazGraficaFormularioRegistrarCliente interfazGraficaRegistrar;
+    private InterfazGraficaFormularioEditarCliente interfazGraficaEditar;
+    private FormularioRegistrarCliente formularioRegistrarCliente;
+    private FormularioEditarCliente formularioEditarCliente;
     private TablaCliente tablaCliente;
     private final ABMCliente abm = new ABMCliente();
-    private FormularioRegistrarVenta formularioRegistrarVenta;
-    private FormularioEditarVenta formularioEditarVenta;
-    private int tipoFormulario;
     private final InterfazGraficaEscritorioCuenta interfazGraficaCuenta = new InterfazGraficaEscritorioCuenta();
     private PrincipalAdministrador principalAdministrador;
 
-    public int getTipoFormulario() {
-        return tipoFormulario;
+    
+    
+    public InterfazGraficaFormularioRegistrarCliente getInterfazGraficaRegistrar() {
+        return interfazGraficaRegistrar;
     }
 
-    public void setTipoFormulario(int tipoFormulario) {
-        this.tipoFormulario = tipoFormulario;
+    public void setInterfazGraficaRegistrar(InterfazGraficaFormularioRegistrarCliente interfazGraficaRegistrar) {
+        this.interfazGraficaRegistrar = interfazGraficaRegistrar;
     }
+
+    public InterfazGraficaFormularioEditarCliente getInterfazGraficaEditar() {
+        return interfazGraficaEditar;
+    }
+
+    public void setInterfazGraficaEditar(InterfazGraficaFormularioEditarCliente interfazGraficaEditar) {
+        this.interfazGraficaEditar = interfazGraficaEditar;
+    }
+
 
     public TablaCliente getTablaCliente() {
         return tablaCliente;
@@ -65,46 +73,20 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
         this.tablaGrafica = tablaGrafica;
     }
 
-
-
-    public FormularioRegistrarCliente getRegistrarCliente() {
-        return registrarCliente;
+    public FormularioRegistrarCliente getFormularioRegistrarCliente() {
+        return formularioRegistrarCliente;
     }
 
-    public void setRegistrarCliente(FormularioRegistrarCliente registrarCliente) {
-        this.registrarCliente = registrarCliente;
+    public void setFormularioRegistrarCliente(FormularioRegistrarCliente formularioRegistrarCliente) {
+        this.formularioRegistrarCliente = formularioRegistrarCliente;
     }
 
-    public FormularioEditarCliente getEditarCliente() {
-        return editarCliente;
+    public FormularioEditarCliente getFormularioEditarCliente() {
+        return formularioEditarCliente;
     }
 
-    public void setEditarCliente(FormularioEditarCliente editarCliente) {
-        this.editarCliente = editarCliente;
-    }
-
-    public InterfazGraficaFormularioRegistrarCliente getFormularioRegistrar() {
-        return formularioRegistrar;
-    }
-
-    public void setFormularioRegistrar(InterfazGraficaFormularioRegistrarCliente formularioRegistrar) {
-        this.formularioRegistrar = formularioRegistrar;
-    }
-
-    public InterfazGraficaFormularioEditarCliente getFormularioEditar() {
-        return formularioEditar;
-    }
-
-    public void setFormularioEditar(InterfazGraficaFormularioEditarCliente formularioEditar) {
-        this.formularioEditar = formularioEditar;
-    }
-
-    public FormularioRegistrarVenta getFormularioRegistrarVenta() {
-        return formularioRegistrarVenta;
-    }
-
-    public void setFormularioRegistrarVenta(FormularioRegistrarVenta formularioRegistrarVenta) {
-        this.formularioRegistrarVenta = formularioRegistrarVenta;
+    public void setFormularioEditarCliente(FormularioEditarCliente formularioEditarCliente) {
+        this.formularioEditarCliente = formularioEditarCliente;
     }
 
     public PrincipalAdministrador getPrincipalAdministrador() {
@@ -115,13 +97,6 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
         this.principalAdministrador = principalAdministrador;
     }
 
-    public FormularioEditarVenta getFormularioEditarVenta() {
-        return formularioEditarVenta;
-    }
-
-    public void setFormularioEditarVenta(FormularioEditarVenta formularioEditarVenta) {
-        this.formularioEditarVenta = formularioEditarVenta;
-    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -129,16 +104,16 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
 
         panelPrincipalTop = new javax.swing.JPanel();
         txtBuscar = new javax.swing.JTextField();
-        btnnuevoCliente = new principal.MaterialButton();
+        btnnuevo = new principal.MaterialButton();
         btnCuenta = new principal.MaterialButton();
-        btnnEditarCliente = new principal.MaterialButton();
-        btnEliminarCli = new principal.MaterialButton();
+        btnnEditar = new principal.MaterialButton();
+        btnEliminar = new principal.MaterialButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaGrafica = new javax.swing.JTable();
         panel = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblNombreVentana = new javax.swing.JLabel();
+        lblIcono = new javax.swing.JLabel();
         lblSalir = new javax.swing.JLabel();
 
         panelPrincipalTop.setBackground(new java.awt.Color(204, 0, 0));
@@ -158,17 +133,17 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        btnnuevoCliente.setBackground(new java.awt.Color(0, 0, 0,60));
-        btnnuevoCliente.setForeground(new java.awt.Color(255, 255, 255));
-        btnnuevoCliente.setText("NUEVO CLIENTE");
-        btnnuevoCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnnuevoCliente.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnnuevoCliente.setMaximumSize(new java.awt.Dimension(130, 35));
-        btnnuevoCliente.setMinimumSize(new java.awt.Dimension(130, 35));
-        btnnuevoCliente.setPreferredSize(new java.awt.Dimension(130, 35));
-        btnnuevoCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnnuevo.setBackground(new java.awt.Color(0, 0, 0,60));
+        btnnuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnnuevo.setText("NUEVO CLIENTE");
+        btnnuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnnuevo.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnnuevo.setMaximumSize(new java.awt.Dimension(130, 35));
+        btnnuevo.setMinimumSize(new java.awt.Dimension(130, 35));
+        btnnuevo.setPreferredSize(new java.awt.Dimension(130, 35));
+        btnnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnnuevoClienteActionPerformed(evt);
+                btnnuevoActionPerformed(evt);
             }
         });
 
@@ -186,30 +161,30 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        btnnEditarCliente.setBackground(new java.awt.Color(0, 0, 0,60));
-        btnnEditarCliente.setForeground(new java.awt.Color(255, 255, 255));
-        btnnEditarCliente.setText("EDITAR CLIENTE");
-        btnnEditarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnnEditarCliente.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnnEditarCliente.setMaximumSize(new java.awt.Dimension(130, 35));
-        btnnEditarCliente.setPreferredSize(new java.awt.Dimension(130, 35));
-        btnnEditarCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnnEditar.setBackground(new java.awt.Color(0, 0, 0,60));
+        btnnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        btnnEditar.setText("EDITAR CLIENTE");
+        btnnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnnEditar.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnnEditar.setMaximumSize(new java.awt.Dimension(130, 35));
+        btnnEditar.setPreferredSize(new java.awt.Dimension(130, 35));
+        btnnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnnEditarClienteActionPerformed(evt);
+                btnnEditarActionPerformed(evt);
             }
         });
 
-        btnEliminarCli.setBackground(new java.awt.Color(0, 0, 0,60));
-        btnEliminarCli.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminarCli.setText("ELIMINAR CLIENTE");
-        btnEliminarCli.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEliminarCli.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        btnEliminarCli.setMaximumSize(new java.awt.Dimension(130, 35));
-        btnEliminarCli.setMinimumSize(new java.awt.Dimension(130, 35));
-        btnEliminarCli.setPreferredSize(new java.awt.Dimension(130, 35));
-        btnEliminarCli.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(0, 0, 0,60));
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("ELIMINAR CLIENTE");
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnEliminar.setMaximumSize(new java.awt.Dimension(130, 35));
+        btnEliminar.setMinimumSize(new java.awt.Dimension(130, 35));
+        btnEliminar.setPreferredSize(new java.awt.Dimension(130, 35));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarCliActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -257,11 +232,11 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
         );
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("CLIENTES");
+        lblNombreVentana.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblNombreVentana.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreVentana.setText("CLIENTES");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/user_group_man_man_80px.png"))); // NOI18N
+        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/user_group_man_man_80px.png"))); // NOI18N
 
         lblSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel_60px.png"))); // NOI18N
         lblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -277,9 +252,9 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNombreVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -288,7 +263,7 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNombreVentana, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(panelLayout.createSequentialGroup()
                 .addContainerGap()
@@ -296,7 +271,7 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
                     .addGroup(panelLayout.createSequentialGroup()
                         .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)))
+                    .addComponent(lblIcono, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout panelPrincipalTopLayout = new javax.swing.GroupLayout(panelPrincipalTop);
@@ -305,11 +280,11 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
             panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalTopLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnnuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnnEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEliminarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(593, 593, 593)
@@ -325,9 +300,9 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnnEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnnuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -366,12 +341,12 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tablaGraficaComponentHidden
 
-    private void btnnuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoClienteActionPerformed
+    private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
         // TODO add your handling code here:
-        formularioRegistrar.setPrincipalCliente(this);
-        formularioRegistrar.nuevoFormularioRegistrar();
+        interfazGraficaRegistrar.setPrincipalCliente(this);
+        interfazGraficaRegistrar.nuevoFormularioRegistrar();
 
-    }//GEN-LAST:event_btnnuevoClienteActionPerformed
+    }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void btnCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuentaActionPerformed
         interfazGraficaCuenta.setPrincipalAdministrador(this.getPrincipalAdministrador());
@@ -387,7 +362,7 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnCuentaActionPerformed
 
-    private void btnEliminarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCliActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
         abm.setPrincipalCliente(this);
         tablaCliente.setPrincipalCliente(this);
@@ -402,9 +377,9 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
             }
         }
 
-    }//GEN-LAST:event_btnEliminarCliActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnnEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnEditarClienteActionPerformed
+    private void btnnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnEditarActionPerformed
         // TODO add your handling code here:
         tablaCliente.setPrincipalCliente(this);
         if (tablaCliente.verificarFilaSeleccionada()) {
@@ -414,7 +389,7 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
                 formularioEditar.nuevoFormularioEditar();
             }
         }
-    }//GEN-LAST:event_btnnEditarClienteActionPerformed
+    }//GEN-LAST:event_btnnEditarActionPerformed
 
     private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked
         this.dispose();
@@ -429,11 +404,11 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     }
 
     public MaterialButton getBtnnuevocliente() {
-        return btnnuevoCliente;
+        return btnnuevo;
     }
 
     public void setBtnnuevocliente(MaterialButton btnnuevocliente) {
-        this.btnnuevoCliente = btnnuevocliente;
+        this.btnnuevo = btnnuevocliente;
     }
 
     public JTextField getTxtBuscar() {
@@ -445,19 +420,19 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
     }
 
     public MaterialButton getBtnEliminarCli() {
-        return btnEliminarCli;
+        return btnEliminar;
     }
 
     public void setBtnEliminarCli(MaterialButton btnEliminarCli) {
-        this.btnEliminarCli = btnEliminarCli;
+        this.btnEliminar = btnEliminarCli;
     }
 
     public MaterialButton getBtnnEditarCl() {
-        return btnnEditarCliente;
+        return btnnEditar;
     }
 
     public void setBtnnEditarCl(MaterialButton btnnEditarCl) {
-        this.btnnEditarCliente = btnnEditarCl;
+        this.btnnEditar = btnnEditarCl;
     }
 
     public MaterialButton getBtnCuenta() {
@@ -471,13 +446,13 @@ public class PrincipalCliente extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButton btnCuenta;
-    private principal.MaterialButton btnEliminarCli;
-    private principal.MaterialButton btnnEditarCliente;
-    private principal.MaterialButton btnnuevoCliente;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
+    private principal.MaterialButton btnEliminar;
+    private principal.MaterialButton btnnEditar;
+    private principal.MaterialButton btnnuevo;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblIcono;
+    private javax.swing.JLabel lblNombreVentana;
     private javax.swing.JLabel lblSalir;
     private javax.swing.JPanel panel;
     private javax.swing.JPanel panelPrincipalTop;
