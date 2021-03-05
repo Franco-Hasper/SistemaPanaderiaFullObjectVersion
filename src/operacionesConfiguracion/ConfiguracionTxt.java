@@ -1,10 +1,12 @@
 package operacionesConfiguracion;
 
+import ds.desktop.notify.DesktopNotify;
 import java.awt.Color;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
 import javax.swing.JPanel;
@@ -130,8 +132,9 @@ public class ConfiguracionTxt {
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(contenido);
             bw.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+             DesktopNotify.showDesktopMessage("   exito   ", "  Configuracion guardada", DesktopNotify.SUCCESS, 5000);
+        } catch (IOException e) {
+            DesktopNotify.showDesktopMessage("   error   ", "  Error al intentar guardar configuracion", DesktopNotify.ERROR, 5000);
         }
     }
 
