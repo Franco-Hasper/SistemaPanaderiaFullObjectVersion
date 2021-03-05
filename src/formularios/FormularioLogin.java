@@ -78,7 +78,7 @@ public class FormularioLogin extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("LOGIN");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit_file_80px.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lock_80px.png"))); // NOI18N
 
         javax.swing.GroupLayout panelPrincipalTopLayout = new javax.swing.GroupLayout(panelPrincipalTop);
         panelPrincipalTop.setLayout(panelPrincipalTopLayout);
