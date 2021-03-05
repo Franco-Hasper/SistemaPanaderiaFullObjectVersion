@@ -59,7 +59,7 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             formularioEditar.setPrincipalAdministrador(principalAdministrador);
             principalVenta.setFormularioEditarVenta(formularioEditar);
             colorTema();
-            transferirDatos();
+            
             infoTextPrompt();
 
             //Seccion Tabla Productos Disponibles
@@ -124,9 +124,9 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
              operacionesSecundariasVenta.colorLblVuelto(formularioEditar.getLblVuelto(), Double.valueOf(formularioEditar.getLblVuelto().getText()));
 
             rellenarBoxes();
-
+            transferirDatos();
             radButons();
-
+            
             ComprobanteVenta comprobante = new ComprobanteVenta();
             formularioEditar.setComprobante(comprobante);
 
@@ -169,7 +169,13 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
 
     @Override
     public void transferirDatos() {
-
+        int fila = principalVenta.getTablaGrafica().getSelectedRow();
+        String valor=principalVenta.getTablaGrafica().getValueAt(fila, 3).toString();
+        if(valor.equals("venta simple")){
+            principalVenta.getFormularioEditarVenta().getBoxTipoVenta().setSelectedIndex(0);
+        }else{
+            principalVenta.getFormularioEditarVenta().getBoxTipoVenta().setSelectedIndex(1);
+        }
     }
 
     @Override

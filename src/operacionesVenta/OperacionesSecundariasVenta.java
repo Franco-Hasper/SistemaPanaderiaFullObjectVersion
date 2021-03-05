@@ -502,7 +502,7 @@ public class OperacionesSecundariasVenta extends Consultas {
         Double balance = 0.00;
         Double totalCompra = 0.00;
 
-        balance = mc.getBalance() - (mc.getMonto());
+        balance = mc.getCodigoCuenta().getBalance()- (mc.getMonto());
 
         try {
             totalCompra = Double.valueOf(formularioEditarVenta.getLblPrecioTotal().getText());

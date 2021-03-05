@@ -397,7 +397,7 @@ public class ABMVenta extends ABM {
         if (formularioEditarVenta.getRadBtnDescontar().isSelected()) {
             if (formularioEditarVenta.getLblVuelto().getText() == ".00") {
                 //borrar movCuenta anterior
-                //Si no se registro un movimiento, el objeto es nullo y no hay nada que borrar, salta a la siguiente funcion
+                //Si no se registro un movimiento, el objeto es nulo y no hay nada que borrar, salta a la siguiente funcion
                 try {
                     Venta_MovimientoCuenta vm = formularioEditarVenta.getTablaCuenta().obtenerVenta_MovimientoCuenta();
                     MovimientoCuenta mc = (MovimientoCuenta) miSesion.get(MovimientoCuenta.class, vm.getMovimientoCuentaId().getIdMovimientoCuenta());
