@@ -25,20 +25,16 @@ public class Validar extends Consultas {
         try {
             for (Object o : lista) {
                 Login l = (Login) o;
-                System.out.println(l.getUser());
                 if (l.getUser().equals(fromularioLogin.getTxtUsuario().getText()) && l.getPassword().equals(fromularioLogin.getTxtContraseña().getText())) {
                        estadoLogin=true;
                 } 
             }
-            
             if(estadoLogin){
                 fromularioLogin.dispose();
-                    new MainMenu().ejecutar();
+                 new MainMenu().ejecutar();
             }else{
                 DesktopNotify.showDesktopMessage("error ", " USUARIO O CONTRASEÑA INCORRECTOS", DesktopNotify.ERROR, 7000);
             }
-            
-            
         } catch (NullPointerException e) {
         }
 

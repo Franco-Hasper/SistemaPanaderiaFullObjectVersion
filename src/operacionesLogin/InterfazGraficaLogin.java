@@ -1,13 +1,12 @@
 package operacionesLogin;
 
-import app.bolivia.swing.JCTextField;
 import clasesUtilidadGeneral.TextPrompt;
 import complementos.Cargar;
 import formularios.FormularioLogin;
 import java.awt.Frame;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import lanzarAplicacion.Iniciar;
 import operacionesConfiguracion.ConfiguracionTxt;
 
 /**
@@ -16,7 +15,7 @@ import operacionesConfiguracion.ConfiguracionTxt;
 public class InterfazGraficaLogin {
 
     public void ejecutar() {
-        Cargar cargando=new Cargar();
+        Cargar cargando = new Cargar();
         cargando.setVisible(true);
         FormularioLogin login = new FormularioLogin(new Frame(), true);
         colorTema(login.getPanelPrincipalTop());

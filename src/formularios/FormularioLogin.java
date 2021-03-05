@@ -15,7 +15,7 @@ public class FormularioLogin extends javax.swing.JDialog {
 
     
     private Validar validar;
-    
+   
     public FormularioLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();

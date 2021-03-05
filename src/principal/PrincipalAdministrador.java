@@ -186,10 +186,15 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        rSYearDate1 = new rojeru_san.componentes.RSYearDate();
         panelBase = new javax.swing.JPanel();
         panelPrincipalTop = new javax.swing.JPanel();
-        lblLibre = new javax.swing.JLabel();
+        lblVentaDolar = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblCompraDolar = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblCompraDolar1 = new javax.swing.JLabel();
         panelPrincipalBody = new javax.swing.JPanel();
         btnGestionVentas = new principal.MaterialButtomRectangle();
         btnGestionMateriPrima = new principal.MaterialButtomRectangle();
@@ -207,10 +212,29 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
         panelPrincipalTop.setBackground(new java.awt.Color(142, 131, 54));
 
-        lblLibre.setForeground(new java.awt.Color(255, 255, 255));
+        lblVentaDolar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblVentaDolar.setForeground(new java.awt.Color(255, 255, 255));
+        lblVentaDolar.setText("00.00");
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("COMPRA DOLAR OFICIAL:");
+        jLabel2.setText("VENTA:");
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("DÓLAR OFICIAL");
+
+        lblCompraDolar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblCompraDolar.setForeground(new java.awt.Color(255, 255, 255));
+        lblCompraDolar.setText("00.00");
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("COMPRA:");
+
+        lblCompraDolar1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblCompraDolar1.setForeground(new java.awt.Color(255, 255, 255));
+        lblCompraDolar1.setText("/");
 
         javax.swing.GroupLayout panelPrincipalTopLayout = new javax.swing.GroupLayout(panelPrincipalTop);
         panelPrincipalTop.setLayout(panelPrincipalTopLayout);
@@ -218,18 +242,32 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
             panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalTopLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblLibre, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCompraDolar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCompraDolar1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblVentaDolar)
+                .addGap(14, 14, 14))
         );
         panelPrincipalTopLayout.setVerticalGroup(
             panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalTopLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblLibre, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblCompraDolar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelPrincipalTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCompraDolar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblVentaDolar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -519,15 +557,24 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         this.btnGestionProveedor = btnGestionProveedor;
     }
 
-    
-    
-    public JLabel getLblLibre() {
-        return lblLibre;
+    public JLabel getLblCompraDolar() {
+        return lblCompraDolar;
     }
 
-    public void setLblLibre(JLabel lblLibre) {
-        this.lblLibre = lblLibre;
+    public void setLblCompraDolar(JLabel lblCompraDolar) {
+        this.lblCompraDolar = lblCompraDolar;
     }
+
+    public JLabel getLblVentaDolar() {
+        return lblVentaDolar;
+    }
+
+    public void setLblVentaDolar(JLabel lblVentaDolar) {
+        this.lblVentaDolar = lblVentaDolar;
+    }
+
+    
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -541,10 +588,15 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private principal.MaterialButtomRectangle btnGestionVentas;
     private principal.Escritorio escritorio;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel lblLibre;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lblCompraDolar;
+    private javax.swing.JLabel lblCompraDolar1;
+    private javax.swing.JLabel lblVentaDolar;
     private javax.swing.JPanel panelBase;
     private javax.swing.JPanel panelPrincipalBody;
     private javax.swing.JPanel panelPrincipalTop;
+    private rojeru_san.componentes.RSYearDate rSYearDate1;
     // End of variables declaration//GEN-END:variables
 
 
