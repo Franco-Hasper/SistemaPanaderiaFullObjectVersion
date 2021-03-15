@@ -2,6 +2,7 @@ package operacionesVenta;
 
 import calsesPadre.InterfazGraficaFormularioEditar;
 import clasesUtilidadGeneral.TextPrompt;
+import complementos.Cargar;
 import escritorios.PrincipalVenta;
 import formularios.FormularioEditarVenta;
 import java.awt.Color;
@@ -52,6 +53,8 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
 
     @Override
     public void nuevoFormularioEditar() {
+        Cargar cargando = new Cargar();
+        cargando.setVisible(true);
         if (principalVenta.getFormularioEditarVenta() == null) {
             //seccion formulario
             FormularioEditarVenta formularioEditar = new FormularioEditarVenta(frame, true);
@@ -59,7 +62,7 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             formularioEditar.setPrincipalAdministrador(principalAdministrador);
             principalVenta.setFormularioEditarVenta(formularioEditar);
             colorTema();
-            
+
             infoTextPrompt();
 
             //Seccion Tabla Productos Disponibles
@@ -80,9 +83,6 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             principalVenta.getFormularioEditarVenta().setListaProductosEliminar(tablaProductosListados.getListaProductosEliminar());
             principalVenta.getFormularioEditarVenta().setTablaProductosListados(tablaProductosListados);
 
-           
-     
-            
             configuracionTxtCantidadTxtTotal();
 
             //seccion tablaCliente
@@ -109,7 +109,7 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             formularioEditar.setIdCuenta(tablaCuenta.obtenerIdCuenta());
             formularioEditar.setTablaCuenta(tablaCuenta);
 
-             //Seccion Operaciones Secundarias
+            //Seccion Operaciones Secundarias
             //creo el objeto operaciones secundarias
             OperacionesSecundariasVenta operacionesSecundariasVenta = new OperacionesSecundariasVenta();
             //le pego el formulario con el que va a trabajar
@@ -119,19 +119,19 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
             //guardo el la instancia en el formulario grafico
             principalVenta.getFormularioEditarVenta().setOperacionesSecundariasVenta(operacionesSecundariasVenta);
             //Solo cuando es una venta con movimiento precio realizado
-             operacionesSecundariasVenta.ejecutarCalcularBalanceCuentaPrevio();
-             
-             operacionesSecundariasVenta.colorLblVuelto(formularioEditar.getLblVuelto(), Double.valueOf(formularioEditar.getLblVuelto().getText()));
+            operacionesSecundariasVenta.ejecutarCalcularBalanceCuentaPrevio();
+
+            operacionesSecundariasVenta.colorLblVuelto(formularioEditar.getLblVuelto(), Double.valueOf(formularioEditar.getLblVuelto().getText()));
 
             rellenarBoxes();
             transferirDatos();
             radButons();
-            
+
             ComprobanteVenta comprobante = new ComprobanteVenta();
             formularioEditar.setComprobante(comprobante);
 
         }
-
+        cargando.dispose();
         principalVenta.getFormularioEditarVenta().setVisible(true);
         principalVenta.setFormularioEditarVenta(null);
 
@@ -170,10 +170,10 @@ public class InterfazGraficaFormularioEditarVenta extends InterfazGraficaFormula
     @Override
     public void transferirDatos() {
         int fila = principalVenta.getTablaGrafica().getSelectedRow();
-        String valor=principalVenta.getTablaGrafica().getValueAt(fila, 3).toString();
-        if(valor.equals("venta simple")){
+        String valor = principalVenta.getTablaGrafica().getValueAt(fila, 3).toString();
+        if (valor.equals("venta simple")) {
             principalVenta.getFormularioEditarVenta().getBoxTipoVenta().setSelectedIndex(0);
-        }else{
+        } else {
             principalVenta.getFormularioEditarVenta().getBoxTipoVenta().setSelectedIndex(1);
         }
     }

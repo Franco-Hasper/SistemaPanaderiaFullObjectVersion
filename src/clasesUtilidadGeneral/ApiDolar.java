@@ -17,9 +17,8 @@ public class ApiDolar {
      * @throws Exception
      */
     public void precioDolarOficial(PrincipalAdministrador principalAdministrador) throws Exception {
-
+        
         String url = "https://api-dolar-argentina.herokuapp.com/api/dolaroficial";
-        //https://www.dolarsi.com/api/api.php?type=valoresprincipales
         URL obj = new URL(url);
 
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();

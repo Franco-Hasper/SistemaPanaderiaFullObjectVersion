@@ -30,7 +30,7 @@ public class MainMenu {
                     try {
                         new ApiDolar().precioDolarOficial(p);
                         //detener el hilo por 10 seg
-                        Thread.sleep(10000);
+                        Thread.sleep(60000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (Exception ex) {

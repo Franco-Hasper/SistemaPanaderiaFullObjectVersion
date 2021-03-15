@@ -10,8 +10,7 @@ import principal.PrincipalAdministrador;
  */
 public abstract class InterfazGraficaEscritorio {
 
-  
-    Cargar panelCargando=new Cargar();
+    Cargar panelCargando = new Cargar();
 
     protected PrincipalAdministrador principalAdministrador;
 
@@ -38,43 +37,39 @@ public abstract class InterfazGraficaEscritorio {
      * con una instancia de la clase Treacargando.
      */
     public void ejecutarNuevaVentana() {
-        ExecutorService exe = Executors.newFixedThreadPool(2);
-        exe.execute(new TareaCargando());
-        exe.execute(new TareaVentana());
+        tareaCargando();
+        tareaVentana();
     }
-
 
     /**
      * implemnta el metodo nuevaVentana dentro del metodo run, leugo finaliza la
      * instancia del dialog cargar.
      */
-    public class TareaVentana implements Runnable {
+    public void tareaVentana() {
 
-        @Override
-        public void run() {
-            try {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
                 nuevaVentana();
                 panelCargando.dispose();
-            } catch (Exception ex) {
-                ex.printStackTrace();
             }
-        }
+        };
+        Thread hilo = new Thread(runnable);
+        hilo.start();
     }
 
-  
     /**
      * Implemnta el metodo nuevoDialogCargando dentro del metodo run.
      */
-    public class TareaCargando implements Runnable {
+    public void tareaCargando() {
 
-        @Override
-        public void run() {
-            try {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
                 panelCargando.setVisible(true);
-            } catch (Exception ex) {
             }
-
-        }
+        };
+        Thread hilo = new Thread(runnable);
+        hilo.start();
     }
-
 }

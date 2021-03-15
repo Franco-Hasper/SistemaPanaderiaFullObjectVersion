@@ -142,12 +142,12 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("CLIENTE:");
+        jLabel2.setText("TIPO DE VENTA:");
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("TIPO DE VENTA:");
+        jLabel6.setText("CLIENTE:");
 
         lblCliente.setBackground(new java.awt.Color(0, 0, 0));
         lblCliente.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -366,7 +366,7 @@ public class FormularioDetalleDeVenta extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(PanelIngresoMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(PanelIngresoMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, 536, Short.MAX_VALUE)
                 .addGap(2, 2, 2))
             .addComponent(panelPrincipalTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );

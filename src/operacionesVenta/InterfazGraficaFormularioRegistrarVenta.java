@@ -2,6 +2,7 @@ package operacionesVenta;
 
 import calsesPadre.InterfazGraficaFormularioRegistrar;
 import clasesUtilidadGeneral.TextPrompt;
+import complementos.Cargar;
 import escritorios.PrincipalVenta;
 import formularios.FormularioRegistrarVenta;
 import java.awt.Color;
@@ -40,6 +41,8 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
 
     @Override
     public void nuevoFormularioRegistrar() {
+        Cargar cargando = new Cargar();
+        cargando.setVisible(true);
         if (principalVenta.getFromularioRegistrarVenta() == null) {
             //seccion formulario
             FormularioRegistrarVenta formularioRegistrar = new FormularioRegistrarVenta(frame, true);
@@ -90,7 +93,7 @@ public class InterfazGraficaFormularioRegistrarVenta extends InterfazGraficaForm
             rellenarBoxes();
             fechaActual();
         }
-
+        cargando.dispose();
         principalVenta.getFromularioRegistrarVenta().setVisible(true);
         principalVenta.setFromularioRegistrarVenta(null);
     }

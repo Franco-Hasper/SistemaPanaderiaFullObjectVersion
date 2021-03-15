@@ -168,6 +168,8 @@ public class PrincipalConfiguracion extends javax.swing.JInternalFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("COLOR TEMA");
 
+        txtSaldoCuenta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        txtSaldoCuenta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSaldoCuenta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSaldoCuentaKeyReleased(evt);
